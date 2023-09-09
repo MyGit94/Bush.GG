@@ -15,10 +15,11 @@
     
 
         <!-- 부트스트랩 기본 CSS -->
-    <link href="/css/sb-admin-2.css" rel="stylesheet">
+        <!-- VSCODE에서 /제거 후 작업-->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
          <!-- 내 Stylce CSS 8/29일 추가됨  -->
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/footer.css">
 
 </head>
 
@@ -34,7 +35,7 @@
             <li class="nav-item active">
                 <a class="nav-link nav-link2" href="index.html">
                     <!-- <p class="nav-item-text">BUSH.GG</p> -->
-                  <img src="/img/logo.png" alt="" class="nav-item-img">
+                  <img src="img/logo.png" alt="" class="nav-item-img">
                    </a>
             </li>
 
@@ -111,7 +112,7 @@
         <!-- 메인 컨텐츠 전체영역 -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- 상단 헤더 -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <nav class="navbar mb-4">
                 <!-- (모바일) 사이드 메뉴 여닫이 버튼 -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
@@ -119,9 +120,9 @@
                 <!-- 전적 검색창 -->
                 <form
                     class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="form-group">
+                    <div class="search">
                         <!-- 전적 검색 : 입력 텍스트칸 -->
-                        <input type="text" class="form-control border-0 small" placeholder="소환사명을 입력해주세요"
+                        <input type="text" class="form-control small" placeholder="소환사명을 입력해주세요"
                             aria-label="Search" aria-describedby="basic-addon2">
                             <!-- 검색 아이콘 전체영역 -->
                         <div class="form-group">
@@ -135,7 +136,7 @@
                 </form>
                 <!-- 전적 검색창 끝 -->   
         <!-- 로그인&회원가입-->
-        <div class="d-flex justify-content-between ml-3 mr-3">
+        <div class="d-flex justify-content-between">
             <div class="">
                 <button onclick="location.href='login.html';" class="btn signInBtn" type="button">로그인</button>
                 <button onclick="location.href='register.html';" class="btn signUpBtn" type="button">회원가입</button>
@@ -188,32 +189,33 @@
 
 
         <!-- Bootstrap core JavaScript-->
-        <script src="/vendor/jquery/jquery.min.js"></script>
-        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Core plugin JavaScript-->
-        <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
         <!-- Custom scripts for all pages-->
-        <script src="/js/sb-admin-2.min.js"></script>
+        <script src="js/sb-admin-2.min.js"></script>
 
         <!-- Page level plugins -->
-        <script src="/vendor/chart.js/Chart.min.js"></script>
+        <script src="vendor/chart.js/Chart.min.js"></script>
 
         <!-- Page level custom scripts -->
-        <script src="/js/demo/chart-area-demo.js"></script>
-        <script src="/js/demo/chart-pie-demo.js"></script>
+        <script src="js/demo/chart-area-demo.js"></script>
+        <script src="js/demo/chart-pie-demo.js"></script>
 
 
            
         <!-- 푸터 -->
         <div class="footer">
             <div>
-                <p class="footerText">이 사이트는 비상업적 용도입니다.아이콘 이미지는
-                    <a href="https://www.flaticon.com/uicons">Flaticon</a>의 UIcon을 사용했습니다.
+                <a href="">개인정보처리방침</a>
+                <p class="footerText">
+                    BUSH.GG isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends.
                 </p>
                 <div>
-                    <img src="/img/logo.png" alt="로고" class="footerLogo">
+                    <img src="img/logo.png" alt="로고" class="footerLogo">
                 </div>
             </div>
          </div>

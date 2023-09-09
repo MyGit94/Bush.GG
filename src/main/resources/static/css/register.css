@@ -1,0 +1,14 @@
+/* body 배경색 설정 */
+body {
+   height:900px;
+   background-color: #15511133;
+  }
+  
+
+/* 컨텐츠 높이 설정 */
+.container{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+}

@@ -14,10 +14,13 @@
         rel="stylesheet">
         
         <!-- 부트스트랩 기본 CSS -->
-    <link href="/css/sb-admin-2.css" rel="stylesheet">
+        <!-- VSCODE에서 /제거 후 작업-->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
          <!-- 내 Stylce CSS 8/29일 추가됨  -->
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/board.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/board.css">
+
+    <link rel="stylesheet" href="css/footer.css">
 
 </head>
 
@@ -111,7 +114,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- 상단 헤더 -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <nav class="navbar mb-4">
                 <!-- (모바일) 사이드 메뉴 여닫이 버튼 -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
@@ -119,9 +122,9 @@
                 <!-- 전적 검색창 -->
                 <form
                     class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="form-group">
+                    <div class="search">
                         <!-- 전적 검색 : 입력 텍스트칸 -->
-                        <input type="text" class="form-control border-0 small" placeholder="소환사명을 입력해주세요"
+                        <input type="text" class="form-control small" placeholder="소환사명을 입력해주세요"
                             aria-label="Search" aria-describedby="basic-addon2">
                             <!-- 검색 아이콘 전체영역 -->
                         <div class="form-group">
@@ -135,8 +138,8 @@
                 </form>
                 <!-- 전적 검색창 끝 -->   
         <!-- 로그인&회원가입-->
-        <div class="d-flex justify-content-between ml-3 mr-3">
-            <div class="">
+        <div class="d-flex justify-content-between">
+            <div>
                 <button onclick="location.href='login.html';" class="btn signInBtn" type="button">로그인</button>
                 <button onclick="location.href='register.html';" class="btn signUpBtn" type="button">회원가입</button>
             </div>
@@ -146,22 +149,20 @@
             <!-- 상단헤더 끝 -->
 
         <!-- 게시판 헤더 -->
-        <div class="ArticleHeder">
-            <h1 class="h3 mb-2">자유게시판</h1>
-        </div>
-        <div class="d-flex justify-content-between p-3">
-            <button type="button" class="btn bestBtn">
-                <i class="fas fa-heart"></i>
-                BEST</button>
-            <button onclick="location.href='board-register.html';" class="btn writeBtn"><i class="fas fa-pen fa-sm"></i> 글 쓰기</button>
+        <div class="articleHeder">
+            <h1 class="h1">자유게시판</h1>
+            <div class="articleHederBtn">
+                <button type="button" class="btn bestBtn">
+                    <i class="fas fa-heart"></i>
+                    BEST</button>
+                <button onclick="location.href='board-register.html';" class="btn writeBtn"><i class="fas fa-pen fa-sm"></i> 글 쓰기</button>
+            </div>
         </div>
         <!-- 게시판 헤더 끝 --> 
 
             <!-- 게시판 -->
-            <div class="card shadow mb-4">
-
+            <div class="boardBody shadow-lg">
                 <div class="card-body">
-                    <div class="table">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
@@ -238,25 +239,62 @@
                                     <td>???</td>
                                     <td>0</td>
                                 </tr>
+                                <tr>
+                                    <td>0</td>
+                                    <td><a href="board-detail.html">제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?</a></td>
+                                    <td>홍길동</td>
+                                    <td>2023.08.31.</td>
+                                    <td>???</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>0</td>
+                                    <td><a href="board-detail.html">제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?</a></td>
+                                    <td>홍길동</td>
+                                    <td>2023.08.31.</td>
+                                    <td>???</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>0</td>
+                                    <td><a href="board-detail.html">제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?</a></td>
+                                    <td>홍길동</td>
+                                    <td>2023.08.31.</td>
+                                    <td>???</td>
+                                    <td>0</td>
+                                </tr>
                             </tbody>
                         </table>
-                    </div>
                 </div>
              </div>
              <!-- 게시판 끝-->
 
             <!-- 게시판 하단 & 페이지 -->
-            <div class="d-flex justify-content-between ml-3 mr-3">
+            <div class="articleBottom">
                 <div class="">
-                    <button class="btn btn-secondary" type="button" id="button-addon1">목록</button>
+                    <button class="btn listBtn" type="button">
+                        <i class="fas fa-list"></i>
+                    </button>
                 </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                    <button class="btn btn-secondary" type="button" id="button-addon1">검색</button>
-                  </div>
-                  <div class="">
-                    <button class="btn btn-secondary" type="button">Button</button>
-                    <button class="btn btn-secondary" type="button">Button</button>
+                <!-- 검색 전체-->
+                <form class="articleSearch">
+                    <!-- 게시글 검색 : 입력 텍스트칸 -->
+                    <input type="text" class="form-control small" placeholder="검색 내용을 입력해주세요"
+                        aria-label="Search" aria-describedby="basic-addon2">
+                        <!-- 검색 버튼 네모박스 -->
+                        <button onclick="location.href='index.html';" class="btn boardSearchBtn" type="button">
+                            <!-- 검색 버튼 돋보기 아이콘 -->
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                </form>
+                <!-- 검색 전체 끝-->
+                  <div class="page-item">
+                    <button class="btn prevBtn" type="button">
+                        <i class="fa fa-angle-double-left"></i>
+                    </button>
+                    <button class="btn nextBtn" type="button">
+                        <i class="fa fa-angle-double-right"></i>
+                    </button>
                   </div>
             </div>
             <!-- 게시판 하단 & 페이지 끝-->
@@ -289,16 +327,28 @@
         </div>
         <!-- 로그아웃 모달 끝-->
 
-               <!-- Bootstrap core JavaScript-->
-               <script src="/vendor/jquery/jquery.min.js"></script>
-               <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-       
-               <!-- Core plugin JavaScript-->
-               <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-       
-               <!-- Custom scripts for all pages-->
-               <script src="/js/sb-admin-2.min.js"></script>
+        <!-- 푸터 -->
+        <div class="footer">
+            <div>
+                <p class="footerText">이 사이트는 비상업적 용도입니다.아이콘 이미지는
+                    <a href="https://www.flaticon.com/uicons">Flaticon</a>의 UIcon을 사용했습니다.
+                </p>
+                <div>
+                    <img src="img/logo.png" alt="로고" class="footerLogo">
+                </div>
+            </div>
+        </div>
+        <!-- 푸터 끝-->
 
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
 </body>
 
 </html>

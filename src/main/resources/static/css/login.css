@@ -1,0 +1,28 @@
+/* body 배경색 설정 */
+body {
+    height:900px;
+    background-color: #15511133;
+   }
+   
+   a{
+    color:#000;
+    
+   }
+
+   a:hover{
+    color:#156549;
+    text-decoration: none;
+   }
+ 
+ /* 컨텐츠 높이 설정 */
+ .container{
+     display: flex;
+     height: 100%;
+     flex-direction: column;
+     justify-content: center;
+ }
+
+ /* 로그인 일러스트 */
+ .bg_login-image img{
+    width:100%;
+ }
