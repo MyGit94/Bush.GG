@@ -65,6 +65,7 @@ public class SummonerController {
 
         RecentDTO recentDTO = new RecentDTO();
         List<ChampionCount> championCounts = new ArrayList<>();
+        List<SummonerWithCount> summonerWithCounts = new ArrayList<>();
         // puuid로 challenges를 가져옴
         PlayerChallengesInfoDTO playerChallengesInfo = summonerService.getPlayerChallengesInfo(summoner.getPuuid());
 
@@ -86,6 +87,10 @@ public class SummonerController {
             // matchInfoDTO를 모델에 담고있는데 얘를 Map에 담아야대
             Map<String, Object> matchList = new HashMap<>();
 
+            // participant의 teamId 가져오기
+            int teamId = 0;
+            String name = "";
+
             for (int i = 0; i < 10; i++) {
                 ParticipantsDTO participant = (ParticipantsDTO) matchInfo.get("participants" + i);
 
@@ -94,6 +99,8 @@ public class SummonerController {
                 if (summonerName.equals(getSummonerName)) {
                     participant.setMinionsKilledMin(Math.round((double) participant.getTotalMinionsKilled() / matchInfoDTO.getGameDuration() * 60 * 10.0) / 10.0);
                     matchList.put("participant", participant);
+                    teamId = participant.getTeamId();
+                    name = participant.getSummonerName();
 
                     int[] selectedRune1 = RuneList.getRuneListByValue(participant.getMainRune());
                     int[] selectedRune2 = RuneList.getSubRuneArray(RuneList.getRuneListByValue(participant.getSubRune()));
@@ -157,8 +164,6 @@ public class SummonerController {
                         championCounts.add(newChampionCount);
                     }
 
-
-
                 }
 
                 // 인게임 정보 matchInfo에 담기
@@ -180,16 +185,87 @@ public class SummonerController {
                 participantsList.add(participant);
 
             }
-            log.info("{}",championCounts);
             matchList.put("matchInfo",matchInfoDTO);
             matchList.put("participantsList", participantsList);
 
             matchInfoList.add(matchList);
 
+            for (int i = 0; i < 10; i++) {
+                ParticipantsDTO participant = (ParticipantsDTO) matchInfo.get("participants" + i);
+
+                boolean found = false;
+
+                if(teamId==participant.getTeamId() && !name.equals(participant.getSummonerName())) {
+
+                    for (SummonerWithCount summonerWithCount : summonerWithCounts) {
+                        if (summonerWithCount.getSummonerName().equals(participant.getSummonerName())) {
+                            // 존재하면 count와 win을 증가시킴
+                            summonerWithCount.setCount(summonerWithCount.getCount() + 1);
+                            if(participant.isWin()){
+                                summonerWithCount.setWin(summonerWithCount.getWin() + 1);
+                            } else {
+                                summonerWithCount.setLose(summonerWithCount.getLose() + 1);
+                            }
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found) {
+                        // 소환사 이름이 리스트에 없으면 새 객체 생성하여 리스트에 추가
+                        SummonerWithCount newSummonerWithCount = new SummonerWithCount();
+                        newSummonerWithCount.setSummonerName(participant.getSummonerName());
+                        newSummonerWithCount.setCount(1);
+                        if (participant.isWin()) {
+                            newSummonerWithCount.setWin(1);
+                            newSummonerWithCount.setLose(0);
+                        } else {
+                            newSummonerWithCount.setWin(0); // 이긴 횟수를 초기화
+                            newSummonerWithCount.setLose(1); // 진 횟수를 초기화
+                        }
+                        summonerWithCounts.add(newSummonerWithCount);
+                    }
+                }
+            }
+
         }
-        recentDTO.setChampionCounts(championCounts);
-        log.info("{}",recentDTO.getChampionCounts());
-        Collections.sort(recentDTO.getChampionCounts(), Comparator.comparing(ChampionCount::getCount).reversed());
+        Iterator<ChampionCount> iterator = championCounts.iterator();
+        while (iterator.hasNext()) {
+            ChampionCount championCount = iterator.next();
+            if (championCount.getCount() == 1) {
+                iterator.remove(); // count가 1인 항목을 제거합니다.
+            }
+        }
+
+        // Iterator를 사용하여 리스트에서 조건을 만족하는 항목을 제거합니다.
+        Iterator<SummonerWithCount> iterator1 = summonerWithCounts.iterator();
+        while (iterator1.hasNext()) {
+            SummonerWithCount summonerWithCount = iterator1.next();
+            if (summonerWithCount.getCount() == 1) {
+                iterator1.remove(); // 조건을 만족하는 항목을 제거합니다.
+            }
+        }
+
+
+        Collections.sort(championCounts, Comparator.comparing(ChampionCount::getCount).reversed());
+        Collections.sort(summonerWithCounts, Comparator.comparingInt(SummonerWithCount::getCount).reversed());
+        List<SummonerWithCount> filteredList = summonerWithCounts.subList(0, Math.min(5, summonerWithCounts.size()));
+        List<ChampionCount> filteredChampionCounts = championCounts.subList(0, Math.min(5, championCounts.size()));
+
+        // 이후에 winRate를 계산하고 설정
+        for (SummonerWithCount summonerWithCount: filteredList) {
+            double winRate = ((double)summonerWithCount.getWin() / summonerWithCount.getCount()) * 100;
+           summonerWithCount.setWinRate((int)Math.round(winRate));
+        }
+        for (ChampionCount championCount: filteredChampionCounts) {
+            double winRate = ((double)championCount.getWin() / championCount.getCount()) * 100;
+            championCount.setWinRate((int)Math.round(winRate));
+        }
+
+        recentDTO.setSummonerWithCounts(filteredList);
+        recentDTO.setChampionCounts(filteredChampionCounts);
+
+
         model.addAttribute("recentDTO",recentDTO);
         model.addAttribute("matchInfoList",matchInfoList);
         model.addAttribute("playerChallengesInfo" ,playerChallengesInfo);

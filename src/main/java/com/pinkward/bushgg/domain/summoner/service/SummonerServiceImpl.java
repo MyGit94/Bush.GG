@@ -246,11 +246,14 @@ public class SummonerServiceImpl implements SummonerService {
             participantsDTO.setPentaKills((int) participant.get("pentaKills"));
 
             // 아레나
-            participantsDTO.setPlacement((int) participant.get("placement"));
-            participantsDTO.setPlayerAugment1((int) participant.get("playerAugment1"));
-            participantsDTO.setPlayerAugment2((int) participant.get("playerAugment2"));
-            participantsDTO.setPlayerAugment3((int) participant.get("playerAugment3"));
-            participantsDTO.setPlayerAugment4((int) participant.get("playerAugment4"));
+            if(participant.get("placement") != null){
+                participantsDTO.setPlacement((int) participant.get("placement"));
+                participantsDTO.setPlayerAugment1((int) participant.get("playerAugment1"));
+                participantsDTO.setPlayerAugment2((int) participant.get("playerAugment2"));
+                participantsDTO.setPlayerAugment3((int) participant.get("playerAugment3"));
+                participantsDTO.setPlayerAugment4((int) participant.get("playerAugment4"));
+            }
+
 
             participantsDTO.setSummoner1Id((int) participant.get("summoner1Id"));
             participantsDTO.setSummoner2Id((int) participant.get("summoner2Id"));

@@ -18,6 +18,7 @@ public class RecentDTO {
     private String kda;
 
     private List<ChampionCount> championCounts;
+    private List<SummonerWithCount> summonerWithCounts;
 
 
 }

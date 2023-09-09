@@ -266,48 +266,14 @@
                         <!-- 5행까지만 출력하는걸 기준으로 디자인했음 -->
 
                         <!-- 1행 -->
-                        <tr>
-                            <td>란브로대머리</td>
-                            <td>15</td>
-                            <td>15-2</td>
-                            <td>90%</td>
+                        <tr th:each="row :${recentDTO.getSummonerWithCounts()}">
+                            <td th:text="${row.summonerName}">란브로대머리</td>
+                            <td th:text="${row.count}">15</td>
+                            <td th:text="${row.win + '-' + row.lose}">15-2</td>
+                            <!-- 승률 계산 -->
+                            <td th:text="${row.getWinRate()}+'%'">90%</td>
                         </tr>
 
-
-                        <!-- 2행 -->
-                        <tr>
-                            <td>란브로대머리</td>
-                            <td>15</td>
-                            <td>15-2</td>
-                            <td>90%</td>
-                        </tr>
-
-
-                        <!-- 3행 -->
-                        <tr>
-                            <td>란브로대머리</td>
-                            <td>15</td>
-                            <td>15-2</td>
-                            <td>90%</td>
-                        </tr>
-
-
-                        <!-- 4행 -->
-                        <tr>
-                            <td>란브로대머리</td>
-                            <td>15</td>
-                            <td>15-2</td>
-                            <td>90%</td>
-                        </tr>
-
-
-                        <!-- 5행 -->
-                        <tr>
-                            <td>란브로대머리</td>
-                            <td>15</td>
-                            <td>15-2</td>
-                            <td>90%</td>
-                        </tr>
                         </tbody>
                     </table>
 
@@ -321,32 +287,29 @@
                     <!-- 최근 20게임 챔피언 승률 타이틀  -->
                     <h1 class="recent_friend_title champion_rate_title">
                         선호하는 챔피언 (최근 20 게임)
-                    </h1> <tr th:each="championCount : ${recentDTO.championCounts}">
-                    <td th:text="${championCount.championName}"></td>
-                    <td th:text="${championCount.count}"></td>
-                    <td th:text="${championCount.win}"></td>
-                </tr>
+                    </h1>
 
                     <table class="recent_friend_table recent_champion_table">
                         <thead>
                         <!-- 테이블 제목 -->
                         <tr>
                             <td>챔피언</td>
+                            <td>승-패</td>
                             <td>승률</td>
                         </tr>
                         </thead>
 
                         <tbody>
                         <!-- 1행 -->
-                        <tr>
+                        <tr th:each="row :${recentDTO.getChampionCounts()}">
                             <td>
                                 <!-- 챔피언 사진 -->
                                 <div class="champion_face">
-                                    <img src="/img/champion/Leblanc.png" alt="">
+                                    <img src="/img/champion/Leblanc.png" th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/' + ${row.getChampionName()}+'.png'}" alt="">
                                 </div>
 
                                 <!-- 챔피언 이름 텍스트 -->
-                                <p class="champion_name">
+                                <p class="champion_name" th:text="${row.getWin()}+'-'+${row.getCount() - row.getWin()}">
                                     르블랑
                                 </p>
 
@@ -355,81 +318,18 @@
                                     <!-- 승리 막대 차트 -->
                                     <div class="left_rate_chart">
                                         <!-- 승률(승리) 텍스트 -->
-                                        <div class="left_rate_text">67%</div>
+                                        <div class="left_rate_text" th:text="${row.getWinRate()}+'%'">67%</div>
                                     </div>
 
                                     <!-- 패배 막대 차트 -->
                                     <div class="right_rate_chart">
                                         <!-- 승률(패배) 텍스트 -->
-                                        <div class="right_rate_text">33%</div>
+                                        <div class="right_rate_text" th:text="${100 - row.getWinRate()}+'%'">33%</div>
                                     </div>
 
                                 </div>
                             </td>
                         </tr>
-
-                        <!-- 2행 -->
-                        <tr>
-                            <td>
-                                <!-- 챔피언 사진 -->
-                                <div class="champion_face">
-                                    <img src="/img/champion/Leblanc.png" alt="">
-                                </div>
-
-                                <!-- 챔피언 이름 텍스트 -->
-                                <p class="champion_name">
-                                    르블랑
-                                </p>
-
-                                <!-- 챔피언별 승률 차트 전체영역 -->
-                                <div class="champion_rate_chartbar">
-                                    <!-- 승리 막대 차트 -->
-                                    <div class="left_rate_chart">
-                                        <!-- 승률(승리) 텍스트 -->
-                                        <div class="left_rate_text">67%</div>
-                                    </div>
-
-                                    <!-- 패배 막대 차트 -->
-                                    <div class="right_rate_chart">
-                                        <!-- 승률(패배) 텍스트 -->
-                                        <div class="right_rate_text">33%</div>
-                                    </div>
-
-                                </div>
-                            </td>
-                        </tr>
-
-                        <!-- 3행 -->
-                        <tr>
-                            <td>
-                                <!-- 챔피언 사진 -->
-                                <div class="champion_face">
-                                    <img src="/img/champion/Leblanc.png" alt="">
-                                </div>
-
-                                <!-- 챔피언 이름 텍스트 -->
-                                <p class="champion_name">
-                                    르블랑
-                                </p>
-
-                                <!-- 챔피언별 승률 차트 전체영역 -->
-                                <div class="champion_rate_chartbar">
-                                    <!-- 승리 막대 차트 -->
-                                    <div class="left_rate_chart">
-                                        <!-- 승률(승리) 텍스트 -->
-                                        <div class="left_rate_text">67%</div>
-                                    </div>
-
-                                    <!-- 패배 막대 차트 -->
-                                    <div class="right_rate_chart">
-                                        <!-- 승률(패배) 텍스트 -->
-                                        <div class="right_rate_text">33%</div>
-                                    </div>
-
-                                </div>
-                            </td>
-                        </tr>
-
                         </tbody>
                     </table>
                 </div>
