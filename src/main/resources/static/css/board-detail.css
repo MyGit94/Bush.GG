@@ -1,0 +1,23 @@
+
+
+/*게시글 상세*/
+.ArticleHeder{
+  margin: 0rem 3rem 0px 3rem;
+}
+.content{
+  height: 500px;
+  background-color: #fff;
+}
+
+
+/* 댓글 */
+.Comment_Box{
+  margin: 0rem 3rem 0px 3rem;
+}
+.CommentList{
+  border-bottom: 1px solid #e3e6f0;
+
+}
+.li{
+  text-decoration: none;
+}

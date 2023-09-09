@@ -1,0 +1,28 @@
+a {
+  color: #000000;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* 왼쪽 사이드바 로고 전체 영역 */
+.nav-link2{
+  position: relative;
+  /* background-color: antiquewhite; */
+  height:100px;
+}
+
+
+/* 왼쪽 사이드바 로고 이미지 */
+.nav-item-img{
+  position:absolute;
+  left:calc(50% - 43px);
+  width:86px;
+}
+
+
+

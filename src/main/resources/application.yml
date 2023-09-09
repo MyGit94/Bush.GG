@@ -1,0 +1,35 @@
+# [Spring 환경 설정 시 properties 파일의 한계로 yaml 파일 선호]
+# yaml 파일은 계층구조로 표현하여 가독성이 좋으며, 불필요한 소스의 중복도 제거 할 수 있다.
+# 들여쓰기, 띄어쓰기로 구분하여 보기 편하다
+# 또한 개발 환경별 설정 파일 분리 지원한다
+---
+# 공통 환경 설정
+# WebServer 설정
+server:
+  port: 80
+
+---
+
+# Spring profiles 설정
+spring: 
+  profiles:
+    default: dev                 # 개발 환경을 dev로 설정
+
+---
+
+#riot api key 설정
+riot:
+  api:
+    key: RGAPI-0956e834-2b37-4bb5-a6a4-8e38427aa971
+  challenges:
+    key: RGAPI-7cbe6d80-2bb3-4a5a-b275-fc03b93f44f7
+
+---
+
+#thymeleaf 설정
+thymeleaf:
+  cache: false
+  check-template-location: true
+  prefix: classpath:/templates/
+  suffix: .html
+  enabled: true

@@ -1,0 +1,116 @@
+h1 , h3 , p{
+  margin:0;
+}
+
+
+/* 도전과제명 */
+.rank_profile {
+  width: 100%;
+  background-color: #e1e1e1c5;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  /* background-image: url(../img/timo.jpg); */
+  /* background-size:100% 200px;
+  background-position: center;
+  background-repeat: no-repeat; */
+}
+
+/* 도전과제명 전체영역 */
+.rank_prifile_text_wrap {
+  margin-left: 20px;
+}
+
+/* 도전과제 설명 텍스트 */
+.rank_profile_rank{
+  margin-top:5px;
+}
+
+
+/* 랭크 컨텐츠 전체영역 */
+.rank_wrap {
+  display:flex;
+  margin:10px auto 0 auto;
+  width: 80%;
+  /* background-color: aquamarine; */
+}
+
+/* 랭크 리스트 전체영역 */
+.rank_list_wrap{
+  width:90%;
+  margin:0 auto;
+}
+
+/* 랭크 리스트 1개 전체영역 */
+.rank_list {
+  width:100%;
+  height: 80px;
+  background-color: #1565492b;
+  margin-bottom:5px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+/* 랭크 리스트 헤더에는 배경효과 미지정 */
+.rank_list_header{
+  background-color: #ececec;
+  font-size:20px;
+  font-weight: bold;
+  border-radius: 5px 5px 0 0;
+}
+
+/* 랭크 리스트  영역 전체 div */
+.rank_flex{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: rgb(11, 186, 255); */
+}
+
+/* 랭킹 등수 전체영역 */
+.rank_number{
+  width:10%;
+}
+
+/* 도전과제 전체영역 */
+.rank_img{
+  width:10%;
+  
+}
+
+
+
+/* 도전과제 이미지 사이즈 */
+.rank_img img {
+  width: 50px;
+  border-radius:50%;
+  border:2px solid #000;
+}
+
+/* 도전과제 제목 */
+.rank_title{
+  width:30%;
+}
+
+
+
+/* 도전과제 이름 */
+.rank_name{
+  margin:0 0 0 20px;
+  font-size:20px;
+  font-weight: bold;
+}
+
+
+/* 달성 티어 전체영역 */
+.rank_tier{
+  width:30%;
+}
+
+
+/* 랭킹포인트 전체영역 */
+.rank_points{
+  width:30%;
+}

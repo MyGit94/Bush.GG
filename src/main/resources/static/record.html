@@ -1,0 +1,2681 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>최종 프로젝트 - BUSH.GG</title>
+    <!-- 커스텀 폰트 -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- 폰트어썸 아이콘 사용을 위한 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+
+    <!-- 부트스트랩 기본 CSS -->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- 내 Stylce CSS 8/29일 추가됨  -->
+    <link rel="stylesheet" href="css/record.css">
+
+</head>
+
+
+<body id="page-top">
+
+    <div id="wrapper">
+
+        <!-- 좌측 사이드바 전체 영역 -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- 왼쪽 사이드바 로고 영역 -->
+            <li class="nav-item active">
+                <a class="nav-link nav-link2" href="index.html">
+                    <!-- <p class="nav-item-text">BUSH.GG</p> -->
+                    <img src="img/logo.png" alt="" class="nav-item-img">
+                </a>
+            </li>
+
+            <!-- 구분선1 -->
+            <hr class="sidebar-divider">
+
+            <!-- 사이드바 카테고리1 : 사용자 -->
+            <div class="sidebar-heading">
+                사용자
+            </div>
+
+            <!-- 사이드메뉴 :: 상단 메뉴 - 사용자 -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <!-- 상단 메뉴 아이콘 -->
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <!-- 상단 메뉴 텍스트 -->
+                    <span>뭘 적어둘지 몰라서 비워뒀음</span>
+                </a>
+            </li>
+
+            <!-- 구분선2 -->
+            <hr class="sidebar-divider">
+
+            <!-- 사이드바 카테고리2 : 컨텐츠 -->
+            <div class="sidebar-heading">
+                Contents
+            </div>
+
+            <!-- 패치노트 -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <!-- 패치노트 아이콘-->
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>패치노트</span>
+                </a>
+            </li>
+
+            <!-- 랭킹 -->
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <!-- 랭킹 아이콘-->
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <!-- 랭킹 텍스트 -->
+                    <span>랭킹</span></a>
+            </li>
+
+            <!-- 커뮤니티 -->
+            <li class="nav-item">
+                <a class="nav-link" href="tables.html">
+                    <!-- 커뮤니티 아이콘 -->
+                    <i class="fas fa-fw fa-table"></i>
+                    <!-- 커뮤니티 텍스트 -->
+                    <span>커뮤니티</span></a>
+            </li>
+
+            <!-- 구분선3 -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- 사이드바 열기/닫기 버튼 전체영역 -->
+            <div class="text-center d-none d-md-inline">
+                <!-- 사이드바 버튼 -->
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+
+
+        </ul>
+        <!-- 사이드바 끝 -->
+
+
+        <!-- 메인 컨텐츠 전체영역 -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+
+
+            <!-- 상단 헤더 -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                <!-- (모바일) 사이드 메뉴 여닫이 버튼 -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- 전적 검색창 -->
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <!-- 전적 검색 : 입력 텍스트칸 -->
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="소환사명을 입력해주세요"
+                            aria-label="Search" aria-describedby="basic-addon2">
+                        <!-- 검색 아이콘 전체영역 -->
+                        <div class="input-group-append">
+                            <!-- 검색 버튼 네모박스 -->
+                            <button class="btn btn-primary" type="button">
+                                <!-- 검색 버튼 돋보기 아이콘 -->
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <!-- 전적 검색창 끝 -->
+
+            </nav>
+            <!-- 상단헤더 끝 -->
+
+
+            <!-- #############소환사 정보 전체영역############# -->
+            <!-- 같이 플레이 한 유저 -->
+            <!-- 최근 20게임 승률 kda 정보 -->
+            <!-- 최근 20게임 플레이 한 챔피언 승/패 승률 -->
+
+            <div class="user_info_wrap">
+
+                <!-- 첫째줄 전체 영역 -->
+                <div class="info_summoner">
+
+                    <!-- 검색한 소환사 정보 -->
+                    <div class="info_summoner_profile">
+                        <!-- 소환사 아이콘 -->
+                        <div class="summoner_icon">
+                            <!-- 소환사 아이콘 이미지 -->
+                            <img src="img/champion/Aatrox.png" alt="">
+                        </div>
+
+                        <!-- 소환사 정보 텍스트만을 정렬하기 위한 영역 지정 -->
+                        <div class="summoner_wrap">
+                            <!-- 검색된 소환사 이름 -->
+                            <p class="info_summoner_name">
+                                란브로대머리
+                            </p>
+
+                        </div>
+                        <!-- 전적 갱신 버튼 -->
+                        <!-- 버튼을 누를때마다 서버에서 최신정보 갱신 -->
+                        <!-- 현재 사이트의 모든 정보를 다시 받아오는 코드를 컨트롤러를 통해서
+                        설계할 예정 -->
+                        <form action="">
+                            <button type="submit" class="summoner_refresh">
+                                전적 갱신
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- 검색한 소환사 랭킹 정보 -->
+                    <div class="info_summoner_rank">
+                        <!-- 랭킹 아이콘 -->
+                        <div class="summoner_icon rank_icon">
+                            <!-- 랭크 아이콘 이미지 -->
+                            <img src="img/tier/Challenger.png" alt="">
+                        </div>
+
+                        <!-- 소환사 랭크 정보 텍스트만을 정렬하기 위한 영역 지정 -->
+                        <div class="summoner_wrap rank_wrap">
+                            <!-- 랭크 이름 점수-->
+                            <p class="info_summoner_name rank_name">
+                                챌린저 / 3500p
+                            </p>
+
+                            <!-- 승패 / 승률 -->
+                            <p class="summoner_rate">
+                                18승 2패 / 90%
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <!-- 검색한 소환사 도전과제 정보 -->
+                    <div class="info_summoner_challenge">
+
+                        <!-- 도전과제 아이콘 -->
+                        <div class="summoner_icon">
+                            <!-- 도전과제 아이콘 이미지 -->
+                            <img src="img/champion/Diana.png" alt="">
+                        </div>
+
+                        <!--  도전과제 텍스트만을 정렬하기 위한 영역 지정 -->
+                        <div class="summoner_wrap challenge_wrap">
+                            <!-- 도전과제 티어 점수 백분율-->
+                            <p class="info_summoner_name challenge_name">
+                                도전과제 티어 / 점수 / 백분율
+                            </p>
+                        </div>
+
+                        <!-- 자세히 보기 버튼 -->
+                        <a href="#">
+                            <button class="summoner_refresh" type="button">
+                                자세히 보기
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <!-- 첫째줄 라인 끝 -->
+
+
+                <!-- 최근 플레이 정보 (둘째줄) 전체영역 -->
+                <div class="info_recent">
+
+                    <!-- 같이 플레이 한 유저 전체영역 -->
+                    <div class="info_recent_friend">
+                        <!-- 타이틀 -->
+                        <h2 class="recent_friend_title">
+                            같이 플레이 한 소환사 (최근 20게임)
+                        </h2>
+
+                        <!-- 플레이한 소환사 차트 -->
+                        <table class="recent_friend_table">
+                            <thead>
+                                <!-- 표 타이틀 -->
+                                <tr>
+                                    <td>소환사</td>
+                                    <td>게임</td>
+                                    <td>승-패</td>
+                                    <td>승률</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 표 내용 -->
+                                <!-- 타임리프 반복시 tr 태그를 반복해야함 -->
+                                <!-- 5행까지만 출력하는걸 기준으로 디자인했음 -->
+
+                                <!-- 1행 -->
+                                <tr>
+                                    <td>란브로대머리</td>
+                                    <td>15</td>
+                                    <td>15-2</td>
+                                    <td>90%</td>
+                                </tr>
+
+
+                                <!-- 2행 -->
+                                <tr>
+                                    <td>란브로대머리</td>
+                                    <td>15</td>
+                                    <td>15-2</td>
+                                    <td>90%</td>
+                                </tr>
+
+
+                                <!-- 3행 -->
+                                <tr>
+                                    <td>란브로대머리</td>
+                                    <td>15</td>
+                                    <td>15-2</td>
+                                    <td>90%</td>
+                                </tr>
+
+
+                                <!-- 4행 -->
+                                <tr>
+                                    <td>란브로대머리</td>
+                                    <td>15</td>
+                                    <td>15-2</td>
+                                    <td>90%</td>
+                                </tr>
+
+
+                                <!-- 5행 -->
+                                <tr>
+                                    <td>란브로대머리</td>
+                                    <td>15</td>
+                                    <td>15-2</td>
+                                    <td>90%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- 최근 플레이 정보 끝 -->
+
+
+
+
+                    <!-- 최근 20게임 플레이 챔피언 승률 -->
+                    <div class="info_recent_champion_rate">
+                        <!-- 최근 20게임 챔피언 승률 타이틀  -->
+                        <h1 class="recent_friend_title champion_rate_title">
+                            선호하는 챔피언 (최근 20 게임)
+                        </h1>
+
+                        <table class="recent_friend_table recent_champion_table">
+                            <thead>
+                                <!-- 테이블 제목 -->
+                                <tr>
+                                    <td>챔피언</td>
+                                    <td>승률</td>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <!-- 1행 -->
+                                <tr>
+                                    <td>
+                                        <!-- 챔피언 사진 -->
+                                        <div class="champion_face">
+                                            <img src="img/champion/Leblanc.png" alt="">
+                                        </div>
+
+                                        <!-- 챔피언 이름 텍스트 -->
+                                        <p class="champion_name">
+                                            르블랑
+                                        </p>
+
+                                        <!-- 챔피언별 승률 차트 전체영역 -->
+                                        <div class="champion_rate_chartbar">
+                                            <!-- 승리 막대 차트 -->
+                                            <div class="left_rate_chart">
+                                                <!-- 승률(승리) 텍스트 -->
+                                                <div class="left_rate_text">67%</div>
+                                            </div>
+
+                                            <!-- 패배 막대 차트 -->
+                                            <div class="right_rate_chart">
+                                                <!-- 승률(패배) 텍스트 -->
+                                                <div class="right_rate_text">33%</div>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- 2행 -->
+                                <tr>
+                                    <td>
+                                        <!-- 챔피언 사진 -->
+                                        <div class="champion_face">
+                                            <img src="img/champion/Leblanc.png" alt="">
+                                        </div>
+
+                                        <!-- 챔피언 이름 텍스트 -->
+                                        <p class="champion_name">
+                                            르블랑
+                                        </p>
+
+                                        <!-- 챔피언별 승률 차트 전체영역 -->
+                                        <div class="champion_rate_chartbar">
+                                            <!-- 승리 막대 차트 -->
+                                            <div class="left_rate_chart">
+                                                <!-- 승률(승리) 텍스트 -->
+                                                <div class="left_rate_text">67%</div>
+                                            </div>
+
+                                            <!-- 패배 막대 차트 -->
+                                            <div class="right_rate_chart">
+                                                <!-- 승률(패배) 텍스트 -->
+                                                <div class="right_rate_text">33%</div>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- 3행 -->
+                                <tr>
+                                    <td>
+                                        <!-- 챔피언 사진 -->
+                                        <div class="champion_face">
+                                            <img src="img/champion/Leblanc.png" alt="">
+                                        </div>
+
+                                        <!-- 챔피언 이름 텍스트 -->
+                                        <p class="champion_name">
+                                            르블랑
+                                        </p>
+
+                                        <!-- 챔피언별 승률 차트 전체영역 -->
+                                        <div class="champion_rate_chartbar">
+                                            <!-- 승리 막대 차트 -->
+                                            <div class="left_rate_chart">
+                                                <!-- 승률(승리) 텍스트 -->
+                                                <div class="left_rate_text">67%</div>
+                                            </div>
+
+                                            <!-- 패배 막대 차트 -->
+                                            <div class="right_rate_chart">
+                                                <!-- 승률(패배) 텍스트 -->
+                                                <div class="right_rate_text">33%</div>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- 최근 20게임 플레이 챔피언 승률 끝 -->
+
+
+                    <!-- 최근 20게임 승률 전체영역 -->
+                    <div class="info_recent_game_rate">
+                        <!-- 승률 차트 -->
+                        <div class="game_rate_chart">
+                            <!-- 차트 -->
+                            <canvas class="myPieChart">
+                                <!-- 현재 승률 지수 -->
+
+                            </canvas>
+                            <!-- 승률 퍼센트 -->
+                            <strong class="chart_text">55%</strong>
+
+                        </div>
+                        <!-- 타이틀 -->
+                        <h1 class="game_rate_title">
+                            매치 승률 (최근 20 게임)
+                        </h1>
+
+                        <!-- 승/패 -->
+                        <p class="game_rate_count">18승 2패</p>
+
+                        <!-- 승률 / kda 전체영역 -->
+                        <div class="game_rate_score">
+                            <!-- 승률 -->
+                            <p class="game_rate_probability">90%</p>
+                            <!-- kda -->
+                            <p class="game_rate_kda">3.14</p>
+                        </div>
+                    </div>
+                    <!-- 최근 20게임 승률 끝 -->
+
+
+                </div>
+                <!-- 최근 플레이 정보 둘째줄 라인 끝  -->
+            </div>
+            <!-- 소환사 정보 전체영역 끝 -->
+
+
+
+
+
+
+
+            <!-- 전적 리스트 전체영역 -->
+            <div class="record_wrap">
+
+                <!-- 모달 챔피언 룬 :: 호버했을시 나타나는 영역 -->
+                <div class="container">
+                    <!-- 메인 룬 전체영역 -->
+                    <div class="main_rune_wrap">
+                        <!-- 룬 타이틀 -->
+                        <div class="rune_title">
+                            <!-- 정밀 -->
+                            <img src="img/rune/8000.png" alt="">
+                            <h3>정밀</h3>
+                        </div>
+
+                        <!-- 메인룬 :: 정복자 , 집공 , 치속 , 기발 -->
+                        <!-- 만약 메인룬의 스펠이 3개면 th:if 와 th:style 을 사용하여
+                        li태그 한개를 비활성화 -->
+                        <ul class="main_rune">
+                            <!-- 집공 -->
+                            <li><img src="img/rune/8005.png" alt=""></li>
+                            <!-- 치속 -->
+                            <li><img src="img/rune/8008.png" alt=""></li>
+                            <!-- 기발 -->
+                            <li><img src="img/rune/8021.png" alt=""></li>
+                            <!-- 정복자 -->
+                            <li><img src="img/rune/8010.png" alt=""></li>
+                        </ul>
+
+                        <!-- 서브 룬1 :: 침착 , 승전보 , 과다치유 -->
+                        <ul class="sub_rune line1">
+                            <!-- 과다치유 -->
+                            <li><img src="img/rune/9101.png" alt=""></li>
+                            <!-- 승전보 -->
+                            <li><img src="img/rune/9111.png" alt=""></li>
+                            <!-- 침착 -->
+                            <li><img src="img/rune/9105.png" alt=""></li>
+                        </ul>
+
+                        <!-- 서브 룬2 :: 핏빛길 , 강인함 , 민첩함  -->
+                        <ul class="sub_rune line2">
+                            <!-- 민첩함 -->
+                            <li><img src="img/rune/9101.png" alt=""></li>
+                            <!-- 강인함 -->
+                            <li><img src="img/rune/9111.png" alt=""></li>
+                            <!-- 핏빛길 -->
+                            <li><img src="img/rune/9105.png" alt=""></li>
+                        </ul>
+
+                        <!-- 서브 룬3 :: 최후의저항 , 체력차극복 , 최후의일격  -->
+                        <ul class="sub_rune line2">
+                            <!-- 최후의 일격 -->
+                            <li><img src="img/rune/9101.png" alt=""></li>
+                            <!-- 체력차극복 -->
+                            <li><img src="img/rune/9111.png" alt=""></li>
+                            <!-- 최후의저항 -->
+                            <li><img src="img/rune/9105.png" alt=""></li>
+                        </ul>
+                    </div>
+
+
+                    <!-- 보조룬 전체영역 -->
+                    <div class="sub_rune_wrap">
+                        <!-- 스펠 타이틀 -->
+                        <div class="rune_title">
+                            <!-- 마법 -->
+                            <img src="img/rune/8200.png" alt="">
+                            <h3>마법</h3>
+                        </div>
+
+                        <!-- 서브 룬1 :: 침착 , 승전보 , 과다치유 -->
+                        <ul class="sub_rune line1">
+                            <!-- 과다치유 -->
+                            <li><img src="img/rune/9101.png" alt=""></li>
+                            <!-- 승전보 -->
+                            <li><img src="img/rune/9111.png" alt=""></li>
+                            <!-- 침착 -->
+                            <li><img src="img/rune/9105.png" alt=""></li>
+                        </ul>
+
+                        <!-- 서브 룬2 :: 핏빛길 , 강인함 , 민첩함  -->
+                        <ul class="sub_rune line2">
+                            <!-- 민첩함 -->
+                            <li><img src="img/rune/9101.png" alt=""></li>
+                            <!-- 강인함 -->
+                            <li><img src="img/rune/9111.png" alt=""></li>
+                            <!-- 핏빛길 -->
+                            <li><img src="img/rune/9105.png" alt=""></li>
+                        </ul>
+
+                        <!-- 서브 룬3 :: 최후의저항 , 체력차극복 , 최후의일격  -->
+                        <ul class="sub_rune line2">
+                            <!-- 최후의 일격 -->
+                            <li><img src="img/rune/9101.png" alt=""></li>
+                            <!-- 체력차극복 -->
+                            <li><img src="img/rune/9111.png" alt=""></li>
+                            <!-- 최후의저항 -->
+                            <li><img src="img/rune/9105.png" alt=""></li>
+                        </ul>
+                    </div>
+
+
+                </div>
+
+
+                <!-- 전적 : 게임정보 (1 게임) 전체영역  -->
+                <!--@@@@@@@@@@@@@@@@@@@@@@@@ ForEach 여기서부터 시작 @@@@@@@@@@@@@@@@@@@@@@@@ -->
+                <!-- 구조를 이해하기 쉽게 일단은 정적인 값을 등록해두었음-->
+                <div class="record_list">
+
+
+
+                    <!-- 좌측 승패를 구분하기위한 색을 주기위해 빈공백 설정 -->
+                    <div class="record_blank"></div>
+                    <!-- 게임정보를 기록하는 전체영역 -->
+                    <div class="record_info">
+                        <!-- 게임종류 :: 칼바람 ,협곡 , 랭크등등 -->
+                        <h2 class="match_type">칼바람 나락</h2>
+                        <!-- 지난시간정보 :: 12시간전 , 1일전 등등 -->
+                        <p class="match_past">3일전</p>
+                        <!-- 게임 결과 : 승리 , 패배 // 진행한 게임시간 -->
+                        <!-- th:if 조건문으로 승리시 폰트색상을 파란색 , 패배시 빨간색으로 표기예정 -->
+                        <p class="match_result"><strong>승리</strong><span class="match_time">15:00</span></p>
+                    </div>
+                    <!-- 게임 정보 끝 -->
+
+
+                    <!-- 챔피언 , 룬 , 스펠정보 전체영역 -->
+                    <div class="record_champion">
+
+                        <!-- 챔피언 이미지 전체영역 -->
+                        <div class="match_champion_profile">
+                            <!-- 챔피언 이미지 경로 -->
+                            <img src="img/champion/Teemo.png" alt="">
+
+                            <!-- 챔피언 레벨 -->
+                            <div class="match_champion_level">
+                                1
+                            </div>
+                        </div>
+
+
+                        <!-- 챔피언 스펠 전체영역 -->
+                        <div class="match_spell">
+
+                            <!-- 챔피언 스펠1 -->
+                            <img src="img/spell/4.png" alt="">
+
+                            <!-- 챔피언 스펠2 -->
+                            <img src="img/spell/14.png" alt="">
+                        </div>
+
+                        <!-- 챔피언 대표룬 전체영역 -->
+                        <div class="match_rune">
+                            <!-- 챔피언 룬 대표룬 -->
+                            <div class="rune_wrap">
+                                <img src="img/rune/8345.png" alt="">
+                            </div>
+                            <!-- 챔피언 룬 보조룬 -->
+                            <div class="rune_wrap">
+                                <img src="img/rune/8009.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 챔피언 , 룬 , 스펠 끝 -->
+
+
+                    <!-- 킬 / 데스 / 어시스트 전체영역 -->
+                    <div class="record_kda">
+                        <!-- 킬 / 데스 / 어시 -->
+                        <div class="match_kda_wrap">
+                            <h5 class="match_kda">82 / 27 / 29 </h5>
+
+                        </div>
+                        <img src="img/doublekill.png" alt="">
+                        <!-- 킬 / 데스 / 어시 - 평균 -->
+                        <p class="match_kda_avg">2.43 KDA</p>
+
+                        <!-- cs 전체 영역 -->
+                        <div class="match_cs">
+                            <!-- 전체 cs량 -->
+                            <p class="match_all_cs">
+                                96
+                            </p>
+
+                            <!-- 분당 cs량 -->
+                            <p class="match_min_cs">
+                                (5.3/분)
+                            </p>
+                        </div>
+                    </div>
+                    <!-- 킬 / 데스 / 어시 끝 -->
+
+                    <!-- 아이템 정보 :: 시작-->
+                    <div class="record_item">
+                        <!-- 아이템 리스트 : 윗라인 -->
+                        <div class="match_item_line1">
+                            <!-- 아이템1 -->
+                            <div class="item_img_wrap">
+                                <img src="img/champion/Aphelios.png" alt="">
+                            </div>
+
+                            <div class="item_img_wrap">
+                                <img src="img/champion/Aphelios.png" alt="">
+                            </div>
+
+                            <div class="item_img_wrap">
+                                <img src="img/champion/Aphelios.png" alt="">
+                            </div>
+                        </div>
+
+
+
+                        <div class="match_item_line2">
+                            <!-- 아이템1 -->
+                            <div class="item_img_wrap">
+                                <img src="img/champion/Aphelios.png" alt="">
+                            </div>
+
+                            <div class="item_img_wrap">
+                                <img src="img/champion/Aphelios.png" alt="">
+                            </div>
+
+                            <div class="item_img_wrap">
+                                <img src="img/champion/Aphelios.png" alt="">
+                            </div>
+
+                            <div class="item_img_wrap">
+                                <img src="img/champion/Aphelios.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- 같이 게임한 유저목록 -->
+                    <div class="record_user">
+
+                        <!-- 블루팀 -->
+                        <ul class="match_user_blueteam">
+                            <li>
+                                <!-- 챔피언 이미지 -->
+                                <img src="img/champion/Aatrox.png" alt="">
+                                <!-- 유저 닉네임 -->
+                                <a href="" class="user_name_text">가나다라마바사아자차카타파하아야</a>
+                            </li>
+
+                            <li>
+                                <!-- 챔피언 이미지 -->
+                                <img src="img/champion/Aatrox.png" alt="">
+                                <!-- 유저 닉네임 -->
+                                <a href="" class="user_name_text">사 각</a>
+                            </li>
+
+                            <li>
+                                <!-- 챔피언 이미지 -->
+                                <img src="img/champion/Aatrox.png" alt="">
+                                <!-- 유저 닉네임 -->
+                                <a href="" class="user_name_text">란브로대머리</a>
+                            </li>
+
+                            <li>
+                                <!-- 챔피언 이미지 -->
+                                <img src="img/champion/Aatrox.png" alt="">
+                                <!-- 유저 닉네임 -->
+                                <a href="" class="user_name_text">란브로대머리</a>
+                            </li>
+
+                            <li>
+                                <!-- 챔피언 이미지 -->
+                                <img src="img/champion/Aatrox.png" alt="">
+                                <!-- 유저 닉네임 -->
+                                <a href="" class="user_name_text">란브로대머리</a>
+                            </li>
+                        </ul>
+
+
+                        <!-- 레드팀 -->
+                        <ul class="match_user_redteam">
+                            <!-- 1 -->
+                            <li>
+                                <!-- 챔피언 이미지 -->
+                                <img src="img/champion/Aatrox.png" alt="">
+                                <!-- 유저 닉네임 -->
+                                <a href="" class="user_name_text">가나다라마바사자</a>
+                            </li>
+
+                            <!-- 2 -->
+                            <li>
+                                <!-- 챔피언 이미지 -->
+                                <img src="img/champion/Aatrox.png" alt="">
+                                <!-- 유저 닉네임 -->
+                                <a href="" class="user_name_text">란브로대머리</a>
+                            </li>
+
+                            <!-- 3 -->
+                            <li>
+                                <!-- 챔피언 이미지 -->
+                                <img src="img/champion/Aatrox.png" alt="">
+                                <!-- 유저 닉네임 -->
+                                <a href="" class="user_name_text">란브로대머리</a>
+                            </li>
+
+                            <!-- 4 -->
+                            <li>
+                                <!-- 챔피언 이미지 -->
+                                <img src="img/champion/Aatrox.png" alt="">
+                                <!-- 유저 닉네임 -->
+                                <a href="" class="user_name_text">란브로대머리</a>
+                            </li>
+
+                            <!-- 5 -->
+                            <li>
+                                <!-- 챔피언 이미지 -->
+                                <img src="img/champion/Aatrox.png" alt="">
+                                <!-- 유저 닉네임 -->
+                                <a href="" class="user_name_text">란브로대머리</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 같이 게임한 유저 목록 끝 -->
+
+                    <!-- 전적 상세보기 열기 버튼 전체영역 -->
+                    <div class="record_detail_bt">
+                        <img src="img/arrow.png" alt="">
+                    </div>
+
+                </div>
+                <!-- 전적 리스트 (1개) 끝 -->
+
+
+                <!-- ############### 전적 상세보기 ############## -->
+                <!-- JavaScript InnerHtml 로 상세보기 열고 닫는 기능 제어함 -->
+
+                <!-- 상세보기 전체영역 -->
+                <div class="record_detail_wrap">
+
+                    <!-- 상세보기 -- 종합정보 전체영역 -->
+                    <div class="detail_info_wrap">
+
+                        <!-- 승리팀 전체영역 -->
+                        <div class="detail_win_team">
+
+                            <h1 class="we_are_winner">
+                                승리팀(블루팀)
+                            </h1>
+                            <!-- 상세보기 리스트 (1줄) -->
+                            <!-- 타임리프 반복 -->
+
+                            <div class="detail_list">
+                                <!-- 챔피언 이미지 -->
+                                <div class="detail_champion_face">
+                                    <!-- 챔피언 이미지 파일 -->
+                                    <img src="img/champion/Annie.png" alt="">
+                                </div>
+
+
+                                <!-- 챔피언 룬 스펠 전체영역 -->
+                                <div class="champion_rune">
+
+                                    <!-- 상세보기 :: 소환사 스펠  -->
+                                    <div class="detail_spell">
+                                        <!-- 챔피언 스펠1 -->
+                                        <img src="img/spell/4.png" alt="">
+
+                                        <!-- 챔피언 스펠2 -->
+                                        <img src="img/spell/14.png" alt="">
+                                    </div>
+
+                                    <!-- 상세보기 :: 소환사 룬 -->
+                                    <div class="detail_rune">
+                                        <!-- 챔피언 룬 대표룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8345.png" alt="">
+                                        </div>
+                                        <!-- 챔피언 룬 보조룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8009.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 챔피언 룬/스펠 끝  -->
+
+
+                                <!-- 소환사 닉네임 , 티어정보 -->
+                                <div class="detail_summoner_name">
+                                    <p class="summoner_name">
+                                        란브로대머리
+                                    </p>
+
+                                    <p class="summoner_tier">
+                                        challenger
+                                    </p>
+                                </div>
+                                <!-- 소환사 닉네임 , 티어정보 끝 -->
+
+                                <!-- 소환사 KDA 전체영역  -->
+                                <div class="detail_summoner_kda">
+
+                                    <!-- 멀티킬 , kda를 감싸는 wrap -->
+                                    <div class="summoner_kda_wrap">
+                                        <!-- kda  -->
+                                        <p class="summoner_kda">
+                                            31 / 1 / 14
+                                        </p>
+
+                                        <!-- 다중킬 여부 이미지 -->
+                                        <img class="summoner_penta" src="img/pentakill.png">
+
+                                    </div>
+
+                                    <!-- kda  평균 -->
+                                    <p class="summoner_kda_avg">
+                                        10:1
+                                    </p>
+                                </div>
+                                <!-- 소환사 kda 전체영역 -->
+
+
+                                <!-- 소환사 입힌데미지 , 받은 데미지 전체영역 -->
+                                <div class="detail_summoner_dmg">
+                                    <!-- 가한 데미지 -->
+                                    <div class="attack_dmg">
+
+                                        <!-- 데미지 막대차트 -->
+                                        <div class="dmg_chartbar push_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="dmg_chart_info">
+                                                가한 데미지 : 236502
+                                            </div>
+                                        </div>
+
+                                        <!-- 데미지 수치 텍스트 -->
+                                        <p class="dmg">236502</p>
+                                    </div>
+
+                                    <!-- 입은 데미지 -->
+                                    <div class="attack_dmg get_dmg">
+                                        <!-- 받은 데미지 막대차트 -->
+                                        <div class="dmg_chartbar get_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="get_chart_info">
+                                                받은 데미지 : 3500
+                                            </div>
+                                        </div>
+                                        <!-- 받은 데미지 수치 텍스트 -->
+                                        <p class="dmg get">3500</p>
+                                    </div>
+
+
+
+                                </div>
+                                <!-- 소환사 입힌 데미지 , 받은 데미지 전체영역 -->
+
+                                <!-- 소환사 와드 , cs 량 전체영역 -->
+                                <div class="detail_summoner_ward">
+                                    <!-- 와드 -->
+                                    <p class="detail_ward">와드점수 : 105</p>
+                                    <div class="detail_cs_wrap">
+                                        <!-- 총합 cs -->
+                                        <p class="detail_cs">526 CS</p>
+                                        <!-- 분당 cs -->
+                                        <p class="detail_cs_min">(분당 20.1)</p>
+
+                                    </div>
+                                </div>
+                                <!-- 소환사 와드 , cs 량 끝 -->
+
+
+                                <!-- 소환사 item 정보 전체영역 -->
+                                <div class="detail_summoner_item">
+                                    <!-- 소환사 item 정보 첫번째라인 -->
+                                    <!-- <div class="detail_item first"> -->
+                                    <!-- 아이템1 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템2 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템3 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- </div> -->
+
+                                    <!-- 소환사 item 정보 두번째 라인 -->
+                                    <!-- <div class="detail_item second"> -->
+                                    <!-- 아이템4 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템5 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템6 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 와드칸 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- </div> -->
+                                </div>
+                                <!-- 소환사 item 정보 끝 -->
+
+
+
+                            </div>
+                            <!-- 상세보기 리스트 (한줄) 끝 -->
+
+
+                            <!-- 상세보기 리스트 (1줄) -->
+                            <!-- 타임리프 반복 -->
+
+                            <div class="detail_list">
+                                <!-- 챔피언 이미지 -->
+                                <div class="detail_champion_face">
+                                    <!-- 챔피언 이미지 파일 -->
+                                    <img src="img/champion/Annie.png" alt="">
+                                </div>
+
+
+                                <!-- 챔피언 룬 스펠 전체영역 -->
+                                <div class="champion_rune">
+
+                                    <!-- 상세보기 :: 소환사 스펠  -->
+                                    <div class="detail_spell">
+                                        <!-- 챔피언 스펠1 -->
+                                        <img src="img/spell/4.png" alt="">
+
+                                        <!-- 챔피언 스펠2 -->
+                                        <img src="img/spell/14.png" alt="">
+                                    </div>
+
+                                    <!-- 상세보기 :: 소환사 룬 -->
+                                    <div class="detail_rune">
+                                        <!-- 챔피언 룬 대표룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8345.png" alt="">
+                                        </div>
+                                        <!-- 챔피언 룬 보조룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8009.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 챔피언 룬/스펠 끝  -->
+
+
+                                <!-- 소환사 닉네임 , 티어정보 -->
+                                <div class="detail_summoner_name">
+                                    <p class="summoner_name">
+                                        란브로대머리
+                                    </p>
+
+                                    <p class="summoner_tier">
+                                        challenger
+                                    </p>
+                                </div>
+                                <!-- 소환사 닉네임 , 티어정보 끝 -->
+
+                                <!-- 소환사 KDA 전체영역  -->
+                                <div class="detail_summoner_kda">
+
+                                    <!-- 멀티킬 , kda를 감싸는 wrap -->
+                                    <div class="summoner_kda_wrap">
+                                        <!-- kda  -->
+                                        <p class="summoner_kda">
+                                            31 / 1 / 14
+                                        </p>
+
+                                        <!-- 다중킬 여부 이미지 -->
+                                        <img class="summoner_penta" src="img/pentakill.png">
+
+                                    </div>
+
+                                    <!-- kda  평균 -->
+                                    <p class="summoner_kda_avg">
+                                        10:1
+                                    </p>
+                                </div>
+                                <!-- 소환사 kda 전체영역 -->
+
+
+                                <!-- 소환사 입힌데미지 , 받은 데미지 전체영역 -->
+                                <div class="detail_summoner_dmg">
+                                    <!-- 가한 데미지 -->
+                                    <div class="attack_dmg">
+
+                                        <!-- 데미지 막대차트 -->
+                                        <div class="dmg_chartbar push_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="dmg_chart_info">
+                                                가한 데미지 : 236502
+                                            </div>
+                                        </div>
+
+                                        <!-- 데미지 수치 텍스트 -->
+                                        <p class="dmg">236502</p>
+                                    </div>
+
+                                    <!-- 입은 데미지 -->
+                                    <div class="attack_dmg get_dmg">
+                                        <!-- 받은 데미지 막대차트 -->
+                                        <div class="dmg_chartbar get_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="get_chart_info">
+                                                받은 데미지 : 3500
+                                            </div>
+                                        </div>
+                                        <!-- 받은 데미지 수치 텍스트 -->
+                                        <p class="dmg get">3500</p>
+                                    </div>
+
+
+
+                                </div>
+                                <!-- 소환사 입힌 데미지 , 받은 데미지 전체영역 -->
+
+                                <!-- 소환사 와드 , cs 량 전체영역 -->
+                                <div class="detail_summoner_ward">
+                                    <!-- 와드 -->
+                                    <p class="detail_ward">와드점수 : 105</p>
+                                    <div class="detail_cs_wrap">
+                                        <!-- 총합 cs -->
+                                        <p class="detail_cs">526 CS</p>
+                                        <!-- 분당 cs -->
+                                        <p class="detail_cs_min">(분당 20.1)</p>
+
+                                    </div>
+                                </div>
+                                <!-- 소환사 와드 , cs 량 끝 -->
+
+
+                                <!-- 소환사 item 정보 전체영역 -->
+                                <div class="detail_summoner_item">
+                                    <!-- 소환사 item 정보 첫번째라인 -->
+                                    <!-- <div class="detail_item first"> -->
+                                    <!-- 아이템1 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템2 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템3 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- </div> -->
+
+                                    <!-- 소환사 item 정보 두번째 라인 -->
+                                    <!-- <div class="detail_item second"> -->
+                                    <!-- 아이템4 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템5 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템6 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 와드칸 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- </div> -->
+                                </div>
+                                <!-- 소환사 item 정보 끝 -->
+
+
+
+                            </div>
+                            <!-- 상세보기 리스트 (한줄) 끝 -->
+
+                            <!-- 상세보기 리스트 (1줄) -->
+                            <!-- 타임리프 반복 -->
+
+                            <div class="detail_list">
+                                <!-- 챔피언 이미지 -->
+                                <div class="detail_champion_face">
+                                    <!-- 챔피언 이미지 파일 -->
+                                    <img src="img/champion/Annie.png" alt="">
+                                </div>
+
+
+                                <!-- 챔피언 룬 스펠 전체영역 -->
+                                <div class="champion_rune">
+
+                                    <!-- 상세보기 :: 소환사 스펠  -->
+                                    <div class="detail_spell">
+                                        <!-- 챔피언 스펠1 -->
+                                        <img src="img/spell/4.png" alt="">
+
+                                        <!-- 챔피언 스펠2 -->
+                                        <img src="img/spell/14.png" alt="">
+                                    </div>
+
+                                    <!-- 상세보기 :: 소환사 룬 -->
+                                    <div class="detail_rune">
+                                        <!-- 챔피언 룬 대표룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8345.png" alt="">
+                                        </div>
+                                        <!-- 챔피언 룬 보조룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8009.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 챔피언 룬/스펠 끝  -->
+
+
+                                <!-- 소환사 닉네임 , 티어정보 -->
+                                <div class="detail_summoner_name">
+                                    <p class="summoner_name">
+                                        란브로대머리
+                                    </p>
+
+                                    <p class="summoner_tier">
+                                        challenger
+                                    </p>
+                                </div>
+                                <!-- 소환사 닉네임 , 티어정보 끝 -->
+
+                                <!-- 소환사 KDA 전체영역  -->
+                                <div class="detail_summoner_kda">
+
+                                    <!-- 멀티킬 , kda를 감싸는 wrap -->
+                                    <div class="summoner_kda_wrap">
+                                        <!-- kda  -->
+                                        <p class="summoner_kda">
+                                            31 / 1 / 14
+                                        </p>
+
+                                        <!-- 다중킬 여부 이미지 -->
+                                        <img class="summoner_penta" src="img/pentakill.png">
+
+                                    </div>
+
+                                    <!-- kda  평균 -->
+                                    <p class="summoner_kda_avg">
+                                        10:1
+                                    </p>
+                                </div>
+                                <!-- 소환사 kda 전체영역 -->
+
+
+                                <!-- 소환사 입힌데미지 , 받은 데미지 전체영역 -->
+                                <div class="detail_summoner_dmg">
+                                    <!-- 가한 데미지 -->
+                                    <div class="attack_dmg">
+
+                                        <!-- 데미지 막대차트 -->
+                                        <div class="dmg_chartbar push_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="dmg_chart_info">
+                                                가한 데미지 : 236502
+                                            </div>
+                                        </div>
+
+                                        <!-- 데미지 수치 텍스트 -->
+                                        <p class="dmg">236502</p>
+                                    </div>
+
+                                    <!-- 입은 데미지 -->
+                                    <div class="attack_dmg get_dmg">
+                                        <!-- 받은 데미지 막대차트 -->
+                                        <div class="dmg_chartbar get_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="get_chart_info">
+                                                받은 데미지 : 3500
+                                            </div>
+                                        </div>
+                                        <!-- 받은 데미지 수치 텍스트 -->
+                                        <p class="dmg get">3500</p>
+                                    </div>
+
+
+
+                                </div>
+                                <!-- 소환사 입힌 데미지 , 받은 데미지 전체영역 -->
+
+                                <!-- 소환사 와드 , cs 량 전체영역 -->
+                                <div class="detail_summoner_ward">
+                                    <!-- 와드 -->
+                                    <p class="detail_ward">와드점수 : 105</p>
+                                    <div class="detail_cs_wrap">
+                                        <!-- 총합 cs -->
+                                        <p class="detail_cs">526 CS</p>
+                                        <!-- 분당 cs -->
+                                        <p class="detail_cs_min">(분당 20.1)</p>
+
+                                    </div>
+                                </div>
+                                <!-- 소환사 와드 , cs 량 끝 -->
+
+
+                                <!-- 소환사 item 정보 전체영역 -->
+                                <div class="detail_summoner_item">
+                                    <!-- 소환사 item 정보 첫번째라인 -->
+                                    <!-- <div class="detail_item first"> -->
+                                    <!-- 아이템1 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템2 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템3 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- </div> -->
+
+                                    <!-- 소환사 item 정보 두번째 라인 -->
+                                    <!-- <div class="detail_item second"> -->
+                                    <!-- 아이템4 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템5 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템6 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 와드칸 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- </div> -->
+                                </div>
+                                <!-- 소환사 item 정보 끝 -->
+
+
+
+                            </div>
+                            <!-- 상세보기 리스트 (한줄) 끝 -->
+
+
+                            <!-- 상세보기 리스트 (1줄) -->
+                            <!-- 타임리프 반복 -->
+
+                            <div class="detail_list">
+                                <!-- 챔피언 이미지 -->
+                                <div class="detail_champion_face">
+                                    <!-- 챔피언 이미지 파일 -->
+                                    <img src="img/champion/Annie.png" alt="">
+                                </div>
+
+
+                                <!-- 챔피언 룬 스펠 전체영역 -->
+                                <div class="champion_rune">
+
+                                    <!-- 상세보기 :: 소환사 스펠  -->
+                                    <div class="detail_spell">
+                                        <!-- 챔피언 스펠1 -->
+                                        <img src="img/spell/4.png" alt="">
+
+                                        <!-- 챔피언 스펠2 -->
+                                        <img src="img/spell/14.png" alt="">
+                                    </div>
+
+                                    <!-- 상세보기 :: 소환사 룬 -->
+                                    <div class="detail_rune">
+                                        <!-- 챔피언 룬 대표룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8345.png" alt="">
+                                        </div>
+                                        <!-- 챔피언 룬 보조룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8009.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 챔피언 룬/스펠 끝  -->
+
+
+                                <!-- 소환사 닉네임 , 티어정보 -->
+                                <div class="detail_summoner_name">
+                                    <p class="summoner_name">
+                                        란브로대머리
+                                    </p>
+
+                                    <p class="summoner_tier">
+                                        challenger
+                                    </p>
+                                </div>
+                                <!-- 소환사 닉네임 , 티어정보 끝 -->
+
+                                <!-- 소환사 KDA 전체영역  -->
+                                <div class="detail_summoner_kda">
+
+                                    <!-- 멀티킬 , kda를 감싸는 wrap -->
+                                    <div class="summoner_kda_wrap">
+                                        <!-- kda  -->
+                                        <p class="summoner_kda">
+                                            31 / 1 / 14
+                                        </p>
+
+                                        <!-- 다중킬 여부 이미지 -->
+                                        <img class="summoner_penta" src="img/pentakill.png">
+
+                                    </div>
+
+                                    <!-- kda  평균 -->
+                                    <p class="summoner_kda_avg">
+                                        10:1
+                                    </p>
+                                </div>
+                                <!-- 소환사 kda 전체영역 -->
+
+
+                                <!-- 소환사 입힌데미지 , 받은 데미지 전체영역 -->
+                                <div class="detail_summoner_dmg">
+                                    <!-- 가한 데미지 -->
+                                    <div class="attack_dmg">
+
+                                        <!-- 데미지 막대차트 -->
+                                        <div class="dmg_chartbar push_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="dmg_chart_info">
+                                                가한 데미지 : 236502
+                                            </div>
+                                        </div>
+
+                                        <!-- 데미지 수치 텍스트 -->
+                                        <p class="dmg">236502</p>
+                                    </div>
+
+                                    <!-- 입은 데미지 -->
+                                    <div class="attack_dmg get_dmg">
+                                        <!-- 받은 데미지 막대차트 -->
+                                        <div class="dmg_chartbar get_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="get_chart_info">
+                                                받은 데미지 : 3500
+                                            </div>
+                                        </div>
+                                        <!-- 받은 데미지 수치 텍스트 -->
+                                        <p class="dmg get">3500</p>
+                                    </div>
+
+
+
+                                </div>
+                                <!-- 소환사 입힌 데미지 , 받은 데미지 전체영역 -->
+
+                                <!-- 소환사 와드 , cs 량 전체영역 -->
+                                <div class="detail_summoner_ward">
+                                    <!-- 와드 -->
+                                    <p class="detail_ward">와드점수 : 105</p>
+                                    <div class="detail_cs_wrap">
+                                        <!-- 총합 cs -->
+                                        <p class="detail_cs">526 CS</p>
+                                        <!-- 분당 cs -->
+                                        <p class="detail_cs_min">(분당 20.1)</p>
+
+                                    </div>
+                                </div>
+                                <!-- 소환사 와드 , cs 량 끝 -->
+
+
+                                <!-- 소환사 item 정보 전체영역 -->
+                                <div class="detail_summoner_item">
+                                    <!-- 소환사 item 정보 첫번째라인 -->
+                                    <!-- <div class="detail_item first"> -->
+                                    <!-- 아이템1 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템2 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템3 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- </div> -->
+
+                                    <!-- 소환사 item 정보 두번째 라인 -->
+                                    <!-- <div class="detail_item second"> -->
+                                    <!-- 아이템4 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템5 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템6 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 와드칸 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- </div> -->
+                                </div>
+                                <!-- 소환사 item 정보 끝 -->
+
+
+
+                            </div>
+                            <!-- 상세보기 리스트 (한줄) 끝 -->
+
+
+                            <!-- 상세보기 리스트 (1줄) -->
+                            <!-- 타임리프 반복 -->
+
+                            <div class="detail_list">
+                                <!-- 챔피언 이미지 -->
+                                <div class="detail_champion_face">
+                                    <!-- 챔피언 이미지 파일 -->
+                                    <img src="img/champion/Annie.png" alt="">
+                                </div>
+
+
+                                <!-- 챔피언 룬 스펠 전체영역 -->
+                                <div class="champion_rune">
+
+                                    <!-- 상세보기 :: 소환사 스펠  -->
+                                    <div class="detail_spell">
+                                        <!-- 챔피언 스펠1 -->
+                                        <img src="img/spell/4.png" alt="">
+
+                                        <!-- 챔피언 스펠2 -->
+                                        <img src="img/spell/14.png" alt="">
+                                    </div>
+
+                                    <!-- 상세보기 :: 소환사 룬 -->
+                                    <div class="detail_rune">
+                                        <!-- 챔피언 룬 대표룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8345.png" alt="">
+                                        </div>
+                                        <!-- 챔피언 룬 보조룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8009.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 챔피언 룬/스펠 끝  -->
+
+
+                                <!-- 소환사 닉네임 , 티어정보 -->
+                                <div class="detail_summoner_name">
+                                    <p class="summoner_name">
+                                        란브로대머리
+                                    </p>
+
+                                    <p class="summoner_tier">
+                                        challenger
+                                    </p>
+                                </div>
+                                <!-- 소환사 닉네임 , 티어정보 끝 -->
+
+                                <!-- 소환사 KDA 전체영역  -->
+                                <div class="detail_summoner_kda">
+
+                                    <!-- 멀티킬 , kda를 감싸는 wrap -->
+                                    <div class="summoner_kda_wrap">
+                                        <!-- kda  -->
+                                        <p class="summoner_kda">
+                                            31 / 1 / 14
+                                        </p>
+
+                                        <!-- 다중킬 여부 이미지 -->
+                                        <img class="summoner_penta" src="img/pentakill.png">
+
+                                    </div>
+
+                                    <!-- kda  평균 -->
+                                    <p class="summoner_kda_avg">
+                                        10:1
+                                    </p>
+                                </div>
+                                <!-- 소환사 kda 전체영역 -->
+
+
+                                <!-- 소환사 입힌데미지 , 받은 데미지 전체영역 -->
+                                <div class="detail_summoner_dmg">
+                                    <!-- 가한 데미지 -->
+                                    <div class="attack_dmg">
+
+                                        <!-- 데미지 막대차트 -->
+                                        <div class="dmg_chartbar push_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="dmg_chart_info">
+                                                가한 데미지 : 236502
+                                            </div>
+                                        </div>
+
+                                        <!-- 데미지 수치 텍스트 -->
+                                        <p class="dmg">236502</p>
+                                    </div>
+
+                                    <!-- 입은 데미지 -->
+                                    <div class="attack_dmg get_dmg">
+                                        <!-- 받은 데미지 막대차트 -->
+                                        <div class="dmg_chartbar get_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="get_chart_info">
+                                                받은 데미지 : 3500
+                                            </div>
+                                        </div>
+                                        <!-- 받은 데미지 수치 텍스트 -->
+                                        <p class="dmg get">3500</p>
+                                    </div>
+
+
+
+                                </div>
+                                <!-- 소환사 입힌 데미지 , 받은 데미지 전체영역 -->
+
+                                <!-- 소환사 와드 , cs 량 전체영역 -->
+                                <div class="detail_summoner_ward">
+                                    <!-- 와드 -->
+                                    <p class="detail_ward">와드점수 : 105</p>
+                                    <div class="detail_cs_wrap">
+                                        <!-- 총합 cs -->
+                                        <p class="detail_cs">526 CS</p>
+                                        <!-- 분당 cs -->
+                                        <p class="detail_cs_min">(분당 20.1)</p>
+
+                                    </div>
+                                </div>
+                                <!-- 소환사 와드 , cs 량 끝 -->
+
+
+                                <!-- 소환사 item 정보 전체영역 -->
+                                <div class="detail_summoner_item">
+                                    <!-- 소환사 item 정보 첫번째라인 -->
+                                    <!-- <div class="detail_item first"> -->
+                                    <!-- 아이템1 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템2 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템3 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- </div> -->
+
+                                    <!-- 소환사 item 정보 두번째 라인 -->
+                                    <!-- <div class="detail_item second"> -->
+                                    <!-- 아이템4 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템5 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템6 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 와드칸 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- </div> -->
+                                </div>
+                                <!-- 소환사 item 정보 끝 -->
+
+
+
+                            </div>
+                            <!-- 상세보기 리스트 (한줄) 끝 -->
+
+
+
+
+                        </div>
+                        <!-- 승리팀 전체영역 끝 -->
+
+
+                        <!-- 중간 바론 타워 전령 정보 -->
+                        <div class="detail_middle_info">
+                            <!-- 승리팀 정보 -->
+                            <div class="win_team_info">
+                                <!-- 바론 -->
+                                <div class="middle_baron">
+                                    <img src="img/icon-baron.svg" alt="">
+                                    <p class="middle_text">1</p>
+                                </div>
+                                <!-- 드래곤 -->
+                                <div class="middle_dragon">
+                                    <img src="img/icon-dragon.svg" alt="">
+                                    <p class="middle_text">0</p>
+                                </div>
+
+                                <!-- 타워 -->
+                                <div class="middle_tower">
+                                    <img src="img/icon-tower.svg" alt="">
+                                    <p class="middle_text">0</p>
+                                </div>
+                            </div>
+
+                            <!-- 패배팀 정보 -->
+                            <div class="win_team_info lose_team_info">
+                                <!-- 타워 -->
+                                <div class="middle_tower">
+                                    <p class="middle_text lose_team_text">0</p>
+                                    <img src="img/icon-tower.svg" alt="">
+                                </div>
+
+                                <!-- 드래곤 -->
+                                <div class="middle_dragon">
+                                    <p class="middle_text lose_team_text">0</p>
+                                    <img src="img/icon-dragon.svg" alt="">
+                                </div>
+
+                                <!-- 바론 -->
+                                <div class="middle_baron">
+                                    <p class="middle_text lose_team_text">1</p>
+                                    <img src="img/icon-baron.svg" alt="">
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <!-- 중간 바론 타워 전령 정보 끝 -->
+
+
+                        <!-- 패배팀 전체영역 -->
+                        <div class="detail_lose_team">
+
+                            <h1 class="we_are_winner">
+                                패배팀(레드팀)
+                            </h1>
+                            <!-- 상세보기 리스트 (1줄) -->
+                            <!-- 타임리프 반복 -->
+
+                            <div class="detail_list">
+                                <!-- 챔피언 이미지 -->
+                                <div class="detail_champion_face">
+                                    <!-- 챔피언 이미지 파일 -->
+                                    <img src="img/champion/Annie.png" alt="">
+                                </div>
+
+
+                                <!-- 챔피언 룬 스펠 전체영역 -->
+                                <div class="champion_rune">
+
+                                    <!-- 상세보기 :: 소환사 스펠  -->
+                                    <div class="detail_spell">
+                                        <!-- 챔피언 스펠1 -->
+                                        <img src="img/spell/4.png" alt="">
+
+                                        <!-- 챔피언 스펠2 -->
+                                        <img src="img/spell/14.png" alt="">
+                                    </div>
+
+                                    <!-- 상세보기 :: 소환사 룬 -->
+                                    <div class="detail_rune">
+                                        <!-- 챔피언 룬 대표룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8345.png" alt="">
+                                        </div>
+                                        <!-- 챔피언 룬 보조룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8009.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 챔피언 룬/스펠 끝  -->
+
+
+                                <!-- 소환사 닉네임 , 티어정보 -->
+                                <div class="detail_summoner_name">
+                                    <p class="summoner_name">
+                                        란브로대머리
+                                    </p>
+
+                                    <p class="summoner_tier">
+                                        challenger
+                                    </p>
+                                </div>
+                                <!-- 소환사 닉네임 , 티어정보 끝 -->
+
+                                <!-- 소환사 KDA 전체영역  -->
+                                <div class="detail_summoner_kda">
+
+                                    <!-- 멀티킬 , kda를 감싸는 wrap -->
+                                    <div class="summoner_kda_wrap">
+                                        <!-- kda  -->
+                                        <p class="summoner_kda">
+                                            31 / 1 / 14
+                                        </p>
+
+                                        <!-- 다중킬 여부 이미지 -->
+                                        <img class="summoner_penta" src="img/pentakill.png">
+
+                                    </div>
+
+                                    <!-- kda  평균 -->
+                                    <p class="summoner_kda_avg">
+                                        10:1
+                                    </p>
+                                </div>
+                                <!-- 소환사 kda 전체영역 -->
+
+
+                                <!-- 소환사 입힌데미지 , 받은 데미지 전체영역 -->
+                                <div class="detail_summoner_dmg">
+                                    <!-- 가한 데미지 -->
+                                    <div class="attack_dmg">
+
+                                        <!-- 데미지 막대차트 -->
+                                        <div class="dmg_chartbar push_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="dmg_chart_info">
+                                                가한 데미지 : 236502
+                                            </div>
+                                        </div>
+
+                                        <!-- 데미지 수치 텍스트 -->
+                                        <p class="dmg">236502</p>
+                                    </div>
+
+                                    <!-- 입은 데미지 -->
+                                    <div class="attack_dmg get_dmg">
+                                        <!-- 받은 데미지 막대차트 -->
+                                        <div class="dmg_chartbar get_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="get_chart_info">
+                                                받은 데미지 : 3500
+                                            </div>
+                                        </div>
+                                        <!-- 받은 데미지 수치 텍스트 -->
+                                        <p class="dmg get">3500</p>
+                                    </div>
+
+
+
+                                </div>
+                                <!-- 소환사 입힌 데미지 , 받은 데미지 전체영역 -->
+
+                                <!-- 소환사 와드 , cs 량 전체영역 -->
+                                <div class="detail_summoner_ward">
+                                    <!-- 와드 -->
+                                    <p class="detail_ward">와드점수 : 105</p>
+                                    <div class="detail_cs_wrap">
+                                        <!-- 총합 cs -->
+                                        <p class="detail_cs">526 CS</p>
+                                        <!-- 분당 cs -->
+                                        <p class="detail_cs_min">(분당 20.1)</p>
+
+                                    </div>
+                                </div>
+                                <!-- 소환사 와드 , cs 량 끝 -->
+
+
+                                <!-- 소환사 item 정보 전체영역 -->
+                                <div class="detail_summoner_item">
+                                    <!-- 소환사 item 정보 첫번째라인 -->
+                                    <!-- <div class="detail_item first"> -->
+                                    <!-- 아이템1 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템2 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템3 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- </div> -->
+
+                                    <!-- 소환사 item 정보 두번째 라인 -->
+                                    <!-- <div class="detail_item second"> -->
+                                    <!-- 아이템4 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템5 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템6 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 와드칸 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- </div> -->
+                                </div>
+                                <!-- 소환사 item 정보 끝 -->
+
+
+
+                            </div>
+                            <!-- 상세보기 리스트 (한줄) 끝 -->
+
+
+                            <!-- 상세보기 리스트 (1줄) -->
+                            <!-- 타임리프 반복 -->
+
+                            <div class="detail_list">
+                                <!-- 챔피언 이미지 -->
+                                <div class="detail_champion_face">
+                                    <!-- 챔피언 이미지 파일 -->
+                                    <img src="img/champion/Annie.png" alt="">
+                                </div>
+
+
+                                <!-- 챔피언 룬 스펠 전체영역 -->
+                                <div class="champion_rune">
+
+                                    <!-- 상세보기 :: 소환사 스펠  -->
+                                    <div class="detail_spell">
+                                        <!-- 챔피언 스펠1 -->
+                                        <img src="img/spell/4.png" alt="">
+
+                                        <!-- 챔피언 스펠2 -->
+                                        <img src="img/spell/14.png" alt="">
+                                    </div>
+
+                                    <!-- 상세보기 :: 소환사 룬 -->
+                                    <div class="detail_rune">
+                                        <!-- 챔피언 룬 대표룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8345.png" alt="">
+                                        </div>
+                                        <!-- 챔피언 룬 보조룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8009.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 챔피언 룬/스펠 끝  -->
+
+
+                                <!-- 소환사 닉네임 , 티어정보 -->
+                                <div class="detail_summoner_name">
+                                    <p class="summoner_name">
+                                        란브로대머리
+                                    </p>
+
+                                    <p class="summoner_tier">
+                                        challenger
+                                    </p>
+                                </div>
+                                <!-- 소환사 닉네임 , 티어정보 끝 -->
+
+                                <!-- 소환사 KDA 전체영역  -->
+                                <div class="detail_summoner_kda">
+
+                                    <!-- 멀티킬 , kda를 감싸는 wrap -->
+                                    <div class="summoner_kda_wrap">
+                                        <!-- kda  -->
+                                        <p class="summoner_kda">
+                                            31 / 1 / 14
+                                        </p>
+
+                                        <!-- 다중킬 여부 이미지 -->
+                                        <img class="summoner_penta" src="img/pentakill.png">
+
+                                    </div>
+
+                                    <!-- kda  평균 -->
+                                    <p class="summoner_kda_avg">
+                                        10:1
+                                    </p>
+                                </div>
+                                <!-- 소환사 kda 전체영역 -->
+
+
+                                <!-- 소환사 입힌데미지 , 받은 데미지 전체영역 -->
+                                <div class="detail_summoner_dmg">
+                                    <!-- 가한 데미지 -->
+                                    <div class="attack_dmg">
+
+                                        <!-- 데미지 막대차트 -->
+                                        <div class="dmg_chartbar push_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="dmg_chart_info">
+                                                가한 데미지 : 236502
+                                            </div>
+                                        </div>
+
+                                        <!-- 데미지 수치 텍스트 -->
+                                        <p class="dmg">236502</p>
+                                    </div>
+
+                                    <!-- 입은 데미지 -->
+                                    <div class="attack_dmg get_dmg">
+                                        <!-- 받은 데미지 막대차트 -->
+                                        <div class="dmg_chartbar get_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="get_chart_info">
+                                                받은 데미지 : 3500
+                                            </div>
+                                        </div>
+                                        <!-- 받은 데미지 수치 텍스트 -->
+                                        <p class="dmg get">3500</p>
+                                    </div>
+
+
+
+                                </div>
+                                <!-- 소환사 입힌 데미지 , 받은 데미지 전체영역 -->
+
+                                <!-- 소환사 와드 , cs 량 전체영역 -->
+                                <div class="detail_summoner_ward">
+                                    <!-- 와드 -->
+                                    <p class="detail_ward">와드점수 : 105</p>
+                                    <div class="detail_cs_wrap">
+                                        <!-- 총합 cs -->
+                                        <p class="detail_cs">526 CS</p>
+                                        <!-- 분당 cs -->
+                                        <p class="detail_cs_min">(분당 20.1)</p>
+
+                                    </div>
+                                </div>
+                                <!-- 소환사 와드 , cs 량 끝 -->
+
+
+                                <!-- 소환사 item 정보 전체영역 -->
+                                <div class="detail_summoner_item">
+                                    <!-- 소환사 item 정보 첫번째라인 -->
+                                    <!-- <div class="detail_item first"> -->
+                                    <!-- 아이템1 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템2 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템3 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- </div> -->
+
+                                    <!-- 소환사 item 정보 두번째 라인 -->
+                                    <!-- <div class="detail_item second"> -->
+                                    <!-- 아이템4 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템5 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템6 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 와드칸 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- </div> -->
+                                </div>
+                                <!-- 소환사 item 정보 끝 -->
+
+
+
+                            </div>
+                            <!-- 상세보기 리스트 (한줄) 끝 -->
+
+                            <!-- 상세보기 리스트 (1줄) -->
+                            <!-- 타임리프 반복 -->
+
+                            <div class="detail_list">
+                                <!-- 챔피언 이미지 -->
+                                <div class="detail_champion_face">
+                                    <!-- 챔피언 이미지 파일 -->
+                                    <img src="img/champion/Annie.png" alt="">
+                                </div>
+
+
+                                <!-- 챔피언 룬 스펠 전체영역 -->
+                                <div class="champion_rune">
+
+                                    <!-- 상세보기 :: 소환사 스펠  -->
+                                    <div class="detail_spell">
+                                        <!-- 챔피언 스펠1 -->
+                                        <img src="img/spell/4.png" alt="">
+
+                                        <!-- 챔피언 스펠2 -->
+                                        <img src="img/spell/14.png" alt="">
+                                    </div>
+
+                                    <!-- 상세보기 :: 소환사 룬 -->
+                                    <div class="detail_rune">
+                                        <!-- 챔피언 룬 대표룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8345.png" alt="">
+                                        </div>
+                                        <!-- 챔피언 룬 보조룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8009.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 챔피언 룬/스펠 끝  -->
+
+
+                                <!-- 소환사 닉네임 , 티어정보 -->
+                                <div class="detail_summoner_name">
+                                    <p class="summoner_name">
+                                        란브로대머리
+                                    </p>
+
+                                    <p class="summoner_tier">
+                                        challenger
+                                    </p>
+                                </div>
+                                <!-- 소환사 닉네임 , 티어정보 끝 -->
+
+                                <!-- 소환사 KDA 전체영역  -->
+                                <div class="detail_summoner_kda">
+
+                                    <!-- 멀티킬 , kda를 감싸는 wrap -->
+                                    <div class="summoner_kda_wrap">
+                                        <!-- kda  -->
+                                        <p class="summoner_kda">
+                                            31 / 1 / 14
+                                        </p>
+
+                                        <!-- 다중킬 여부 이미지 -->
+                                        <img class="summoner_penta" src="img/pentakill.png">
+
+                                    </div>
+
+                                    <!-- kda  평균 -->
+                                    <p class="summoner_kda_avg">
+                                        10:1
+                                    </p>
+                                </div>
+                                <!-- 소환사 kda 전체영역 -->
+
+
+                                <!-- 소환사 입힌데미지 , 받은 데미지 전체영역 -->
+                                <div class="detail_summoner_dmg">
+                                    <!-- 가한 데미지 -->
+                                    <div class="attack_dmg">
+
+                                        <!-- 데미지 막대차트 -->
+                                        <div class="dmg_chartbar push_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="dmg_chart_info">
+                                                가한 데미지 : 236502
+                                            </div>
+                                        </div>
+
+                                        <!-- 데미지 수치 텍스트 -->
+                                        <p class="dmg">236502</p>
+                                    </div>
+
+                                    <!-- 입은 데미지 -->
+                                    <div class="attack_dmg get_dmg">
+                                        <!-- 받은 데미지 막대차트 -->
+                                        <div class="dmg_chartbar get_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="get_chart_info">
+                                                받은 데미지 : 3500
+                                            </div>
+                                        </div>
+                                        <!-- 받은 데미지 수치 텍스트 -->
+                                        <p class="dmg get">3500</p>
+                                    </div>
+
+
+
+                                </div>
+                                <!-- 소환사 입힌 데미지 , 받은 데미지 전체영역 -->
+
+                                <!-- 소환사 와드 , cs 량 전체영역 -->
+                                <div class="detail_summoner_ward">
+                                    <!-- 와드 -->
+                                    <p class="detail_ward">와드점수 : 105</p>
+                                    <div class="detail_cs_wrap">
+                                        <!-- 총합 cs -->
+                                        <p class="detail_cs">526 CS</p>
+                                        <!-- 분당 cs -->
+                                        <p class="detail_cs_min">(분당 20.1)</p>
+
+                                    </div>
+                                </div>
+                                <!-- 소환사 와드 , cs 량 끝 -->
+
+
+                                <!-- 소환사 item 정보 전체영역 -->
+                                <div class="detail_summoner_item">
+                                    <!-- 소환사 item 정보 첫번째라인 -->
+                                    <!-- <div class="detail_item first"> -->
+                                    <!-- 아이템1 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템2 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템3 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- </div> -->
+
+                                    <!-- 소환사 item 정보 두번째 라인 -->
+                                    <!-- <div class="detail_item second"> -->
+                                    <!-- 아이템4 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템5 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템6 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 와드칸 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- </div> -->
+                                </div>
+                                <!-- 소환사 item 정보 끝 -->
+
+
+
+                            </div>
+                            <!-- 상세보기 리스트 (한줄) 끝 -->
+
+
+                            <!-- 상세보기 리스트 (1줄) -->
+                            <!-- 타임리프 반복 -->
+
+                            <div class="detail_list">
+                                <!-- 챔피언 이미지 -->
+                                <div class="detail_champion_face">
+                                    <!-- 챔피언 이미지 파일 -->
+                                    <img src="img/champion/Annie.png" alt="">
+                                </div>
+
+
+                                <!-- 챔피언 룬 스펠 전체영역 -->
+                                <div class="champion_rune">
+
+                                    <!-- 상세보기 :: 소환사 스펠  -->
+                                    <div class="detail_spell">
+                                        <!-- 챔피언 스펠1 -->
+                                        <img src="img/spell/4.png" alt="">
+
+                                        <!-- 챔피언 스펠2 -->
+                                        <img src="img/spell/14.png" alt="">
+                                    </div>
+
+                                    <!-- 상세보기 :: 소환사 룬 -->
+                                    <div class="detail_rune">
+                                        <!-- 챔피언 룬 대표룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8345.png" alt="">
+                                        </div>
+                                        <!-- 챔피언 룬 보조룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8009.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 챔피언 룬/스펠 끝  -->
+
+
+                                <!-- 소환사 닉네임 , 티어정보 -->
+                                <div class="detail_summoner_name">
+                                    <p class="summoner_name">
+                                        란브로대머리
+                                    </p>
+
+                                    <p class="summoner_tier">
+                                        challenger
+                                    </p>
+                                </div>
+                                <!-- 소환사 닉네임 , 티어정보 끝 -->
+
+                                <!-- 소환사 KDA 전체영역  -->
+                                <div class="detail_summoner_kda">
+
+                                    <!-- 멀티킬 , kda를 감싸는 wrap -->
+                                    <div class="summoner_kda_wrap">
+                                        <!-- kda  -->
+                                        <p class="summoner_kda">
+                                            31 / 1 / 14
+                                        </p>
+
+                                        <!-- 다중킬 여부 이미지 -->
+                                        <img class="summoner_penta" src="img/pentakill.png">
+
+                                    </div>
+
+                                    <!-- kda  평균 -->
+                                    <p class="summoner_kda_avg">
+                                        10:1
+                                    </p>
+                                </div>
+                                <!-- 소환사 kda 전체영역 -->
+
+
+                                <!-- 소환사 입힌데미지 , 받은 데미지 전체영역 -->
+                                <div class="detail_summoner_dmg">
+                                    <!-- 가한 데미지 -->
+                                    <div class="attack_dmg">
+
+                                        <!-- 데미지 막대차트 -->
+                                        <div class="dmg_chartbar push_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="dmg_chart_info">
+                                                가한 데미지 : 236502
+                                            </div>
+                                        </div>
+
+                                        <!-- 데미지 수치 텍스트 -->
+                                        <p class="dmg">236502</p>
+                                    </div>
+
+                                    <!-- 입은 데미지 -->
+                                    <div class="attack_dmg get_dmg">
+                                        <!-- 받은 데미지 막대차트 -->
+                                        <div class="dmg_chartbar get_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="get_chart_info">
+                                                받은 데미지 : 3500
+                                            </div>
+                                        </div>
+                                        <!-- 받은 데미지 수치 텍스트 -->
+                                        <p class="dmg get">3500</p>
+                                    </div>
+
+
+
+                                </div>
+                                <!-- 소환사 입힌 데미지 , 받은 데미지 전체영역 -->
+
+                                <!-- 소환사 와드 , cs 량 전체영역 -->
+                                <div class="detail_summoner_ward">
+                                    <!-- 와드 -->
+                                    <p class="detail_ward">와드점수 : 105</p>
+                                    <div class="detail_cs_wrap">
+                                        <!-- 총합 cs -->
+                                        <p class="detail_cs">526 CS</p>
+                                        <!-- 분당 cs -->
+                                        <p class="detail_cs_min">(분당 20.1)</p>
+
+                                    </div>
+                                </div>
+                                <!-- 소환사 와드 , cs 량 끝 -->
+
+
+                                <!-- 소환사 item 정보 전체영역 -->
+                                <div class="detail_summoner_item">
+                                    <!-- 소환사 item 정보 첫번째라인 -->
+                                    <!-- <div class="detail_item first"> -->
+                                    <!-- 아이템1 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템2 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템3 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- </div> -->
+
+                                    <!-- 소환사 item 정보 두번째 라인 -->
+                                    <!-- <div class="detail_item second"> -->
+                                    <!-- 아이템4 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템5 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템6 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 와드칸 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- </div> -->
+                                </div>
+                                <!-- 소환사 item 정보 끝 -->
+
+
+
+                            </div>
+                            <!-- 상세보기 리스트 (한줄) 끝 -->
+
+
+                            <!-- 상세보기 리스트 (1줄) -->
+                            <!-- 타임리프 반복 -->
+
+                            <div class="detail_list">
+                                <!-- 챔피언 이미지 -->
+                                <div class="detail_champion_face">
+                                    <!-- 챔피언 이미지 파일 -->
+                                    <img src="img/champion/Annie.png" alt="">
+                                </div>
+
+
+                                <!-- 챔피언 룬 스펠 전체영역 -->
+                                <div class="champion_rune">
+
+                                    <!-- 상세보기 :: 소환사 스펠  -->
+                                    <div class="detail_spell">
+                                        <!-- 챔피언 스펠1 -->
+                                        <img src="img/spell/4.png" alt="">
+
+                                        <!-- 챔피언 스펠2 -->
+                                        <img src="img/spell/14.png" alt="">
+                                    </div>
+
+                                    <!-- 상세보기 :: 소환사 룬 -->
+                                    <div class="detail_rune">
+                                        <!-- 챔피언 룬 대표룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8345.png" alt="">
+                                        </div>
+                                        <!-- 챔피언 룬 보조룬 -->
+                                        <div class="rune_wrap detail_wrap">
+                                            <img src="img/rune/8009.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 챔피언 룬/스펠 끝  -->
+
+
+                                <!-- 소환사 닉네임 , 티어정보 -->
+                                <div class="detail_summoner_name">
+                                    <p class="summoner_name">
+                                        란브로대머리
+                                    </p>
+
+                                    <p class="summoner_tier">
+                                        challenger
+                                    </p>
+                                </div>
+                                <!-- 소환사 닉네임 , 티어정보 끝 -->
+
+                                <!-- 소환사 KDA 전체영역  -->
+                                <div class="detail_summoner_kda">
+
+                                    <!-- 멀티킬 , kda를 감싸는 wrap -->
+                                    <div class="summoner_kda_wrap">
+                                        <!-- kda  -->
+                                        <p class="summoner_kda">
+                                            31 / 1 / 14
+                                        </p>
+
+                                        <!-- 다중킬 여부 이미지 -->
+                                        <img class="summoner_penta" src="img/pentakill.png">
+
+                                    </div>
+
+                                    <!-- kda  평균 -->
+                                    <p class="summoner_kda_avg">
+                                        10:1
+                                    </p>
+                                </div>
+                                <!-- 소환사 kda 전체영역 -->
+
+
+                                <!-- 소환사 입힌데미지 , 받은 데미지 전체영역 -->
+                                <div class="detail_summoner_dmg">
+                                    <!-- 가한 데미지 -->
+                                    <div class="attack_dmg">
+
+                                        <!-- 데미지 막대차트 -->
+                                        <div class="dmg_chartbar push_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="dmg_chart_info">
+                                                가한 데미지 : 236502
+                                            </div>
+                                        </div>
+
+                                        <!-- 데미지 수치 텍스트 -->
+                                        <p class="dmg">236502</p>
+                                    </div>
+
+                                    <!-- 입은 데미지 -->
+                                    <div class="attack_dmg get_dmg">
+                                        <!-- 받은 데미지 막대차트 -->
+                                        <div class="dmg_chartbar get_chartbar">
+                                            <!-- 마우스 hover 시 나오는 설명 -->
+                                            <div class="hover_dmg" id="get_chart_info">
+                                                받은 데미지 : 3500
+                                            </div>
+                                        </div>
+                                        <!-- 받은 데미지 수치 텍스트 -->
+                                        <p class="dmg get">3500</p>
+                                    </div>
+
+
+
+                                </div>
+                                <!-- 소환사 입힌 데미지 , 받은 데미지 전체영역 -->
+
+                                <!-- 소환사 와드 , cs 량 전체영역 -->
+                                <div class="detail_summoner_ward">
+                                    <!-- 와드 -->
+                                    <p class="detail_ward">와드점수 : 105</p>
+                                    <div class="detail_cs_wrap">
+                                        <!-- 총합 cs -->
+                                        <p class="detail_cs">526 CS</p>
+                                        <!-- 분당 cs -->
+                                        <p class="detail_cs_min">(분당 20.1)</p>
+
+                                    </div>
+                                </div>
+                                <!-- 소환사 와드 , cs 량 끝 -->
+
+
+                                <!-- 소환사 item 정보 전체영역 -->
+                                <div class="detail_summoner_item">
+                                    <!-- 소환사 item 정보 첫번째라인 -->
+                                    <!-- <div class="detail_item first"> -->
+                                    <!-- 아이템1 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템2 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- 아이템3 -->
+                                    <img src="img/champion/Zoe.png" alt="">
+                                    <!-- </div> -->
+
+                                    <!-- 소환사 item 정보 두번째 라인 -->
+                                    <!-- <div class="detail_item second"> -->
+                                    <!-- 아이템4 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템5 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 아이템6 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- 와드칸 -->
+                                    <img src="img/champion/Ahri.png" alt="">
+                                    <!-- </div> -->
+                                </div>
+                                <!-- 소환사 item 정보 끝 -->
+
+                            </div>
+                            <!-- 상세보기 리스트 (한줄) 끝 -->
+
+                        </div>
+                        <!-- 패배팀 전체영역 끝 -->
+
+                    </div>
+                    <!-- 종합정보 끝 -->
+
+                    <!-- 인게임분석 전체영역 -->
+                    <!-- 상세보기의 인게임분석 버튼을 눌러야 출력되는 영역 -->
+                    <div class="detail_ingame_info_wrap">
+                        <!-- 승리팀 패배팀 전체영역 -->
+                        <div class="ingame_info">
+                            <!-- 승리팀 원 -->
+                            <div class="win_team_circle"></div>
+                            <!-- 승리팀 텍스트 -->
+                            <p class="win_team_text">승리팀</p>
+
+                            <!-- 패배팀 원 -->
+                            <div class="win_team_circle lose_team_circle"></div>
+                            <!-- 패배팀 텍스트 -->
+                            <p class="lose_team_text">패배팀</p>
+                        </div>
+                        <!-- 승리팀 패배팀 끝 -->
+
+
+                        <!-- 챔피언 처치 그래프 전체영역 -->
+                        <div class="ingame_info_champion_kill">
+                            <!-- 챔피언 처치 타이틀 -->
+                            <h1 class="champion_kill_title">챔피언 처치</h1>
+                            <!-- 챔피언 그래프 전체영역 -->
+                            <div class="champion_kill_graph_wrap">
+
+                                <!-- 승리팀 킬수 막대 그래프 전체영역 -->
+                                <ul class="champion_kill_graph">
+                                    <!-- 1행 -->
+                                    <li>
+                                        <!-- 챔피언 이미지 -->
+                                        <img src="img/champion/Gragas.png" alt="">
+                                        <!-- 그래프 전체영역 -->
+                                        <div class="kill_bar_graph">
+                                             <!-- 마우스 hover 시 나오는 설명 -->
+                                             <div class="hover_dmg kill_bar_graph_hover" id="dmg_chart_info">
+                                                챔피언 킬량 : 2
+                                            </div>
+                                            <!-- 실질적인 킬 수 그래프 -->
+                                            <div class="kill_bar"></div>
+                                            <!-- 킬 수치 텍스트 -->
+                                            <p class="kill_bar_text">2</p>
+                                        </div>
+                                    </li>
+
+                                     <!-- 2행 -->
+                                     <li>
+                                        <!-- 챔피언 이미지 -->
+                                        <img src="img/champion/Gragas.png" alt="">
+                                        <!-- 그래프 전체영역 -->
+                                        <div class="kill_bar_graph">
+                                             <!-- 마우스 hover 시 나오는 설명 -->
+                                             <div class="hover_dmg kill_bar_graph_hover" id="dmg_chart_info">
+                                                챔피언 킬량 : 2
+                                            </div>
+                                            <!-- 실질적인 킬 수 그래프 -->
+                                            <div class="kill_bar"></div>
+                                            <!-- 킬 수치 텍스트 -->
+                                            <p class="kill_bar_text">2</p>
+                                        </div>
+                                    </li>
+
+                                     <!-- 3행 -->
+                                     <li>
+                                        <!-- 챔피언 이미지 -->
+                                        <img src="img/champion/Gragas.png" alt="">
+                                        <!-- 그래프 전체영역 -->
+                                        <div class="kill_bar_graph">
+                                             <!-- 마우스 hover 시 나오는 설명 -->
+                                             <div class="hover_dmg kill_bar_graph_hover" id="dmg_chart_info">
+                                                챔피언 킬량 : 2
+                                            </div>
+                                            <!-- 실질적인 킬 수 그래프 -->
+                                            <div class="kill_bar"></div>
+                                            <!-- 킬 수치 텍스트 -->
+                                            <p class="kill_bar_text">2</p>
+                                        </div>
+                                    </li>
+
+                                     <!-- 4행 -->
+                                     <li>
+                                        <!-- 챔피언 이미지 -->
+                                        <img src="img/champion/Gragas.png" alt="">
+                                        <!-- 그래프 전체영역 -->
+                                        <div class="kill_bar_graph">
+                                             <!-- 마우스 hover 시 나오는 설명 -->
+                                             <div class="hover_dmg kill_bar_graph_hover" id="dmg_chart_info">
+                                                챔피언 킬량 : 2
+                                            </div>
+                                            <!-- 실질적인 킬 수 그래프 -->
+                                            <div class="kill_bar"></div>
+                                            <!-- 킬 수치 텍스트 -->
+                                            <p class="kill_bar_text">2</p>
+                                        </div>
+                                    </li>
+
+                                     <!-- 5행 -->
+                                     <li>
+                                        <!-- 챔피언 이미지 -->
+                                        <img src="img/champion/Gragas.png" alt="">
+                                        <!-- 그래프 전체영역 -->
+                                        <div class="kill_bar_graph">
+                                             <!-- 마우스 hover 시 나오는 설명 -->
+                                             <div class="hover_dmg kill_bar_graph_hover" id="dmg_chart_info">
+                                                챔피언 킬량 : 4
+                                            </div>
+                                            <!-- 실질적인 킬 수 그래프 -->
+                                            <div class="kill_bar"></div>
+                                            <!-- 킬 수치 텍스트 -->
+                                            <p class="kill_bar_text">2</p>
+                                        </div>
+                                    </li>
+
+                                </ul>
+
+
+
+                                <!-- 중앙 도넛 그래프 -->
+                                <div class="champion_kill_circle_graph">
+                                    <!-- 차트 -->
+                                    <canvas class="myPieChart">
+                                        <!-- 현재 승률 지수 -->
+
+                                    </canvas>
+                                    <!-- 승률 퍼센트 -->
+                                    <div class="chart_text champion_kill_chart_text">
+                                        <!-- 승리팀 킬수 텍스트 -->
+                                        <p class="champion_kill_win_team_text">321321</p>
+                                        <!-- 패배팀 킬수 텍스트 -->
+                                        <p class="champion_kill_lose_team_text">11</p>
+                                    </div>
+                                </div>
+                                <!-- 중앙 도넛 그래프 끝 -->
+
+
+                                <!-- 패배팀 킬수 막대 그래프 전체영역 -->
+                                <ul class="champion_kill_graph">
+                                    <!-- 1행 -->
+                                    <li>
+                                        <!-- 챔피언 이미지 -->
+                                        <img src="img/champion/Gragas.png" alt="">
+                                        <!-- 그래프 전체영역 -->
+                                        <div class="kill_bar_graph">
+                                             <!-- 마우스 hover 시 나오는 설명 -->
+                                             <div class="hover_dmg kill_bar_graph_hover lose_team_kill_bar" id="dmg_chart_info">
+                                                챔피언 킬량 : 5
+                                            </div>
+                                            <!-- 실질적인 킬 수 그래프 -->
+                                            <div class="kill_bar"></div>
+                                            <!-- 킬 수치 텍스트 -->
+                                            <p class="kill_bar_text">2</p>
+                                        </div>
+                                    </li>
+
+                                    
+
+                                </ul>
+
+
+
+                            </div>
+                            <!-- 챔피언 그래프 전체영역 끝 -->
+
+
+
+
+                        </div>
+                        <!-- 챔피언 처치 그래프 전체영역 끝 -->
+
+                    </div>
+
+
+
+
+
+
+
+
+                    <!-- 디테일 하단 버튼 전체영역 -->
+                    <div class="detail_footer_wrap">
+                        <!-- 종합정보 버튼 -->
+                        <button type="button" class="detail_information_bt">종합정보</button>
+
+                        <!-- 인게임 분석 버튼 -->
+                        <button type="button" class="detail_ingame_bt">인게임 분석</button>
+
+                        <!-- 사용한 룬 정보 버튼 -->
+                        <button type="button" class="detail_rune_info_bt">사용한 룬 정보</button>
+                    </div>
+
+                </div>
+                <!-- 상세보기 전체영역 끝  -->
+
+
+
+            </div>
+            <!-- 전적 리스트 영역 끝 -->
+
+
+
+        </div>
+        <!--  메인 컨텐츠 끝 -->
+
+
+
+
+
+        <!-- 로그아웃 모달 (아직 사용할지 미정)-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 로그아웃 모달 끝-->
+
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <script src="js/demo/chart-bar-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+    <!-- 내 자바 스크립트 -->
+    <script src="js/record.js"></script>
+</body>
+
+</html>

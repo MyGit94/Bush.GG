@@ -1,0 +1,1433 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+}
+
+ul>li {
+  list-style-type: none;
+}
+
+
+#content-wrapper{
+  background-color: rgba(245,245,245);
+  /* background-image: url(/img/wallpaper.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:cover; */
+}
+
+
+/* 왼쪽 사이드바 로고 전체 영역 */
+.nav-link2 {
+  position: relative;
+  /* background-color: antiquewhite; */
+  height: 100px;
+}
+
+
+/* 왼쪽 사이드바 로고 이미지 */
+.nav-item-img {
+  position: absolute;
+  left: calc(50% - 43px);
+  width: 86px;
+}
+
+
+/* 소환사 정보칸 전체 영역 */
+.user_info_wrap {
+  width: 95%;
+  height: 600px;
+  /* background-color: pink; */
+  padding: 20px;
+  margin: 0 auto;
+  position: relative;
+  box-sizing: content-box;
+
+}
+
+/* 소환사 정보칸 컨텐츠들을
+3등분으로 나누기 위한 전체 영역값 지정 */
+.info_summoner>div,
+.info_recent>div {
+  width: 32%;
+  /* border: 1px solid #000; */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px #868686;
+}
+
+/* 소환사 정보 전체영역과 최근 게임정보 전체영역안의
+div들을 정렬하기 위한 옵션 */
+.info_summoner,
+.info_recent {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* background-color: #fff; */
+}
+
+.info_recent {
+  margin-top: 10px;
+}
+
+/* 검색한 소환사 정보 */
+.info_summoner_profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+/* 검색한 소환사 아이콘 */
+.summoner_icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100px;
+}
+
+.summoner_icon img {
+  border-radius: 50%;
+}
+
+/* 검색한 소환사 정보 텍스트 */
+.summoner_wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+}
+
+/* 검색한 소환사 이름 폰트 지정 */
+.info_summoner_name {
+  color: #000;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+/* 소환사 전적 갱신 버튼 */
+.summoner_refresh {
+  border-radius: 5px;
+  padding: 5px;
+  border: none;
+  background-color: #156549;
+  color: #fff;
+}
+
+/* 소환사 랭킹 정보 전체 영역 */
+.info_summoner_rank {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* 티어 아이콘 이미지 사이즈 조정 */
+.rank_icon {
+  width: 160px;
+}
+
+/* 티어 이미지와 텍스트간의 여백 생성 */
+.rank_wrap {
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* 승패 / 승률 텍스트 따로 설정 */
+.summoner_rate {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+/* 티어 이름 , 승패 텍스트 정렬 */
+.summoner_rate,
+.rank_name {
+  text-align: center;
+}
+
+/* 검색한 소환사 도전과제 전체 영역 */
+.info_summoner_challenge {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+/* 도전과제 이름 */
+.challenge_name {
+  font-size: 25px;
+}
+
+
+
+/* 같이 플레이한 소환사 전체영역 */
+.info_recent_friend {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+}
+
+
+
+/* 같이 플레이 한 소환사 타이틀 */
+.recent_friend_title {
+  font-size: 14px;
+  color: #156549;
+  font-weight: bold;
+}
+
+/* 표 타이틀 밑에 구분선 추가 */
+.recent_friend_table thead tr {
+  /* border-bottom: 1px solid #000; */
+  background-color: #156549;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* 표 내용 :: 1행마다 구분선 추가 */
+.recent_friend_table tbody tr {
+  border-bottom: 1px solid #000;
+}
+
+
+
+
+
+
+/* 최근 20게임 플레이 챔피언 승률 시작 */
+.info_recent_champion_rate {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 각 행에서 컬럼별 위치를 잡기위한 값 부여 */
+.recent_champion_table tbody td {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 챔피언 사진 */
+.champion_face img {
+  width: 50px;
+}
+
+/* 챔피언 이름 */
+.champion_name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+  margin-left: 10px;
+  margin-bottom: 0;
+}
+
+
+
+
+/* 챔피언 승률 차트 전체영역 */
+.champion_rate_chartbar {
+  width: 250px;
+  margin-left: 50px;
+  display: flex;
+}
+
+/* 승리 막대 차트*/
+.left_rate_chart,
+.right_rate_chart {
+  padding: 5px;
+  background-color: #156549;
+  position: relative;
+  width: 67%;
+  height: 30px;
+}
+
+/* 패배 막대 차트 */
+.right_rate_chart {
+  width: 33%;
+  background-color: red;
+}
+
+/* 막대 차트 텍스트  */
+.left_rate_text,
+.right_rate_text {
+  color: #fff;
+  line-height: 20px;
+  font-weight: bold;
+}
+
+/* 패배 차트 텍스트 */
+.right_rate_text {
+  text-align: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* 최근 20게임 승률 전체영역 */
+.info_recent_game_rate {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 차트 전체영역 */
+.game_rate_chart {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+
+/* 승률 텍스트 디자인 지정 */
+.chart_text {
+  text-align: center;
+  position: absolute;
+  left: calc(50% - 25px);
+  top: calc(50% - 10px);
+  width: 50px;
+  height: 20px;
+  z-index: 0;
+  color: #156549;
+  font-size: 20px;
+  position: absolute;
+}
+
+
+/* 최근 20게임 승률 타이틀 */
+.game_rate_title {
+  font-size: 14px;
+  color: #156549;
+  font-weight: bold;
+}
+
+
+/* 승 / 패 */
+.game_rate_count {
+  margin-bottom: 5px;
+  color: #000;
+}
+
+/* 승률 /kda 부분 전체영역 */
+.game_rate_score {
+  display: flex;
+}
+
+/* 승률 */
+.game_rate_probability {
+  color: red;
+}
+
+/* kda */
+.game_rate_kda {
+  margin-left: 10px;
+}
+
+
+
+/* 전적 리스트 전체영역 */
+.record_wrap {
+  width: 95%;
+  height: 90%;
+  margin: 100px auto 0 auto;
+  position: relative;
+  /* background-color: antiquewhite; */
+  padding: 20px;
+}
+
+/* 챔피언 룬 호버시 나타나는 영역 */
+.container {
+  position: absolute;
+  width: 600px;
+  height: 300px;
+  left: calc(50% - 300px);
+  top: calc(50% - 150px);
+  z-index: 99;
+  padding: 0;
+  background-color: #000000d6;
+  border-radius: 10px;
+  transition: all 0.5s;
+  /* display:flex; */
+  display: none;
+}
+
+/* 메인 룬 페이지 전체영역 */
+.main_rune_wrap {
+  width: 50%;
+  /* background-color:pink; */
+  padding: 5px;
+  height: 100%;
+  border-right: 1px dashed #000000;
+  display: inline-block;
+}
+
+
+/* 메인 룬 타이틀 : 마법 지배 정밀 영감 결의 */
+.rune_title {
+  width: 90%;
+  padding: 10px;
+  margin: 0 auto;
+  justify-content: center;
+  display: flex;
+}
+
+/* 메인 룬 이미지 크기 조정 */
+.rune_title img {
+  width: 32px;
+  height: 32px;
+}
+
+/* 메인 룬 텍스트랑 이미지 사이에 여백 */
+.rune_title h3 {
+  height: 30px;
+  line-height: 30px;
+  margin-left: 15px;
+  color: #fff;
+  font-size: 20px;
+}
+
+/* 메인 룬 리스트 : 정복자 , 어둠의 수확 , 유성등등 */
+.main_rune {
+  display: flex;
+  width: 95%;
+  height: 50px;
+  align-items: center;
+  margin: 0 auto;
+  border-radius: 10px;
+  justify-content: center;
+  /* background-color: #ffffff;  */
+  margin-bottom: 10px;
+}
+
+
+/* 메인 룬 이미지 크기 조정 */
+.main_rune img {
+  width: 50px;
+}
+
+.sub_rune_wrap {
+  width: 49%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  padding: 20px;
+
+}
+
+/* 서브 룬 리스트 : 강인함 , 침착등  */
+.sub_rune {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sub_rune li {
+  margin-right: 20px;
+}
+
+.sub_rune li:last-child {
+  margin-right: 0;
+}
+
+/* 서브 룬 이미지 크기 조정 */
+.sub_rune img {
+  width: 40px;
+}
+
+/* 서브룬 타이틀 이미지 조정 */
+.detail_sub_rune_title img{
+  transform: translateY(-80%);
+}
+
+
+
+/* 전적 :: 리스트 한개 전체영역 */
+.record_list {
+  width: 70%;
+  margin: 0 auto 10px auto;
+  height: 120px;
+  /* background-color: rgb(255, 195, 160); */
+  display: flex;
+
+}
+
+/* 리스트 안에 있는 영역 오른쪽에 점선으로 구분하기 위한 스타일 지정 */
+.record_list>div {
+  border-right: 1px dashed #868686;
+  background-color: #15654956;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* p태그 하단 여백 따로지정 */
+/* bootStrap p속성은 기본적으로 p태그에 하단 여백이 있는듯하다 */
+.record_list p {
+  margin-bottom: 2px;
+}
+
+/* 좌측 승패를 구분하기위한 색을 주기위해 빈공백 설정 */
+.record_blank {
+  width: 1%;
+  height: 100%;
+  background-color: #156549 !important;
+  border-radius: 10px 0 0 10px;
+  padding: 20px;
+}
+
+/* 게임정보를 기록하는 전체영역 */
+.record_info {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 게임종류 :: 칼바람 ,협곡 , 랭크등등 */
+.match_type {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+/* 게임이 마치고 나서 현재까지 경과한 시간 */
+/* 1일전 , 12시간전 등등 */
+.match_past {
+  font-size: 12px;
+  color: #000;
+}
+
+/* 게임결과 :: 승리 , 패배 */
+.match_result {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  color: #156549;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 진행한 게임 플레이 시간 */
+.match_time {
+  margin-left: 5px;
+  font-weight: 400;
+  color: #000;
+}
+
+/* 챔피언 , 룬 , 스펠정보 전체영역 */
+.record_champion {
+  padding: 20px;
+  width: 15%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* 메인 챔피언과 스펠이미지 사이의 여백 */
+.match_champion_profile {
+  position: relative;
+  margin-right: 5px;
+}
+
+
+/* 챔피언 이미지 사이즈 지정 */
+.match_champion_profile img {
+  border-radius: 10px;
+  width: 60px;
+  height: 60px;
+}
+
+/* 챔피언 레벨 */
+.match_champion_level {
+  font-size: 14px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #000;
+  color: #fff;
+}
+
+/* 챔피언 스펠 전체영역 */
+.match_spell {
+  width: 30px;
+  height: 100%;
+  /* background-color: antiquewhite; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+/* 챔피언 룬 검정색 배경화면 */
+.rune_wrap {
+  width: 30px;
+  height: 30px;
+  background-color: #000;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+}
+
+/* 챔피언 룬 이미지 사이즈 조정 */
+.rune_wrap img {
+  position: absolute;
+  transform: scale(0.8);
+}
+
+.match_spell,
+.match_rune {
+  /* background-color:#2a2a47; */
+}
+
+
+
+/* 챔피언 스펠 이미지 사이즈 지정 */
+.match_spell img {
+  border-radius: 5px;
+  width: 30px;
+}
+
+
+
+/* 챔피언 룬 전체영역 */
+.match_rune {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 100%;
+  /* background-color: antiquewhite; */
+}
+
+/* 챔피언 룬 이미지 사이즈 지정 */
+.rune_wrap img {
+  border-radius: 50%;
+  width: 30px;
+}
+
+/* 킬 / 데스 / 어시스트 전체영역 */
+.record_kda {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 5px;
+  width: 15%;
+}
+
+/* kda 전체영역 */
+.match_kda_wrap {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* 킬 데스 어시 */
+.match_kda {
+  margin-bottom: 0;
+  color: #000;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+
+/* 더블킬 , 트리플킬 , 펜타킬 이미지 사이즈 지정 */
+.record_kda img {
+  margin-left: 10px;
+  width: 52px;
+  height: 18px;
+}
+
+/* 킬 데스 어시 평균 */
+.match_kda_avg {
+  color: #0000007a;
+  font-weight: bold;
+}
+
+/* cs 전체영역 */
+.match_cs {
+  display: flex;
+  justify-content: center;
+}
+
+/* 전체 cs량 */
+.match_all_cs {
+  color: #000;
+  margin-right: 10px;
+}
+
+/* 분당 cs */
+.match_min_cs {
+  color: #000;
+}
+
+
+
+/* 아이템 */
+.record_item {
+  padding: 10px;
+  width: 20%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+}
+
+/* 아이템 이미지를 감싸는 영역 */
+.item_img_wrap {
+  margin-right: 5px;
+}
+
+/* 아이템 줄별로 위치 정렬 */
+.match_item_line1,
+.match_item_line2 {
+  display: flex;
+}
+
+/* 라인1 아이템 사이즈 */
+.match_item_line1 img {
+  width: 40px;
+}
+
+/* 라인2 아이템 사이즈 */
+.match_item_line2 img {
+  width: 40px;
+}
+
+/* 같이한 유저리스트 전체영역 */
+.record_user {
+  padding: 0;
+  width: 35%;
+  display: flex;
+  justify-content: center;
+}
+
+/* record_user 태그 아래 모든 a태그 밑줄제거 */
+.record_user a {
+  color: #000;
+  text-decoration: none;
+}
+
+
+/* 블루팀 */
+.match_user_blueteam {
+  width: 50%;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 10px;
+}
+
+/* 블루팀 이미지 사이즈 지정 */
+.match_user_blueteam img {
+  width: 15px;
+  height: 15px;
+}
+
+
+
+
+/* 레드팀 */
+.match_user_redteam {
+  width: 50%;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start
+}
+
+/* 레드팀 이미지 사이즈 지정 */
+.match_user_redteam img {
+  /* filter:grayscale(1); */
+  width: 15px;
+  height: 15px;
+}
+
+
+/* 상세보기 열기 버튼 전체 영역 */
+.record_detail_bt {
+  border-right: none !important;
+  border-radius: 0 5px 5px 0;
+  width: 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* 상세보기 열기 버튼을 클릭시 버튼이 180도 돌아가는기능 */
+.record_detail_bt.on {
+  transform: rotate(180deg);
+}
+
+/* 상세보기 열기 버튼 이미지 */
+.record_detail_bt img {
+  width: 30px;
+  height: 30px;
+  transform: rotate(90deg);
+
+}
+
+/* 상세보기 전체영역 */
+
+.record_detail_wrap {
+  position: relative;
+  display: none;
+  width: 70%;
+  margin: 0 auto 5px auto;
+  
+  /* padding: 20px; */
+}
+
+.record_detail_wrap.on {
+  display: block;
+}
+
+/* 종합정보 전체영역 */
+.detail_info_wrap {
+  border: 1px solid #156549;
+  height: 100%;
+  display: none;
+}
+
+
+
+/* 종합정보 버튼을 눌렀을시 active 클래스가 붙으면서
+화면이 출력됨 */
+.detail_info_wrap.active {
+  display: block;
+}
+
+
+
+/* 승리팀 전체 영역 */
+.detail_win_team {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #81ca9d;
+  height: 45%;
+}
+
+/* 패배팀 전체 영역 */
+.detail_lose_team {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  background-color: #ff8383;
+  height: 45%;
+}
+
+/* 승리팀 텍스트 */
+.we_are_winner {
+  color: #000;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+
+/* 상세보기 리스트 (1줄) */
+.detail_list {
+  margin-top: 10px;
+  display: flex;
+  padding: 5px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+
+
+/* 상세보기 구역 컨텐츠별 전체 색상지정 */
+.detail_list>div {
+  height: 30px;
+}
+
+/* 챔피언 이미지 전체영역 */
+.detail_champion_face {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5%;
+}
+
+/* 상세보기 챔피언 이미지 */
+.detail_champion_face img {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+
+/* 챔피언 룬 스펠 전체 영역 사이즈 지정 */
+.champion_rune {
+  width: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 소환사 룬 , 스펠 전체영역 컨텐츠 자리배치 */
+.detail_rune,
+.detail_spell {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 룬 검정색 배경화면 */
+.detail_wrap {
+  width: 20px;
+  height: 20px;
+}
+
+/* 룬 이미지 크기 사이즈 지정 */
+.detail_wrap img {
+  width: 20px;
+  height: 20px;
+}
+
+/* 스펠 이미지 사이즈 지정 */
+.detail_spell img {
+  width: 20px;
+  height: 20px;
+}
+
+/* 룬과 스펠 사이의 여백 */
+.detail_rune {
+  margin-left: 2px;
+}
+
+/* 소환사 , 닉네임 , 티어정보 전체영역 */
+.detail_summoner_name {
+  width: 18%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 소환사 이름 , 티어정보 폰트 사이즈 지정  */
+.summoner_name,
+.summoner_tier {
+  font-size: 12px;
+  margin: 0;
+}
+
+/* 소환사 이름 스타일 */
+.summoner-name {
+  font-weight: bold;
+  color: #000;
+  font-size: 12px;
+}
+
+/* 소환사 kda 전체영역 */
+.detail_summoner_kda {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 다중킬 이미지 사이즈 지정 */
+.summoner_penta {
+  width: 50px;
+  height: 20px;
+}
+
+/* 소환사 kda 전체영역 폰트설정 */
+.detail_summoner_kda {
+  font-size: 12px;
+}
+
+/* kda랑 다중킬 이미지 가로로 정렬 */
+.summoner_kda_wrap {
+  display: flex;
+  align-items: center;
+}
+
+/* kda랑 다중킬 사이의 여백 */
+.summoner_kda {
+  margin-right: 5px;
+}
+
+/* kda 폰트 지정 */
+.summoner_kda {
+  color: #000;
+}
+
+
+/* 소환사 입힌 데미지 , 받은 데미지 전체영역 */
+.detail_summoner_dmg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+}
+
+
+
+/* 가한 데미지 전체영역 */
+.attack_dmg {
+  width: 100%;
+  display: flex;
+}
+
+/* 준 데미지 막대 차트 */
+.dmg_chartbar {
+  width: 67%;
+  height: 15px;
+  background-color: red;
+  position: relative;
+}
+
+/* 입힌 데미지 마우스 hover 시 나오는 설명 */
+.hover_dmg {
+  position: absolute;
+  display: none;
+  text-align: center;
+  width: 150px;
+  height: 20px;
+  background-color: #000;
+  top: -20px;
+  left: 0;
+  font-size: 12px;
+  z-index: 99;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.hover_dmg::after {
+  border-top: 10px solid #000000;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 0px solid transparent;
+  content: "";
+  position: absolute;
+  top: 15px;
+  right: 10px;
+}
+
+/* 받은 데미지 마우스 hover 시 나오는 설명 */
+.get_chart_info {
+  top:20px;
+}
+
+.get_chart_info:after {
+  border-top: 0px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #000000;
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: 10px;
+}
+
+
+
+/* 받은 데미지 막대 차트 */
+.get_chartbar {
+  width: 33%;
+  background-color: #868686;
+}
+
+/* 가한 데미지 , 받은 데미지 수치 텍스트 */
+.dmg {
+  font-size: 12px;
+  margin-left: 10px;
+  color: #000;
+  font-weight: bold;
+}
+
+/* 소환사 와드 , cs량 전체영역 */
+.detail_summoner_ward {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #000;
+  font-size: 12px;
+}
+
+/* 총합 cs랑 분당cs랑 가로 정렬 */
+.detail_cs_wrap {
+  display: flex;
+  align-items: center;
+}
+
+/* 분당 cs */
+.detail_cs_min {
+  color: red;
+}
+
+
+
+/* 소환사 item 정보 전체영역 */
+.detail_summoner_item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 25%;
+  align-items: center;
+}
+
+
+/* 소환사 item 이미지 사이즈 지정 */
+.detail_summoner_item img {
+  width: 30px;
+  height: 30px;
+}
+
+/* 중앙 상황판 */
+.detail_middle_info {
+  width: 100%;
+  height: 5%;
+  background-color: #ffffff;
+  display: flex;
+  padding: 10px;
+}
+
+/* 승리팀 패배팀 전체정보 */
+.win_team_info {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  /* background-color: #81ca9d; */
+  justify-content: center;
+}
+
+/* 바론 드래곤 타워 div 태그 위치조정 */
+.win_team_info>div {
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+/* 아이콘 옆 텍스트 여백 지정 */
+.middle_text {
+  margin-left: 20px;
+  color: #000;
+}
+
+/* 패배팀 텍스트 여백설정 */
+.lose_team_text {
+  margin: 0 10px 0 0;
+}
+
+/* 이미지 사이즈 지정 */
+.win_team_info img {
+  width: 20px;
+  height: 20px;
+}
+
+
+/* 디테일 하단 전체영역 */
+.detail_footer_wrap {
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 4px;
+}
+
+/* 버튼 스타일 지정 */
+.detail_footer_wrap button {
+  width: 32.3333%;
+  height: 100%;
+  margin: 0;
+  border: none;
+  background-color: #000000;
+  color: #fff;
+  border-radius: 5px;
+}
+
+/* 인게임 분석 전체영역 */
+.detail_ingame_info_wrap {
+  height: 650px;
+  background-color: #ffffff;
+  display: none;
+  border: 1px solid #156549;
+}
+
+/* active 클래스가 붙으면 화면이 출력되게 설정 */
+.detail_ingame_info_wrap.active {
+  display: block;
+}
+
+/* flex 속성으로 전체적인 자리를 잡기위한 부모 */
+.ingame_info_content_wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* 승리팀 패배팀 전체영역 */
+.ingame_info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+}
+
+/* 승리팀 원 */
+.win_team_circle {
+  width: 20px;
+  height: 20px;
+  background-color: #156549;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* 패배팀 원 */
+.lose_team_circle {
+  background-color: red;
+}
+
+/* 팀 텍스트 */
+.ingame_info p {
+  color: #000;
+}
+
+/* 승리팀 텍스트 */
+.win_team_text {
+  margin-right: 30px;
+}
+
+
+/* 챔피언 처치 그래프 전체영역 */
+.ingame_info_champion_kill {
+  width: 50%;
+  height: 200px;
+  padding: 10px;
+  /* background-color: #ff8383; */
+}
+
+/* 막대그래프 도넛그래프 전체영역 */
+.champion_kill_graph_wrap {
+  display: flex;
+  position: relative;
+}
+
+/* 챔피언 처치 타이틀 */
+.champion_kill_title {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* 챔피언 그래프 전체영역 */
+.champion_kill_graph {
+  height: 100%;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  /* background-color: #968fff; */
+}
+
+/* 그래프 1행 */
+.champion_kill_graph li {
+  display: flex;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+/* 마지막행 마진 제거  */
+.champion_kill_graph li:last-child {}
+
+/* 챔피언 그래프 :: 이미지 사이즈 조정 */
+.champion_kill_graph img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+/* 그래프 전체영역 */
+.kill_bar_graph {
+  width: 100%;
+  height: 20px;
+  background-color: #15654945;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+/* 패배팀 그래프 전체영역 */
+.lose_kill_bar_graph {
+  background-color: rgba(255, 0, 0, 0.356);
+}
+
+/* 실질적인 킬 수 그래프 */
+.kill_bar {
+  width: 20%;
+  height: 100%;
+  background-color: #156549;
+}
+
+/* 패배팀 빨간색 막대그래프 */
+.lose_kill_bar {
+  background-color: red;
+}
+
+/* 킬 그래프 수치 텍스트 */
+.kill_bar_text {
+  font-size: 14px;
+  color: #fff;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/* 승리팀 호버시 나오는 설명창 위치조정 */
+.kill_bar_graph_hover {
+  top: -20px;
+  left: 0;
+}
+
+
+/* 중앙 도넛 그래프 전체영역 */
+.champion_kill_circle_graph {
+  width: 33%;
+  position: relative;
+  /* background-color: #868686; */
+}
+
+/* 도넛 그래프 사이즈 지정 */
+.champion_kill_circle_graph canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* 도넛 그래프 중앙 텍스트 오버라이드 */
+.champion_kill_chart_text {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  left: calc(50% - 30px);
+  top: calc(50% - 30px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+}
+
+/* 승리팀 킬수 텍스트 */
+.champion_kill_win_team_text {
+  color: #156549;
+}
+
+/* 승리팀 킬수 텍스트 */
+.champion_kill_lose_team_text {
+  color: #fd3f5f;
+}
+
+/* 룬 정보 전체영역 */
+.detail_rune_info_wrap {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  display:none;
+  padding:10px;
+  border: 1px solid #156549;
+}
+
+/* active 클래스가 붙으면 화면이 출력되게 설정 */
+.detail_rune_info_wrap.active {
+  display: block;
+}
+
+/* ####오버라이딩#### */
+/* 룬 정보 전체영역 */
+.rune_container {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color:#fff;
+}
+
+/* 메인룬 전체영역 */
+.detail_main_rune_wrap {
+  width:33.3333333%;
+  border: none;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right:1px dashed #dadada;
+}
+
+.detail_main_rune_wrap:last-child{
+  border:none;
+}
+
+
+/* 각 컨텐츠 전체영역별 height 값 분할 */
+.detail_rune_title , .detail_main_rune , .detail_sub_rune{
+  height:20%;
+}
+
+
+/* 룬 타이틀 텍스트 지정 */
+.detail_rune_title h3 {
+  color: #000;
+  font-weight: bold;
+}
+
+
+/* 메인룬 리스트 이미지 크기 설정 */
+.detail_main_rune img{
+  width:50px;
+  filter:grayscale(1);
+}
+
+.detail_sub_rune img{
+  width:40px;
+  filter:grayscale(1);
+}

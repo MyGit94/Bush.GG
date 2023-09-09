@@ -1,0 +1,35 @@
+/* 게시판 */
+
+.table thead th {
+  background-color: #e3e6f0;
+  text-align: center;
+  border-bottom: 1px solid #000000;
+}
+
+#dataTable_filter{
+  display:flex;
+  justify-content: flex-end;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border-bottom: 1px solid #e3e6f0;
+  text-align: center;
+}
+.trs :hover{
+  background-color: #e3e6f0;
+}
+.ArticleHeder{
+  margin-left: 1rem;
+}
+.writeBtn{
+  width: 100px;
+  background-color: #156549;
+  border-radius: 1rem;
+}
+
+.bestBtn{
+  width: 100px;
+  background-color: #e4c340;
+  border-radius: 1rem;
+}

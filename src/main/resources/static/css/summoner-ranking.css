@@ -1,0 +1,180 @@
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}
+
+
+/* 소환사 랭크 header 전체영역 */
+.summoner_rank_profile_wrap {
+  width: 80%;
+  margin: 0 auto;
+  height: 200px;
+  background-color: rgb(47, 55, 45);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-radius: 20px 20px 0 0;
+}
+
+/* 로고 , 랭크타입 , 소환사랭킹 */
+.summoner_rank_profile {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* 솔로랭크 소환사 랭킹 */
+.summoner_rank_profile_name {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+/* 랭크 타입 */
+.summoner_rank_type {
+  color: rgb(255, 86, 86);
+  margin-right: 10px;
+}
+
+/* 그랜드마스터 , 챌린저 랭킹점수컷 전체영역 */
+.summoner_rank_cut {
+  display: flex;
+  width: 15%;
+  background-color: #00000059;
+  color: #fff;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 챌린저 그랜드마스터 점수컷 가로정렬 */
+.summoner_rank_cut>div {
+  display: flex;
+  align-items: center;
+}
+
+
+/* 로고 이미지 조정 */
+.summoner_rank_profile_img img {
+  width: 80px;
+}
+
+/* 점수컷 이미지 사이즈 조정 */
+.summoner_rank_cut img {
+  width: 50px;
+}
+
+/* 소환사 랭크 리스트 전체영역 */
+.summoner_rank_list_wrap {
+  width: 80%;
+  margin: 0 auto;
+  /* background-color: aquamarine; */
+}
+
+/* 랭크 테이블 영역 설계 */
+
+/* 테이블 전체영역 */
+.summoner_rank_table {
+  width: 100%;
+  margin-top: 10px;
+  border: 1px solid #d5d5d5;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 모든행 정렬 */
+.summoner_rank_table tr {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.summoner_rank_table thead td {
+  background-color: beige;
+  color: #000;
+  font-weight: bold;
+}
+
+.summoner_rank_table td {
+  /* background-color: antiquewhite; */
+}
+
+/* 랭킹 등수 */
+.rank_table_header_number,
+.rank_table_number {
+  width: 5%;
+}
+
+/* 소환사 이름 */
+.rank_table_header_name,
+.rank_table_name {
+  width: 25%;
+}
+
+/* 티어 */
+.rank_table_header_tier,
+.rank_table_tier {
+  width: 15%;
+}
+
+/*  lp */
+.rank_table_header_lp,
+.rank_table_lp {
+  width: 15%;
+}
+
+/*  승률 , 승 , 패 , 레벨 */
+.rank_table_header_rate,
+.rank_table_header_win,
+.rank_table_header_lose,
+.rank_table_header_level,
+.rank_table_rate,
+.rank_table_win,
+.rank_table_lose,
+.rank_table_level {
+  width: 10%;
+}
+
+/* 내용 :: 1행의 모든칸 */
+.summoner_rank_table_body td {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* 랭킹 리스트 구분선 */
+.summoner_rank_table_body tr {
+  border-bottom: 1px dotted #696969;
+}
+
+/* 소환사 티어 */
+.rank_table_tier {
+  align-items: center;
+}
+
+/* 소환사 티어 이미지 */
+.rank_table_tier img {
+  width: 80px;
+}
+
+/* lp 부분 배경설정 */
+.rank_table_lp {
+  height:83px;
+  align-items: center;
+  background-color: #ebebeb;
+}
+
+/* 랭크 페이징 버튼 */
+.summoner_rank_page_bt{
+  width:30%;
+  height:50px;
+  margin:20px auto 0 auto;
+  background-color:#d5d5d5;
+}

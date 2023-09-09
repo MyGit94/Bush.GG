@@ -1,0 +1,12 @@
+/*게시글 작성*/
+.content {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+  background-color: #dddfeb;
+}
+
+select {
+  word-wrap: normal;
+  width: 100%;
+}

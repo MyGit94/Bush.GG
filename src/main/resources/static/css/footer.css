@@ -1,0 +1,16 @@
+/* footer*/
+
+.footer{
+  bottom : 0;
+  width: 100%;
+  text-align: center;
+}
+
+.footerText{
+  font-size: 9px;
+  margin: 0px;
+}
+
+.footerLogo{
+  width: 100px;
+}
