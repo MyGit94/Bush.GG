@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Slf4j
@@ -61,15 +58,16 @@ public class SummonerController {
             model.addAttribute("tierImageUrl", "img/tier/Provisional.png");
         }
         model.addAttribute("summonerTier",summonerTier);
-
         model.addAttribute("summoner",summoner);
 
-        // 소환사 정보중 Puuid로 matchId를 List로 가져옴
         List<String> matchIds = summonerService.getMatchId(summoner.getPuuid());
         List<Map<String,Object>> matchInfoList = new ArrayList<>();
+
         RecentDTO recentDTO = new RecentDTO();
+        List<ChampionCount> championCounts = new ArrayList<>();
         // puuid로 challenges를 가져옴
         PlayerChallengesInfoDTO playerChallengesInfo = summonerService.getPlayerChallengesInfo(summoner.getPuuid());
+
         // MatchIdList를 for문 돌리는중
         for (String matchId : matchIds) {
             // 하나의 matchId로 matchInfo Map을 가져옴
@@ -132,27 +130,38 @@ public class SummonerController {
                     recentDTO.setKda(formattedKda);
 
                     // 챔피언 최근 승률
-                    if (recentDTO.getRecentChampion().containsKey(participant.getChampionName())) {
-                        int count = recentDTO.getRecentChampion().get(participant.getChampionName());
-                        recentDTO.getRecentChampion().put(participant.getChampionName(), count + 1);
-                    } else {
-                        recentDTO.getRecentChampion().put(participant.getChampionName(), 1);
-                    }
-                    log.info("{}",recentDTO.getRecentChampion());
 
-                    // 이겼을 때
-                    if(participant.isWin()){
-                        if (recentDTO.getRecentChampionWin().containsKey(participant.getChampionName())) {
-                            int winCount = recentDTO.getRecentChampionWin().get(participant.getChampionName());
-                            recentDTO.getRecentChampionWin().put(participant.getChampionName(), winCount + 1);
-                        } else {
-                            recentDTO.getRecentChampionWin().put(participant.getChampionName(), 1);
+                    boolean found = false;
+                    for (ChampionCount championCount : championCounts) {
+                        if (participant.getChampionName().equals(championCount.getChampionName())) {
+                            // 존재하면 count와 win을 증가시킴
+                            championCount.setCount(championCount.getCount() + 1);
+                            if(participant.isWin()){
+                                championCount.setWin(championCount.getWin() + 1);
+                            }
+                            found = true;
+                            break;
                         }
                     }
 
-                    log.info("{}",recentDTO.getRecentChampionWin());
+                    if (!found) {
+                        // 챔피언 이름이 리스트에 없으면 새 객체 생성하여 리스트에 추가
+                        ChampionCount newChampionCount = new ChampionCount();
+                        newChampionCount.setChampionName(participant.getChampionName());
+                        newChampionCount.setCount(1);
+                        if (participant.isWin()) {
+                            newChampionCount.setWin(1);
+                        } else {
+                            newChampionCount.setWin(0); // 이긴 횟수를 초기화
+                        }
+                        championCounts.add(newChampionCount);
+                    }
+
+
 
                 }
+
+                // 인게임 정보 matchInfo에 담기
                 if(i<5){
                     matchInfoDTO.setBlueGold(matchInfoDTO.getBlueGold()+participant.getGoldEarned());
                     matchInfoDTO.setBlueTotalDamageDealtToChampions(matchInfoDTO.getBlueTotalDamageDealtToChampions()+participant.getTotalDamageDealtToChampions());
@@ -171,13 +180,16 @@ public class SummonerController {
                 participantsList.add(participant);
 
             }
-
+            log.info("{}",championCounts);
             matchList.put("matchInfo",matchInfoDTO);
             matchList.put("participantsList", participantsList);
 
             matchInfoList.add(matchList);
 
         }
+        recentDTO.setChampionCounts(championCounts);
+        log.info("{}",recentDTO.getChampionCounts());
+        Collections.sort(recentDTO.getChampionCounts(), Comparator.comparing(ChampionCount::getCount).reversed());
         model.addAttribute("recentDTO",recentDTO);
         model.addAttribute("matchInfoList",matchInfoList);
         model.addAttribute("playerChallengesInfo" ,playerChallengesInfo);

@@ -321,7 +321,11 @@
                     <!-- 최근 20게임 챔피언 승률 타이틀  -->
                     <h1 class="recent_friend_title champion_rate_title">
                         선호하는 챔피언 (최근 20 게임)
-                    </h1>
+                    </h1> <tr th:each="championCount : ${recentDTO.championCounts}">
+                    <td th:text="${championCount.championName}"></td>
+                    <td th:text="${championCount.count}"></td>
+                    <td th:text="${championCount.win}"></td>
+                </tr>
 
                     <table class="recent_friend_table recent_champion_table">
                         <thead>
