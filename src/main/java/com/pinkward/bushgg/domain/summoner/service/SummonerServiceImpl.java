@@ -3,6 +3,7 @@ package com.pinkward.bushgg.domain.summoner.service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pinkward.bushgg.domain.challenges.dto.ChallengesInfoDTO;
 import com.pinkward.bushgg.domain.challenges.dto.PlayerChallengesInfoDTO;
 import com.pinkward.bushgg.domain.match.dto.MatchInfoDTO;
 import com.pinkward.bushgg.domain.match.dto.ParticipantsDTO;
@@ -17,12 +18,14 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j

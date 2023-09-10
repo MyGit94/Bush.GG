@@ -15,5 +15,5 @@ public class ChallengesDTO {
     private long id;
     private Map<String, LocalizedNameDTO> localizedNames;
     private boolean leaderboard;
-    private Map<String, ThresholdsDTO> thresholds;
+    private Map<String, Double> thresholds;
 }
