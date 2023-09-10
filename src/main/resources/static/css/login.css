@@ -23,6 +23,7 @@ body {
  }
 
  /* 로그인 일러스트 */
- .bg_login-image img{
+ .bg-login-image img{
     width:100%;
+    height:100%;
  }
