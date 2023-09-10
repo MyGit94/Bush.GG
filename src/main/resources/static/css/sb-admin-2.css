@@ -9774,7 +9774,7 @@ a:focus {
 }
 
 #wrapper #content-wrapper {
-  /* background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%); */
+  /* background-color: rgba(245,245,245); */
   position: relative;
   width: 100%;
   overflow-x: hidden;
