@@ -3,6 +3,17 @@ body {
    height:900px;
    background-color: #15511133;
   }
+
+  a{
+    font-size:14px;
+    color:#000;
+    font-weight: bold;
+   }
+
+   a:hover{
+    color:#156549;
+    text-decoration: none;
+   }
   
 
 /* 컨텐츠 높이 설정 */
@@ -11,4 +22,17 @@ body {
     height: 100%;
     flex-direction: column;
     justify-content: center;
+}
+
+
+/* 아이디 전체영역 */
+.mb-3{
+  width:100%;
+}
+
+
+ /* 회원가입 일러스트 */
+ .bg-register-image img{
+  width:100%;
+  height:100%;
 }
