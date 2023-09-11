@@ -1,11 +1,10 @@
 /*게시판 테이블의 카드가 padding 1.25rem을 주므로 헤더,바텀 등 통일*/
 /*게시판 헤더*/
 .articleHeder{
-  display: grid;
-  padding: 0rem 1.25rem;
-  height: 200px;
-  align-content: space-between;
-  background-color: lightskyblue;
+  height: 80px;
+  display:flex;
+  align-items: center;
+  padding:20px;
 }
 .articleHederBtn{
   display: flex;
@@ -26,15 +25,16 @@
     border: 1px solid #e3e6f0;
     border-radius: 0.35rem;
   }
+
 table {
   border-collapse: separate;
   border: 2px solid #000000;
-  border-radius: 30px;
+  border-radius: 15px;
   overflow: hidden;
 }
 
 .table thead th {
-  background-color: #e3e6f0;
+  background-color: #eeeeee;
   text-align: center;
   border-bottom: 1px solid #000000;
 }
@@ -45,12 +45,12 @@ table {
 }
 
 .table-bordered td {
-  border-bottom: 1px solid #e3e6f0;
+  border-bottom: 1px solid #98a4cc;
   text-align: center;
 }
 
 .trs :hover{
-  background-color: #e3e6f0;
+  background-color: #dbffd5;
 }
 
 /* 게시판 하단*/

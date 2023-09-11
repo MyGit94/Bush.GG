@@ -331,8 +331,13 @@
                                 <!-- 테이블 제목 -->
                                 <tr>
                                     <th>챔피언</th>
+                                    <th>승-패</th>
                                     <th>승률</th>
                                 </tr>
+
+                               
+                                    
+                                
                             </thead>
 
                             <tbody>
@@ -344,7 +349,9 @@
                                             <img src="img/rune/5002.png" alt="">
                                         </div> 
                                     </td>
+                                </tr>
 
+                                <tr>
                                     <td class="champion_chart_bar_wrap">
                                         <!-- 챔피언별 승률 차트 전체영역 -->
                                         <div class="champion_rate_chartbar">
@@ -363,9 +370,7 @@
                                         </div>
                                     </td>
                                 </tr>
-
-                        
-
+                                    
                             </tbody>
                         </table>
                     </div>
@@ -4029,16 +4034,12 @@
 
                 <!-- 전적 리스트와 상세보기를 하나로 묶은 wrap  -->
                 <!-- 타임리프 반복문 제어를 위해 설계됨 -->
+                <!-- record_list_wrap에 th 반복문 -->
                 <div class="record_list_wrap">
 
-
-
                     <!-- 전적 : 게임정보 (1 게임) 전체영역  -->
-                    <!--@@@@@@@@@@@@@@@@@@@@@@@@ ForEach 여기서부터 시작 @@@@@@@@@@@@@@@@@@@@@@@@ -->
                     <!-- 구조를 이해하기 쉽게 일단은 정적인 값을 등록해두었음-->
-                    <div class="record_list">
-
-
+                    <div class="record_list lose_list">
 
                         <!-- 좌측 승패를 구분하기위한 색을 주기위해 빈공백 설정 -->
                         <div class="record_blank"></div>

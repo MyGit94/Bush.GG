@@ -487,16 +487,34 @@ div들을 정렬하기 위한 옵션 */
   height: 120px;
   /* background-color: rgb(255, 195, 160); */
   display: flex;
+  background-color: #15654956;
+}
 
+/* 전적 리스트 전체 색상 : 패배시 */
+.record_list.lose_list{
+  background-color:#ffb9b971;
+}
+
+/* 앞에부분 빈 div */
+.lose_list .record_blank{
+  background-color: #ff0000;
+}
+
+/* 승리 , 패배 텍스트 */
+.lose_list .match_result{
+  color:#ff0000;
 }
 
 /* 리스트 안에 있는 영역 오른쪽에 점선으로 구분하기 위한 스타일 지정 */
-.record_list>div {
+.record_list>div{
   border-right: 1px dashed #868686;
-  background-color: #15654956;
   text-align: center;
   box-sizing: border-box;
 }
+
+
+
+
 
 /* p태그 하단 여백 따로지정 */
 /* bootStrap p속성은 기본적으로 p태그에 하단 여백이 있는듯하다 */
@@ -508,10 +526,11 @@ div들을 정렬하기 위한 옵션 */
 .record_blank {
   width: 1%;
   height: 100%;
-  background-color: #156549 !important;
+  background-color: #156549;
   border-radius: 10px 0 0 10px;
   padding: 20px;
 }
+
 
 /* 게임정보를 기록하는 전체영역 */
 .record_info {
