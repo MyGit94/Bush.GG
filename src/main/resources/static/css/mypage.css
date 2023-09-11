@@ -1,92 +1,81 @@
-/*게시판 테이블의 카드가 padding 1.25rem을 주므로 헤더,바텀 등 통일*/
-/*게시판 헤더*/
-.mypageHeader{
-  display: grid;
-  padding: 0rem 1.25rem;
-  height: 200px;
-  align-content: space-between;
-  background-color: lightskyblue;
-}
-.articleHederBtn{
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1.2rem;
-}
-
-/* 게시판 */
-.mypageBody {
-    width: 100%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid #e3e6f0;
-    border-radius: 0.35rem;
-  }
-.mypage{
-  display: flex;
-  background-image: url('../img/bannerGif.gif');
+/* body 배경색 설정 */
+body {
+  height:900px;
+  background-image: url('../img/member/mypage1.jpg');
   background-position: center;
   background-size: cover;
-  width: 600px;
-  height: 600px;
+ }
+
+ a{
+  font-size:14px;
+  color:#000;
+  font-weight: bold;
+ }
+
+ a:hover{
+  color:#156549;
+  text-decoration: none;
+ }
+ /* 정보 영역 */
+ .mypage{
+  display: flex;
   justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  padding:50px;
+ }
+
+ .formNick {
+  margin-bottom: 3rem;
 }
-.profile{
-  display: grid;
-  width: 400px;
-  height: 400px;
-  justify-content: center;
-  align-items: center;
+/* 일러스트 */
+.bg-login-image img{
+  width: 100%;
+  height: 100%;
+}
+
+/* 텍스트 박스*/
+
+.textBox{
+  margin-bottom: 3rem;
+  padding: 0.75rem;
   text-align: center;
-  font-size: 20px;
+  border: 1px solid #d1d3e2;
+  font-size: 0.8rem;
+  border-radius: 10rem;
+
 }
-  .textBox{
-    margin: 0px;
-    text-align: center;
-    padding: 0.375rem 0.75rem;
-    border-radius: 0.35rem;
-    width: 100%;
-    color: #fff;
-    }
-    .editBtn{
-      width: 100px;
-      height: 100px;
-      margin-right: 25px;
-      border-radius: 50%;
-      font-size: 26px;  
-    }
-    .editBtn:hover{
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      color: transparent;
-      background-image: url('../img/tmg.jpg');
-      background-position: center;
-      background-size: cover;
-      transition: all 0.5s ease-in-out;
-      transform: scale(1.1);
-    }
-    .confirmBtn{
-      width: 100px;
-      height: 100px;
-      margin-left: 25px;
-      border-radius: 50%;
-      font-size: 26px;
-    }
-    .confirmBtn:hover{
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      color: transparent;
-      background-image: url('../img/tmg.jpg');
-      background-position: center;
-      background-size: cover;
-      transition: all 0.5s ease-in-out;
-      transform: scale(1.1);
-    }
+
+/* 로그인 버튼*/
+
+.formBtn{
+  display: flex;
+  justify-content: space-between;
+}
+
+.editBtn{
+  display: flex;
+  width: 80px;
+  height: 50px;
+  background-color: #ff6f00;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10rem;
+}
+.editBtn:hover{
+  background-color: #eb6600;
+  color: #fff;
+}
+
+.checkBtn{
+  display: flex;
+  width: 80px;
+  height: 50px;
+  background-color: #156549;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10rem;
+  width: 80px;
+}
+.checkBtn:hover{
+  background-color: #12573f;
+  color: #fff;
+}

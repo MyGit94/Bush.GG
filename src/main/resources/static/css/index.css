@@ -226,16 +226,14 @@ a:hover {
 
 /* 챔피언 사진 , 이름 */
 .rotation_champion_face_list {
+  width: 80px;
   height: 80px;
-  width: 20%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border-radius: 50%;
+  border: 1px solid rgb(221, 221, 221);
 }
 
 /* 챔피언 이미지 사이즈 */
 .rotation_champion_face_list img {
-  border-radius: 10px;
   width: 80px;
 }
 

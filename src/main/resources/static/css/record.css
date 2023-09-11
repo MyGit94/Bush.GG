@@ -95,7 +95,7 @@ div들을 정렬하기 위한 옵션 */
   flex-direction: column;
   justify-content: center;
   width: 100px;
-  
+
 }
 
 .summoner_icon img {
@@ -139,6 +139,9 @@ div들을 정렬하기 위한 옵션 */
 .rank_icon {
   width: 160px;
   height:160px;
+  background-image: url(/img/tier/Bronze.png);
+  background-position:center;
+  background-size:200px 200px;
 }
 
 /* 티어 이미지와 텍스트간의 여백 생성 */
@@ -251,9 +254,11 @@ div들을 정렬하기 위한 옵션 */
 
 
 
+
 /* 챔피언 승률 차트 전체영역 */
 .champion_rate_chartbar {
   width: 250px;
+  margin-left: 50px;
   display: flex;
 }
 
