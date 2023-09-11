@@ -139,9 +139,6 @@ div들을 정렬하기 위한 옵션 */
 .rank_icon {
   width: 160px;
   height:160px;
-  background-image: url(/img/tier/Bronze.png);
-  background-position:center;
-  background-size:200px 200px;
 }
 
 /* 티어 이미지와 텍스트간의 여백 생성 */
