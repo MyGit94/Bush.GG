@@ -1,4 +1,4 @@
-package com.pinkward.bushgg.domain.match.dto;
+package com.pinkward.bushgg.domain.match.common;
 
 import lombok.Data;
 

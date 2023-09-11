@@ -4,9 +4,13 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pinkward.bushgg.domain.challenges.dto.PlayerChallengesInfoDTO;
+import com.pinkward.bushgg.domain.match.common.ChampionCount;
+import com.pinkward.bushgg.domain.match.common.RuneList;
+import com.pinkward.bushgg.domain.match.common.SummonerWithCount;
+import com.pinkward.bushgg.domain.match.common.TimeTranslator;
 import com.pinkward.bushgg.domain.match.dto.MatchInfoDTO;
 import com.pinkward.bushgg.domain.match.dto.ParticipantsDTO;
-import com.pinkward.bushgg.domain.match.dto.SummonerTierDTO;
+import com.pinkward.bushgg.domain.summoner.dto.SummonerTierDTO;
 import com.pinkward.bushgg.domain.ranking.dto.RankingDTO;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +24,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -111,6 +114,11 @@ public class SummonerServiceImpl implements SummonerService {
             return null;
         }
         return playerChallengesInfo;
+    }
+
+    @Override
+    public ChampionCount getChampionWinRate(Map<String, Object> matchInfo) {
+     return null;
     }
 
     @Override
@@ -387,32 +395,6 @@ public class SummonerServiceImpl implements SummonerService {
         return summonerTierDTO;
     }
 
-    @Override
-    public List<Integer> championLotation() {
-        List<Integer> championLotation = null;
-
-        String serverUrl = "https://kr.api.riotgames.com";
-
-        try {
-            HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "/lol/platform/v3/champion-rotations?api_key=" + mykey);
-
-            HttpResponse response = client.execute(request);
-
-            if(response.getStatusLine().getStatusCode() != 200){
-                return null;
-            }
-
-            HttpEntity entity = response.getEntity();
-            Map<String, Object> champions = objectMapper.readValue(entity.getContent(), Map.class);
-            championLotation = (List<Integer>) champions.get("freeChampionIds");
-        } catch (IOException e){
-            e.printStackTrace();
-            return null;
-        }
-
-        return championLotation;
-    }
 
     @Override
     public List<RankingDTO> ranking() {

@@ -1,9 +1,13 @@
 package com.pinkward.bushgg.web.summoner.controller;
 
 import com.pinkward.bushgg.domain.challenges.dto.PlayerChallengesInfoDTO;
-import com.pinkward.bushgg.domain.match.common.TimeTranslator;
+import com.pinkward.bushgg.domain.match.common.ChampionCount;
+import com.pinkward.bushgg.domain.match.common.RuneList;
+import com.pinkward.bushgg.domain.match.common.SummonerWithCount;
 import com.pinkward.bushgg.domain.match.dto.*;
+import com.pinkward.bushgg.domain.match.service.MatchServiceImpl;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
+import com.pinkward.bushgg.domain.summoner.dto.SummonerTierDTO;
 import com.pinkward.bushgg.domain.summoner.service.SummonerServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,11 +28,7 @@ import java.util.*;
 public class SummonerController {
 
     private final SummonerServiceImpl summonerService;
-
-    @GetMapping("/")
-    public String goIndex(){
-        return "index";
-    }
+    private final MatchServiceImpl matchService;
 
 
     @GetMapping(value = "/summoner")
@@ -60,37 +60,30 @@ public class SummonerController {
         model.addAttribute("summonerTier",summonerTier);
         model.addAttribute("summoner",summoner);
 
+
+
         List<String> matchIds = summonerService.getMatchId(summoner.getPuuid());
         List<Map<String,Object>> matchInfoList = new ArrayList<>();
 
         RecentDTO recentDTO = new RecentDTO();
         List<ChampionCount> championCounts = new ArrayList<>();
         List<SummonerWithCount> summonerWithCounts = new ArrayList<>();
-        // puuid로 challenges를 가져옴
+
         PlayerChallengesInfoDTO playerChallengesInfo = summonerService.getPlayerChallengesInfo(summoner.getPuuid());
 
-        // MatchIdList를 for문 돌리는중
         for (String matchId : matchIds) {
-            // 하나의 matchId로 matchInfo Map을 가져옴
-            log.info("{}",matchId);
+
             Map<String, Object> match = summonerService.getMatch(matchId);
             Map<String, Object> matchInfo = summonerService.matchInfo(match);
 
-            // Map에서 matchInfo 키를 가진 값을 MatchInfoDTO에 저장
-            MatchInfoDTO matchInfoDTO = (MatchInfoDTO) matchInfo.get("matchInfo");
 
-            // 참가자들 넣을 List를 만듦
-            List<ParticipantsDTO> participantsList = new ArrayList<>();
-            matchInfoDTO.setChangeGameDuration(TimeTranslator.unixMinAndSec(matchInfoDTO.getGameDuration()));
-            matchInfoDTO.setEndGame(TimeTranslator.unixToLocal(matchInfoDTO.getGameEndTimestamp()));
+            MatchInfoDTO matchInfoDTO = matchService.getMatchInfo(matchInfo);
 
-            // matchInfoDTO를 모델에 담고있는데 얘를 Map에 담아야대
-            Map<String, Object> matchList = new HashMap<>();
-
-            // participant의 teamId 가져오기
             int teamId = 0;
             String name = "";
 
+            Map<String, Object> matchList = new HashMap<>();
+            List<ParticipantsDTO> participantsList = new ArrayList<>();
             for (int i = 0; i < 10; i++) {
                 ParticipantsDTO participant = (ParticipantsDTO) matchInfo.get("participants" + i);
 
@@ -272,5 +265,7 @@ public class SummonerController {
 
         return "record";
     }
+
+
 
 }

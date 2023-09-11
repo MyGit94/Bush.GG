@@ -36,7 +36,7 @@
 
         <!-- 왼쪽 사이드바 로고 영역 -->
         <li class="nav-item active">
-            <a class="nav-link nav-link2" href="/static">
+            <a class="nav-link nav-link2" href="/">
                 <!-- <p class="nav-item-text">BUSH.GG</p> -->
                 <img src="/img/logo.png" alt="" class="nav-item-img">
             </a>
@@ -384,7 +384,7 @@
                 <!-- 전적 : 게임정보 (1 게임) 전체영역  -->
                 <!--@@@@@@@@@@@@@@@@@@@@@@@@ ForEach 여기서부터 시작 @@@@@@@@@@@@@@@@@@@@@@@@ -->
                 <!-- 구조를 이해하기 쉽게 일단은 정적인 값을 등록해두었음-->
-                <div class="record_list">
+                <div class="record_list" th:classappend="${!participant.isWin()? 'lose_list' : ''}">
                     <!-- 좌측 승패를 구분하기위한 색을 주기위해 빈공백 설정 -->
                     <div class="record_blank"></div>
                     <!-- 게임정보를 기록하는 전체영역 -->

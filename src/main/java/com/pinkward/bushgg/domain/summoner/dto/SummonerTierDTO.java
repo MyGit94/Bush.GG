@@ -1,4 +1,4 @@
-package com.pinkward.bushgg.domain.match.dto;
+package com.pinkward.bushgg.domain.summoner.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;

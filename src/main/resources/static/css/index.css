@@ -7,22 +7,37 @@ a {
 a:hover {
   color: #000000;
   text-decoration: none;
+
 }
 
 /* 왼쪽 사이드바 로고 전체 영역 */
-.nav-link2{
+.nav-link2 {
   position: relative;
   /* background-color: antiquewhite; */
-  height:100px;
+  height: 100px;
 }
 
 
 /* 왼쪽 사이드바 로고 이미지 */
-.nav-item-img{
-  position:absolute;
-  left:calc(50% - 43px);
-  width:86px;
+.nav-item-img {
+  position: absolute;
+  left: calc(50% - 43px);
+  width: 86px;
 }
+
+/* 왼쪽 사이드바 전체*/
+.navbar-nav {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  background-image: url('../img/menubar2.jpg');
+  background-position: -10px 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 /* 상단 헤더 버튼 */
 .btn {
   display: inline-block;
@@ -33,77 +48,198 @@ a:hover {
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
-  border-radius: 0.35rem
+  border-radius: 0.35rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.btn:hover {
+.navbar_login_wrap a:hover {
+  color: #156549;
+}
+
+/* 로그인 */
+.navbar_login,
+.navbar_register {
   color: #000000;
+  font-size: 15px;
   text-decoration: none;
 }
-.searchBtn{
-  background: #156549;
-  margin-left: 0.5rem;
-  border-radius: 50%;
-}
-.signInBtn{
-width: 100px;
-background-color: #156549;
-border-radius: 1rem;
 
-}
-.signUpBtn{
-width: 100px;
-background-color: #156549;
-border-radius: 1rem;
+.navbar_login::after {
+  content: " | ";
+  color: #333;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
-/* 메인 컨텐츠 상위 */
+/* 회원가입 */
+.navbar_register {
+  /* margin-left: 10px; */
+}
 
-.top{
-  display: flex;  
-  align-items: center;
-  justify-content: center;
+
+/* 메인 컨텐츠 전체영역 */
+.main_contents_wrap {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
   width: 100%;
-  height: 30vh;
-  background-color: #156549;
+  height: 100%;
+  /* background-color: #03c75a; */
 }
-.topRankerList{
-  display: flex;  
-  align-items: center;
-  justify-content: center;
-  width: 50%;
-  height: 50%;
-  background-color: yellowgreen;
-}
-/* 메인 컨텐츠 하위 */
 
-.bottom{
-  display: flex;  
-  align-items: center;
-  justify-content: center;
-  margin-top: 10vh;
+/* 두번째 라인 컨텐츠 전체영역 */
+.content_line2_flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.line2_content {
+  margin-top: 20px;
+  flex-direction: row;
+}
+
+/* 실시간 정보 전체영역 */
+.summoner_live_table_wrap {
   width: 100%;
-  height: 30vh;
-  background-color: #156549;
-}
-.community{
-  display: flex;  
-  align-items: center;
-  justify-content: center;
-  margin: 0px 25px 0px 50px;
-  width: 50%;
-  height: 50%;
-  background-color: yellowgreen;
+  background-color: rgb(107, 164, 189);
+  height: 400px;
 
 }
-.rotationList{
-  display: flex;  
-  align-items: center;
-  justify-content: center;
-  margin: px 50px 0px 25px;
-  width: 50%;
-  height: 50%;
-  background-color: yellowgreen;
 
+/* 커뮤니티 , 로테이션 챔피언 크기 지정 */
+.summoner_coummuity_wrap,
+.rotation_champion_wrap {
+  width: 49%;
+  border: 1px solid rgb(234, 234, 234);
+  /* background-color: pink; */
+}
+
+/* 커뮤니티 */
+.summoner_coummuity_wrap {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* 커뮤니티 리스트 전체영역 */
+.community_list_wrap {
+  display: flex;
+  align-items: center;
+  border-top: 1px dashed #838383;
+  padding: 10px;
+  justify-content: space-between;
+
+  /* border:1px solid #000; */
+}
+
+
+.community_header {
+  border-radius: 5px 5px 0 0;
+}
+
+/* 소수번째 행 스타일 지정 */
+.first {
+  border: none;
+  background-color: #e6e6e6;
+}
+
+/* 커뮤니티 영역 타이틀 */
+.community_main_title {
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #156549;
+}
+
+
+/* 게시글 번호 */
+.community_index {
+  display: flex;
+  align-items: center;
+  flex-basis: 55px;
+  color: #000;
+  text-align: center;
+  font-size: 18px;
+  font-style: oblique;
+  font-weight: bold;
+}
+
+/* 게시글 제목 */
+.community_title {
+  margin: 0;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* 게시글 타이틀 전체영역 */
+.community_title_wrap {
+  display: flex;
+  width: 50%;
+}
+
+/* 게시글 텍스트 전체영역  */
+.community_text_wrap {
+  width: 30%;
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+}
+
+
+.community_summoner_name,
+.community_time {
+  margin: 0;
+}
+
+/* 게시글 작성자 명 */
+.community_summoner_name {
+  font-weight: bold;
+  color: #000;
+  margin-left: 10px;
+}
+
+/* 로테이션 챔피언 전체영역 */
+.rotation_champion_wrap {}
+
+
+/* 로테이션 챔피언 타이틀 */
+.rotation_champion_title {
+  padding: 10px;
+  background-color: rgb(240, 240, 240);
+}
+
+/* 로테이션 챔피언 타이틀 텍스트 */
+.rotation_champion_title_text {
+  color: #000;
+  font-weight: bold;
+  font-size: 25px;
+  margin: 0;
+}
+
+/* 로테이션 챔피언 리스트 전체영역 */
+.rotation_champion_list {
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  margin-bottom: 20px;
+  justify-content: space-evenly;
+}
+
+/* 챔피언 사진 , 이름 */
+.rotation_champion_face_list {
+  height: 80px;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 챔피언 이미지 사이즈 */
+.rotation_champion_face_list img {
+  border-radius: 10px;
+  width: 80px;
+}
+
+/* 챔피언 이름  */
+.rotation_champion_name {
+  text-align: center;
 }
