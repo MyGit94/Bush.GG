@@ -1,12 +1,36 @@
-/*게시글 작성*/
-.content {
-  flex: 1 1 auto;
-  min-height: 1px;
-  padding: 1.25rem;
-  background-color: #dddfeb;
+.boardRegisterHeder{
+  display: grid;
+  padding: 0rem 1.25rem;
+  height: 200px;
+  align-content: space-between;
+  background-color: lightskyblue;
 }
 
-select {
+
+/*게시글 작성*/
+.writeBody{
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color:#005829;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.35rem;
+}
+.writingHeader{
+  display: flex;
+  margin-bottom:10px;
+  justify-content: space-between;
+}
+
+.category {
   word-wrap: normal;
-  width: 100%;
+  border-radius: 10px;
+}
+.reigser{
+  background-color: #03c75a;
 }

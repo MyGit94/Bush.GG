@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,13 +13,14 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    
 
-        <!-- 부트스트랩 기본 CSS -->
-    <link href="/css/sb-admin-2.css" rel="stylesheet">
-         <!-- 내 Stylce CSS 8/29일 추가됨  -->
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/footer.css">
+
+    <!-- 부트스트랩 기본 CSS -->
+    <!-- VSCODE에서 /제거 후 작업-->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <!-- 내 Stylce CSS 8/29일 추가됨  -->
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/footer.css">
 
 </head>
 
@@ -34,8 +36,8 @@
             <li class="nav-item active">
                 <a class="nav-link nav-link2" href="index.html">
                     <!-- <p class="nav-item-text">BUSH.GG</p> -->
-                  <img src="/img/logo.png" alt="" class="nav-item-img">
-                   </a>
+                    <img src="img/logo.png" alt="" class="nav-item-img">
+                </a>
             </li>
 
             <!-- 구분선1 -->
@@ -102,7 +104,7 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-           
+
 
         </ul>
         <!-- 사이드바 끝 -->
@@ -110,59 +112,611 @@
 
         <!-- 메인 컨텐츠 전체영역 -->
         <div id="content-wrapper" class="d-flex flex-column">
+
+
+
             <!-- 상단 헤더 -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
                 <!-- (모바일) 사이드 메뉴 여닫이 버튼 -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
+
                 <!-- 전적 검색창 -->
-                <form
-                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="form-group">
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
                         <!-- 전적 검색 : 입력 텍스트칸 -->
-                        <input type="text" class="form-control border-0 small" placeholder="소환사명을 입력해주세요"
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="소환사명을 입력해주세요"
                             aria-label="Search" aria-describedby="basic-addon2">
-                            <!-- 검색 아이콘 전체영역 -->
-                        <div class="form-group">
+                        <!-- 검색 아이콘 전체영역 -->
+                        <div class="input-group-append">
                             <!-- 검색 버튼 네모박스 -->
-                            <button onclick="location.href='index.html';" class="btn searchBtn" type="button">
+                            <button class="btn btn-primary" type="button">
                                 <!-- 검색 버튼 돋보기 아이콘 -->
                                 <i class="fas fa-search fa-sm"></i>
                             </button>
                         </div>
                     </div>
                 </form>
-                <!-- 전적 검색창 끝 -->   
-        <!-- 로그인&회원가입-->
-        <div class="d-flex justify-content-between ml-3 mr-3">
-            <div class="">
-                <button onclick="location.href='login.html';" class="btn signInBtn" type="button">로그인</button>
-                <button onclick="location.href='register.html';" class="btn signUpBtn" type="button">회원가입</button>
-            </div>
-        </div>
-        <!-- 로그인&회원가입-->
+                <!-- 전적 검색창 끝 -->
+
+                <!-- 로그인 , 회원가입 -->
+                <div class="navbar_login_wrap">
+                    <!-- 로그인 -->
+                    <a href="login.html" class="navbar_login">
+                        로그인
+                    </a>
+
+                    <!-- 회원가입 -->
+                     <a href="register.html" class="navbar_register">
+                        회원가입
+                    </a>
+                </div>
+
             </nav>
             <!-- 상단헤더 끝 -->
 
-            <section class="top">
-                <div class="topRankerList">
-                    <h1>상위랭커게임정보</h1>
-                </div>
-            </section>
 
-            <section class="bottom">
-                <div class="community">
-                    <h1>커뮤니티</h1>
+            <!-- 중앙 컨텐츠 전체영역 -->
+            <div class="main_contents_wrap">
+
+                <!-- 실시간 정보 -->
+                <div class="summoner_live_table_wrap">
+                    <!-- 실시간 정보 테이블 -->
+                    <table class="live_game_info">
+                        <thead>
+                            <tr>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- 실시간 정보테이블 끝 -->
                 </div>
-                <div class="rotationList">
-                    <h1>로테이션 챔피언 정보</h1>
+                <!-- 실시간 정보 끝 -->
+
+                <!-- 두번째 라인 컨텐츠 전체영역 -->
+                <div class="content_line2_flex line2_content">
+
+
+                    <!-- 커뮤니티 -->
+                    <div class="summoner_coummuity_wrap">
+                        <h2 class="community_main_title">
+                            BUSH.GG 최근 인기글
+                        </h2>
+
+                        <!-- 스타일이 다른 커뮤니티 리스트 2행을 묶기위한
+                        전체 영역 -->
+                        <!-- forEach -->
+                        <div class="content_line2_flex">
+                            <div class="community_list2_wrap">
+                                <!-- 커뮤니티 리스트 전체영역 -->
+                                <div class="community_list_wrap first community_header">
+
+                                    <!-- 타이틀 구간 전체영역 -->
+                                    <div class="community_title_wrap">
+                                        <!-- 게시글 번호 -->
+                                        <div class="community_index">
+                                            1
+                                        </div>
+
+                                        <!-- 게시글 제목 -->
+                                        <h1 class="community_title">
+                                            오늘 보쌈 기?
+                                        </h1>
+                                    </div>
+                                    <!-- 텍스트 구간 전체영역-->
+                                    <div class="community_text_wrap">
+
+                                        <!-- 몇시간전 -->
+                                        <p class="community_time">
+                                            24시간전
+                                        </p>
+                                        <!-- 게시글 작성자 네임 -->
+                                        <p class="community_summoner_name">
+                                            란브로대머리
+                                        </p>
+                                    </div>
+                                    <!-- 텍스트 구간 끝 -->
+                                </div>
+                                <!-- 커뮤니티 리스트 끝 -->
+
+                                <!-- 커뮤니티 리스트 전체영역 -->
+                                <div class="community_list_wrap">
+
+                                    <!-- 타이틀 구간 전체영역 -->
+                                    <div class="community_title_wrap">
+                                        <!-- 게시글 번호 -->
+                                        <div class="community_index">
+                                            1
+                                        </div>
+
+                                        <!-- 게시글 제목 -->
+                                        <h1 class="community_title">
+                                            오늘 보쌈 기?
+                                        </h1>
+                                    </div>
+                                    <!-- 텍스트 구간 전체영역-->
+                                    <div class="community_text_wrap">
+
+                                        <!-- 몇시간전 -->
+                                        <p class="community_time">
+                                            24시간전
+                                        </p>
+                                        <!-- 게시글 작성자 네임 -->
+                                        <p class="community_summoner_name">
+                                            란브로대머리
+                                        </p>
+                                    </div>
+                                    <!-- 텍스트 구간 끝 -->
+                                </div>
+                                <!-- 커뮤니티 리스트 끝 -->
+                            </div>
+                          
+                        </div>
+                     <!-- 커뮤니티 리스트2개 전체영역 끝  -->
+
+
+                         <!-- 스타일이 다른 커뮤니티 리스트 2행을 묶기위한
+                        전체 영역 -->
+                        <!-- forEach -->
+                        <div class="content_line2_flex">
+                            <div class="community_list2_wrap">
+                                <!-- 커뮤니티 리스트 전체영역 -->
+                                <div class="community_list_wrap first">
+
+                                    <!-- 타이틀 구간 전체영역 -->
+                                    <div class="community_title_wrap">
+                                        <!-- 게시글 번호 -->
+                                        <div class="community_index">
+                                            1
+                                        </div>
+
+                                        <!-- 게시글 제목 -->
+                                        <h1 class="community_title">
+                                            오늘 보쌈 기?
+                                        </h1>
+                                    </div>
+                                    <!-- 텍스트 구간 전체영역-->
+                                    <div class="community_text_wrap">
+
+                                        <!-- 몇시간전 -->
+                                        <p class="community_time">
+                                            24시간전
+                                        </p>
+                                        <!-- 게시글 작성자 네임 -->
+                                        <p class="community_summoner_name">
+                                            란브로대머리
+                                        </p>
+                                    </div>
+                                    <!-- 텍스트 구간 끝 -->
+                                </div>
+                                <!-- 커뮤니티 리스트 끝 -->
+
+                                <!-- 커뮤니티 리스트 전체영역 -->
+                                <div class="community_list_wrap">
+
+                                    <!-- 타이틀 구간 전체영역 -->
+                                    <div class="community_title_wrap">
+                                        <!-- 게시글 번호 -->
+                                        <div class="community_index">
+                                            1
+                                        </div>
+
+                                        <!-- 게시글 제목 -->
+                                        <h1 class="community_title">
+                                            오늘 보쌈 기?
+                                        </h1>
+                                    </div>
+                                    <!-- 텍스트 구간 전체영역-->
+                                    <div class="community_text_wrap">
+
+                                        <!-- 몇시간전 -->
+                                        <p class="community_time">
+                                            24시간전
+                                        </p>
+                                        <!-- 게시글 작성자 네임 -->
+                                        <p class="community_summoner_name">
+                                            란브로대머리
+                                        </p>
+                                    </div>
+                                    <!-- 텍스트 구간 끝 -->
+                                </div>
+                                <!-- 커뮤니티 리스트 끝 -->
+                            </div>
+                          
+                        </div>
+                     <!-- 커뮤니티 리스트2개 전체영역 끝  -->
+
+                         <!-- 스타일이 다른 커뮤니티 리스트 2행을 묶기위한
+                        전체 영역 -->
+                        <!-- forEach -->
+                        <div class="content_line2_flex">
+                            <div class="community_list2_wrap">
+                                <!-- 커뮤니티 리스트 전체영역 -->
+                                <div class="community_list_wrap first">
+
+                                    <!-- 타이틀 구간 전체영역 -->
+                                    <div class="community_title_wrap">
+                                        <!-- 게시글 번호 -->
+                                        <div class="community_index">
+                                            1
+                                        </div>
+
+                                        <!-- 게시글 제목 -->
+                                        <h1 class="community_title">
+                                            오늘 보쌈 기?
+                                        </h1>
+                                    </div>
+                                    <!-- 텍스트 구간 전체영역-->
+                                    <div class="community_text_wrap">
+
+                                        <!-- 몇시간전 -->
+                                        <p class="community_time">
+                                            24시간전
+                                        </p>
+                                        <!-- 게시글 작성자 네임 -->
+                                        <p class="community_summoner_name">
+                                            란브로대머리
+                                        </p>
+                                    </div>
+                                    <!-- 텍스트 구간 끝 -->
+                                </div>
+                                <!-- 커뮤니티 리스트 끝 -->
+
+                                <!-- 커뮤니티 리스트 전체영역 -->
+                                <div class="community_list_wrap">
+
+                                    <!-- 타이틀 구간 전체영역 -->
+                                    <div class="community_title_wrap">
+                                        <!-- 게시글 번호 -->
+                                        <div class="community_index">
+                                            1
+                                        </div>
+
+                                        <!-- 게시글 제목 -->
+                                        <h1 class="community_title">
+                                            오늘 보쌈 기?
+                                        </h1>
+                                    </div>
+                                    <!-- 텍스트 구간 전체영역-->
+                                    <div class="community_text_wrap">
+
+                                        <!-- 몇시간전 -->
+                                        <p class="community_time">
+                                            24시간전
+                                        </p>
+                                        <!-- 게시글 작성자 네임 -->
+                                        <p class="community_summoner_name">
+                                            란브로대머리
+                                        </p>
+                                    </div>
+                                    <!-- 텍스트 구간 끝 -->
+                                </div>
+                                <!-- 커뮤니티 리스트 끝 -->
+                            </div>
+                          
+                        </div>
+                     <!-- 커뮤니티 리스트2개 전체영역 끝  -->
+
+                      <!-- 스타일이 다른 커뮤니티 리스트 2행을 묶기위한
+                        전체 영역 -->
+                        <!-- forEach -->
+                        <div class="content_line2_flex">
+                            <div class="community_list2_wrap">
+                                <!-- 커뮤니티 리스트 전체영역 -->
+                                <div class="community_list_wrap first">
+
+                                    <!-- 타이틀 구간 전체영역 -->
+                                    <div class="community_title_wrap">
+                                        <!-- 게시글 번호 -->
+                                        <div class="community_index">
+                                            1
+                                        </div>
+
+                                        <!-- 게시글 제목 -->
+                                        <h1 class="community_title">
+                                            오늘 보쌈 기?
+                                        </h1>
+                                    </div>
+                                    <!-- 텍스트 구간 전체영역-->
+                                    <div class="community_text_wrap">
+
+                                        <!-- 몇시간전 -->
+                                        <p class="community_time">
+                                            24시간전
+                                        </p>
+                                        <!-- 게시글 작성자 네임 -->
+                                        <p class="community_summoner_name">
+                                            란브로대머리
+                                        </p>
+                                    </div>
+                                    <!-- 텍스트 구간 끝 -->
+                                </div>
+                                <!-- 커뮤니티 리스트 끝 -->
+
+                                <!-- 커뮤니티 리스트 전체영역 -->
+                                <div class="community_list_wrap">
+
+                                    <!-- 타이틀 구간 전체영역 -->
+                                    <div class="community_title_wrap">
+                                        <!-- 게시글 번호 -->
+                                        <div class="community_index">
+                                            1
+                                        </div>
+
+                                        <!-- 게시글 제목 -->
+                                        <h1 class="community_title">
+                                            오늘 보쌈 기?
+                                        </h1>
+                                    </div>
+                                    <!-- 텍스트 구간 전체영역-->
+                                    <div class="community_text_wrap">
+
+                                        <!-- 몇시간전 -->
+                                        <p class="community_time">
+                                            24시간전
+                                        </p>
+                                        <!-- 게시글 작성자 네임 -->
+                                        <p class="community_summoner_name">
+                                            란브로대머리
+                                        </p>
+                                    </div>
+                                    <!-- 텍스트 구간 끝 -->
+                                </div>
+                                <!-- 커뮤니티 리스트 끝 -->
+                            </div>
+                          
+                        </div>
+                     <!-- 커뮤니티 리스트2개 전체영역 끝  -->
+                    </div>
+                    <!-- 커뮤니티 끝  -->
+
+                    <!-- 로테이션 챔피언 -->
+                    <div class="rotation_champion_wrap">
+                        <!-- 로테이션 타이틀 -->
+                       <div class="rotation_champion_title">
+                        <!-- 로테이션 타이틀 텍스트 -->
+                        <h1 class="rotation_champion_title_text">
+                            금주의 로테이션 챔피언
+                        </h1>
+                       </div>
+                       <!-- 로테이션 타이틀 끝 -->
+
+                       
+                        <!-- 로테이션 챔피언 목록 1줄 -->
+                        <div class="rotation_champion_list">
+
+                        
+                            <!-- 챔피언 사진 , 이름 -->
+                            <!-- ForEach 적용구간 -->
+                            <div class="rotation_champion_face_list">
+                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                                <img src="img/tier/Challenger.png" alt="">
+                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                                <p class="rotation_champion_name">Faker</p>
+                            </div>
+                            <!-- 챔피언 사진 , 이름 끝 -->
+
+                            <!-- 챔피언 사진 , 이름 -->
+                            <!-- ForEach 적용구간 -->
+                            <div class="rotation_champion_face_list">
+                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                                <img src="img/tier/Challenger.png" alt="">
+                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                                <p class="rotation_champion_name">Faker</p>
+                            </div>
+                            <!-- 챔피언 사진 , 이름 끝 -->
+
+                            <!-- 챔피언 사진 , 이름 -->
+                            <div class="rotation_champion_face_list">
+                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                                <img src="img/tier/Challenger.png" alt="">
+                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                                <p class="rotation_champion_name">Faker</p>
+                            </div>
+                            <!-- 챔피언 사진 , 이름 끝 -->
+
+                            <!-- 챔피언 사진 , 이름 -->
+                            <!-- ForEach 적용구간 -->
+                            <div class="rotation_champion_face_list">
+                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                                <img src="img/tier/Challenger.png" alt="">
+                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                                <p class="rotation_champion_name">Faker</p>
+                            </div>
+                            <!-- 챔피언 사진 , 이름 끝 -->
+
+                            <!-- 챔피언 사진 , 이름 -->
+                            <!-- ForEach 적용구간 -->
+                            <div class="rotation_champion_face_list">
+                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                                <img src="img/tier/Challenger.png" alt="">
+                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                                <p class="rotation_champion_name">Faker</p>
+                            </div>
+                            <!-- 챔피언 사진 , 이름 끝 -->
+                       </div>
+                       <!-- 로테이션 챔피언 목록 (1줄) 끝 -->
+
+                        <!-- 로테이션 챔피언 목록 1줄 -->
+                        <div class="rotation_champion_list">
+                            <!-- 챔피언 사진 , 이름 -->
+                            <!-- ForEach 적용구간 -->
+                            <div class="rotation_champion_face_list">
+                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                                <img src="img/tier/Challenger.png" alt="">
+                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                                <p class="rotation_champion_name">Faker</p>
+                            </div>
+                            <!-- 챔피언 사진 , 이름 끝 -->
+
+                            <!-- 챔피언 사진 , 이름 -->
+                            <!-- ForEach 적용구간 -->
+                            <div class="rotation_champion_face_list">
+                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                                <img src="img/tier/Challenger.png" alt="">
+                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                                <p class="rotation_champion_name">Faker</p>
+                            </div>
+                            <!-- 챔피언 사진 , 이름 끝 -->
+
+                            <!-- 챔피언 사진 , 이름 -->
+                            <div class="rotation_champion_face_list">
+                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                                <img src="img/tier/Challenger.png" alt="">
+                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                                <p class="rotation_champion_name">Faker</p>
+                            </div>
+                            <!-- 챔피언 사진 , 이름 끝 -->
+
+                            <!-- 챔피언 사진 , 이름 -->
+                            <!-- ForEach 적용구간 -->
+                            <div class="rotation_champion_face_list">
+                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                                <img src="img/tier/Challenger.png" alt="">
+                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                                <p class="rotation_champion_name">Faker</p>
+                            </div>
+                            <!-- 챔피언 사진 , 이름 끝 -->
+
+                            <!-- 챔피언 사진 , 이름 -->
+                            <!-- ForEach 적용구간 -->
+                            <div class="rotation_champion_face_list">
+                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                                <img src="img/tier/Challenger.png" alt="">
+                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                                <p class="rotation_champion_name">Faker</p>
+                            </div>
+                            <!-- 챔피언 사진 , 이름 끝 -->
+                       </div>
+                       <!-- 로테이션 챔피언 목록 (1줄) 끝 -->
+
+                        <!-- 로테이션 챔피언 목록 1줄 -->
+                        <div class="rotation_champion_list">
+
+                            <!-- 챔피언 사진 , 이름 -->
+                            <!-- ForEach 적용구간 -->
+                            <div class="rotation_champion_face_list">
+                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                                <img src="img/tier/Challenger.png" alt="">
+                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                                <p class="rotation_champion_name">Faker</p>
+                            </div>
+                            <!-- 챔피언 사진 , 이름 끝 -->
+
+                            <!-- 챔피언 사진 , 이름 -->
+                            <!-- ForEach 적용구간 -->
+                            <div class="rotation_champion_face_list">
+                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                                <img src="img/tier/Challenger.png" alt="">
+                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                                <p class="rotation_champion_name">Faker</p>
+                            </div>
+                            <!-- 챔피언 사진 , 이름 끝 -->
+
+                            <!-- 챔피언 사진 , 이름 -->
+                            <div class="rotation_champion_face_list">
+                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                                <img src="img/tier/Challenger.png" alt="">
+                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                                <p class="rotation_champion_name">Faker</p>
+                            </div>
+                            <!-- 챔피언 사진 , 이름 끝 -->
+
+                            <!-- 챔피언 사진 , 이름 -->
+                            <!-- ForEach 적용구간 -->
+                            <div class="rotation_champion_face_list">
+                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                                <img src="img/tier/Challenger.png" alt="">
+                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                                <p class="rotation_champion_name">Faker</p>
+                            </div>
+                            <!-- 챔피언 사진 , 이름 끝 -->
+
+                            <!-- 챔피언 사진 , 이름 -->
+                            <!-- ForEach 적용구간 -->
+                            <div class="rotation_champion_face_list">
+                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                                <img src="img/tier/Challenger.png" alt="">
+                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                                <p class="rotation_champion_name">Faker</p>
+                            </div>
+                            <!-- 챔피언 사진 , 이름 끝 -->
+                       </div>
+                       <!-- 로테이션 챔피언 목록 (1줄) 끝 -->
+
+                       <!-- 로테이션 챔피언 목록 1줄 -->
+                       <div class="rotation_champion_list">
+
+                        <!-- 챔피언 사진 , 이름 -->
+                        <!-- ForEach 적용구간 -->
+                        <div class="rotation_champion_face_list">
+                            <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                            <img src="img/tier/Challenger.png" alt="">
+                            <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                            <p class="rotation_champion_name">Faker</p>
+                        </div>
+                        <!-- 챔피언 사진 , 이름 끝 -->
+
+                        <!-- 챔피언 사진 , 이름 -->
+                        <!-- ForEach 적용구간 -->
+                        <div class="rotation_champion_face_list">
+                            <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                            <img src="img/tier/Challenger.png" alt="">
+                            <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                            <p class="rotation_champion_name">Faker</p>
+                        </div>
+                        <!-- 챔피언 사진 , 이름 끝 -->
+
+                        <!-- 챔피언 사진 , 이름 -->
+                        <div class="rotation_champion_face_list">
+                            <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                            <img src="img/tier/Challenger.png" alt="">
+                            <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                            <p class="rotation_champion_name">Faker</p>
+                        </div>
+                        <!-- 챔피언 사진 , 이름 끝 -->
+
+                        <!-- 챔피언 사진 , 이름 -->
+                        <!-- ForEach 적용구간 -->
+                        <div class="rotation_champion_face_list">
+                            <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                            <img src="img/tier/Challenger.png" alt="">
+                            <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                            <p class="rotation_champion_name">Faker</p>
+                        </div>
+                        <!-- 챔피언 사진 , 이름 끝 -->
+
+                        <!-- 챔피언 사진 , 이름 -->
+                        <!-- ForEach 적용구간 -->
+                        <div class="rotation_champion_face_list">
+                            <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
+                            <img src="img/tier/Challenger.png" alt="">
+                            <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
+                            <p class="rotation_champion_name">Faker</p>
+                        </div>
+                        <!-- 챔피언 사진 , 이름 끝 -->
+                   </div>
+                   <!-- 로테이션 챔피언 목록 (1줄) 끝 -->
+
+                    </div>
+                    <!-- 로테이션 끝 -->
                 </div>
-            </section>
-            
+                <!-- 두번째 라인 컨텐츠 전체영역 끝 -->
+            </div>
+            <!-- 중앙 컨텐츠 전체영역 끝 -->
+
+
         </div>
         <!--  메인 컨텐츠 끝 -->
-    
+
         <!-- 로그아웃 모달 (아직 사용할지 미정)-->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -174,7 +728,8 @@
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                    </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <a class="btn btn-primary" href="login.html">Logout</a>
@@ -182,42 +737,31 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
-        <!-- 로그아웃 모달 끝-->
+    <!-- 로그아웃 모달 끝-->
 
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="/vendor/jquery/jquery.min.js"></script>
-        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="/js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script src="/vendor/chart.js/Chart.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
 
-        <!-- Page level custom scripts -->
-        <script src="/js/demo/chart-area-demo.js"></script>
-        <script src="/js/demo/chart-pie-demo.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
 
 
-           
-        <!-- 푸터 -->
-        <div class="footer">
-            <div>
-                <p class="footerText">이 사이트는 비상업적 용도입니다.아이콘 이미지는
-                    <a href="https://www.flaticon.com/uicons">Flaticon</a>의 UIcon을 사용했습니다.
-                </p>
-                <div>
-                    <img src="/img/logo.png" alt="로고" class="footerLogo">
-                </div>
-            </div>
-         </div>
-        <!-- 푸터 끝-->
+
+
 
 </body>
 
