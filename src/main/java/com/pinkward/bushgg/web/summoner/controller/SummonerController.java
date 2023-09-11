@@ -72,7 +72,6 @@ public class SummonerController {
         // MatchIdList를 for문 돌리는중
         for (String matchId : matchIds) {
             // 하나의 matchId로 matchInfo Map을 가져옴
-            log.info("{}",matchId);
             Map<String, Object> match = summonerService.getMatch(matchId);
             Map<String, Object> matchInfo = summonerService.matchInfo(match);
 
