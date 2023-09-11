@@ -95,6 +95,7 @@ div들을 정렬하기 위한 옵션 */
   flex-direction: column;
   justify-content: center;
   width: 100px;
+  
 }
 
 .summoner_icon img {
@@ -137,6 +138,7 @@ div들을 정렬하기 위한 옵션 */
 /* 티어 아이콘 이미지 사이즈 조정 */
 .rank_icon {
   width: 160px;
+  height:160px;
 }
 
 /* 티어 이미지와 텍스트간의 여백 생성 */
@@ -219,10 +221,18 @@ div들을 정렬하기 위한 옵션 */
 }
 
 /* 각 행에서 컬럼별 위치를 잡기위한 값 부여 */
-.recent_champion_table tbody td {
+.recent_champion_table tbody tr {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.champion_face_wrap{
+  width:30%;
+}
+
+.champion_chart_bar_wrap{
+  width:70%;
 }
 
 /* 챔피언 사진 */
@@ -241,11 +251,9 @@ div들을 정렬하기 위한 옵션 */
 
 
 
-
 /* 챔피언 승률 차트 전체영역 */
 .champion_rate_chartbar {
   width: 250px;
-  margin-left: 50px;
   display: flex;
 }
 
@@ -449,6 +457,10 @@ div들을 정렬하기 위한 옵션 */
 }
 
 .sub_rune li {
+  width:40px;
+  height:40px;
+  border-radius: 50%;
+  /* background-color: #000; */
   margin-right: 20px;
 }
 
@@ -461,10 +473,7 @@ div들을 정렬하기 위한 옵션 */
   width: 40px;
 }
 
-/* 서브룬 타이틀 이미지 조정 */
-.detail_sub_rune_title img{
-  transform: translateY(-80%);
-}
+
 
 
 
@@ -1426,6 +1435,10 @@ div들을 정렬하기 위한 옵션 */
   height:20%;
 }
 
+/* 서브룬 타이틀 이미지 조정 */
+.detail_sub_rune_title img{
+  transform: translateY(-80%);
+}
 
 /* 룬 타이틀 텍스트 지정 */
 .detail_rune_title h3 {
@@ -1440,7 +1453,14 @@ div들을 정렬하기 위한 옵션 */
   filter:grayscale(1);
 }
 
-.detail_sub_rune img{
+
+
+.rewq{
+  width:40px;
+  filter:grayscale(0);
+}
+
+.qwer{
   width:40px;
   filter:grayscale(1);
 }

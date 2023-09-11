@@ -266,6 +266,4 @@ public class SummonerController {
         return "record";
     }
 
-
-
 }
