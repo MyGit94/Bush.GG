@@ -1,4 +1,37 @@
+/*게시판 테이블의 카드가 padding 1.25rem을 주므로 헤더,바텀 등 통일*/
+/*게시판 헤더*/
+.articleHeder{
+  display: grid;
+  padding: 0rem 1.25rem;
+  height: 200px;
+  align-content: space-between;
+  background-color: lightskyblue;
+}
+.articleHederBtn{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+
 /* 게시판 */
+.boardBody {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.35rem;
+  }
+table {
+  border-collapse: separate;
+  border: 2px solid #000000;
+  border-radius: 30px;
+  overflow: hidden;
+}
 
 .table thead th {
   background-color: #e3e6f0;
@@ -11,25 +44,94 @@
   justify-content: flex-end;
 }
 
-.table-bordered th,
 .table-bordered td {
   border-bottom: 1px solid #e3e6f0;
   text-align: center;
 }
+
 .trs :hover{
   background-color: #e3e6f0;
 }
-.ArticleHeder{
-  margin-left: 1rem;
+
+/* 게시판 하단*/
+
+.articleBottom{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem;
 }
+.articleSearch{
+  display: flex;
+
+}
+
+/*게시판 버튼들*/
 .writeBtn{
   width: 100px;
-  background-color: #156549;
+  background-color: #03c75a;
   border-radius: 1rem;
+}
+.writeBtn:hover{
+  background-color: #1fff84;
 }
 
 .bestBtn{
   width: 100px;
-  background-color: #e4c340;
+  background-color: #c60000;
   border-radius: 1rem;
 }
+.bestBtn:hover{
+  background-color: #fd4747;
+}
+
+.boardSearchBtn{
+  color: #000000;
+  border-radius: 50%;
+}
+
+.boardSearchBtn:hover{
+  background-color: #e3e6f0;
+}
+
+.prevBtn{
+  width: 39.6px;
+  height: 38px;
+  color: #000000;
+  border-radius: 50%;
+  padding: 0px;
+  text-align: center;
+}
+
+.prevBtn:hover{
+  background-color: #e3e6f0;
+}
+
+.nextBtn{
+  width: 39.6px;
+  height: 38px;
+  color: #000000;
+  border-radius: 50%;
+  padding: 0px;
+  text-align: center;
+}
+
+.nextBtn:hover{
+  background-color: #e3e6f0;
+}
+
+.listBtn{
+  width: 39.6px;
+  height: 38px;
+  color: #000000;
+  border-radius: 50%;
+  padding: 0px;
+  text-align: center;
+}
+
+.listBtn:hover{
+  background-color: #e3e6f0;
+}
+
+
+

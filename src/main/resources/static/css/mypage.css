@@ -1,17 +1,92 @@
-/* 마이 페이지*/
-.profileBox{
+/*게시판 테이블의 카드가 padding 1.25rem을 주므로 헤더,바텀 등 통일*/
+/*게시판 헤더*/
+.mypageHeader{
+  display: grid;
+  padding: 0rem 1.25rem;
+  height: 200px;
+  align-content: space-between;
+  background-color: lightskyblue;
+}
+.articleHederBtn{
   display: flex;
-  height: 5rem;
-  font-weight: bold;
-  letter-spacing: 3px;
-  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+
+/* 게시판 */
+.mypageBody {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.35rem;
+  }
+.mypage{
+  display: flex;
+  background-image: url('../img/bannerGif.gif');
+  background-position: center;
+  background-size: cover;
+  width: 600px;
+  height: 600px;
   justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
-.textBox{
-margin: 0px;
-text-align: center;
-padding: 0.375rem 0.75rem;
-border: 1px solid #d1d3e2;
-border-radius: 0.35rem;
-width: 100%;
+.profile{
+  display: grid;
+  width: 400px;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
 }
+  .textBox{
+    margin: 0px;
+    text-align: center;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.35rem;
+    width: 100%;
+    color: #fff;
+    }
+    .editBtn{
+      width: 100px;
+      height: 100px;
+      margin-right: 25px;
+      border-radius: 50%;
+      font-size: 26px;  
+    }
+    .editBtn:hover{
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      color: transparent;
+      background-image: url('../img/tmg.jpg');
+      background-position: center;
+      background-size: cover;
+      transition: all 0.5s ease-in-out;
+      transform: scale(1.1);
+    }
+    .confirmBtn{
+      width: 100px;
+      height: 100px;
+      margin-left: 25px;
+      border-radius: 50%;
+      font-size: 26px;
+    }
+    .confirmBtn:hover{
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      color: transparent;
+      background-image: url('../img/tmg.jpg');
+      background-position: center;
+      background-size: cover;
+      transition: all 0.5s ease-in-out;
+      transform: scale(1.1);
+    }
