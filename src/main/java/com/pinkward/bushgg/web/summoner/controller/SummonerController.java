@@ -1,15 +1,12 @@
 package com.pinkward.bushgg.web.summoner.controller;
 
-import com.pinkward.bushgg.domain.challenges.dto.ChallengesInfoDTO;
 import com.pinkward.bushgg.domain.challenges.dto.PlayerChallengesInfoDTO;
 import com.pinkward.bushgg.domain.match.common.TimeTranslator;
 import com.pinkward.bushgg.domain.match.dto.*;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import com.pinkward.bushgg.domain.summoner.service.SummonerServiceImpl;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -39,7 +35,7 @@ public class SummonerController {
 
 
     @GetMapping(value = "/summoner")
-    public String searchSummonerInfo(@RequestParam("summonerName") String summonerName, Model model, HttpSession session){
+    public String searchSummonerInfo(@RequestParam("summonerName") String summonerName, Model model){
         // 두 글자인 경우 글자 사이에 띄어쓰기 추가
         if (summonerName.length() == 2) {
             summonerName = summonerName.substring(0, 1) + " " + summonerName.substring(1);
@@ -74,10 +70,10 @@ public class SummonerController {
         RecentDTO recentDTO = new RecentDTO();
         // puuid로 challenges를 가져옴
         PlayerChallengesInfoDTO playerChallengesInfo = summonerService.getPlayerChallengesInfo(summoner.getPuuid());
-
         // MatchIdList를 for문 돌리는중
         for (String matchId : matchIds) {
             // 하나의 matchId로 matchInfo Map을 가져옴
+            log.info("{}",matchId);
             Map<String, Object> match = summonerService.getMatch(matchId);
             Map<String, Object> matchInfo = summonerService.matchInfo(match);
 
@@ -142,6 +138,7 @@ public class SummonerController {
                     } else {
                         recentDTO.getRecentChampion().put(participant.getChampionName(), 1);
                     }
+                    log.info("{}",recentDTO.getRecentChampion());
 
                     // 이겼을 때
                     if(participant.isWin()){
@@ -153,6 +150,7 @@ public class SummonerController {
                         }
                     }
 
+                    log.info("{}",recentDTO.getRecentChampionWin());
 
                 }
                 if(i<5){

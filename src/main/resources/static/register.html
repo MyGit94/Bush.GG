@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
+    <title>BUSH.GG :: 회원가입</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -17,12 +17,15 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="/css/sb-admin-2.css" rel="stylesheet">
+   <!-- 부트스트랩 기본 css -->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
 
+    <!-- 회원가입 -->
+    <link href="css/register.css" rel="stylesheet">
+    
 </head>
 
-<body class="bg-gradient-primary">
+<body>
 
     <div class="container">
 
@@ -30,54 +33,74 @@
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image">
+                        <img src="img/member/register.jpg" alt="">
+                    </div>
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
                             </div>
+
+                            <!-- 개인정보 입력 전체영역 -->
                             <form class="user">
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                <!-- 아이디 -->
+                                <div class="form-group">
+                                    <div class="mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="First Name">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Last Name">
+                                            placeholder="아이디">
                                     </div>
                                 </div>
+                                <!-- 아이디 끝 -->
+
+                                <!-- 이메일 -->
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email Address">
+                                        placeholder="이메일">
                                 </div>
+                                <!-- 이메일 끝 -->
+
+                                <!-- 비밀번호 -->
                                 <div class="form-group row">
+                                    <!-- 비밀번호 -->
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
+                                            id="exampleInputPassword" placeholder="비밀번호">
                                     </div>
+
+                                    <!-- 비밀번호 확인 -->
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
+                                            id="exampleRepeatPassword" placeholder="비밀번호 확인">
                                     </div>
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                    Register Account
+                                <!-- 비밀번호 끝 -->
+
+                                <!-- 회원가입 버튼 -->
+                                <a href="login.html" class="btn reigserBtn">
+                                    회원가입
                                 </a>
+                                <!-- 구분선 -->
                                 <hr>
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
+
+                                <!-- 구글 회원가입 버튼 -->
+                                <a href="index.html" class="btn googleBtn">
+                                    <i class="fab fa-google fa-fw"></i> Google로 회원가입
                                 </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a>
+
                             </form>
+                            <!-- 개인정보 입력 전체영역 끝 -->
+                            <!-- 구분선 -->
                             <hr>
+
+                            <!-- 비밀번호 찾기 -->
                             <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                <a class="find_passwd" href="forgot-password.html">비밀번호를 잊으 셨나요? </a>
                             </div>
+
+                            <!-- 로그인하기 -->
                             <div class="text-center">
-                                <a class="small" href="login.html">Already have an account? Login!</a>
+                                <a class="login_bushgg" href="login.html">이미 계정이 있나요? 로그인!</a>
                             </div>
                         </div>
                     </div>

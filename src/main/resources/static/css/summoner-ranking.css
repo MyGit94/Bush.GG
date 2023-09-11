@@ -166,15 +166,31 @@ h5 {
 
 /* lp 부분 배경설정 */
 .rank_table_lp {
-  height:83px;
+  height: 83px;
   align-items: center;
   background-color: #ebebeb;
 }
 
 /* 랭크 페이징 버튼 */
-.summoner_rank_page_bt{
-  width:30%;
-  height:50px;
-  margin:20px auto 0 auto;
-  background-color:#d5d5d5;
+.summoner_rank_page_bt {
+  width: 30%;
+  height: 50px;
+  margin: 20px auto 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+/* 버튼 위치 조정을 위한 전체영역 */
+.summoner_rank_page_flex{
+  display: flex;
+  width:150px;
+  justify-content: space-evenly;
+}
+
+/* 현재 페이지를 나타내는 페이지에 on 클래스가 붙으면서 색깔을 표시할예정 */
+.summoner_rank_page.on{
+  color:#28b41e;
+  font-weight: bold;
+}
+

@@ -15,10 +15,12 @@
     
 
         <!-- 부트스트랩 기본 CSS -->
-    <link href="/css/sb-admin-2.css" rel="stylesheet">
+        <!-- VSCODE에서 /제거 후 작업-->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
          <!-- 내 Stylce CSS 8/29일 추가됨  -->
-    <link rel="stylesheet" href="/css/index.css">
-
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/board-detail.css">
+    
 </head>
 
 
@@ -33,7 +35,7 @@
             <li class="nav-item active">
                 <a class="nav-link nav-link2" href="index.html">
                     <!-- <p class="nav-item-text">BUSH.GG</p> -->
-                  <img src="/img/logo.png" alt="" class="nav-item-img">
+                  <img src="img/logo.png" alt="" class="nav-item-img">
                    </a>
             </li>
 
@@ -109,39 +111,45 @@
 
         <!-- 메인 컨텐츠 전체영역 -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- 상단 헤더 -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
                 <!-- (모바일) 사이드 메뉴 여닫이 버튼 -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
+
                 <!-- 전적 검색창 -->
-                <form
-                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="form-group">
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
                         <!-- 전적 검색 : 입력 텍스트칸 -->
-                        <input type="text" class="form-control border-0 small" placeholder="소환사명을 입력해주세요"
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="소환사명을 입력해주세요"
                             aria-label="Search" aria-describedby="basic-addon2">
-                            <!-- 검색 아이콘 전체영역 -->
-                        <div class="form-group">
+                        <!-- 검색 아이콘 전체영역 -->
+                        <div class="input-group-append">
                             <!-- 검색 버튼 네모박스 -->
-                            <button onclick="location.href='index.html';" class="btn searchBtn" type="button">
+                            <button class="btn btn-primary" type="button">
                                 <!-- 검색 버튼 돋보기 아이콘 -->
                                 <i class="fas fa-search fa-sm"></i>
                             </button>
                         </div>
                     </div>
                 </form>
-                <!-- 전적 검색창 끝 -->   
-        <!-- 로그인&회원가입-->
-        <div class="d-flex justify-content-between ml-3 mr-3">
-            <div class="">
-                <button onclick="location.href='login.html';" class="btn signInBtn" type="button">로그인</button>
-                <button onclick="location.href='register.html';" class="btn signUpBtn" type="button">회원가입</button>
-            </div>
-        </div>
-        <!-- 로그인&회원가입-->
+                <!-- 전적 검색창 끝 -->
+
+                <!-- 로그인 , 회원가입 -->
+                <div class="navbar_login_wrap">
+                    <!-- 로그인 -->
+                    <a href="login.html" class="navbar_login">
+                        로그인
+                    </a>
+
+                    <!-- 회원가입 -->
+                     <a href="register.html" class="navbar_register">
+                        회원가입
+                    </a>
+                </div>
+
             </nav>
             <!-- 상단헤더 끝 -->
 
@@ -149,13 +157,12 @@
         <!-- 제목 라인 -->
         <div class="ArticleHeder">
             <div class="nick">
-                <a href="index.html" class="link_board">카테고리</a>
+                <a href="index.html" class="link_board"><strong>. 카테고리</strong>
+                    <i class="fas fa-angle-right"></i>
+                </a>
             </div>
             <div class="title_area">
-                <!---->
-                <!---->
-                <!---->
-                <h5 class="title_text"><strong>제목 내용입니다?제목 내용입니다?제목 내용입니다?</strong></h5>
+                <h3 class="title_text">제목 내용입니다?제목 내용입니다?제목 내용입니다?</h3>
             </div>
             <div class="nick">
                 <a href="#" class="link_board">홍길동</a>

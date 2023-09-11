@@ -12,18 +12,19 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    
-
+        
         <!-- 부트스트랩 기본 CSS -->
-    <link href="/css/sb-admin-2.css" rel="stylesheet">
+        <!-- VSCODE에서 /제거 후 작업-->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
          <!-- 내 Stylce CSS 8/29일 추가됨  -->
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/board-register.css">
 
 </head>
 
 
 <body id="page-top">
-
+    
     <div id="wrapper">
 
         <!-- 좌측 사이드바 전체 영역 -->
@@ -110,78 +111,65 @@
         <!-- 메인 컨텐츠 전체영역 -->
         <div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- 상단 헤더 -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                <!-- (모바일) 사이드 메뉴 여닫이 버튼 -->
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <!-- 전적 검색창 -->
-                <form
-                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="form-group">
-                        <!-- 전적 검색 : 입력 텍스트칸 -->
-                        <input type="text" class="form-control border-0 small" placeholder="소환사명을 입력해주세요"
-                            aria-label="Search" aria-describedby="basic-addon2">
-                            <!-- 검색 아이콘 전체영역 -->
-                        <div class="form-group">
-                            <!-- 검색 버튼 네모박스 -->
-                            <button onclick="location.href='index.html';" class="btn searchBtn" type="button">
-                                <!-- 검색 버튼 돋보기 아이콘 -->
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                <!-- 전적 검색창 끝 -->   
-        <!-- 로그인&회원가입-->
-        <div class="d-flex justify-content-between ml-3 mr-3">
-            <div class="">
-                <button onclick="location.href='login.html';" class="btn signInBtn" type="button">로그인</button>
-                <button onclick="location.href='register.html';" class="btn signUpBtn" type="button">회원가입</button>
-            </div>
-        </div>
-        <!-- 로그인&회원가입-->
-            </nav>
-            <!-- 상단헤더 끝 -->
+                     <!-- 상단 헤더 -->
+                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-        <!-- 게시판 헤더 -->
-        <div class="ArticleHeder">
-            <h1 class="h3 mb-2">게시글 쓰기</h1>
-        </div>
-        <!-- 게시판 헤더 끝 --> 
+                        <!-- (모바일) 사이드 메뉴 여닫이 버튼 -->
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+            
+                        <!-- 전적 검색창 -->
+                        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group">
+                                <!-- 전적 검색 : 입력 텍스트칸 -->
+                                <input type="text" class="form-control bg-light border-0 small" placeholder="소환사명을 입력해주세요"
+                                    aria-label="Search" aria-describedby="basic-addon2">
+                                <!-- 검색 아이콘 전체영역 -->
+                                <div class="input-group-append">
+                                    <!-- 검색 버튼 네모박스 -->
+                                    <button class="btn btn-primary" type="button">
+                                        <!-- 검색 버튼 돋보기 아이콘 -->
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- 전적 검색창 끝 -->
+            
+                    </nav>
+                    <!-- 상단헤더 끝 -->
 
-            <!-- 게시판 -->
-            <form class="card shadow mb-4">
-                <div class="d-flex justify-content-end p-3">
-                    <button type="submit" class="btn btn-secondary btn-lg">등록</button>
-                </div>
+        <!-- 글 쓰기 헤더 -->
+        <div class="boardRegisterHeder">
+            <h1 class="h1">글 쓰기</h1>
+        </div>
+        <!-- 글 쓰기 헤더 끝 --> 
+
+            <!-- 글 쓰기 -->
+            <div class="writeBody shadow-lg">
                 <div class="card-body">
-                    <div class="form-floating mb-3">
-                        <select class="form-select mb-3" id="floatingSelect" aria-label="Floating label select example">
-                            <option selected>카테고리</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-
-                        <input type="text" class="form-control mb-3" id="floatingInput" placeholder="제목을 입력해 주세요">
-                    
-                        <div class="mb-3">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" placeholder="내용을 입력해 주세요"></textarea>
+                    <form class="writing">
+                        <div class="writingHeader">
+                            <select class="category">
+                                <option selected>카테고리</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                            <button type="submit" class="btn reigser">등록</button>
                         </div>
-                    </div>
+                        <div class="writingTitle">
+                            <input type="text" class="form-control mb-3" id="floatingInput" placeholder="제목을 입력해 주세요">
+                        </div>
+                        <div class="writingTextArea">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="20" placeholder="내용을 입력해 주세요"></textarea>
+                         </div>
+                    </form>
                 </div>
-             </form>
-             <!-- 게시판 끝-->
+             </div>
+             <!-- 글 쓰기 끝-->
 
-            <!-- 게시판 하단 & 페이지 -->
-            <div class="d-flex justify-content-between ml-3 mr-3">
-                <div class="mb-3">
-                    <a href="javascript:window.history.back();" class="btn btn-outline-secondary" type="button" id="button-addon1">뒤로가기</a>
-                </div>
-            </div>
-            <!-- 게시판 하단 & 페이지 끝-->
         </div>
         <!-- 메인 컨텐츠 전체영역 끝 -->
     </div>
@@ -210,16 +198,16 @@
             </div>
         </div>
         <!-- 로그아웃 모달 끝-->
-        
-               <!-- Bootstrap core JavaScript-->
-               <script src="/vendor/jquery/jquery.min.js"></script>
-               <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-       
-               <!-- Core plugin JavaScript-->
-               <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-       
-               <!-- Custom scripts for all pages-->
-               <script src="/js/sb-admin-2.min.js"></script>
+
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
 
 </body>
 

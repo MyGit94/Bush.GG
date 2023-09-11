@@ -1,0 +1,65 @@
+/* body 배경색 설정 */
+body {
+  height:900px;
+  background-image: url('../img/illust/Rift2.jpg');
+ }
+
+  a{
+    font-size:14px;
+    color:#000;
+    font-weight: bold;
+   }
+
+   a:hover{
+    color:#156549;
+    text-decoration: none;
+   }
+  
+
+/* 컨텐츠 높이 설정 */
+.container{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/* 아이디 전체영역 */
+.mb-3{
+  width:100%;
+}
+
+ /* 회원가입 일러스트 */
+ .bg-register-image img{
+ width: 100%;
+ height: 100%;
+}
+
+/* 회원가입 버튼*/
+
+.reigserBtn{
+  width: 100%;
+  color: #fff;
+  background-color: #156549;
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  padding: 0.75rem 1rem;
+}
+.reigserBtn:hover{
+  color: #fff;
+  background-color: #12573f;
+}
+
+.googleBtn{
+  width: 100%;
+  color: #fff;
+  background-color: #ea4335;
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  padding: 0.75rem 1rem;
+}
+.googleBtn:hover{
+  color: #fff;
+  background-color: #bc382c;
+}

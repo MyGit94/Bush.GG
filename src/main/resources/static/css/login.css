@@ -1,0 +1,58 @@
+/* body 배경색 설정 */
+body {
+    height:900px;
+    background-image: url('../img/illust/Rift.jpg');
+   }
+   
+   a{
+    font-size:14px;
+    color:#000;
+    font-weight: bold;
+   }
+
+   a:hover{
+    color:#156549;
+    text-decoration: none;
+   }
+ 
+ /* 컨텐츠 높이 설정 */
+ .container{
+     display: flex;
+     height: 100%;
+     flex-direction: column;
+     justify-content: center;
+ }
+
+ /* 로그인 일러스트 */
+ .bg-login-image img{
+    width: 100%;
+    height: 100%;
+ }
+
+ /* 로그인 버튼*/
+
+ .loginBtn{
+    width: 100%;
+    color: #fff;
+    background-color: #156549;
+    font-size: 0.8rem;
+    border-radius: 10rem;
+    padding: 0.75rem 1rem;
+ }
+ .loginBtn:hover{
+    color: #fff;
+    background-color: #12573f;
+ }
+
+ .googleBtn{
+    width: 100%;
+    color: #fff;
+    background-color: #ea4335;
+    font-size: 0.8rem;
+    border-radius: 10rem;
+    padding: 0.75rem 1rem;
+ }
+ .googleBtn:hover{
+    color: #fff;
+    background-color: #bc382c;
+ }

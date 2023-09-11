@@ -5,8 +5,6 @@ import com.pinkward.bushgg.domain.match.dto.SummonerTierDTO;
 import com.pinkward.bushgg.domain.ranking.dto.RankingDTO;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Map;
