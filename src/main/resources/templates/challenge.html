@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="utf-8">
@@ -9,18 +9,18 @@
   <meta name="author" content="">
   <title>최종 프로젝트 - BUSH.GG</title>
   <!-- 커스텀 폰트 -->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
 
 
   <!-- 부트스트랩 기본 CSS -->
-  <link href="css/sb-admin-2.css" rel="stylesheet">
+  <link href="/css/sb-admin-2.css" rel="stylesheet">
   <!-- 기본 스타일 css -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
   <!-- 챌린지 css -->
-  <link rel="stylesheet" href="css/challenge.css">
+  <link rel="stylesheet" href="/css/challenge.css">
 </head>
 
 
@@ -33,7 +33,7 @@
 
       <!-- 왼쪽 사이드바 로고 영역 -->
       <li class="nav-item active">
-        <a class="nav-link nav-link2" href="index.html">
+        <a class="nav-link nav-link2" href="index.html" th:href="@{/}">
           <!-- <p class="nav-item-text">BUSH.GG</p> -->
           <img src="img/logo.png" alt="" class="nav-item-img">
         </a>
@@ -162,94 +162,42 @@
 
       <!-- 챌린지 리스트 전체영역 -->
       <div class="challenge_wrap">
-        <!-- 좌측 카테고리 전체영역 -->
-        <div class="challenge_category_wrap left_category">
-          <!-- 카테고리 타이틀 전체영역 -->
-          <div class="category_title_wrap">
-               <!-- 카테고리 타이틀 텍스트 -->
-            <h1 class="category_title">CATEGORY</h1>
-          </div>
-          <!-- 1 -->
-          <!-- 메뉴 전체영역 -->
-         <div class="category_menu_wrap menu1">
-          <img src="img/challenge/expertise.svg">
-          <!-- 메뉴 텍스트 -->
-          <p class="category_menu_text">전문성</p>
-         </div>
-           <!-- 2 -->
-          <!-- 메뉴 전체영역 -->
-          <div class="category_menu_wrap menu2">
-            <img src="img/challenge/teamwork.svg" alt="">
-            <!-- 메뉴 텍스트 -->
-            <p class="category_menu_text">팀워크 & 전략</p>
-           </div>
-             <!-- 3 -->
-          <!-- 메뉴 전체영역 -->
-         <div class="category_menu_wrap menu3">
-          <img src="img/challenge/imagination.svg" alt="">
-          <!-- 메뉴 텍스트 -->
-          <p class="category_menu_text">창의성</p>
-         </div>
-           <!-- 4 -->
-          <!-- 메뉴 전체영역 -->
-          <div class="category_menu_wrap menu4">
-            <img src="img/challenge/veterancy.svg" alt="">
-            <!-- 메뉴 텍스트 -->
-            <p class="category_menu_text">경력</p>
-           </div>
-          <!-- 5 -->
-          <!-- 메뉴 전체영역 -->
-         <div class="category_menu_wrap menu5">
-          <img src="img/challenge/collection.svg" alt="">
-          <!-- 메뉴 텍스트 -->
-          <p class="category_menu_text">수집</p>
-         </div>
-         <!-- 6 -->
-          <!-- 메뉴 전체영역 -->
-          <div class="category_menu_wrap menu6">
-            <img src="img/challenge/legacy.svg" alt="">
-            <!-- 메뉴 텍스트 -->
-            <p class="category_menu_text">유산</p>
-           </div>
-        </div>
-        <!-- 좌측 카테고리 전체영역 끝 -->
-
         <!-- 챌린지 리스트 전체영역 -->
         <div class="challenge_list_wrap">
           <!-- 챌린지 리스트 (1개) ForEach-->
           <div class="challenge_list"  th:each="challenge : ${filter}">
             <!-- 도전과제 이미지 -->
             <div class="challenge_img challenge_flex">
-              <img src="" th:src="@{'img/challenges-images/'+ ${challenge.challengeId}+'-'+${challenge.level}+'.png'}">
+              <img th:src="@{'img/challenges-images/'+ ${challenge.challengeId}+'-'+(${challenge.level != null && challenge.level != 'NONE' ? challenge.level : 'IRON'}) + '.png'}">
             </div>
             <!-- 도전과제 타이틀 :: 도전과제 명 , 점수 -->
             <div class="challenge_flex challenge_title">
               <!-- 도전과제 이름 -->
-              <h1 class="challenge_name">
+              <h1 class="challenge_name" th:text="${@challengesMapper.getChallengeInfoById(challenge.getChallengeId()).getName()}">
                 <!-- challengeId로 검색해서 정보 얻어오는 service구현  -->
                 디자이너 고혈압으로 사망
               </h1>
               <!-- 챌린지 점수 -->
-              <p class="challenge_score">
+              <p class="challenge_score" th:text="'획득한 점수 : ' + ${challenge.getValue()} + '점 / 상위 ' + ${challenge.getPercentile()} + ' %'">
                 4444 points
               </p>
             </div>
             <!-- 도전과제 설명글 -->
             <div class="challenge_flex challenge_info">
               <!-- 도전과제 설명 텍스트 -->
-              <h3 class="challenge_info_text">
+              <h3 class="challenge_info_text" th:text="${@challengesMapper.getChallengeInfoById(challenge.getChallengeId()).getShortDescription()}">
                 스트레스로 사망하셨다합니다...
               </h3>
             </div>
             <!-- 달성티어 -->
             <div class="challenge_flex challenge_tier">
               <!-- 달성티어 텍스트 -->
-              <p class="challenge_tier_text">
+              <p class="challenge_tier_text" th:text="${challenge.getLevel()}">
                 Challenger
               </p>
             </div>
             <!-- 랭킹리스트로 이동하는 버튼 -->
-            <a href="" class="challenge_rank_wrap challenge_flex">
+            <a href="" class="challenge_rank_wrap challenge_flex" th:href="@{/challenge/rank/{challengeId}(challengeId=${challenge.challengeId})}">
               <!-- 랭킹리스트 버튼 텍스트 -->
               <p class="rank_bt_text">Rank</p>
             </a>

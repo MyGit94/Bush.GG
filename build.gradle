@@ -67,6 +67,12 @@ dependencies {
 	
 	// AOP 모듈
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+    // 배치 프로그램
+    implementation 'org.springframework.boot:spring-boot-starter-batch'
+    implementation 'org.springframework.boot:spring-boot-starter-quartz'
+    implementation 'com.h2database:h2'
+    testImplementation 'org.springframework.batch:spring-batch-test'
 }
 
 tasks.named('test') {

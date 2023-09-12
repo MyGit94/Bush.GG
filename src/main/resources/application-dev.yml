@@ -84,10 +84,10 @@ mybatis:
     map-underscore-to-camel-case: true  
   mapper-locations: 
     - classpath:mybatis/mapper/**/*.xml
-  type-aliases-package: com.ezen.springmvc.domain.member.dto
+  type-aliases-package: com.pinkward.bushgg.domain.challenges.dto
 
 ---
-      
+
 # 파일업로드 경로 설정
 common:
   uploadPath: C:/ezen-fullstack/workspace/final_project_template/upload/

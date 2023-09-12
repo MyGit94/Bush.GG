@@ -32,7 +32,6 @@ a:hover {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
-  background-image: url('../img/menubar2.jpg');
   background-position: -10px 0;
   background-repeat: no-repeat;
   background-size: cover;
@@ -100,12 +99,150 @@ a:hover {
 }
 
 /* 실시간 정보 전체영역 */
-.summoner_live_table_wrap {
+.summoner_live_wrap {
   width: 100%;
-  background-color: rgb(107, 164, 189);
+  /* background-color: rgb(107, 164, 189); */
   height: 400px;
+  padding: 5px;
 
 }
+
+/* 컨텐츠 */
+.live_info_contents {
+  border-radius: 10px;
+  width: 33%;
+  border: 1px solid #dadada;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 컨텐츠 한줄 전체영역 */
+.live_info_wrap {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+/* vs 전체영역 */
+.live_info_vs {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 게임 진행시간 , 큐타입  */
+.live_info_match_type_text , .live_info_match_time{
+  width:25%;
+}
+
+/* vs 텍스트 */
+.live_info_vs_text{
+  text-align: center;
+  width:50%;
+  margin-bottom: 20px;
+}
+
+.live_info_match_time{
+  text-align:right;
+}
+
+/* 한줄 */
+.live_info_list {
+  height: 15%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 좌측 리스트 */
+.live_left_wrap {
+  width: 48%;
+  display: flex;
+  align-items: center;
+  height: 19%;
+  justify-content: space-between;
+}
+
+/* 소환사 티어 */
+.live_summoner_tier {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border: 1px solid #000;
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 티어 텍스트 */
+.live_summoner_tier_text {
+  color: #fff;
+  margin: 0;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+/* 소환사 닉네임 */
+.live_summoner_name {
+  display: flex;
+  align-items: center;
+}
+
+/* 소환사 닉네임 텍스트 */
+.live_summoner_name_text {
+  margin: 0;
+}
+
+/* 스펠 / 챔피언 전체영역 */
+.live_summoner_img_wrap {
+  display: flex;
+}
+
+/* 소환사 스펠 */
+.live_summoner_spell_wrap {
+  display: flex;
+  margin: 0 3px;
+  flex-direction: column;
+}
+
+/* 스펠 이미지 */
+.live_summoner_spell_wrap img {
+  width: 20px;
+  height: 20px;
+}
+
+/* 실시간 정보 타이틀 */
+.summoner_live_title {
+  height: 10%;
+  display: flex;
+  align-items: center;
+}
+
+/* 실시간 정보 타이틀  텍스트*/
+.summoner_live_title_text {
+  margin: 0;
+  font-size: 22px;
+  font-weight: bold;
+  color: #156549;
+}
+
+
+
+
+
+
+/* 챔피언 이미지  */
+.live_champion_face_wrap img {
+  width: 40px;
+  height: 40px;
+}
+
 
 /* 커뮤니티 , 로테이션 챔피언 크기 지정 */
 .summoner_coummuity_wrap,
@@ -145,6 +282,7 @@ a:hover {
 
 /* 커뮤니티 영역 타이틀 */
 .community_main_title {
+  font-size: 22px;
   margin-bottom: 20px;
   font-weight: bold;
   color: #156549;
@@ -198,20 +336,24 @@ a:hover {
 }
 
 /* 로테이션 챔피언 전체영역 */
-.rotation_champion_wrap {}
+.rotation_champion_wrap {
+  border-radius: 10px 10px 0 0;
+}
 
 
 /* 로테이션 챔피언 타이틀 */
 .rotation_champion_title {
+  border-radius: 10px 10px 0 0;
   padding: 10px;
   background-color: rgb(240, 240, 240);
 }
 
+
 /* 로테이션 챔피언 타이틀 텍스트 */
 .rotation_champion_title_text {
-  color: #000;
+  color: #156549;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 22px;
   margin: 0;
 }
 
@@ -226,14 +368,16 @@ a:hover {
 
 /* 챔피언 사진 , 이름 */
 .rotation_champion_face_list {
-  width: 80px;
   height: 80px;
-  border-radius: 50%;
-  border: 1px solid rgb(221, 221, 221);
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* 챔피언 이미지 사이즈 */
 .rotation_champion_face_list img {
+  border-radius: 10px;
   width: 80px;
 }
 

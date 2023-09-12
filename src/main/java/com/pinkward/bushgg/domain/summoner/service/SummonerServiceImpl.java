@@ -36,6 +36,9 @@ public class SummonerServiceImpl implements SummonerService {
     @Value("${riot.api.key}")
     private String mykey;
 
+    @Value("${riot.challenges.key}")
+    private String challengeskey;
+
     @Override
     public SummonerDTO summonerInfo(String summonerName) {
         SummonerDTO summoner;
@@ -111,6 +114,27 @@ public class SummonerServiceImpl implements SummonerService {
             return null;
         }
         return playerChallengesInfo;
+    }
+
+    public SummonerDTO getSummoner (String puuid){
+        SummonerDTO summoner;
+        String serverUrl = "https://kr.api.riotgames.com";
+        try {
+            HttpClient client = HttpClientBuilder.create().build();
+            HttpGet request = new HttpGet(serverUrl + "/lol/summoner/v4/summoners/by-puuid/" + puuid + "?api_key="+ challengeskey);
+
+            HttpResponse response = client.execute(request);
+
+            if(response.getStatusLine().getStatusCode() != 200){
+                return null;
+            }
+            HttpEntity entity = response.getEntity();
+            summoner = objectMapper.readValue(entity.getContent(),SummonerDTO.class);
+        } catch (IOException e){
+            e.printStackTrace();
+            return null;
+        }
+        return summoner;
     }
 
     @Override

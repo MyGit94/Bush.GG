@@ -36,8 +36,10 @@ public interface SummonerService {
     // 랭킹 순위 가져오기
     public List<RankingDTO> ranking();
 
-    // puuid로 유저 challenges list가져오기
+    // puuid로 유저가 달성한 challenges list가져오기
     public PlayerChallengesInfoDTO getPlayerChallengesInfo(String puuid);
 
+    // puuid로 유저 정보 가져오기
+    public SummonerDTO getSummoner(String puuid);
 
 }
