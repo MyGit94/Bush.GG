@@ -190,7 +190,7 @@
                     <!-- 랭킹 아이콘 -->
                     <div class="summoner_icon rank_icon">
                         <!-- 랭크 아이콘 이미지 -->
-                        <img src="/img/tier/Challenger.png" th:src="${tierImageUrl}" alt="">
+                        <img  th:src="${tierImageUrl}" alt="">
                     </div>
 
                     <!-- 소환사 랭크 정보 텍스트만을 정렬하기 위한 영역 지정 -->
@@ -283,57 +283,59 @@
 
                 <!-- 최근 20게임 플레이 챔피언 승률 -->
                 <div class="info_recent_champion_rate">
-<!--                    <p th:text="${recentDTO.getRecentChampion()}"></p>-->
                     <!-- 최근 20게임 챔피언 승률 타이틀  -->
                     <h1 class="recent_friend_title champion_rate_title">
                         선호하는 챔피언 (최근 20 게임)
                     </h1>
 
-                    <table class="recent_friend_table recent_champion_table">
-                        <thead>
-                        <!-- 테이블 제목 -->
-                        <tr>
-                            <td>챔피언</td>
-                            <td>승-패</td>
-                            <td>승률</td>
-                        </tr>
-                        </thead>
+                    <!-- 챔피언 승률 전체영역 -->
+                    <div class="recent_friend_table recent_champion_table">
 
-                        <tbody>
-                        <!-- 1행 -->
-                        <tr th:each="row :${recentDTO.getChampionCounts()}">
-                            <td>
-                                <!-- 챔피언 사진 -->
-                                <div class="champion_face">
-                                    <img src="/img/champion/Leblanc.png" th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/' + ${row.getChampionName()}+'.png'}" alt="">
+                        <!-- 챔피언  -->
+                        <div class="recent_champion_table_header">
+                            <h1 class="champion_table_header_text1">챔피언</h1.>
+                                <h1 class="champion_table_header_text2">승/패</h1>
+                                <h1 class="champion_table_header_text3">승률</h1>
+                        </div>
+
+
+                        <!-- 챔피언 승률 리스트 (1행) -->
+                        <div class="recent_champion_list_wrap" th:each="row :${recentDTO.getChampionCounts()}">
+                            <!-- 챔피언 이미지 -->
+                            <div class="champion_face">
+                                <img src="/img/champion/Leblanc.png" th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/' + ${row.getChampionName()}+'.png'}" alt="">
+                            </div>
+
+                            <!-- 챔피언 이름 -->
+                            <div class="champion_name">
+                                <h1 class="champion_name_text" th:text="${row.getWin()}+'-'+${row.getCount() - row.getWin()}">
+                                    아칼리
+                                </h1>
+                            </div>
+
+
+                            <!-- 승리 패배 막대차트 -->
+                            <div class="champion_rate_chartbar">
+                                <!-- 승리 막대 차트 -->
+                                <div class="left_rate_chart">
+                                    <!-- 승률(승리) 텍스트 -->
+                                    <div class="left_rate_text" th:text="${row.getWinRate()}+'%'">67%</div>
                                 </div>
 
-                                <!-- 챔피언 이름 텍스트 -->
-                                <p class="champion_name" th:text="${row.getWin()}+'-'+${row.getCount() - row.getWin()}">
-                                    르블랑
-                                </p>
-
-                                <!-- 챔피언별 승률 차트 전체영역 -->
-                                <div class="champion_rate_chartbar">
-                                    <!-- 승리 막대 차트 -->
-                                    <div class="left_rate_chart">
-                                        <!-- 승률(승리) 텍스트 -->
-                                        <div class="left_rate_text" th:text="${row.getWinRate()}+'%'">67%</div>
-                                    </div>
-
-                                    <!-- 패배 막대 차트 -->
-                                    <div class="right_rate_chart">
-                                        <!-- 승률(패배) 텍스트 -->
-                                        <div class="right_rate_text" th:text="${100 - row.getWinRate()}+'%'">33%</div>
-                                    </div>
-
+                                <!-- 패배 막대 차트 -->
+                                <div class="right_rate_chart">
+                                    <!-- 승률(패배) 텍스트 -->
+                                    <div class="right_rate_text" th:text="${100 - row.getWinRate()}+'%'">33%</div>
                                 </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+
+                            </div>
+                            <!-- 승리 패배 막대차트 끝 -->
+                        </div>
+                        <!-- 챔피언 승률 리스트 1행 끝 -->
+                    </div>
+                    <!-- 챔피언 승률 테이블 전체영역끝 -->
                 </div>
-                <!-- 최근 20게임 플레이 챔피언 승률 끝 -->
+                <!-- 최근 20게임 플레이 승률 끝 -->
 
 
                 <!-- 최근 20게임 승률 전체영역 -->
@@ -341,7 +343,7 @@
                     <!-- 승률 차트 -->
                     <div class="game_rate_chart">
                         <!-- 차트 -->
-                        <canvas id="myPieChart">
+                        <canvas class="myPieChart">
                             <!-- 현재 승률 지수 -->
 
                         </canvas>
@@ -376,7 +378,6 @@
 
         <!-- 전적 리스트 전체영역-->
         <div class="record_wrap">
-
             <!--         전적 상세보기와 전적 리스트를 한곳에 묶기위한 wrap-->
             <div class="record_list_wrap" th:each="matchInfoList : ${matchInfoList}"
                  th:with="matchInfo=${matchInfoList['matchInfo']}, participant=${matchInfoList['participant']}, mainRune=${matchInfoList['mainRune']}, subRune=${matchInfoList['subRune']}">
@@ -384,7 +385,7 @@
                 <!-- 전적 : 게임정보 (1 게임) 전체영역  -->
                 <!--@@@@@@@@@@@@@@@@@@@@@@@@ ForEach 여기서부터 시작 @@@@@@@@@@@@@@@@@@@@@@@@ -->
                 <!-- 구조를 이해하기 쉽게 일단은 정적인 값을 등록해두었음-->
-                <div class="record_list">
+                <div class="record_list" th:classappend="${!participant.isWin()? 'lose_list' : ''}">
                     <!-- 좌측 승패를 구분하기위한 색을 주기위해 빈공백 설정 -->
                     <div class="record_blank"></div>
                     <!-- 게임정보를 기록하는 전체영역 -->
@@ -1533,6 +1534,14 @@
 
 <!-- Page level plugins -->
 <script src="/vendor/chart.js/Chart.min.js"></script>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    // 20판중 승률 , 패배율
+    const winCount = [[${recentDTO.getWinRate()}]];
+    const loseCount = [[${100 - recentDTO.getWinRate() }]];
+    /*]]>*/
+</script>
 
 <!-- Page level custom scripts -->
 <script src="/js/demo/chart-area-demo.js"></script>

@@ -95,7 +95,7 @@ div들을 정렬하기 위한 옵션 */
   flex-direction: column;
   justify-content: center;
   width: 100px;
-  
+
 }
 
 .summoner_icon img {
@@ -139,9 +139,6 @@ div들을 정렬하기 위한 옵션 */
 .rank_icon {
   width: 160px;
   height:160px;
-  background-image: url(/img/tier/Bronze.png);
-  background-position:center;
-  background-size:200px 200px;
 }
 
 /* 티어 이미지와 텍스트간의 여백 생성 */
@@ -223,20 +220,50 @@ div들을 정렬하기 위한 옵션 */
   justify-content: center;
 }
 
-/* 각 행에서 컬럼별 위치를 잡기위한 값 부여 */
-.recent_champion_table tbody tr {
+/* 챔피언 승률 차트 헤더 */
+.recent_champion_table_header {
+  background-color: #156549;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-weight: bold;
+  padding:10px;
 }
 
-.champion_face_wrap{
-  width:30%;
+/* 차트 헤더 텍스트 */
+.recent_champion_table_header h1{
+  font-size:15px;
+  margin:0;
 }
 
-.champion_chart_bar_wrap{
+/* 챔피언 승률 리스트 */
+.recent_champion_list_wrap {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #dadada;
+  align-items: center;
+}
+
+.champion_table_header_text1 , .champion_table_header_text2{
+  width:25%;
+}
+
+.champion_table_header_text3{
+  width:50%;
+  display: flex;
+  justify-content: center;
+}
+
+/* 영역 사이즈 */
+.champion_face , .champion_name{
+  width:15%;
+}
+
+.champion_rate_chartbar{
   width:70%;
 }
+
 
 /* 챔피언 사진 */
 .champion_face img {
@@ -245,13 +272,18 @@ div들을 정렬하기 위한 옵션 */
 
 /* 챔피언 이름 */
 .champion_name {
-  font-size: 14px;
-  font-weight: bold;
+
   color: #000;
   margin-left: 10px;
   margin-bottom: 0;
 }
 
+/* 챔피언 이름 텍스트 */
+.champion_name_text{
+  font-size:15px;
+  font-weight: bold;
+  margin:0;
+}
 
 
 /* 챔피언 승률 차트 전체영역 */
@@ -487,13 +519,27 @@ div들을 정렬하기 위한 옵션 */
   height: 120px;
   /* background-color: rgb(255, 195, 160); */
   display: flex;
+  background-color: #15654956;
+}
 
+/* 전적 리스트 전체 색상 : 패배시 */
+.record_list.lose_list{
+  background-color:#ffb9b971;
+}
+
+/* 앞에부분 빈 div */
+.lose_list .record_blank{
+  background-color: #ff0000;
+}
+
+/* 승리 , 패배 텍스트 */
+.lose_list .match_result{
+  color:#ff0000;
 }
 
 /* 리스트 안에 있는 영역 오른쪽에 점선으로 구분하기 위한 스타일 지정 */
-.record_list>div {
+.record_list>div{
   border-right: 1px dashed #868686;
-  background-color: #15654956;
   text-align: center;
   box-sizing: border-box;
 }
@@ -508,7 +554,7 @@ div들을 정렬하기 위한 옵션 */
 .record_blank {
   width: 1%;
   height: 100%;
-  background-color: #156549 !important;
+  background-color: #156549;
   border-radius: 10px 0 0 10px;
   padding: 20px;
 }

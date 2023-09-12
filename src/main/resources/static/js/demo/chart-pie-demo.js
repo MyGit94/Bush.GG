@@ -2,17 +2,11 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
+Chart.defaults.global.defaultFontFamily = 'Nunito, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+Chart.defaults.global.defaultFontColor = '#858796';
 
-
-
-
- 
 // 도넛차트
 var ctx = document.querySelectorAll(".myPieChart");
-
-ctx.forEach((element)=>{
-element.style.z
-});
 
 ctx.forEach((element) => {
   var myPieChart = new Chart(element, {
@@ -20,11 +14,11 @@ ctx.forEach((element) => {
     data: {
       labels: ["Win", "Lose"], // 도넛 차트 섹션 레이블
       datasets: [{
-        data: [55, 45], // 섹션별 데이터 값
-        backgroundColor: ['#156549' , 'red'], // 도넛 차트 섹션 배경색 
+        data: [winCount, loseCount], // 섹션별 데이터 값
+        backgroundColor: ['#156549', 'red'], // 도넛 차트 섹션 배경색
       }],
     },
-    
+
     options: {
       maintainAspectRatio: false, // 차트의 가로세로 비율 유지 안 함
       tooltips: {
@@ -37,13 +31,10 @@ ctx.forEach((element) => {
         displayColors: false, // 툴팁에 색상 상자 표시 안 함
         caretPadding: 10, // 삼각 화살표 패딩
       },
-      legend :{
-         display :false// 범례 숨김 
-       },
-       cutoutPercentage :80,// 도넛 차트의 중심에 뚫린 부분의 크기 (0-100)
-     }
-   });
+      legend: {
+        display: false // 범례 숨김
+      },
+      cutoutPercentage: 80, // 도넛 차트의 중심에 뚫린 부분의 크기 (0-100)
+    }
+  });
 });
-
-
-
