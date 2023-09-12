@@ -119,6 +119,23 @@ h5 {
   width: 25%;
 }
 
+
+/* 소환사 아이콘 */
+.rank_table_name img{
+  width:60px;
+  height:60px;
+  border-radius: 50%;
+  border:1px solid #000;
+  margin-right:10px;
+}
+
+/* 소환사명 텍스트 */
+.rank_table_name_text{
+  font-weight: bold;
+  font-size:18px;
+  margin:0;
+}
+
 /* 티어 */
 .rank_table_header_tier,
 .rank_table_tier {
@@ -146,6 +163,7 @@ h5 {
 /* 내용 :: 1행의 모든칸 */
 .summoner_rank_table_body td {
   display: flex;
+  align-items: center;
   justify-content: flex-start;
 }
 

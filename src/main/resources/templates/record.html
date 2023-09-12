@@ -554,7 +554,7 @@
                     <div class="detail_info_wrap active" th:with="participantsList=${matchInfoList['participantsList']}" >
 
                         <!-- 블루팀 전체영역 -->
-                        <div class="detail_win_team">
+                        <div class="detail_win_team detail_team">
 
                             <h1 class="we_are_winner" th:text="${matchInfo.isBlueWin()} ? '승리팀(블루팀)': '패배팀(블루팀)'">
                                 승리팀(블루팀)
@@ -647,7 +647,7 @@
                                         </div>
 
                                         <!-- 데미지 수치 텍스트 -->
-                                        <p class="dmg"  th:text="${participants.getTotalDamageDealtToChampions}">236502</p>
+                                        <p class="dmg push"  th:text="${participants.getTotalDamageDealtToChampions}">236502</p>
                                     </div>
 
                                     <!-- 입은 데미지 -->
@@ -750,7 +750,7 @@
 
 
                         <!-- 패배팀 전체영역 -->
-                        <div class="detail_lose_team">
+                        <div class="detail_lose_team detail_team">
 
                             <h1 class="we_are_winner"  th:text="${matchInfo.isRedWin()} ? '승리팀(레드팀)': '패배팀(레드팀)'">
                                 패배팀(레드팀)
