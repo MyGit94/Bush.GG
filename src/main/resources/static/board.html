@@ -20,8 +20,6 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/board.css">
 
-    <link rel="stylesheet" href="css/footer.css">
-
 </head>
 
 
@@ -141,15 +139,15 @@
 
         </nav>
         <!-- 상단헤더 끝 -->
-
+        <section class="board">
         <!-- 게시판 헤더 -->
-        <div class="articleHeder">
-            <h1 class="h1">자유게시판</h1>
-            <div class="articleHederBtn">
-                <button type="button" class="btn bestBtn">
-                    <i class="fas fa-heart"></i>
-                    BEST</button>
-                <button onclick="location.href='board-register.html';" class="btn writeBtn"><i class="fas fa-pen fa-sm"></i> 글 쓰기</button>
+        <div class="boardHeder">
+            <div class="title">
+                <h1 class="h1">자유게시판</h1>
+            </div>
+            <div class="boardHederBtn">
+                <button type="button" class="btn bestBtn">🔥인기글</button>
+                <button onclick="location.href='board-register.html';" class="btn writeBtn">✏글 쓰기</button>
             </div>
         </div>
         <!-- 게시판 헤더 끝 --> 
@@ -266,14 +264,14 @@
              <!-- 게시판 끝-->
 
             <!-- 게시판 하단 & 페이지 -->
-            <div class="articleBottom">
+            <div class="boardBottom">
                 <div class="">
                     <button class="btn listBtn" type="button">
                         <i class="fas fa-list"></i>
                     </button>
                 </div>
                 <!-- 검색 전체-->
-                <form class="articleSearch">
+                <form class="boardSearch">
                     <!-- 게시글 검색 : 입력 텍스트칸 -->
                     <input type="text" class="form-control small" placeholder="검색 내용을 입력해주세요"
                         aria-label="Search" aria-describedby="basic-addon2">
@@ -294,6 +292,7 @@
                   </div>
             </div>
             <!-- 게시판 하단 & 페이지 끝-->
+        </section>
         </div>
         <!-- 메인 컨텐츠 전체영역 끝 -->
     </div>

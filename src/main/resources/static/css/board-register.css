@@ -1,3 +1,4 @@
+/* 게시글 헤더 */
 .boardRegisterHeder{
   display: grid;
   padding: 0rem 1.25rem;
@@ -5,7 +6,9 @@
   align-content: space-between;
   background-color: lightskyblue;
 }
-
+.title{
+  margin-top: 1.25rem;
+}
 
 /*게시글 작성*/
 .writeBody{
