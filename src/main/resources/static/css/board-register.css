@@ -1,10 +1,19 @@
+/* 게시글 영역*/
+.boardRegister{
+  margin-bottom: 3rem;
+}
+
 /* 게시글 헤더 */
 .boardRegisterHeder{
   display: grid;
   padding: 0rem 1.25rem;
   height: 200px;
   align-content: space-between;
-  background-color: lightskyblue;
+  background-image: url('../img/illust/illust_1.jpg');
+  background-position: center;
+  background-size: cover;
+  color:#fff;
+
 }
 .title{
   margin-top: 1.25rem;
@@ -12,15 +21,8 @@
 
 /*게시글 작성*/
 .writeBody{
-    margin: 0 auto;
-    width: 100%;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color:#005829;
-    background-clip: border-box;
+    margin: 1.25rem;
+
     border: 1px solid #e3e6f0;
     border-radius: 0.35rem;
 }
@@ -34,6 +36,12 @@
   word-wrap: normal;
   border-radius: 10px;
 }
-.reigser{
+
+.registerBtn{
   background-color: #03c75a;
+  border-radius: 1rem;
+}
+.registerBtn:hover{
+  color:#fff;
+  background-color: #03b000;
 }
