@@ -598,7 +598,6 @@ div들을 정렬하기 위한 옵션 */
   flex-direction: column;
   font-weight: bold;
   color: #156549;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* 진행한 게임 플레이 시간 */
@@ -1013,7 +1012,7 @@ div들을 정렬하기 위한 옵션 */
 }
 
 /* 소환사 이름 스타일 */
-.summoner-name {
+.summoner_name {
   font-weight: bold;
   color: #000;
   font-size: 12px;
@@ -1377,7 +1376,6 @@ div들을 정렬하기 위한 옵션 */
 
 /* 실질적인 킬 수 그래프 */
 .kill_bar {
-  width: 20%;
   height: 100%;
   background-color: #156549;
 }
@@ -1389,10 +1387,11 @@ div들을 정렬하기 위한 옵션 */
 
 /* 킬 그래프 수치 텍스트 */
 .kill_bar_text {
-  font-size: 14px;
+  left:1%;
+  position:absolute;
+  font-size: 12px;
   color: #fff;
   font-weight: bold;
-  margin-right: 10px;
 }
 
 /* 승리팀 호버시 나오는 설명창 위치조정 */

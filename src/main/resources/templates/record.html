@@ -1000,12 +1000,12 @@
                                             <!-- 그래프 전체영역 -->
                                             <div class="kill_bar_graph">
                                                 <!-- 마우스 hover 시 나오는 설명 -->
-                                                <div class="hover_dmg kill_bar_graph_hovler dmg_chart_info"
+                                                <div class="hover_dmg kill_bar_graph_hover dmg_chart_info"
                                                      th:text="'챔피언 킬량 : '+${participants.getKills()}">
                                                     챔피언 킬량 : 2
                                                 </div>
                                                 <!-- 실질적인 킬 수 그래프 -->
-                                                <div cass="kill_bar"></div>
+                                                <div class="kill_bar"></div>
                                                 <!-- 킬 수치 텍스트 -->
                                                 <p class="kill_bar_text" th:text="${participants.getKills()}">2</p>
                                             </div>
@@ -1016,7 +1016,7 @@
                                     <!-- 중앙 도넛 그래프 -->
                                     <div class="champion_kill_circle_graph">
                                         <!-- 차트 -->
-                                        <canvas class="myPieChart">
+                                        <canvas class="myPieChart" id="champion_kill_donut_chart">
                                             <!-- 현재 승률 지수 -->
 
                                         </canvas>
@@ -1043,14 +1043,14 @@
                                                  th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                                  alt="">
                                             <!-- 그래프 전체영역 -->
-                                            <div class="kill_bar_graph">
+                                            <div class="kill_bar_graph lose_kill_bar_graph">
                                                 <!-- 마우스 hover 시 나오는 설명 -->
                                                 <div class="hover_dmg kill_bar_graph_hover dmg_chart_info"
                                                      th:text="'챔피언 킬량 : '+${participants.getKills()}">
                                                     챔피언 킬량 : 2
                                                 </div>
                                                 <!-- 실질적인 킬 수 그래프 -->
-                                                <div class="kill_bar"></div>
+                                                <div class="kill_bar lose_kill_bar"></div>
                                                 <!-- 킬 수치 텍스트 -->
                                                 <p class="kill_bar_text" th:text="${participants.getKills()}">2</p>
                                             </div>
@@ -1099,7 +1099,7 @@
                                     <!-- 중앙 도넛 그래프 -->
                                     <div class="champion_kill_circle_graph">
                                         <!-- 차트 -->
-                                        <canvas class="myPieChart">
+                                        <canvas class="myPieChart" id="champion_gold_donut_chart">
                                             <!-- 현재 승률 지수 -->
 
                                         </canvas>
@@ -1184,7 +1184,7 @@
                                     <!-- 중앙 도넛 그래프 -->
                                     <div class="champion_kill_circle_graph">
                                         <!-- 차트 -->
-                                        <canvas class="myPieChart">
+                                        <canvas class="myPieChart" id="champion_dmg_donut_chart">
                                             <!-- 현재 승률 지수 -->
 
                                         </canvas>
@@ -1268,7 +1268,7 @@
                                     <!-- 중앙 도넛 그래프 -->
                                     <div class="champion_kill_circle_graph">
                                         <!-- 차트 -->
-                                        <canvas class="myPieChart">
+                                        <canvas class="myPieChart" id="champion_ward_donut_chart">
                                             <!-- 현재 승률 지수 -->
 
                                         </canvas>
@@ -1352,7 +1352,7 @@
                                     <!-- 중앙 도넛 그래프 -->
                                     <div class="champion_kill_circle_graph">
                                         <!-- 차트 -->
-                                        <canvas class="myPieChart">
+                                        <canvas class="myPieChart" id="champion_getdmg_donut_chart">
                                             <!-- 현재 승률 지수 -->
 
                                         </canvas>
@@ -1434,7 +1434,7 @@
                                     <!-- 중앙 도넛 그래프 -->
                                     <div class="champion_kill_circle_graph">
                                         <!-- 차트 -->
-                                        <canvas class="myPieChart">
+                                        <canvas class="myPieChart" id="champion_cs_donut_chart">
                                             <!-- 현재 승률 지수 -->
 
                                         </canvas>
@@ -1710,11 +1710,11 @@
 <!-- 타임리프를 통해 데이터 전달 -->
 <script th:inline="javascript">
     /*<![CDATA[*/
-    // 20판중 승률 , 패배율
-    const winCount = [[${recentDTO.getWinRate()}]];
-    const loseCount = [[${100 - recentDTO.getWinRate() }]];
+    const winCount = '[[${recentDTO.getWinRate()}]]';
+    const loseCount = '[[${100 - recentDTO.getWinRate()}]]';
     /*]]>*/
 </script>
+
 <script src="/js/demo/chart-pie-demo.js"></script>
 <script src="/js/record.js"></script>
 
