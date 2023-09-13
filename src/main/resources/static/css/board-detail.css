@@ -1,12 +1,23 @@
 
 /* 게시글 헤더 */
 
+.titleArea{
+  border-bottom: 1px solid #e3e6f0;
+  margin-bottom: 8px;
+}
+
 .nickname{
   padding:0px;
   border: 0;
   background: none;
   font-weight: bold;
   cursor: pointer;
+}
+
+.articleInfoBox{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
 }
 .articleInfo{ 
   color: #6e707e;
@@ -39,7 +50,7 @@
   padding: 5px;
 }
 /* 댓글 */
-.commentCount{
+.commentCountBox{
   display: flex;
   align-items: flex-end;
   padding: 1.25rem 0rem;
@@ -82,4 +93,13 @@ margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   padding: 1.25rem 0rem;
+}
+.bottomBtn{
+  background-color: #708090;
+  padding: 7.5px 12px 4.5px;
+}
+.bottomBtn:hover{
+  color: #fff;
+  background-color: #708090cc;
+
 }

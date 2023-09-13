@@ -34,6 +34,11 @@
     border: 1px solid #e3e6f0;
     border-radius: 0.35rem;
   }
+  .tableHederBtn{
+    display: flex;
+    justify-content: end;
+    padding-bottom: 1.25rem;
+  }
 table {
   border-collapse: separate;
   border: 2px solid #000000;
@@ -78,6 +83,7 @@ table {
 .writeBtn{
   background-color: #03c75a;
   border-radius: 1rem;
+  padding: 7.5px 12px 4.5px;
 }
 .writeBtn:hover{
   color:#fff;
@@ -87,6 +93,7 @@ table {
 .bestBtn{
   background-color: #ff0000;
   border-radius: 1rem;
+  padding: 7.5px 12px 4.5px;
 }
 .bestBtn:hover{
   color:#fff;

@@ -42,7 +42,6 @@ a:hover {
 /* 상단 헤더 버튼 */
 .btn {
   display: inline-block;
-  font-weight: bold;
   color: #fff;
   text-align: center;
   vertical-align: middle;

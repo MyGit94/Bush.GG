@@ -35,13 +35,33 @@
 .category {
   word-wrap: normal;
   border-radius: 10px;
+  padding:7.5px 0px 4.5px;
 }
 
 .registerBtn{
-  background-color: #03c75a;
+  color: #fff;
+  background-color: #000000;
   border-radius: 1rem;
+  padding: 7.5px 12px 4.5px;
 }
 .registerBtn:hover{
   color:#fff;
-  background-color: #03b000;
+  background-color: #000000cc;
+}
+/* 게시글 하단*/
+.aritcleBottom{
+  display: flex;
+  justify-content: space-between;
+  padding: 1.25rem;
+}
+.fas{
+  padding: 5px;
+}
+.bottomBtn{
+  background-color: #708090;
+  padding: 7.5px 12px 4.5px;
+}
+.bottomBtn:hover{
+  color: #fff;
+  background-color: #708090cc;
 }
