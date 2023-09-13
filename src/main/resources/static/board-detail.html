@@ -19,8 +19,7 @@
     <link href="css/sb-admin-2.css" rel="stylesheet">
          <!-- 내 Stylce CSS 8/29일 추가됨  -->
     <link rel="stylesheet" href="css/index.css">
-
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/board-detail.css">
 
 </head>
 
@@ -36,7 +35,7 @@
             <li class="nav-item active">
                 <a class="nav-link nav-link2" href="index.html">
                     <!-- <p class="nav-item-text">BUSH.GG</p> -->
-                  <img src="/img/logo.png" alt="" class="nav-item-img">
+                  <img src="img/logo.png" alt="" class="nav-item-img">
                    </a>
             </li>
 
@@ -112,71 +111,81 @@
 
         <!-- 메인 컨텐츠 전체영역 -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- 상단 헤더 -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
                 <!-- (모바일) 사이드 메뉴 여닫이 버튼 -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
+
                 <!-- 전적 검색창 -->
-                <form
-                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="form-group">
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
                         <!-- 전적 검색 : 입력 텍스트칸 -->
-                        <input type="text" class="form-control border-0 small" placeholder="소환사명을 입력해주세요"
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="소환사명을 입력해주세요"
                             aria-label="Search" aria-describedby="basic-addon2">
-                            <!-- 검색 아이콘 전체영역 -->
-                        <div class="form-group">
+                        <!-- 검색 아이콘 전체영역 -->
+                        <div class="input-group-append">
                             <!-- 검색 버튼 네모박스 -->
-                            <button onclick="location.href='index.html';" class="btn searchBtn" type="button">
+                            <button class="btn btn-primary" type="button">
                                 <!-- 검색 버튼 돋보기 아이콘 -->
                                 <i class="fas fa-search fa-sm"></i>
                             </button>
                         </div>
                     </div>
                 </form>
-                <!-- 전적 검색창 끝 -->   
-        <!-- 로그인&회원가입-->
-        <div class="d-flex justify-content-between ml-3 mr-3">
-            <div class="">
-                <button onclick="location.href='login.html';" class="btn signInBtn" type="button">로그인</button>
-                <button onclick="location.href='register.html';" class="btn signUpBtn" type="button">회원가입</button>
-            </div>
-        </div>
-        <!-- 로그인&회원가입-->
+                <!-- 전적 검색창 끝 -->
+
+                <!-- 로그인 , 회원가입 -->
+                <div class="navbar_login_wrap">
+                    <!-- 로그인 -->
+                    <a href="login.html" class="navbar_login">
+                        로그인
+                    </a>
+
+                    <!-- 회원가입 -->
+                     <a href="register.html" class="navbar_register">
+                        회원가입
+                    </a>
+                </div>
+
             </nav>
             <!-- 상단헤더 끝 -->
 
         <!-- 게시판 헤더 -->
         <!-- 제목 라인 -->
-        <div class="ArticleHeder">
-            <div class="nick">
-                <a href="index.html" class="link_board">카테고리</a>
-            </div>
-            <div class="title_area">
-                <!---->
-                <!---->
-                <!---->
-                <h5 class="title_text"><strong>제목 내용입니다?제목 내용입니다?제목 내용입니다?</strong></h5>
-            </div>
-            <div class="nick">
-                <a href="#" class="link_board">홍길동</a>
-            </div>
+        <section class="article">
 
-            <div class="d-flex justify-content-between">
-                <div class="d-flex justify-content-between">
-                    <div><p class="title_text mr-2">2023-09-04</p></div>
-                    <div><p class="title_text">조회수 </p></div>
+        
+        <div class="articleHeder">
+            <div class="category">
+                <a href="index.html" class="linkBoard"><strong>. 카테고리</strong>
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </div>
+            <div class="titleArea">
+                <h3 class="titleText">제목 내용입니다?제목 내용입니다?제목 내용입니다?</h3>
+            </div>
+            <div class="nickBox">
+                <button id="" class="nickname"> 홍길동 </button>
+            </div>
+            <div class="articleInfoBox">
+                <div class="articleInfo">
+                    <span class="date">2023-09-04</span>
+                    <span class="count">조회 15</span>
                 </div>
-                <div><h5 class="title_text">댓글 ?개 </h5></div>
+                <div class="commentCount">
+                    <span class="titleText">💬</span>
+                    <span class="titleText">댓글 ?개 </span>
+                </div>
             </div>
          </div>
          <!-- 제목 라인 끝-->
         <!-- 게시판 헤더 끝 --> 
 
             <!-- 게시판 -->
-            <div class="card shadow mb-4">
+            <div class="card shadow">
 
                 <div class="card-body">
                     <div class="content" rows="10">
@@ -194,59 +203,89 @@
                         s pariatur? Rerum, fugit reprehenderit eveniet voluptates alias fuga soluta!</p>
                     </div>
                     <div class="d-flex justify-content-center mt-5">
-                        <button type="submit" class="btn btn-danger d-flex">
-                            <span data-v="???" class="hart mr-2">♡</span>
-                            <span data-v="???" class="hart_count">1</span>
+                        <button type="submit" class="btn hartCountBtn">
+                            <span data-v="???" class="hart mr-2"><i class="fas fa-heart"></i></span>
+                            <span data-v="???" class="hartCount">??</span>
                         </button>
                     </div>
                 </div>
              </div>
              <!-- 게시판 끝-->
              <!-- 댓글 목록 -->
-             <div class="d-flex justify-content-between">
-                <div>
-                    <h5 class="title_text">댓글 ?개 </h5>
+                <div class="commentCountBox">
+                    <h5 class="titleText">💬</h5><h5 class="titleText">댓글 ?개 </h5>
                 </div>
-            </div>
-            <div class="Comment_Box">
-                <ul class="list-group CommentList mb-3">
+            <div class="commentBox">
+                <ul class="list-group commentList">
                     <li id="#" class="list-group-item CommentItem"><span>닉네임</span>
+                        <div class="commentTextBox">
+                            <p>
+                                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                     Beatae ab non, aspernatur adipisci ullam quas officiis dolores eveniet commodi, ea place
+                                    at voluptate. Ea aspernatur nulla omnis inventore similique iure hic.</span>
+                            </p>
+                            <div class="commentInfoBox">
+                                <span class="comment_info_date">2023-09-04</span>
+                                <a href="#" role="button" class="commentInfoBtn"> 답글쓰기 </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li id="#" class="list-group-item CommentItemReply"><span>닉네임</span>
                         <div class="Comment_text_Box">
                             <p>
                                 <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                                      Beatae ab non, aspernatur adipisci ullam quas officiis dolores eveniet commodi, ea place
                                     at voluptate. Ea aspernatur nulla omnis inventore similique iure hic.</span>
                             </p>
-                            <div class="comment_info_box mb-3">
+                            <div class="commentInfoBox">
                                 <span class="comment_info_date">2023-09-04</span>
-                                <a href="#" role="button" class="btn"> 답글쓰기 </a>
+                                <a href="#" role="button" class="commentInfoBtn"> 답글쓰기 </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li id="#" class="list-group-item CommentItemReply"><span>닉네임</span>
+                        <div class="Comment_text_Box">
+                            <p>
+                                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                     Beatae ab non, aspernatur adipisci ullam quas officiis dolores eveniet commodi, ea place
+                                    at voluptate. Ea aspernatur nulla omnis inventore similique iure hic.</span>
+                            </p>
+                            <div class="commentInfoBox">
+                                <span class="comment_info_date">2023-09-04</span>
+                                <a href="#" role="button" class="commentInfoBtn"> 답글쓰기 </a>
                             </div>
                         </div>
                     </li>
                 </ul>
-                
-                <form class="CommentWriter">
-                    <div class="comment_inbox">
+                <form class="commentWriter">
+                    <div class="commentInBox">
                         <textarea class="form-control" placeholder="댓글을 남겨보세요" rows="5"></textarea>
                     </div>
                     <div class="register d-flex justify-content-end mt-2">
-                        <button type="submit" class="btn">등록</button>
+                        <button type="submit" class="regiserBtn">등록</button>
                     </div>
                </form>
             </div>
+            
              <!-- 댓글 목록 끝-->
 
 
 
             <!-- 게시판 하단 & 페이지 -->
 
-            <div class="d-flex justify-content-between ml-3 mr-3">
-                <div class="mb-3">
-                    <a href="javascript:window.history.back();" class="btn btn-secondary" type="button" id="button-addon1">뒤로가기</a>
+            <div class="aritcleBottom">
+                <div class="leftArea">
+                    <a href="javascript:window.history.back();" class="btn bottomBtn" type="button"><i class="fas fa-list"></i></a>
+                    <a href="#" class="btn bottomBtn" type="button">답글</a>
+                </div>
+                <div class="rightArea">
+                    <a href="board-register.html" class="btn bottomBtn" type="button">글쓰기</a>
+                    <a href="#" class="btn bottomBtn" type="button">TOP</a>
                 </div>
             </div>
 
             <!-- 게시판 하단 & 페이지 끝-->
+        </section>
         </div>
         <!-- 메인 컨텐츠 전체영역 끝 -->
     </div>

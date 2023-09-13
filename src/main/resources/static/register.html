@@ -22,10 +22,10 @@
 
     <!-- 회원가입 -->
     <link href="css/register.css" rel="stylesheet">
-    
+
 </head>
 
-<body class="bg-gradient-primary">
+<body>
 
     <div class="container">
 
@@ -34,7 +34,7 @@
                 <!-- Nested Row within Card Body -->
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-block bg-register-image">
-                        <img src="img/illust/2.jpg" alt="">
+                        <img src="img/member/register.jpg" alt="">
                     </div>
                     <div class="col-lg-7">
                         <div class="p-5">
@@ -44,14 +44,20 @@
 
                             <!-- 개인정보 입력 전체영역 -->
                             <form class="user">
-                                <!-- 아이디 -->
-                                <div class="form-group">
-                                    <div class="mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="아이디">
-                                    </div>
+                            <!-- 아이디&닉네임 끝 -->
+                               <!-- 아이디 -->
+                               <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="text" class="form-control form-control-user"
+                                        id="exampleInputId" placeholder="아이디">
                                 </div>
-                                <!-- 아이디 끝 -->
+                                <!-- 닉네임 -->
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control form-control-user"
+                                        id="exampleRepeatNickName" placeholder="닉네임">
+                                </div>
+                            </div>
+                             <!-- 아이디&닉네임 끝 -->
 
                                 <!-- 이메일 -->
                                 <div class="form-group">
@@ -77,15 +83,15 @@
                                 <!-- 비밀번호 끝 -->
 
                                 <!-- 회원가입 버튼 -->
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                <a href="login.html" class="btn reigserBtn">
                                     회원가입
                                 </a>
                                 <!-- 구분선 -->
                                 <hr>
 
                                 <!-- 구글 회원가입 버튼 -->
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> 구글 회원가입
+                                <a href="index.html" class="btn googleBtn">
+                                    <i class="fab fa-google fa-fw"></i> Google로 회원가입
                                 </a>
 
                             </form>
@@ -95,12 +101,12 @@
 
                             <!-- 비밀번호 찾기 -->
                             <div class="text-center">
-                                <a class="find_passwd" href="forgot-password.html">비밀번호 찾기</a>
+                                <a class="find_passwd" href="forgot-password.html">비밀번호를 잊으셨나요? </a>
                             </div>
 
                             <!-- 로그인하기 -->
                             <div class="text-center">
-                                <a class="login_bushgg" href="login.html">로그인 하기</a>
+                                <a class="login_bushgg" href="login.html">이미 계정이 있나요? 로그인!</a>
                             </div>
                         </div>
                     </div>

@@ -1,23 +1,105 @@
 
+/* 게시글 헤더 */
+
+.titleArea{
+  border-bottom: 1px solid #e3e6f0;
+  margin-bottom: 8px;
+}
+
+.nickname{
+  padding:0px;
+  border: 0;
+  background: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.articleInfoBox{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+.articleInfo{ 
+  color: #6e707e;
+}
+.date{
+  margin-right: 8px;
+}
+
 
 /*게시글 상세*/
-.ArticleHeder{
-  margin: 0rem 3rem 0px 3rem;
+
+.article{
+  padding: 0rem 1.25rem;
 }
 .content{
   height: 500px;
   background-color: #fff;
 }
-
-
-/* 댓글 */
-.Comment_Box{
-  margin: 0rem 3rem 0px 3rem;
+.hartCountBtn{
+  color: #fff;
+  background-color: #ff0000;
 }
-.CommentList{
-  border-bottom: 1px solid #e3e6f0;
+.hartCountBtn:hover{
+  color: #fff;
+  background-color: #dd0000;
+}
 
+/* 댓글 아이콘*/
+.fas{
+  padding: 5px;
+}
+/* 댓글 */
+.commentCountBox{
+  display: flex;
+  align-items: flex-end;
+  padding: 1.25rem 0rem;
+}
+.commentBox{
+}
+.CommentItem{
+margin-bottom: 1rem;
+}
+.CommentItemReply{
+  margin:0rem 0rem 1rem 1rem;
+}
+.commentList{
+  margin-bottom: 1rem;
 }
 .li{
   text-decoration: none;
+}
+.commentInfoBox{
+  color: #6e707e;
+}
+.commentInfoBtn{
+  color: #6e707e;
+}
+.commentInfoBtn:hover{
+  color: #6e707e;
+}
+/* 댓글 등록*/
+.regiserBtn{
+  padding:0px;
+  border: 0;
+  background: none;
+  font-weight: bold;
+  cursor: pointer;
+  color: #6e707e;
+}
+/* 게시글 하단*/
+
+.aritcleBottom{
+  display: flex;
+  justify-content: space-between;
+  padding: 1.25rem 0rem;
+}
+.bottomBtn{
+  background-color: #708090;
+  padding: 7.5px 12px 4.5px;
+}
+.bottomBtn:hover{
+  color: #fff;
+  background-color: #708090cc;
+
 }

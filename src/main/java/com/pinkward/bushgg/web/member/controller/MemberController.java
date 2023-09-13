@@ -39,12 +39,12 @@
 //@RequestMapping("/member")
 //@Slf4j
 //public class MemberController {
-//	
+//
 //	/** 회원 관련 비즈니스 메소드 제공 */
 //	private final MemberService memberService;
 //
 //	/**
-//	 * 사용자 회원가입 화면 요청 처리 
+//	 * 사용자 회원가입 화면 요청 처리
 //	 * @param model  뷰에서 필요한 데이터 저장
 //	 * @return  뷰의 논리적 이름
 //	 */
@@ -54,14 +54,14 @@
 //		model.addAttribute("member", member);
 //		return "member/register";
 //	}
-//	
+//
 //	/**
 //	 * 사용자 회원가입 요청 처리
 //	 * 회원 데이터 검증 시 Bean Validation 사용
-//	 * @param @validated  Global Validator 사용 설정 
+//	 * @param @validated  Global Validator 사용 설정
 //	 * @param member  사용자 입력 정보
 //	 * @param bindingResult  검증 오류 메시지 설정
-//	 * @param redirectAttributes  회원 가입 요청 정상 처리 후 리다이렉트 정보 설정 
+//	 * @param redirectAttributes  회원 가입 요청 정상 처리 후 리다이렉트 정보 설정
 //	 * @param model  뷰에서 필요한 데이터 저장
 //	 * @return  뷰의 논리적 이름
 //	 */
@@ -81,7 +81,7 @@
 //		redirectAttributes.addFlashAttribute("status", true);
 //		return "redirect:/member/" + member.getId();
 //	}
-//	
+//
 //	/** 회원 상세 조회 요청 처리 */
 //	@GetMapping("/{id}")
 //	public String read(@PathVariable("id") String id, Model model) {
@@ -89,7 +89,7 @@
 //		model.addAttribute("member", member);
 //		return "member/read";
 //	}
-//	
+//
 //	/** 회원 목록 조회 요청 처리 */
 //	@GetMapping
 //	public String list(Model model) {
@@ -97,7 +97,7 @@
 //		model.addAttribute("list", list);
 //		return "member/list";
 //	}
-//	
+//
 //	/** 회원 정보 수정 화면 요청 처리 */
 //	@GetMapping("/edit/{id}")
 //	public String editForm(@PathVariable("id") String id, Model model) {
@@ -105,14 +105,14 @@
 //		model.addAttribute("member", member);
 //		return "member/edit";
 //	}
-//	
+//
 //	/** 회원 정보 수정 요청 처리 */
 //	@PostMapping("/edit")
 //	public String edit(@ModelAttribute Member member, Model model) {
 //		memberService.editMember(member);
 //		return "redirect:/member/" + member.getId();
 //	}
-//	
+//
 //	/** 회원 로그인 화면 요청 처리 */
 //	@GetMapping("/login")
 //	public String loginForm(Model model) {
@@ -120,38 +120,38 @@
 //		model.addAttribute("loginForm", loginForm);
 //		return "member/login";
 //	}
-//	
+//
 //	/** 회원 로그인 요청 처리 */
-//	@PostMapping("/login") 
+//	@PostMapping("/login")
 //	public String login(@Valid @ModelAttribute LoginForm loginForm, BindingResult bindingResult, HttpServletRequest request) {
-//		
+//
 //		// 데이터 검증 실패 시 로그인 화면으로 포워드
 //		if (bindingResult.hasErrors()) {
 //			return "member/login";
 //		}
-//		
+//
 //		// 데이터 검증 정상 처리 시
 //		Member loginMember = memberService.isMember(loginForm.getLoginId(), loginForm.getPasswd());
-//		
+//
 //		// 회원이 아닌 경우
 //		if (loginMember == null) {
 //			bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
 //			return "member/login";
 //		}
-//		
+//
 //		// 회원인 경우 세션 생성 및 로그인 아이디 설정
 //		HttpSession session =  request.getSession();
 //		session.setAttribute("loginMember", loginMember);
-//		
+//
 //		// 로그인 처리 후 사용자가 원래 요청하려던 URL로 리다이렉트 처리
 //		String redirectURI = (String)session.getAttribute("redirectURI");
 //		log.warn(redirectURI);
 //		String uri = redirectURI == null ? "/" : redirectURI;
 //		return "redirect:" + uri;
 //	}
-//	
+//
 //	/** 회원 로그아웃 요청 처리 */
-//	@GetMapping("/logout")  
+//	@GetMapping("/logout")
 //	public String logout(HttpServletRequest request) {
 //		// 세션이 있으면 기존 세션 반환, 없으면 생성하지 않고 null 반환
 //		HttpSession session =  request.getSession(false);
@@ -160,7 +160,7 @@
 //		}
 //		return "redirect:/";
 //	}
-//	
+//
 //	/** 아이디 중복 여부 요청 처리 */
 //	@GetMapping("/valid/{id}")
 //	@ResponseBody
@@ -168,7 +168,7 @@
 //		Member member = memberService.getMember(id);
 //		return member != null ? true : false;
 //	}
-//	
+//
 //	/** API 서비스 시 예외 처리를 위한 테스트 */
 //	@GetMapping("/rest/{id}")
 //	@ResponseBody
@@ -177,16 +177,16 @@
 //		if(id.equals("bangry1")) {
 //			throw new IllegalArgumentException("잘못된 값을 입력하였습니다.");
 //		}
-//		
+//
 //		if(id.equals("bangry2")) {
 //			throw new RuntimeException("서버 장애가 발생하였습니다.");
 //		}
-//		
+//
 //		if(id.equals("bangry3")) {
 //			throw new MemberException("인증되지 않은 사용자입니다.");
 //		}
-//		
+//
 //		return new Member(id, "1111", "looney", "looney@gmail.com", "2023/09/02");
 //	}
-//	
+//
 //}
