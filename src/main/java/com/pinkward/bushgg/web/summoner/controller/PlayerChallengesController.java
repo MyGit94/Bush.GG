@@ -1,6 +1,8 @@
 package com.pinkward.bushgg.web.summoner.controller;
 
+import com.pinkward.bushgg.domain.challenges.dto.ChallengesInfoDTO;
 import com.pinkward.bushgg.domain.challenges.dto.PlayerChallengesInfoDTO;
+import com.pinkward.bushgg.domain.challenges.service.ChallengesServiceImpl;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import com.pinkward.bushgg.domain.summoner.service.SummonerServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
@@ -20,6 +24,7 @@ public class PlayerChallengesController {
 
     private final SummonerServiceImpl summonerService;
 
+    private final ChallengesServiceImpl challengesService;
 
     @GetMapping(value="/challenge")
     public String playerChallenges (@RequestParam("summonerName") String summonerName, Model model){
@@ -39,10 +44,23 @@ public class PlayerChallengesController {
 
         SummonerDTO summoner = summonerService.summonerInfo(esummonerName);
         PlayerChallengesInfoDTO playerChallengesInfo = summonerService.getPlayerChallengesInfo(summoner.getPuuid());
+        // 가져온 challenges 정보중 challengeId가 101000 이상인 값만 가져옴
+        List<ChallengesInfoDTO> filter = playerChallengesInfo.getChallenges().stream()
+                .filter(challenge -> challenge.getChallengeId() >= 101000)
+                .collect(Collectors.toList());
+        log.info("도전과제:{}", filter);
+
+        List<Integer> challengeIds = filter.stream()
+                .map(ChallengesInfoDTO::getChallengeId)
+                .collect(Collectors.toList());
+        log.info("아이디 : {}", challengeIds);
+
+
+        model.addAttribute("challengeIds", challengeIds);
         model.addAttribute("summoner", summoner);
         model.addAttribute("playerChallengesInfo", playerChallengesInfo);
+        model.addAttribute("filter", filter);
 
         return "challenge";
     }
-
 }

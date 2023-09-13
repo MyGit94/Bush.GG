@@ -16,8 +16,8 @@ ul>li {
 }
 
 
-#content-wrapper{
-  background-color: rgba(245,245,245);
+#content-wrapper {
+  background-color: rgba(245, 245, 245);
   /* background-image: url(/img/wallpaper.jpg);
   background-position: center;
   background-repeat: no-repeat;
@@ -95,7 +95,7 @@ div들을 정렬하기 위한 옵션 */
   flex-direction: column;
   justify-content: center;
   width: 100px;
-  
+
 }
 
 .summoner_icon img {
@@ -138,10 +138,7 @@ div들을 정렬하기 위한 옵션 */
 /* 티어 아이콘 이미지 사이즈 조정 */
 .rank_icon {
   width: 160px;
-  height:160px;
-  background-image: url(/img/tier/Bronze.png);
-  background-position:center;
-  background-size:200px 200px;
+  height: 160px;
 }
 
 /* 티어 이미지와 텍스트간의 여백 생성 */
@@ -197,12 +194,14 @@ div들을 정렬하기 위한 옵션 */
   font-weight: bold;
 }
 
+
 /* 표 타이틀 밑에 구분선 추가 */
 .recent_friend_table thead tr {
   /* border-bottom: 1px solid #000; */
   background-color: #156549;
   font-weight: bold;
   color: #fff;
+  height: 40px;
 }
 
 /* 표 내용 :: 1행마다 구분선 추가 */
@@ -210,6 +209,10 @@ div들을 정렬하기 위한 옵션 */
   border-bottom: 1px solid #000;
 }
 
+
+.recent_friend_table tbody td {
+  padding: 10px;
+}
 
 
 
@@ -223,20 +226,52 @@ div들을 정렬하기 위한 옵션 */
   justify-content: center;
 }
 
-/* 각 행에서 컬럼별 위치를 잡기위한 값 부여 */
-.recent_champion_table tbody tr {
+/* 챔피언 승률 차트 헤더 */
+.recent_champion_table_header {
+  background-color: #156549;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
 }
 
-.champion_face_wrap{
-  width:30%;
+/* 차트 헤더 텍스트 */
+.recent_champion_table_header h1 {
+  font-size: 15px;
+  margin: 0;
 }
 
-.champion_chart_bar_wrap{
-  width:70%;
+/* 챔피언 승률 리스트 */
+.recent_champion_list_wrap {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #dadada;
+  align-items: center;
 }
+
+.champion_table_header_text1,
+.champion_table_header_text2 {
+  width: 25%;
+}
+
+.champion_table_header_text3 {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+/* 영역 사이즈 */
+.champion_face,
+.champion_name {
+  width: 15%;
+}
+
+.champion_rate_chartbar {
+  width: 70%;
+}
+
 
 /* 챔피언 사진 */
 .champion_face img {
@@ -245,13 +280,18 @@ div들을 정렬하기 위한 옵션 */
 
 /* 챔피언 이름 */
 .champion_name {
-  font-size: 14px;
-  font-weight: bold;
+
   color: #000;
   margin-left: 10px;
   margin-bottom: 0;
 }
 
+/* 챔피언 이름 텍스트 */
+.champion_name_text {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0;
+}
 
 
 /* 챔피언 승률 차트 전체영역 */
@@ -460,10 +500,10 @@ div들을 정렬하기 위한 옵션 */
 }
 
 .sub_rune li {
-  width:40px;
-  height:40px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  /* background-color: #000; */
+  background-color: #000;
   margin-right: 20px;
 }
 
@@ -491,30 +531,26 @@ div들을 정렬하기 위한 옵션 */
 }
 
 /* 전적 리스트 전체 색상 : 패배시 */
-.record_list.lose_list{
-  background-color:#ffb9b971;
+.record_list.lose_list {
+  background-color: #ffb9b971;
 }
 
 /* 앞에부분 빈 div */
-.lose_list .record_blank{
+.lose_list .record_blank {
   background-color: #ff0000;
 }
 
 /* 승리 , 패배 텍스트 */
-.lose_list .match_result{
-  color:#ff0000;
+.lose_list .match_result {
+  color: #ff0000;
 }
 
 /* 리스트 안에 있는 영역 오른쪽에 점선으로 구분하기 위한 스타일 지정 */
-.record_list>div{
+.record_list>div {
   border-right: 1px dashed #868686;
   text-align: center;
   box-sizing: border-box;
 }
-
-
-
-
 
 /* p태그 하단 여백 따로지정 */
 /* bootStrap p속성은 기본적으로 p태그에 하단 여백이 있는듯하다 */
@@ -530,7 +566,6 @@ div들을 정렬하기 위한 옵션 */
   border-radius: 10px 0 0 10px;
   padding: 20px;
 }
-
 
 /* 게임정보를 기록하는 전체영역 */
 .record_info {
@@ -837,7 +872,7 @@ div들을 정렬하기 위한 옵션 */
   display: none;
   width: 70%;
   margin: 0 auto 5px auto;
-  
+
   /* padding: 20px; */
 }
 
@@ -963,7 +998,7 @@ div들을 정렬하기 위한 옵션 */
 
 /* 소환사 , 닉네임 , 티어정보 전체영역 */
 .detail_summoner_name {
-  width: 18%;
+  width: 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -986,10 +1021,17 @@ div들을 정렬하기 위한 옵션 */
 
 /* 소환사 kda 전체영역 */
 .detail_summoner_kda {
-  width: 15%;
+  width: 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+/* 소환사 다중킬 전체영역 */
+.detail_summoner_multikill{
+  width:7%;
+  display: flex;
   align-items: center;
 }
 
@@ -1024,8 +1066,7 @@ div들을 정렬하기 위한 옵션 */
 /* 소환사 입힌 데미지 , 받은 데미지 전체영역 */
 .detail_summoner_dmg {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 25%;
 }
@@ -1034,8 +1075,9 @@ div들을 정렬하기 위한 옵션 */
 
 /* 가한 데미지 전체영역 */
 .attack_dmg {
-  width: 100%;
+  width: 48%;
   display: flex;
+  flex-direction: column;
 }
 
 /* 준 데미지 막대 차트 */
@@ -1077,7 +1119,7 @@ div들을 정렬하기 위한 옵션 */
 
 /* 받은 데미지 마우스 hover 시 나오는 설명 */
 .get_chart_info {
-  top:20px;
+  top: 20px;
 }
 
 .get_chart_info:after {
@@ -1102,7 +1144,6 @@ div들을 정렬하기 위한 옵션 */
 /* 가한 데미지 , 받은 데미지 수치 텍스트 */
 .dmg {
   font-size: 12px;
-  margin-left: 10px;
   color: #000;
   font-weight: bold;
 }
@@ -1402,8 +1443,8 @@ div들을 정렬하기 위한 옵션 */
   width: 100%;
   height: 300px;
   position: relative;
-  display:none;
-  padding:10px;
+  display: none;
+  padding: 10px;
   border: 1px solid #156549;
 }
 
@@ -1420,32 +1461,34 @@ div들을 정렬하기 위한 옵션 */
   width: 100%;
   height: 100%;
   display: flex;
-  background-color:#fff;
+  background-color: #fff;
 }
 
 /* 메인룬 전체영역 */
 .detail_main_rune_wrap {
-  width:33.3333333%;
+  width: 33.3333333%;
   border: none;
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-right:1px dashed #dadada;
+  border-right: 1px dashed #dadada;
 }
 
-.detail_main_rune_wrap:last-child{
-  border:none;
+.detail_main_rune_wrap:last-child {
+  border: none;
 }
 
 
 /* 각 컨텐츠 전체영역별 height 값 분할 */
-.detail_rune_title , .detail_main_rune , .detail_sub_rune{
-  height:20%;
+.detail_rune_title,
+.detail_main_rune,
+.detail_sub_rune {
+  height: 20%;
 }
 
 /* 서브룬 타이틀 이미지 조정 */
-.detail_sub_rune_title img{
+.detail_sub_rune_title img {
   transform: translateY(-80%);
 }
 
@@ -1457,19 +1500,19 @@ div들을 정렬하기 위한 옵션 */
 
 
 /* 메인룬 리스트 이미지 크기 설정 */
-.detail_main_rune img{
-  width:50px;
-  filter:grayscale(1);
+.detail_main_rune img {
+  width: 50px;
+  filter: grayscale(1);
 }
 
 
 
-.rewq{
-  width:40px;
-  filter:grayscale(0);
+.rewq {
+  width: 40px;
+  filter: grayscale(0);
 }
 
-.qwer{
-  width:40px;
-  filter:grayscale(1);
+.qwer {
+  width: 40px;
+  filter: grayscale(1);
 }

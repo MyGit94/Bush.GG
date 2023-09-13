@@ -17,10 +17,8 @@ public class RecentDTO {
     private int deaths;
     private String kda;
 
-    private Map<String, Integer> recentChampion = new HashMap<>();
-    private Map<String, Integer> recentChampionWin = new HashMap<>();
-
     private List<ChampionCount> championCounts;
+    private List<SummonerWithCount> summonerWithCounts;
 
 
 }
