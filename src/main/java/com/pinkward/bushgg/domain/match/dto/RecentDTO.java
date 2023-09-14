@@ -1,10 +1,10 @@
 package com.pinkward.bushgg.domain.match.dto;
 
+import com.pinkward.bushgg.domain.match.common.ChampionCount;
+import com.pinkward.bushgg.domain.match.common.SummonerWithCount;
 import lombok.Data;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Data
 public class RecentDTO {

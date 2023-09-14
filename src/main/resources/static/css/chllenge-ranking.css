@@ -17,6 +17,11 @@ h1 , h3 , p{
   background-repeat: no-repeat; */
 }
 
+.rank_profile_img img {
+  width: 130px;
+  height: 130px;
+}
+
 /* 도전과제명 전체영역 */
 .rank_prifile_text_wrap {
   margin-left: 20px;

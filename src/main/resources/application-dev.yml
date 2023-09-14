@@ -88,7 +88,7 @@ mybatis:
 
 
 ---
-      
+
 # 파일업로드 경로 설정
 common:
   uploadPath: C:/ezen-fullstack/workspace/final_project_template/upload/

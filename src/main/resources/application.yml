@@ -23,6 +23,8 @@ riot:
     key: RGAPI-0956e834-2b37-4bb5-a6a4-8e38427aa971
   challenges:
     key: RGAPI-7cbe6d80-2bb3-4a5a-b275-fc03b93f44f7
+  ranking:
+    key: RGAPI-b477e158-8d08-4063-9180-64c379e443e1
 
 ---
 

@@ -58,9 +58,6 @@ ingameWraps.forEach((wrap, index)=>{
         // 값이 NaN인 경우 0으로 처리하거나 다른 기본값으로 대체할 수 있음
         return isNaN(numericValue) ? 0 : numericValue;
     });
-
-    console.log(graphCountValues);
-
     let ingameInfoDonutChart = wrap.querySelectorAll('.myPieChart');
 
     let myPieChart = new Chart(ingameInfoDonutChart , {
@@ -91,16 +88,4 @@ ingameWraps.forEach((wrap, index)=>{
             cutoutPercentage: 80, // 도넛 차트의 중심에 뚫린 부분의 크기 (0-100)
         }
     });
-
-
-
-
 });
-
-
-
-
-
-
-
-

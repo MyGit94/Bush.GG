@@ -8,6 +8,7 @@
 <link href="/css/challenge.css" rel="stylesheet">
 </head>
 
+
 <body id="page-top">
 
   <div id="wrapper">
@@ -100,36 +101,36 @@
           <div class="challenge_list"  th:each="challenge : ${filter}">
             <!-- 도전과제 이미지 -->
             <div class="challenge_img challenge_flex">
-              <img src="" th:src="@{'img/challenges-images/'+ ${challenge.challengeId}+'-'+${challenge.level}+'.png'}">
+              <img th:src="@{'img/challenges-images/'+ ${challenge.challengeId}+'-'+(${challenge.level != null && challenge.level != 'NONE' ? challenge.level : 'IRON'}) + '.png'}">
             </div>
             <!-- 도전과제 타이틀 :: 도전과제 명 , 점수 -->
             <div class="challenge_flex challenge_title">
               <!-- 도전과제 이름 -->
-              <h1 class="challenge_name">
+              <h1 class="challenge_name" th:text="${@challengesMapper.getChallengeInfoById(challenge.getChallengeId()).getName()}">
                 <!-- challengeId로 검색해서 정보 얻어오는 service구현  -->
                 디자이너 고혈압으로 사망
               </h1>
               <!-- 챌린지 점수 -->
-              <p class="challenge_score">
+              <p class="challenge_score" th:text="'획득한 점수 : ' + ${challenge.getValue()} + '점 / 상위 ' + ${challenge.getPercentile()} + ' %'">
                 4444 points
               </p>
             </div>
             <!-- 도전과제 설명글 -->
             <div class="challenge_flex challenge_info">
               <!-- 도전과제 설명 텍스트 -->
-              <h3 class="challenge_info_text">
+              <h3 class="challenge_info_text" th:text="${@challengesMapper.getChallengeInfoById(challenge.getChallengeId()).getShortDescription()}">
                 스트레스로 사망하셨다합니다...
               </h3>
             </div>
             <!-- 달성티어 -->
             <div class="challenge_flex challenge_tier">
               <!-- 달성티어 텍스트 -->
-              <p class="challenge_tier_text">
+              <p class="challenge_tier_text" th:text="${challenge.getLevel()}">
                 Challenger
               </p>
             </div>
             <!-- 랭킹리스트로 이동하는 버튼 -->
-            <a href="" class="challenge_rank_wrap challenge_flex">
+            <a href="" class="challenge_rank_wrap challenge_flex" th:href="@{/challenge/rank/{challengeId}(challengeId=${challenge.challengeId})}">
               <!-- 랭킹리스트 버튼 텍스트 -->
               <p class="rank_bt_text">Rank</p>
             </a>
@@ -137,14 +138,9 @@
           <!-- 챌린지 리스트 1개 끝 -->
         </div>
         <!-- 챌린지 리스트 전체영역 끝 -->
-
-      <!--   자바 스크립트 -->
-      <th:block th:replace="common/fragments/script :: scriptFragment"/>
-
-
-
-
+      <!-- 컨텐츠 전체영역 끝 -->
+    <!--  메인 컨텐츠 끝 -->
+          <!--   자바 스크립트 -->
+          <th:block th:replace="common/fragments/script :: scriptFragment"/>
 </body>
-
-
 </html>

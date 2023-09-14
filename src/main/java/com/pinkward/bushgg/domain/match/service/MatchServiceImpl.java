@@ -1,150 +1,24 @@
-package com.pinkward.bushgg.domain.summoner.service;
+package com.pinkward.bushgg.domain.match.service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pinkward.bushgg.domain.challenges.dto.PlayerChallengesInfoDTO;
+import com.pinkward.bushgg.domain.match.common.ChampionCount;
+import com.pinkward.bushgg.domain.match.common.RuneList;
+import com.pinkward.bushgg.domain.match.common.SummonerWithCount;
+import com.pinkward.bushgg.domain.match.common.TimeTranslator;
 import com.pinkward.bushgg.domain.match.dto.MatchInfoDTO;
 import com.pinkward.bushgg.domain.match.dto.ParticipantsDTO;
-import com.pinkward.bushgg.domain.match.dto.SummonerTierDTO;
-import com.pinkward.bushgg.domain.ranking.dto.RankingDTO;
-import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
+import com.pinkward.bushgg.domain.match.dto.RecentDTO;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.*;
 
 @Service
 @Slf4j
-@PropertySource(ignoreResourceNotFound = false, value = "classpath:application.yml")
-public class SummonerServiceImpl implements SummonerService {
-
-    private ObjectMapper objectMapper = new ObjectMapper();
-
-
-
-    @Value("${riot.api.key}")
-    private String mykey;
+public class MatchServiceImpl implements MatchService {
 
     @Override
-    public SummonerDTO summonerInfo(String summonerName) {
-        SummonerDTO summoner;
-
-        String serverUrl = "https://kr.api.riotgames.com";
-
-        try {
-            HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "/lol/summoner/v4/summoners/by-name/" + summonerName + "?api_key=" + mykey);
-
-            HttpResponse response = client.execute(request);
-
-            if(response.getStatusLine().getStatusCode() != 200){
-                return null;
-            }
-
-            HttpEntity entity = response.getEntity();
-            summoner = objectMapper.readValue(entity.getContent(), SummonerDTO.class);
-
-        } catch (IOException e){
-            e.printStackTrace();
-            return null;
-        }
-
-        return summoner;
-    }
-
-    @Override
-    public List<String> getMatchId(String puuid) {
-        List<String> matchId = null;
-        int start = 0;
-        int count = 20;
-
-        String serverUrl = "https://asia.api.riotgames.com";
-
-        try {
-            HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "/lol/match/v5/matches/by-puuid/" + puuid + "/ids?start="+start+"&count="+count+"&api_key=" + mykey);
-
-            HttpResponse response = client.execute(request);
-
-            if(response.getStatusLine().getStatusCode() != 200){
-                return null;
-            }
-
-            HttpEntity entity = response.getEntity();
-            matchId = objectMapper.readValue(entity.getContent(), List.class);
-
-        } catch (IOException e){
-            e.printStackTrace();
-            return null;
-        }
-
-        return matchId;
-    }
-
-    public PlayerChallengesInfoDTO getPlayerChallengesInfo(String puuid){
-        String serverUrl = "https://kr.api.riotgames.com";
-        PlayerChallengesInfoDTO playerChallengesInfo;
-        try {
-            HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "/lol/challenges/v1/player-data/" + puuid + "?api_key="+ mykey);
-
-            HttpResponse response = client.execute(request);
-
-            if(response.getStatusLine().getStatusCode() != 200){
-                return null;
-            }
-            HttpEntity entity = response.getEntity();
-            playerChallengesInfo = objectMapper.readValue(entity.getContent(),PlayerChallengesInfoDTO.class);
-        } catch (IOException e){
-            e.printStackTrace();
-            return null;
-        }
-        return playerChallengesInfo;
-    }
-
-    @Override
-    public Map<String, Object> getMatch(String matchId) {
-        Map<String, Object> match = null;
-
-        String serverUrl = "https://asia.api.riotgames.com";
-
-        try {
-            HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "/lol/match/v5/matches/" + matchId + "?api_key=" + mykey);
-            HttpResponse response = client.execute(request);
-
-            if(response.getStatusLine().getStatusCode() != 200){
-                return null;
-            }
-
-            HttpEntity entity = response.getEntity();
-
-            match = objectMapper.readValue(entity.getContent(), Map.class);
-
-
-        } catch (IOException e){
-            e.printStackTrace();
-            return null;
-        }
-
-        return match;
-    }
-
-    @Override
-    public Map<String, Object> matchInfo(Map<String, Object> match) {
-        // 필요한 match정보만 저장하기 위한 맵
-        Map<String, Object> matchInfo = new HashMap<>();
+    public MatchInfoDTO matchInfoDTO(Map<String, Object> match) {
         MatchInfoDTO matchInfoDTO = new MatchInfoDTO();
 
         Map<String, Object> metadata = (Map<String, Object>) match.get("metadata");
@@ -161,9 +35,6 @@ public class SummonerServiceImpl implements SummonerService {
         matchInfoDTO.setGameStartTimestamp((Long) info.get("gameStartTimestamp"));
         matchInfoDTO.setGameVersion((String) info.get("gameVersion"));
 
-
-        // "participants" 맵에 접근
-        List<Map<String, Object>> participants = (List<Map<String, Object>>) info.get("participants");
         List<Map<String, Object>> teams = (List<Map<String, Object>>) info.get("teams");
 
         Map<String, Object> blueTeam = teams.get(0);
@@ -209,8 +80,23 @@ public class SummonerServiceImpl implements SummonerService {
 
         matchInfoDTO.setRedWin((boolean) redTeam.get("win"));
 
-        // 담음
-        matchInfo.put("matchInfo",matchInfoDTO);
+
+        matchInfoDTO.setChangeGameDuration(TimeTranslator.unixMinAndSec(matchInfoDTO.getGameDuration()));
+        matchInfoDTO.setEndGame(TimeTranslator.unixToLocal(matchInfoDTO.getGameEndTimestamp()));
+
+        return matchInfoDTO;
+    }
+
+    @Override
+    public Map<String, Object> matchInfo(Map<String, Object> match) {
+        // 필요한 match정보만 저장하기 위한 맵
+        Map<String, Object> matchInfo = new HashMap<>();
+
+        Map<String, Object> metadata = (Map<String, Object>) match.get("metadata");
+        Map<String, Object> info = (Map<String, Object>) match.get("info");
+
+        // "participants" 맵에 접근
+        List<Map<String, Object>> participants = (List<Map<String, Object>>) info.get("participants");
 
         // 얘 돌려쓰자
 
@@ -223,8 +109,6 @@ public class SummonerServiceImpl implements SummonerService {
             participantsDTO.setChampionId((int) participant.get("championId"));
             participantsDTO.setChampionName((String) participant.get("championName"));
             participantsDTO.setDeaths((int) participant.get("deaths"));
-
-
 
             participantsDTO.setDeaths((int) participant.get("deaths"));
             participantsDTO.setFirstBloodKill((boolean) participant.get("firstBloodKill"));
@@ -346,119 +230,28 @@ public class SummonerServiceImpl implements SummonerService {
         return matchInfo;
     }
 
-    @Override
-    public SummonerTierDTO getTierInfo(String summonerId) {
-        Set<Map<String,Object>> summonerTier;
-        SummonerTierDTO summonerTierDTO = new SummonerTierDTO();
+    public MatchInfoDTO getMatchInfoDTO(MatchInfoDTO matchInfoDTO, Map<String, Object> matchInfo){
 
-        String serverUrl = "https://kr.api.riotgames.com";
+        for (int i = 0; i < 10; i++) {
+            ParticipantsDTO participant = (ParticipantsDTO) matchInfo.get("participants" + i);
 
-        try {
-            HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "/lol/league/v4/entries/by-summoner/" + summonerId + "?api_key=" + mykey);
+            // 인게임 정보 matchInfo에 담기
+            if(i<5){
+                matchInfoDTO.setBlueGold(matchInfoDTO.getBlueGold()+participant.getGoldEarned());
+                matchInfoDTO.setBlueTotalDamageDealtToChampions(matchInfoDTO.getBlueTotalDamageDealtToChampions()+participant.getTotalDamageDealtToChampions());
+                matchInfoDTO.setBlueWardsPlaced(matchInfoDTO.getBlueWardsPlaced()+participant.getWardsPlaced());
+                matchInfoDTO.setBlueTotalDamageTaken(matchInfoDTO.getBlueTotalDamageTaken()+participant.getTotalDamageTaken());
+                matchInfoDTO.setBlueTotalMinionsKilled(matchInfoDTO.getBlueTotalMinionsKilled()+participant.getTotalMinionsKilled());
 
-            HttpResponse response = client.execute(request);
-
-            if(response.getStatusLine().getStatusCode() != 200){
-                return null;
+            } else {
+                matchInfoDTO.setRedGold(matchInfoDTO.getRedGold()+participant.getGoldEarned());
+                matchInfoDTO.setRedTotalDamageDealtToChampions(matchInfoDTO.getRedTotalDamageDealtToChampions()+participant.getTotalDamageDealtToChampions());
+                matchInfoDTO.setRedWardsPlaced(matchInfoDTO.getRedWardsPlaced()+participant.getWardsPlaced());
+                matchInfoDTO.setRedTotalDamageTaken(matchInfoDTO.getRedTotalDamageTaken()+participant.getTotalDamageTaken());
+                matchInfoDTO.setRedTotalMinionsKilled(matchInfoDTO.getRedTotalMinionsKilled()+participant.getTotalMinionsKilled());
             }
-
-            HttpEntity entity = response.getEntity();
-            summonerTier = objectMapper.readValue(entity.getContent(), Set.class);
-
-            if (summonerTier.isEmpty()) {
-                // JSON 데이터가 비어있으면 저장하지 않음
-                return null;
-            }
-
-            Map<String, Object> metadata = (Map<String, Object>) summonerTier.iterator().next();
-            summonerTierDTO.setTier((String) metadata.get("tier"));
-            summonerTierDTO.setLeaguePoints((int) metadata.get("leaguePoints"));
-            summonerTierDTO.setWins((int) metadata.get("wins"));
-            summonerTierDTO.setLosses((int) metadata.get("losses"));
-            double winRate = ((double)summonerTierDTO.getWins() / (summonerTierDTO.getWins() + summonerTierDTO.getLosses())) * 100;
-            summonerTierDTO.setWinRate((int)Math.round(winRate));
-
-        } catch (IOException e){
-            e.printStackTrace();
-            return null;
         }
-
-        return summonerTierDTO;
+        return matchInfoDTO;
     }
 
-    @Override
-    public List<Integer> championLotation() {
-        List<Integer> championLotation = null;
-
-        String serverUrl = "https://kr.api.riotgames.com";
-
-        try {
-            HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "/lol/platform/v3/champion-rotations?api_key=" + mykey);
-
-            HttpResponse response = client.execute(request);
-
-            if(response.getStatusLine().getStatusCode() != 200){
-                return null;
-            }
-
-            HttpEntity entity = response.getEntity();
-            Map<String, Object> champions = objectMapper.readValue(entity.getContent(), Map.class);
-            championLotation = (List<Integer>) champions.get("freeChampionIds");
-        } catch (IOException e){
-            e.printStackTrace();
-            return null;
-        }
-
-        return championLotation;
-    }
-
-    @Override
-    public List<RankingDTO> ranking() {
-        log.info("ranking 실행됨");
-        List<RankingDTO> allRankings = new ArrayList<>();
-        List<String> tiers = Arrays.asList("CHALLENGER", "GRANDMASTER", "MASTER");
-        int page = 1;
-        String serverUrl = "https://kr.api.riotgames.com";
-
-        try {
-            HttpClient client = HttpClientBuilder.create().build();
-
-            for(String tier : tiers) {
-                page = 1;
-
-                while (true) {
-                    HttpGet request = new HttpGet(serverUrl + "/lol/league-exp/v4/entries/RANKED_SOLO_5x5/" + tier + "/I?page=" + page + "&api_key=" + mykey);
-
-                    HttpResponse response = client.execute(request);
-
-                    if (response.getStatusLine().getStatusCode() != 200) {
-                        //return null;
-                        break;
-                    }
-
-                    HttpEntity entity = response.getEntity();
-                    ObjectMapper objectMappers = new ObjectMapper();
-                    objectMappers.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-                    List<RankingDTO> pageRanking = objectMappers.readValue(entity.getContent(), new TypeReference<List<RankingDTO>>() {});
-
-                    if (pageRanking.isEmpty()) {
-                        break; // 페이지 데이터가 없으면 종료
-                    }
-
-                    allRankings.addAll(pageRanking);
-                    page++; // 다음 페이지로 이동
-                    //log.info("Total {} rankings fetched", allRankings.size());
-                }
-            }
-        } catch (IOException e){
-            e.printStackTrace();
-            return null;
-        }
-        log.info("{}",allRankings);
-
-        return allRankings;
-    }
 }
