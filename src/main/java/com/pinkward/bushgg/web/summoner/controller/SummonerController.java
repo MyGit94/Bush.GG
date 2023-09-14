@@ -3,6 +3,9 @@ package com.pinkward.bushgg.web.summoner.controller;
 import com.pinkward.bushgg.domain.challenges.dto.PlayerChallengesInfoDTO;
 import com.pinkward.bushgg.domain.match.common.TimeTranslator;
 import com.pinkward.bushgg.domain.match.dto.*;
+import com.pinkward.bushgg.domain.ranking.dto.ChallengerRankingDTO;
+import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
+import com.pinkward.bushgg.domain.ranking.service.ChallengerRankingServiceImpl;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import com.pinkward.bushgg.domain.summoner.service.SummonerServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +28,10 @@ public class SummonerController {
 
     private final SummonerServiceImpl summonerService;
 
+    private final ChallengerRankingServiceImpl challengerRankingService;
+
+    private final ChallengerMapper challengerMapper;
+
     @GetMapping("/")
     public String goIndex(){
         return "index";
@@ -37,12 +44,25 @@ public class SummonerController {
         if (summonerName.length() == 2) {
             summonerName = summonerName.substring(0, 1) + " " + summonerName.substring(1);
         }
-        String esummonerName;
+        String esummonerName = null;
         try {
             esummonerName = URLEncoder.encode(summonerName, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
+
+//        challengerMapper.deleteChallenger();
+//        log.info("딜리트");
+//
+//        List<ChallengerRankingDTO> list  = challengerRankingService.getChallengerInfo();
+//        log.info("챌린저:{}", list);
+//        for (ChallengerRankingDTO challenger : list) {
+//            challengerMapper.insertChallenger(challenger);
+//            log.info("인서트");
+//        }
+
+
+
 
         summonerName = summonerName.replaceAll(" ","").toLowerCase();
 

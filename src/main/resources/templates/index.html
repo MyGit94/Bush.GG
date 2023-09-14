@@ -88,13 +88,12 @@
 
             <!-- 커뮤니티 -->
             <li class="nav-item">
-                <a class="nav-link" href="board.html">
+                <a class="nav-link" href="board.html" th:href="@{/board}">
                     <!-- 커뮤니티 아이콘 -->
                     <i class="fas fa-fw fa-table"></i>
                     <!-- 커뮤니티 텍스트 -->
                     <span>커뮤니티</span></a>
             </li>
-
             <!-- 구분선3 -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -103,26 +102,16 @@
                 <!-- 사이드바 버튼 -->
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
-
-
         </ul>
         <!-- 사이드바 끝 -->
-
-
         <!-- 메인 컨텐츠 전체영역 -->
         <div id="content-wrapper" class="d-flex flex-column">
-
-
-
             <!-- 상단 헤더 -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
                 <!-- (모바일) 사이드 메뉴 여닫이 버튼 -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
-
                 <!-- 전적 검색창 -->
                 <form action="/summoner" method="get"
                       class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -141,14 +130,10 @@
                     </div>
                 </form>
                 <!-- 전적 검색창 끝 -->
-
             </nav>
             <!-- 상단헤더 끝 -->
-
-
             <!-- 중앙 컨텐츠 전체영역 -->
             <div class="main_contents_wrap">
-
                 <!-- 실시간 정보 -->
                 <div class="summoner_live_wrap">
                 <!-- 실시간 정보 - 타이틀 -->
@@ -159,7 +144,6 @@
                 </div>
                 <!-- 실시간 정보 전체영역 -->
                 <div class="live_info_wrap">
-
                     <!-- 실시간 정보 1칸 전체영역 -->
                     <div class="live_info_contents">
                         <div class="live_info_vs">

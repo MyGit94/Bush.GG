@@ -40,7 +40,7 @@ public class PlayerChallengesController {
         if (summonerName.length() == 2) {
             summonerName = summonerName.substring(0, 1) + " " + summonerName.substring(1);
         }
-        String esummonerName;
+        String esummonerName = null;
         try {
             esummonerName = URLEncoder.encode(summonerName, "UTF-8");
         } catch (UnsupportedEncodingException e) {
@@ -48,8 +48,6 @@ public class PlayerChallengesController {
         }
 
         summonerName = summonerName.replaceAll(" ","").toLowerCase();
-        log.info("esum:{}",esummonerName);
-        log.info("소환사이름:{}",summonerName);
 
         SummonerDTO summoner = summonerService.summonerInfo(esummonerName);
         PlayerChallengesInfoDTO playerChallengesInfo = summonerService.getPlayerChallengesInfo(summoner.getPuuid());

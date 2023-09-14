@@ -70,7 +70,7 @@ public class SummonerServiceImpl implements SummonerService {
     public List<String> getMatchId(String puuid) {
         List<String> matchId = null;
         int start = 0;
-        int count = 20;
+        int count = 10;
 
         String serverUrl = "https://asia.api.riotgames.com";
 

@@ -2,6 +2,7 @@ package com.pinkward.bushgg.web.home.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -18,4 +19,6 @@ public class HomeController {
 	public String home(Model model) {
 		return "index";
 	}
+
+
 }
