@@ -14,22 +14,24 @@ public interface MemberMapper {
 	public List<MemberDTO> findByAll();
 	
 	// 아이디와 비밀번호 찾기
-	public MemberDTO findByIdAndPasswd(@Param("loginid") String id,@Param("passwd") String passwd);
+	public MemberDTO findByIdAndPasswd(@Param("loginId") String loginId,@Param("passwd") String passwd);
 	
 	// 비밀번호 찾기
-	public MemberDTO findPasswd(@Param("loginid") String loginid,
-			@Param("nickname") String nickname, @Param("email") String email);
+	public MemberDTO findByPasswd(@Param("loginId") String loginid,
+			@Param("nickName") String nickname, @Param("email") String email);
+	
+	// 검색 타입별 회원 검색
+	public List<MemberDTO> findBySearchNick(@Param("type") String type, @Param("value") String value);
+	
 	
 	// 닉네임 찾기
 	public MemberDTO findByNick(String nickName);
 	
-	// 닉네임 검색
-	public List<MemberDTO> findBysearchNick(String nickName);
-	
+
 	// 회원 생성
-	public void create(MemberDTO member);
+	public void create(MemberDTO memberDTO);
 	
 	// 닉네임 수정
-	public void updateNickName(String nickname);
+	public void updateNickName(MemberDTO memberDTO);
 	
 }
