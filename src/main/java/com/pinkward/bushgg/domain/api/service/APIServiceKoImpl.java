@@ -26,6 +26,9 @@ public class APIServiceKoImpl implements APIServiceKo {
 
     @Value("${riot.api.key}")
     private String mykey;
+    @Value("${riot.challenges.key}")
+    private String challengeKey;
+
     String serverUrl = "https://kr.api.riotgames.com/lol/";
 
     @Override
@@ -35,6 +38,30 @@ public class APIServiceKoImpl implements APIServiceKo {
         try {
             HttpClient client = HttpClientBuilder.create().build();
             HttpGet request = new HttpGet(serverUrl + "summoner/v4/summoners/by-name/" + summonerName + "?api_key=" + mykey);
+
+            HttpResponse response = client.execute(request);
+
+            if(response.getStatusLine().getStatusCode() != 200){
+                return null;
+            }
+
+            HttpEntity entity = response.getEntity();
+            summoner = objectMapper.readValue(entity.getContent(), SummonerDTO.class);
+
+        } catch (IOException e){
+            e.printStackTrace();
+            return null;
+        }
+        return summoner;
+    }
+
+    @Override
+    public SummonerDTO getSummonerInfoByPuuid(String puuid) {
+        SummonerDTO summoner = null;
+
+        try {
+            HttpClient client = HttpClientBuilder.create().build();
+            HttpGet request = new HttpGet(serverUrl + "summoner/v4/summoners/by-puuid/" + puuid + "?api_key=" + challengeKey);
 
             HttpResponse response = client.execute(request);
 

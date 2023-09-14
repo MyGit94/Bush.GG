@@ -13,9 +13,8 @@ import java.util.Set;
 public interface APIServiceKo {
     // 소환사정보
     public SummonerDTO getSummonerInfo(String summonerName);
-
+    public SummonerDTO getSummonerInfoByPuuid(String puuid);
     public PlayerChallengesInfoDTO getPlayerChallengesInfo(String puuid);
-
     public Set<Map<String,Object>> getTierInfo(String summonerId);
 
 }

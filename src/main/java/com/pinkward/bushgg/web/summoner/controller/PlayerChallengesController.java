@@ -1,10 +1,13 @@
 package com.pinkward.bushgg.web.summoner.controller;
 
+import com.pinkward.bushgg.domain.api.service.APIServiceKo;
+import com.pinkward.bushgg.domain.api.service.APIServiceKoImpl;
 import com.pinkward.bushgg.domain.challenges.dto.*;
 import com.pinkward.bushgg.domain.challenges.mapper.ChallengesMapper;
+import com.pinkward.bushgg.domain.challenges.service.ChallengesService;
 import com.pinkward.bushgg.domain.challenges.service.ChallengesServiceImpl;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
-import com.pinkward.bushgg.domain.summoner.service.SummonerServiceImpl;
+import com.pinkward.bushgg.domain.summoner.service.SummonerServiceImpl2;
 import jakarta.servlet.http.HttpSession;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +34,7 @@ public class PlayerChallengesController {
 
     private final SummonerService summonerService;
     private final APIServiceKo apiServiceKo;
+    private final ChallengesService challengesService;
 
     @Autowired
     ChallengesMapper challengesMapper;
@@ -47,8 +51,6 @@ public class PlayerChallengesController {
             throw new RuntimeException(e);
         }
 
-        SummonerDTO summoner = summonerService.summonerInfo(esummonerName);
-        PlayerChallengesInfoDTO playerChallengesInfo = summonerService.getPlayerChallengesInfo(summoner.getPuuid());
         // 등급순으로 정렬해주기 위한 작업
         Map<String, Integer> levelOrder = new HashMap<>();
         levelOrder.put("CHALLENGER", 1);
@@ -71,6 +73,8 @@ public class PlayerChallengesController {
         List<Integer> challengeIds = filter.stream()
                 .map(ChallengesInfoDTO::getChallengeId)
                 .collect(Collectors.toList());
+
+        log.info("제발나와라:{}",apiServiceKo.getSummonerInfoByPuuid(summoner.getPuuid()));
 
         model.addAttribute("challengeIds", challengeIds);
         model.addAttribute("summoner", summoner);

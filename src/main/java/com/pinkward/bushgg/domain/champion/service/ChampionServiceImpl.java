@@ -3,7 +3,6 @@ package com.pinkward.bushgg.domain.champion.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pinkward.bushgg.domain.match.common.ChampionCount;
 import com.pinkward.bushgg.domain.match.dto.ParticipantsDTO;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
