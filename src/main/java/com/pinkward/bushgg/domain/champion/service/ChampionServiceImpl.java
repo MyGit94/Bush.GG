@@ -1,6 +1,8 @@
 package com.pinkward.bushgg.domain.champion.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pinkward.bushgg.domain.match.common.ChampionCount;
+import com.pinkward.bushgg.domain.match.dto.ParticipantsDTO;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpEntity;
@@ -18,8 +20,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -119,7 +120,7 @@ public class ChampionServiceImpl implements ChampionService{
                     championName = championData.getString("name");
 
                     // 벨베스
-                    championName = championName.replace("Bel'Veth", "Belveth");
+                    championName = championName.replace("Bel'Veth", "Belveth").replace("LeBlanc","Leblanc").replace("K'Sante","KSante");
 
                     break; // 원하는 챔피언을 찾았으므로 루프 종료
                 }
@@ -203,5 +204,53 @@ public class ChampionServiceImpl implements ChampionService{
         return championLotation;
     }
 
+    public List<ChampionCount> getChampionCounts (List<ChampionCount> championCounts, ParticipantsDTO participant){
 
+        boolean found = false;
+
+        for (ChampionCount championCount : championCounts) {
+            if (participant.getChampionName().equals(championCount.getChampionName())) {
+                championCount.setCount(championCount.getCount() + 1);
+                if(participant.isWin()){
+                    championCount.setWin(championCount.getWin() + 1);
+                }
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            // 챔피언 이름이 리스트에 없으면 새 객체 생성하여 리스트에 추가
+            ChampionCount newChampionCount = new ChampionCount();
+            newChampionCount.setChampionName(participant.getChampionName());
+            newChampionCount.setCount(1);
+            if (participant.isWin()) {
+                newChampionCount.setWin(1);
+            } else {
+                newChampionCount.setWin(0); // 이긴 횟수를 초기화
+            }
+            championCounts.add(newChampionCount);
+        }
+        return championCounts;
+    }
+
+    public List<ChampionCount> sortChampionCounts(List<ChampionCount> championCounts){
+        Iterator<ChampionCount> iterator = championCounts.iterator();
+        while (iterator.hasNext()) {
+            ChampionCount championCount = iterator.next();
+            if (championCount.getCount() == 1) {
+                iterator.remove(); // count가 1인 항목을 제거합니다.
+            }
+        }
+
+        Collections.sort(championCounts, Comparator.comparing(ChampionCount::getCount).reversed());
+        List<ChampionCount> filteredChampionCounts = championCounts.subList(0, Math.min(5, championCounts.size()));
+
+        // 이후에 winRate를 계산하고 설정
+        for (ChampionCount championCount: filteredChampionCounts) {
+            double winRate = ((double)championCount.getWin() / championCount.getCount()) * 100;
+            championCount.setWinRate((int)Math.round(winRate));
+        }
+        return filteredChampionCounts;
+    }
 }

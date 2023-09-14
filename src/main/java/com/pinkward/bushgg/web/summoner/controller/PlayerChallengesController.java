@@ -1,10 +1,11 @@
 package com.pinkward.bushgg.web.summoner.controller;
 
+import com.pinkward.bushgg.domain.api.service.APIServiceKo;
 import com.pinkward.bushgg.domain.challenges.dto.ChallengesInfoDTO;
 import com.pinkward.bushgg.domain.challenges.dto.PlayerChallengesInfoDTO;
 import com.pinkward.bushgg.domain.challenges.service.ChallengesServiceImpl;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
-import com.pinkward.bushgg.domain.summoner.service.SummonerServiceImpl;
+import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -22,9 +23,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PlayerChallengesController {
 
-    private final SummonerServiceImpl summonerService;
-
-    private final ChallengesServiceImpl challengesService;
+    private final SummonerService summonerService;
+    private final APIServiceKo apiServiceKo;
 
     @GetMapping(value="/challenge")
     public String playerChallenges (@RequestParam("summonerName") String summonerName, Model model){
@@ -38,23 +38,16 @@ public class PlayerChallengesController {
             throw new RuntimeException(e);
         }
 
-        summonerName = summonerName.replaceAll(" ","").toLowerCase();
-        log.info("esum:{}",esummonerName);
-        log.info("소환사이름:{}",summonerName);
-
-        SummonerDTO summoner = summonerService.summonerInfo(esummonerName);
-        PlayerChallengesInfoDTO playerChallengesInfo = summonerService.getPlayerChallengesInfo(summoner.getPuuid());
+        SummonerDTO summoner = apiServiceKo.getSummonerInfo(esummonerName);
+        PlayerChallengesInfoDTO playerChallengesInfo = apiServiceKo.getPlayerChallengesInfo(summoner.getPuuid());
         // 가져온 challenges 정보중 challengeId가 101000 이상인 값만 가져옴
         List<ChallengesInfoDTO> filter = playerChallengesInfo.getChallenges().stream()
                 .filter(challenge -> challenge.getChallengeId() >= 101000)
                 .collect(Collectors.toList());
-        log.info("도전과제:{}", filter);
 
         List<Integer> challengeIds = filter.stream()
                 .map(ChallengesInfoDTO::getChallengeId)
                 .collect(Collectors.toList());
-        log.info("아이디 : {}", challengeIds);
-
 
         model.addAttribute("challengeIds", challengeIds);
         model.addAttribute("summoner", summoner);

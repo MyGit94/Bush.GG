@@ -9,8 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface MatchService {
-    // matchInfo로 상세정보 가져오기
-    public MatchInfoDTO getMatchInfo(Map<String, Object> matchInfo);
 
+    public MatchInfoDTO matchInfoDTO(Map<String, Object> match);
+    Map<String, Object> matchInfo(Map<String, Object> match);
 
+    public MatchInfoDTO getMatchInfoDTO(MatchInfoDTO matchInfoDTO, Map<String, Object> matchInfo);
 }
