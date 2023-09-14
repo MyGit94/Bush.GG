@@ -1,7 +1,14 @@
 package com.pinkward.bushgg.domain.article.DTO;
 
+import lombok.*;
 
-public class articleDTO {
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class ArticleDTO {
     int articleId;
     String writer;
     int boardId;

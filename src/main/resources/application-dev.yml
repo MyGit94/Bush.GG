@@ -84,7 +84,8 @@ mybatis:
     map-underscore-to-camel-case: true  
   mapper-locations: 
     - classpath:mybatis/mapper/**/*.xml
-  type-aliases-package: com.ezen.springmvc.domain.member.dto
+  type-aliases-package: com.ezen.springmvc.domain.member.dto ,  com.pinkward.bushgg.domain.article.DTO.articleDTO
+
 
 ---
       

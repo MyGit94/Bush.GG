@@ -15,7 +15,7 @@
 //import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 //
 //import com.pinkward.bushgg.domain.member.dto.LoginForm;
-//import com.pinkward.bushgg.domain.member.dto.Member;
+//import com.pinkward.bushgg.domain.member.dto.MemberDTO;
 //import com.pinkward.bushgg.domain.member.service.MemberService;
 //import com.pinkward.bushgg.web.member.exception.MemberException;
 //
@@ -28,8 +28,8 @@
 ///**
 // * 사용자 관련 웹 요청을 처리하는 세부 컨트롤러 구현 클래스
 // *
-// * @author  에너자이조 김기정
-// * @since   2023. 9. 4.
+// * @author  핑크와드 이현
+// * @since   2023. 9. 14.
 // * @version 1.0
 // * @see     com.pinkward.bushgg.domain.member.service.MemberService
 // * @see     com.pinkward.bushgg.domain.member.service.MemberServiceImpl
@@ -48,12 +48,12 @@
 //	 * @param model  뷰에서 필요한 데이터 저장
 //	 * @return  뷰의 논리적 이름
 //	 */
-//	@GetMapping("/register")
-//	public String registerForm(Model model) {
-//		Member member = Member.builder().build();
-//		model.addAttribute("member", member);
-//		return "member/register";
-//	}
+////	@GetMapping("/register")
+////	public String registerForm(Model model) {
+////		MemberDTO member = MemberDTO.builder().build().builder().build();
+////		model.addAttribute("member", member);
+////		return "member/register";
+////	}
 //
 //	/**
 //	 * 사용자 회원가입 요청 처리
@@ -66,7 +66,7 @@
 //	 * @return  뷰의 논리적 이름
 //	 */
 //	@PostMapping("/register")
-//	public String register(@Validated @ModelAttribute Member member, BindingResult bindingResult,
+//	public String register(@Validated @ModelAttribute MemberDTO member, BindingResult bindingResult,
 //			RedirectAttributes redirectAttributes, Model model) {
 //
 //		// 데이터 검증 실패 시 회원가입 화면으로 포워드
@@ -79,13 +79,13 @@
 //		memberService.register(member);
 //		// 일반 회원 상세 조회 페이지와 구별하기 status 속성 추가
 //		redirectAttributes.addFlashAttribute("status", true);
-//		return "redirect:/member/" + member.getId();
+//		return "redirect:/member/" + member.getLoginId();
 //	}
 //
 //	/** 회원 상세 조회 요청 처리 */
-//	@GetMapping("/{id}")
-//	public String read(@PathVariable("id") String id, Model model) {
-//		Member member = memberService.getMember(id);
+//	@GetMapping("/{loginId}")
+//	public String read(@PathVariable("loginid") String loginId, Model model) {
+//		MemberDTO member = memberService.getMember(loginId);
 //		model.addAttribute("member", member);
 //		return "member/read";
 //	}
@@ -93,15 +93,15 @@
 //	/** 회원 목록 조회 요청 처리 */
 //	@GetMapping
 //	public String list(Model model) {
-//		List<Member> list = memberService.getMemberList();
+//		List<MemberDTO> list = memberService.getMemberList();
 //		model.addAttribute("list", list);
 //		return "member/list";
 //	}
 //
 //	/** 회원 정보 수정 화면 요청 처리 */
-//	@GetMapping("/edit/{id}")
-//	public String editForm(@PathVariable("id") String id, Model model) {
-//		Member member = memberService.getMember(id);
+//	@GetMapping("/edit/{loginId}")
+//	public String editForm(@PathVariable("loginId") String loginId, Model model) {
+//		MemberDTO member = memberService.getMember(loginId);
 //		model.addAttribute("member", member);
 //		return "member/edit";
 //	}
