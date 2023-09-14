@@ -1,13 +1,21 @@
 /*게시판 테이블의 카드가 padding 1.25rem을 주므로 헤더,바텀 등 통일*/
+
 /*게시판 헤더*/
-.articleHeder{
+
+.title{
+  margin-top: 1.25rem;
+}
+.boardHeder{
   display: grid;
   padding: 0rem 1.25rem;
   height: 200px;
   align-content: space-between;
-  background-color: lightskyblue;
+  background-image: url('../img/illust/illust_1.jpg');
+  background-position: center;
+  background-size: cover;
+  color: #fff;
 }
-.articleHederBtn{
+.boardHederBtn{
   display: flex;
   justify-content: space-between;
   margin-bottom: 1.2rem;
@@ -25,6 +33,11 @@
     background-clip: border-box;
     border: 1px solid #e3e6f0;
     border-radius: 0.35rem;
+  }
+  .tableHederBtn{
+    display: flex;
+    justify-content: end;
+    padding-bottom: 1.25rem;
   }
 table {
   border-collapse: separate;
@@ -55,34 +68,36 @@ table {
 
 /* 게시판 하단*/
 
-.articleBottom{
+.boardBottom{
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.25rem;
 }
-.articleSearch{
+.boardSearch{
   display: flex;
 
 }
 
 /*게시판 버튼들*/
 .writeBtn{
-  width: 100px;
   background-color: #03c75a;
   border-radius: 1rem;
+  padding: 7.5px 12px 4.5px;
 }
 .writeBtn:hover{
-  background-color: #1fff84;
+  color:#fff;
+  background-color: #03b000;
 }
 
 .bestBtn{
-  width: 100px;
-  background-color: #c60000;
+  background-color: #ff0000;
   border-radius: 1rem;
+  padding: 7.5px 12px 4.5px;
 }
 .bestBtn:hover{
-  background-color: #fd4747;
+  color:#fff;
+  background-color: #dd0000;
 }
 
 .boardSearchBtn{

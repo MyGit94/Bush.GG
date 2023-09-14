@@ -10,11 +10,17 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+
 @font-face {
   font-family: 'GmarketSansMedium';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+}
+
+body{
+  background-color: #e4e4e4;
 }
 
 
@@ -68,7 +74,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family:'GmarketSansMedium';
+  font-family: 'GmarketSansMedium';
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -9880,7 +9886,7 @@ a:focus {
 }
 
 .bg-gradient-primary {
-  background-color: #babcbb;
+  background-color: #156549;
   /* background-image: linear-gradient(180deg,#494949 10%,#a4a4a4 100%); */
   background-size: cover;
 }

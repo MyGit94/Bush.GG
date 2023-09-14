@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- css -->
+    <th:block th:replace="common/fragments/config :: configFragment" />
+    <link rel="stylesheet" href="/css/board.css">
+</head>
+
+
+<body id="page-top">
+    
+    <div id="wrapper">
+
+        <!--   왼쪽 사이드바  -->
+        <th:block th:replace="common/fragments/side :: sideFragment" />
+
+
+        <!-- 메인 컨텐츠 전체영역 -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- 검색창 -->
+            <th:block th:replace="common/fragments/header :: headerFragment"/>
+
+
+        <section class="board">
+        <!-- 게시판 헤더 -->
+        <div class="boardHeder">
+            <div class="title">
+                <h1 class="h1">자유게시판</h1>
+            </div>
+            <div class="boardHederBtn">
+                <button type="button" class="btn bestBtn">🔥 인기글</button>
+            </div>
+        </div>
+        <!-- 게시판 헤더 끝 --> 
+
+            <!-- 게시판 -->
+            <div class="boardBody">
+                <div class="card-body">
+                    <div class="tableHederBtn">
+                        <button onclick="location.href='/board/register';" class="btn writeBtn">✔ 글쓰기</button>
+                    </div>
+                    <div class="table">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>번호</th>
+                                    <th>제목</th>
+                                    <th>글쓴이</th>
+                                    <th>등록일</th>
+                                    <th>조회</th>
+                                    <th>추천</th>  
+                                </tr>
+                            </thead>
+                            <tbody class="trs">
+                                <tr>
+                                    <td>0</td>
+                                    <td><a href="/board/detail">제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?</a></td>
+                                    <td>홍길동</td>
+                                    <td>2023.08.31.</td>
+                                    <td>???</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>0</td>
+                                    <td><a href="/board/detail">제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?</a></td>
+                                    <td>홍길동</td>
+                                    <td>2023.08.31.</td>
+                                    <td>???</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>0</td>
+                                    <td><a href="/board/detail">제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?</a></td>
+                                    <td>홍길동</td>
+                                    <td>2023.08.31.</td>
+                                    <td>???</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>0</td>
+                                    <td><a href="/board/detail">제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?</a></td>
+                                    <td>홍길동</td>
+                                    <td>2023.08.31.</td>
+                                    <td>???</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>0</td>
+                                    <td><a href="/board/detail">제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?</a></td>
+                                    <td>홍길동</td>
+                                    <td>2023.08.31.</td>
+                                    <td>???</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>0</td>
+                                    <td><a href="/board/detail">제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?</a></td>
+                                    <td>홍길동</td>
+                                    <td>2023.08.31.</td>
+                                    <td>???</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>0</td>
+                                    <td><a href="/board/detail">제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?</a></td>
+                                    <td>홍길동</td>
+                                    <td>2023.08.31.</td>
+                                    <td>???</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>0</td>
+                                    <td><a href="/board/detail">제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?</a></td>
+                                    <td>홍길동</td>
+                                    <td>2023.08.31.</td>
+                                    <td>???</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>0</td>
+                                    <td><a href="/board/detail">제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?</a></td>
+                                    <td>홍길동</td>
+                                    <td>2023.08.31.</td>
+                                    <td>???</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>0</td>
+                                    <td><a href="/board/detail">제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?</a></td>
+                                    <td>홍길동</td>
+                                    <td>2023.08.31.</td>
+                                    <td>???</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>0</td>
+                                    <td><a href="/board/detail">제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?제목입니다?</a></td>
+                                    <td>홍길동</td>
+                                    <td>2023.08.31.</td>
+                                    <td>???</td>
+                                    <td>0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+             </div>
+             <!-- 게시판 끝-->
+
+            <!-- 게시판 하단 & 페이지 -->
+            <div class="boardBottom">
+                <div class="">
+                    <button class="btn listBtn" type="button">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+                <!-- 검색 전체-->
+                <form class="boardSearch">
+                    <!-- 게시글 검색 : 입력 텍스트칸 -->
+                    <input type="text" class="form-control small" placeholder="검색 내용을 입력해주세요"
+                        aria-label="Search" aria-describedby="basic-addon2">
+                        <!-- 검색 버튼 네모박스 -->
+                        <button onclick="location.href='index.html';" class="btn boardSearchBtn" type="button">
+                            <!-- 검색 버튼 돋보기 아이콘 -->
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                </form>
+                <!-- 검색 전체 끝-->
+                  <div class="page-item">
+                    <button class="btn prevBtn" type="button">
+                        <i class="fa fa-angle-double-left"></i>
+                    </button>
+                    <button class="btn nextBtn" type="button">
+                        <i class="fa fa-angle-double-right"></i>
+                    </button>
+                  </div>
+            </div>
+            <!-- 게시판 하단 & 페이지 끝-->
+        </section>
+        </div>
+        <!-- 메인 컨텐츠 전체영역 끝 -->
+    </div>
+    <!--  메인 컨텐츠 끝 -->
+
+    <!--   자바 스크립트 -->
+    <th:block th:replace="common/fragments/script :: scriptFragment"/>
+
+</body>
+
+</html>

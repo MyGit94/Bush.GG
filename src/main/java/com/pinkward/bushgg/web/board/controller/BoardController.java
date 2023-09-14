@@ -13,21 +13,21 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 	
 	@GetMapping
-	public String boardList(Model model) {
+	public String article(Model model) {
 		log.info("게시판 목록 요청");
-		return "board/list";
+		return "article/board";
 	}
 	
-	@GetMapping("/article")
-	public String articleList(Model model) {
-		log.info("게시글 목록 요청");
-		return "board/article/list";
-	}
-	
-	@GetMapping("/article/register")
+	@GetMapping("/register")
 	public String register(Model model) {
+		log.info("게시글 목록 요청");
+		return "article/board-register";
+	}
+	
+	@GetMapping("/detail")
+	public String detail(Model model) {
 		log.info("게시글 쓰기 화면 요청");
-		return  "board/article/register";
+		return  "article/board-detail";
 	}
 }
 

@@ -32,9 +32,6 @@ a:hover {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
-  background-position: -10px 0;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 /* 상단 헤더 버튼 */
@@ -221,6 +218,39 @@ a:hover {
   margin: 0 3px;
   flex-direction: column;
 }
+
+/* 스펠 이미지 */
+.live_summoner_spell_wrap img {
+  width: 20px;
+  height: 20px;
+}
+
+/* 실시간 정보 타이틀 */
+.summoner_live_title {
+  height: 10%;
+  display: flex;
+  align-items: center;
+}
+
+/* 실시간 정보 타이틀  텍스트*/
+.summoner_live_title_text {
+  margin: 0;
+  font-size: 22px;
+  font-weight: bold;
+  color: #156549;
+}
+
+
+
+
+
+
+/* 챔피언 이미지  */
+.live_champion_face_wrap img {
+  width: 40px;
+  height: 40px;
+}
+
 
 /* 커뮤니티 , 로테이션 챔피언 크기 지정 */
 .summoner_coummuity_wrap,

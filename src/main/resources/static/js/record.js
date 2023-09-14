@@ -167,9 +167,11 @@ recordDetailWrapElements.forEach(function (recordDetailWrap) {
         // 총합 딜량
         let totalPushDmgInGroup = pushDmgValues.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
         let totalGetDmgInGroup = getDmgValues.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
         // 평균 딜량
         let avgPushDmgInGroup = totalPushDmgInGroup / 5;
         let avgGetDmgInGroup = totalGetDmgInGroup / 5;
+
 
         const dmgChart = team.querySelectorAll(".push_chartbar");
         const getChart = team.querySelectorAll(".get_chartbar");
@@ -178,6 +180,7 @@ recordDetailWrapElements.forEach(function (recordDetailWrap) {
             let currentValue = pushDmgValues[index];
             let chartWidth = (currentValue/ maxPushDmgInGroup)*100;
             chart.style.width = chartWidth + "%";
+
         });
 
         getChart.forEach((chart, index) => {
@@ -192,15 +195,21 @@ recordDetailWrapElements.forEach(function (recordDetailWrap) {
 
 
 
+// 인게임 분석 - 챔피언 처치
+
 const ingameInfoWrapElements = document.querySelectorAll('.ingame_info_champion_kill');
 
 ingameInfoWrapElements.forEach(function (ingameInfoWrap) {
-    const ingameInfoGraph = ingameInfoWrap.querySelectorAll('.champion_kill_graph li');
+    // 승리팀&패배팀 그래프 1행씩
+    const ingameInfoGraph = ingameInfoWrap.querySelectorAll('.champion_kill_graph');
+
 
     ingameInfoGraph.forEach(function (team) {
+
+        // 수치 텍스트
         const killBarText = team.querySelectorAll('.kill_bar_text');
 
-        // 각 .push 요소의 텍스트 값을 추출하고 숫자로 변환
+        // 수치 텍스트에 적힌 '값'들을 array 로 변환해서 숫자로 불러들여옴
         const killBarValues = Array.from(killBarText).map(function (element) {
             const text = element.innerText;
             const numericValue = parseInt(text, 10);
@@ -208,38 +217,28 @@ ingameInfoWrapElements.forEach(function (ingameInfoWrap) {
             // 값이 NaN인 경우 0으로 처리하거나 다른 기본값으로 대체할 수 있음
             return isNaN(numericValue) ? 0 : numericValue;
         });
-        
-        // 최대 수치
+
+        // 전체중 최대 수치 (5개중)
         let maxIngameInfoGroup = Math.max(...killBarValues);
 
-        // 최소 딜량
+        // 전체중 최소 수치 (5개중)
         let minIngameInfoGroup = Math.min(...killBarValues);
 
-        // 총합 딜량
-        let totalKillBarInGroup = killBarValues.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+        // 전체 총합 수치
+        let totalIngameInfoGroup = killBarValues.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
-        // 평균 딜량
-        let avgKillBarInGroup = totalKillBarInGroup / 5;
+        // 평균 수치
+        let avgIngameInfoGroup = totalIngameInfoGroup / 10;
 
+
+
+        // 막대기 차트 게이지 수치
         let killBarChart = team.querySelectorAll(".kill_bar");
 
-
-       killBarChart.forEach((chart, index) => {
-            let currentValue = killBarValues[index];
-            let chartWidth = (currentValue/ maxIngameInfoGroup)*100;
-            if (currentValue === maxIngameInfoGroup) {
-                chart.style.width = "100%";
-            } else if (currentValue === avgKillBarInGroupDmg) {
-                chart.style.width = "50%";
-            } else if (currentValue >= avgKillBarInGroup) {
-                chart.style.width = "60%";
-            }
-
-            if (currentValue === minIngameInfoGroup) {
-                chart.style.width = "10%";
-            } else if (currentValue <= avgKillBarInGroup) {
-                chart.style.width = "20%";
-            }
+            killBarChart.forEach((chart, index) => {
+                let currentValue = killBarValues[index];
+                let chartWidth = (currentValue/ maxIngameInfoGroup)*100;
+                chart.style.width = chartWidth + "%";
 
         });
 
