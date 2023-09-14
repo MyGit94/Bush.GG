@@ -217,7 +217,7 @@ ingameInfoWrapElements.forEach(function (ingameInfoWrap) {
             // 값이 NaN인 경우 0으로 처리하거나 다른 기본값으로 대체할 수 있음
             return isNaN(numericValue) ? 0 : numericValue;
         });
-
+        
         // 전체중 최대 수치 (5개중)
         let maxIngameInfoGroup = Math.max(...killBarValues);
 

@@ -5,10 +5,6 @@ Chart.defaults.global.defaultFontColor = '#858796';
 Chart.defaults.global.defaultFontFamily = 'Nunito, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
-
-
-
- 
 // 도넛차트
 var ctx = document.querySelector(".game_rate_chart .myPieChart");
 var championKill = document.getElementById('champion_kill_donut_chart');
@@ -62,9 +58,6 @@ ingameWraps.forEach((wrap, index)=>{
         // 값이 NaN인 경우 0으로 처리하거나 다른 기본값으로 대체할 수 있음
         return isNaN(numericValue) ? 0 : numericValue;
     });
-
-    console.log(graphCountValues);
-
     let ingameInfoDonutChart = wrap.querySelectorAll('.myPieChart');
 
     let myPieChart = new Chart(ingameInfoDonutChart , {

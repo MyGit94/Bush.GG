@@ -69,7 +69,6 @@ div들을 정렬하기 위한 옵션 */
 .info_summoner,
 .info_recent {
   width: 100%;
-  height: 250px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -328,6 +327,17 @@ div들을 정렬하기 위한 옵션 */
 .right_rate_text {
   text-align: right;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 /* 최근 20게임 승률 전체영역 */
 .info_recent_game_rate {
@@ -664,11 +674,16 @@ div들을 정렬하기 위한 옵션 */
   /* background-color:#2a2a47; */
 }
 
+
+
 /* 챔피언 스펠 이미지 사이즈 지정 */
 .match_spell img {
   border-radius: 5px;
   width: 30px;
 }
+
+
+
 /* 챔피언 룬 전체영역 */
 .match_rune {
   display: flex;
@@ -732,12 +747,14 @@ div들을 정렬하기 위한 옵션 */
 
 /* 전체 cs량 */
 .match_all_cs {
+  font-size:15px;
   color: #000;
   margin-right: 10px;
 }
 
 /* 분당 cs */
 .match_min_cs {
+  font-size:15px;
   color: #000;
 }
 
@@ -999,7 +1016,7 @@ div들을 정렬하기 위한 옵션 */
 .summoner_name {
   font-weight: bold;
   color: #000;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 /* 소환사 kda 전체영역 */

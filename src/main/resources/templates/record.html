@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-<!-- css -->
-<th:block th:replace="common/fragments/config :: configFragment" />
+    <!-- css -->
+    <th:block th:replace="common/fragments/config :: configFragment" />
 
-<!--record css-->
-<link rel="stylesheet" href="/css/record.css">
+    <!--record css-->
+    <link rel="stylesheet" href="/css/record.css">
 
 
 </head>
@@ -197,7 +197,8 @@
                                     아칼리
                                 </h1>
                             </div>
-                                <!-- 챔피언별 승률 차트 전체영역 -->
+
+
                             <!-- 승리 패배 막대차트 -->
                             <div class="champion_rate_chartbar">
                                 <!-- 승리 막대 차트 -->
@@ -219,7 +220,7 @@
                     </div>
                     <!-- 챔피언 승률 테이블 전체영역끝 -->
                 </div>
-                <!-- 최근 20게임 플레이 챔피언 승률 끝 -->
+                <!-- 최근 20게임 플레이 승률 끝 -->
 
 
                 <!-- 최근 20게임 승률 전체영역 -->
@@ -227,7 +228,7 @@
                     <!-- 승률 차트 -->
                     <div class="game_rate_chart">
                         <!-- 차트 -->
-                        <canvas id="myPieChart">
+                        <canvas class="myPieChart">
                             <!-- 현재 승률 지수 -->
 
                         </canvas>
@@ -241,7 +242,8 @@
                     </h1>
 
                     <!-- 승/패 -->
-                    <p class="game_rate_count" th:text="${recentDTO.getWin()}+'승 '+${recentDTO.getLose()}+'패'">18승 2패</p>
+                    <p class="game_rate_count" th:text="${recentDTO.getWin()}+'승 '+${recentDTO.getLose()}+'패'">18승
+                        2패</p>
 
                     <!-- 승률 / kda 전체영역 -->
                     <div class="game_rate_score">
@@ -459,7 +461,7 @@
                                 <div class="detail_champion_face">
                                     <!-- 챔피언 이미지 파일 -->
                                     <img src="img/champion/Annie.png"
-                                         th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                         th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                          alt="">
                                 </div>
 
@@ -680,7 +682,7 @@
                                 <div class="detail_champion_face">
                                     <!-- 챔피언 이미지 파일 -->
                                     <img src="img/champion/Annie.png"
-                                         th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                         th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                          alt="">
                                 </div>
 
@@ -826,6 +828,8 @@
                                     </div>
                                 </div>
                                 <!-- 소환사 item 정보 끝 -->
+
+
                             </div>
                             <!-- 상세보기 리스트 (한줄) 끝 -->
 
