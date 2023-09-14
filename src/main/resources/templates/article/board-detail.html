@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- css -->
+    <th:block th:replace="common/fragments/config :: configFragment" />
+    <link rel="stylesheet" href="/css/board-detail.css">
+
+</head>
+
+
+<body id="page-top">
+
+    <div id="wrapper">
+
+        <!--   왼쪽 사이드바  -->
+        <th:block th:replace="common/fragments/side :: sideFragment" />
+
+
+        <!-- 메인 컨텐츠 전체영역 -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- 검색창 -->
+            <th:block th:replace="common/fragments/header :: headerFragment"/>
+
+        <!-- 게시판 헤더 -->
+        <!-- 제목 라인 -->
+        <section class="article">
+
+        
+        <div class="articleHeder">
+            <div class="category">
+                <a href="../../static/index.html" class="linkBoard"><strong>. 카테고리</strong>
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </div>
+            <div class="titleArea">
+                <h3 class="titleText">제목 내용입니다?제목 내용입니다?제목 내용입니다?</h3>
+            </div>
+            <div class="nickBox">
+                <button id="" class="nickname"> 홍길동 </button>
+            </div>
+            <div class="articleInfoBox">
+                <div class="articleInfo">
+                    <span class="date">2023-09-04</span>
+                    <span class="count">조회 15</span>
+                </div>
+                <div class="commentCount">
+                    <span class="titleText">💬</span>
+                    <span class="titleText">댓글 ?개 </span>
+                </div>
+            </div>
+         </div>
+         <!-- 제목 라인 끝-->
+        <!-- 게시판 헤더 끝 --> 
+
+            <!-- 게시판 -->
+            <div class="card shadow">
+
+                <div class="card-body">
+                    <div class="content" rows="10">
+                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora l
+                        audantium nihil maiores. Cum libero est porro harum amet quam quae, perferendi
+                        s pariatur? Rerum, fugit reprehenderit eveniet voluptates alias fuga soluta!
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora l
+                        audantium nihil maiores. Cum libero est porro harum amet quam quae, perferendi
+                        s pariatur? Rerum, fugit reprehenderit eveniet voluptates alias fuga soluta!
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora l
+                        audantium nihil maiores. Cum libero est porro harum amet quam quae, perferendi
+                        s pariatur? Rerum, fugit reprehenderit eveniet voluptates alias fuga soluta!
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora l
+                        audantium nihil maiores. Cum libero est porro harum amet quam quae, perferendi
+                        s pariatur? Rerum, fugit reprehenderit eveniet voluptates alias fuga soluta!</p>
+                    </div>
+                    <div class="d-flex justify-content-center mt-5">
+                        <button type="submit" class="btn hartCountBtn">
+                            <span data-v="???" class="hart mr-2"><i class="fas fa-heart"></i></span>
+                            <span data-v="???" class="hartCount">??</span>
+                        </button>
+                    </div>
+                </div>
+             </div>
+             <!-- 게시판 끝-->
+             <!-- 댓글 목록 -->
+                <div class="commentCountBox">
+                    <h5 class="titleText">💬</h5><h5 class="titleText">댓글 ?개 </h5>
+                </div>
+            <div class="commentBox">
+                <ul class="list-group commentList">
+                    <li id="#" class="list-group-item CommentItem"><span>닉네임</span>
+                        <div class="commentTextBox">
+                            <p>
+                                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                     Beatae ab non, aspernatur adipisci ullam quas officiis dolores eveniet commodi, ea place
+                                    at voluptate. Ea aspernatur nulla omnis inventore similique iure hic.</span>
+                            </p>
+                            <div class="commentInfoBox">
+                                <span class="comment_info_date">2023-09-04</span>
+                                <a href="#" role="button" class="commentInfoBtn"> 답글쓰기 </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li id="#" class="list-group-item CommentItemReply"><span>닉네임</span>
+                        <div class="Comment_text_Box">
+                            <p>
+                                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                     Beatae ab non, aspernatur adipisci ullam quas officiis dolores eveniet commodi, ea place
+                                    at voluptate. Ea aspernatur nulla omnis inventore similique iure hic.</span>
+                            </p>
+                            <div class="commentInfoBox">
+                                <span class="comment_info_date">2023-09-04</span>
+                                <a href="#" role="button" class="commentInfoBtn"> 답글쓰기 </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li id="#" class="list-group-item CommentItemReply"><span>닉네임</span>
+                        <div class="Comment_text_Box">
+                            <p>
+                                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                     Beatae ab non, aspernatur adipisci ullam quas officiis dolores eveniet commodi, ea place
+                                    at voluptate. Ea aspernatur nulla omnis inventore similique iure hic.</span>
+                            </p>
+                            <div class="commentInfoBox">
+                                <span class="comment_info_date">2023-09-04</span>
+                                <a href="#" role="button" class="commentInfoBtn"> 답글쓰기 </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <form class="commentWriter">
+                    <div class="commentInBox">
+                        <textarea class="form-control" placeholder="댓글을 남겨보세요" rows="5"></textarea>
+                    </div>
+                    <div class="register d-flex justify-content-end mt-2">
+                        <button type="submit" class="regiserBtn">등록</button>
+                    </div>
+               </form>
+            </div>
+            
+             <!-- 댓글 목록 끝-->
+
+
+
+            <!-- 게시판 하단 & 페이지 -->
+
+            <div class="aritcleBottom">
+                <div class="leftArea">
+                    <a href="javascript:window.history.back();" class="btn bottomBtn" type="button"><i class="fas fa-list"></i></a>
+                    <a href="#" class="btn bottomBtn" type="button">답글</a>
+                </div>
+                <div class="rightArea">
+                    <a href="../../static/board-register.html" class="btn bottomBtn" type="button">글쓰기</a>
+                    <a href="#" class="btn bottomBtn" type="button">TOP</a>
+                </div>
+            </div>
+
+            <!-- 게시판 하단 & 페이지 끝-->
+        </section>
+        </div>
+        <!-- 메인 컨텐츠 전체영역 끝 -->
+    </div>
+    <!--  메인 컨텐츠 끝 -->
+
+
+
+
+    <!--   자바 스크립트 -->
+    <th:block th:replace="common/fragments/script :: scriptFragment"/>
+
+</body>
+
+</html>
