@@ -283,6 +283,7 @@
 
                 <!-- 최근 20게임 플레이 챔피언 승률 -->
                 <div class="info_recent_champion_rate">
+<!--                    <p th:text="${recentDTO.getRecentChampion()}"></p>-->
                     <!-- 최근 20게임 챔피언 승률 타이틀  -->
                     <h1 class="recent_friend_title champion_rate_title">
                         선호하는 챔피언 (최근 20 게임)
@@ -313,6 +314,10 @@
                                 </h1>
                             </div>
 
+                                <!-- 챔피언 이름 텍스트 -->
+                                <p class="champion_name" th:text="${row.getWin()}+'-'+${row.getCount() - row.getWin()}">
+                                    르블랑
+                                </p>
 
                             <!-- 승리 패배 막대차트 -->
                             <div class="champion_rate_chartbar">
@@ -378,6 +383,7 @@
 
         <!-- 전적 리스트 전체영역-->
         <div class="record_wrap">
+
             <!--         전적 상세보기와 전적 리스트를 한곳에 묶기위한 wrap-->
             <div class="record_list_wrap" th:each="matchInfoList : ${matchInfoList}"
                  th:with="matchInfo=${matchInfoList['matchInfo']}, participant=${matchInfoList['participant']}, mainRune=${matchInfoList['mainRune']}, subRune=${matchInfoList['subRune']}">

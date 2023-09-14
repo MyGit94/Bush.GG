@@ -11,5 +11,6 @@ public class RankingDTO {
     private int leaguePoints;
     private int wins;
     private int losses;
+    private long level;
 
 }

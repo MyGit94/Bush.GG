@@ -68,11 +68,10 @@ dependencies {
 	// AOP 모듈
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
 
-    // 배치 프로그램
-    implementation 'org.springframework.boot:spring-boot-starter-batch'
-    implementation 'org.springframework.boot:spring-boot-starter-quartz'
-    implementation 'com.h2database:h2'
-    testImplementation 'org.springframework.batch:spring-batch-test'
+    // json
+    implementation 'org.json:json:20210307' // 또는 최신 버전을 사용하세요
+
+
 }
 
 tasks.named('test') {

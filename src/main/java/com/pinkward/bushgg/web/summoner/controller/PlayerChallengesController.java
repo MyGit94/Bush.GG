@@ -6,6 +6,7 @@ import com.pinkward.bushgg.domain.challenges.service.ChallengesServiceImpl;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import com.pinkward.bushgg.domain.summoner.service.SummonerServiceImpl;
 import jakarta.servlet.http.HttpSession;
+import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +29,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PlayerChallengesController {
 
-    private final SummonerServiceImpl summonerService;
-
-    private final ChallengesServiceImpl challengesService;
+    private final SummonerService summonerService;
+    private final APIServiceKo apiServiceKo;
 
     @Autowired
     ChallengesMapper challengesMapper;
 
     @GetMapping(value="/challenge")
-    public String playerChallenges (@RequestParam("summonerName") String summonerName, Model model, HttpSession session){
+    public String playerChallenges (@RequestParam("summonerName") String summonerName, Model model){
         if (summonerName.length() == 2) {
             summonerName = summonerName.substring(0, 1) + " " + summonerName.substring(1);
         }
@@ -46,8 +46,6 @@ public class PlayerChallengesController {
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
-
-        summonerName = summonerName.replaceAll(" ","").toLowerCase();
 
         SummonerDTO summoner = summonerService.summonerInfo(esummonerName);
         PlayerChallengesInfoDTO playerChallengesInfo = summonerService.getPlayerChallengesInfo(summoner.getPuuid());
@@ -62,12 +60,13 @@ public class PlayerChallengesController {
         levelOrder.put("SILVER", 7);
         levelOrder.put("BRONZE", 8);
         levelOrder.put("IRON", 9);
+        SummonerDTO summoner = apiServiceKo.getSummonerInfo(esummonerName);
+        PlayerChallengesInfoDTO playerChallengesInfo = apiServiceKo.getPlayerChallengesInfo(summoner.getPuuid());
         // 가져온 challenges 정보중 challengeId가 101000 이상인 값만 가져옴
         List<ChallengesInfoDTO> filter = playerChallengesInfo.getChallenges().stream()
                 .filter(challenge -> challenge.getChallengeId() >= 101000)
                 .sorted(Comparator.comparingInt(challenge -> levelOrder.getOrDefault(challenge.getLevel(), Integer.MAX_VALUE)))
                 .collect(Collectors.toList());
-        log.info("도전과제:{}", filter);
 
         List<Integer> challengeIds = filter.stream()
                 .map(ChallengesInfoDTO::getChallengeId)

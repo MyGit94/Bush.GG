@@ -220,177 +220,31 @@
 
             <!-- 테이블 내용 (1행) forEach-->
             <tbody class="summoner_rank_table_body">
-              <tr>
+              <tr th:each="ranking, iterStat : ${challengerRanking}">
                 <!-- 랭킹등수 -->
-                <td class="rank_table_number">1</td>
+                <td class="rank_table_number" th:text="${iterStat.count}">1</td>
                 <!-- 소환사명 -->
-                <td class="rank_table_name">
-                  <img src="img/illust/2.jpg" alt="">
-                  <p class="rank_table_name_text">사 각</p>
-                </td>
+                <td class="rank_table_name" th:text="${ranking.getSummonerName()}">사각</td>
                 <!-- 티어 -->
                 <td class="rank_table_tier">
                   <!-- 티어 이미지 -->
-                  <img src="img/tier/Challenger.png" alt="">
+                  <img src="img/tier/Challenger.png" th:src="@{'img/tier/' + ${ranking.getTier()} + '.png'}" alt="">
                   <!-- 티어명 -->
                   Challenger
                 </td>
                 <!-- Lp -->
-                <td class="rank_table_lp">1799p</td>
+                <td class="rank_table_lp" th:text="${ranking.getLeaguePoints()}">1799p</td>
                 <!-- 승률 -->
                 <td class="rank_table_rate">80%</td>
                 <!-- 승 -->
-                <td class="rank_table_win">80</td>
+                <td class="rank_table_win" th:text="${ranking.getWins()}">80</td>
                 <!-- 패 -->
-                <td class="rank_table_lose">20</td>
+                <td class="rank_table_lose" th:text="${ranking.getLosses()}">20</td>
                 <!-- 레벨 -->
                 <td class="rank_table_level">9999</td>
               </tr>
             </tbody>
             <!-- 테이블 내용 (1행) 끝 -->
-
-
-            <!-- 테이블 내용 (1행) forEach-->
-            <tbody class="summoner_rank_table_body">
-              <tr>
-                <!-- 랭킹등수 -->
-                <td class="rank_table_number">1</td>
-                <!-- 소환사명 -->
-                <td class="rank_table_name">사각</td>
-                <!-- 티어 -->
-                <td class="rank_table_tier">
-                  <!-- 티어 이미지 -->
-                  <img src="img/tier/Challenger.png" alt="">
-                  <!-- 티어명 -->
-                  Challenger
-                </td>
-                <!-- Lp -->
-                <td class="rank_table_lp">1799p</td>
-                <!-- 승률 -->
-                <td class="rank_table_rate">80%</td>
-                <!-- 승 -->
-                <td class="rank_table_win">80</td>
-                <!-- 패 -->
-                <td class="rank_table_lose">20</td>
-                <!-- 레벨 -->
-                <td class="rank_table_level">9999</td>
-              </tr>
-            </tbody>
-            <!-- 테이블 내용 (1행) 끝 -->
-
-            <!-- 테이블 내용 (1행) forEach-->
-            <tbody class="summoner_rank_table_body">
-              <tr>
-                <!-- 랭킹등수 -->
-                <td class="rank_table_number">1</td>
-                <!-- 소환사명 -->
-                <td class="rank_table_name">사각</td>
-                <!-- 티어 -->
-                <td class="rank_table_tier">
-                  <!-- 티어 이미지 -->
-                  <img src="img/tier/Challenger.png" alt="">
-                  <!-- 티어명 -->
-                  Challenger
-                </td>
-                <!-- Lp -->
-                <td class="rank_table_lp">1799p</td>
-                <!-- 승률 -->
-                <td class="rank_table_rate">80%</td>
-                <!-- 승 -->
-                <td class="rank_table_win">80</td>
-                <!-- 패 -->
-                <td class="rank_table_lose">20</td>
-                <!-- 레벨 -->
-                <td class="rank_table_level">9999</td>
-              </tr>
-            </tbody>
-            <!-- 테이블 내용 (1행) 끝 -->
-
-
-            <!-- 테이블 내용 (1행) forEach-->
-            <tbody class="summoner_rank_table_body">
-              <tr>
-                <!-- 랭킹등수 -->
-                <td class="rank_table_number">1</td>
-                <!-- 소환사명 -->
-                <td class="rank_table_name">사각</td>
-                <!-- 티어 -->
-                <td class="rank_table_tier">
-                  <!-- 티어 이미지 -->
-                  <img src="img/tier/Challenger.png" alt="">
-                  <!-- 티어명 -->
-                  Challenger
-                </td>
-                <!-- Lp -->
-                <td class="rank_table_lp">1799p</td>
-                <!-- 승률 -->
-                <td class="rank_table_rate">80%</td>
-                <!-- 승 -->
-                <td class="rank_table_win">80</td>
-                <!-- 패 -->
-                <td class="rank_table_lose">20</td>
-                <!-- 레벨 -->
-                <td class="rank_table_level">9999</td>
-              </tr>
-            </tbody>
-            <!-- 테이블 내용 (1행) 끝 -->
-
-            <!-- 테이블 내용 (1행) forEach-->
-            <tbody class="summoner_rank_table_body">
-              <tr>
-                <!-- 랭킹등수 -->
-                <td class="rank_table_number">1</td>
-                <!-- 소환사명 -->
-                <td class="rank_table_name">사각</td>
-                <!-- 티어 -->
-                <td class="rank_table_tier">
-                  <!-- 티어 이미지 -->
-                  <img src="img/tier/Challenger.png" alt="">
-                  <!-- 티어명 -->
-                  Challenger
-                </td>
-                <!-- Lp -->
-                <td class="rank_table_lp">1799p</td>
-                <!-- 승률 -->
-                <td class="rank_table_rate">80%</td>
-                <!-- 승 -->
-                <td class="rank_table_win">80</td>
-                <!-- 패 -->
-                <td class="rank_table_lose">20</td>
-                <!-- 레벨 -->
-                <td class="rank_table_level">9999</td>
-              </tr>
-            </tbody>
-            <!-- 테이블 내용 (1행) 끝 -->
-
-            <!-- 테이블 내용 (1행) forEach-->
-            <tbody class="summoner_rank_table_body">
-              <tr>
-                <!-- 랭킹등수 -->
-                <td class="rank_table_number">1</td>
-                <!-- 소환사명 -->
-                <td class="rank_table_name">사각</td>
-                <!-- 티어 -->
-                <td class="rank_table_tier">
-                  <!-- 티어 이미지 -->
-                  <img src="img/tier/Challenger.png" alt="">
-                  <!-- 티어명 -->
-                  Challenger
-                </td>
-                <!-- Lp -->
-                <td class="rank_table_lp">1799p</td>
-                <!-- 승률 -->
-                <td class="rank_table_rate">80%</td>
-                <!-- 승 -->
-                <td class="rank_table_win">80</td>
-                <!-- 패 -->
-                <td class="rank_table_lose">20</td>
-                <!-- 레벨 -->
-                <td class="rank_table_level">9999</td>
-              </tr>
-            </tbody>
-            <!-- 테이블 내용 (1행) 끝 -->
-
           </table>
         </div>
         <!-- 소환사 랭크 테이블 전체영역 끝 -->

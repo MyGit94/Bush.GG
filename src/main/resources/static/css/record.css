@@ -16,8 +16,8 @@ ul>li {
 }
 
 
-#content-wrapper {
-  background-color: rgba(245, 245, 245);
+#content-wrapper{
+  background-color: rgba(245,245,245);
   /* background-image: url(/img/wallpaper.jpg);
   background-position: center;
   background-repeat: no-repeat;
@@ -95,7 +95,7 @@ div들을 정렬하기 위한 옵션 */
   flex-direction: column;
   justify-content: center;
   width: 100px;
-
+  
 }
 
 .summoner_icon img {
@@ -138,7 +138,7 @@ div들을 정렬하기 위한 옵션 */
 /* 티어 아이콘 이미지 사이즈 조정 */
 .rank_icon {
   width: 160px;
-  height: 160px;
+  height:160px;
 }
 
 /* 티어 이미지와 텍스트간의 여백 생성 */
@@ -277,7 +277,8 @@ div들을 정렬하기 위한 옵션 */
 
 /* 챔피언 이름 */
 .champion_name {
-  
+  font-size: 14px;
+  font-weight: bold;
   color: #000;
   margin-left: 10px;
   margin-bottom: 0;
@@ -545,6 +546,7 @@ div들을 정렬하기 위한 옵션 */
 /* 리스트 안에 있는 영역 오른쪽에 점선으로 구분하기 위한 스타일 지정 */
 .record_list>div{
   border-right: 1px dashed #868686;
+  background-color: #15654956;
   text-align: center;
   box-sizing: border-box;
 }
@@ -869,7 +871,7 @@ div들을 정렬하기 위한 옵션 */
   display: none;
   width: 70%;
   margin: 0 auto 5px auto;
-
+  
   /* padding: 20px; */
 }
 
@@ -1109,7 +1111,7 @@ div들을 정렬하기 위한 옵션 */
 
 /* 받은 데미지 마우스 hover 시 나오는 설명 */
 .get_chart_info {
-  top: 20px;
+  top:20px;
 }
 
 .get_chart_info:after {
@@ -1434,8 +1436,8 @@ div들을 정렬하기 위한 옵션 */
   width: 100%;
   height: 300px;
   position: relative;
-  display: none;
-  padding: 10px;
+  display:none;
+  padding:10px;
   border: 1px solid #156549;
 }
 
@@ -1452,22 +1454,22 @@ div들을 정렬하기 위한 옵션 */
   width: 100%;
   height: 100%;
   display: flex;
-  background-color: #fff;
+  background-color:#fff;
 }
 
 /* 메인룬 전체영역 */
 .detail_main_rune_wrap {
-  width: 33.3333333%;
+  width:33.3333333%;
   border: none;
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-right: 1px dashed #dadada;
+  border-right:1px dashed #dadada;
 }
 
-.detail_main_rune_wrap:last-child {
-  border: none;
+.detail_main_rune_wrap:last-child{
+  border:none;
 }
 
 
@@ -1479,7 +1481,7 @@ div들을 정렬하기 위한 옵션 */
 }
 
 /* 서브룬 타이틀 이미지 조정 */
-.detail_sub_rune_title img {
+.detail_sub_rune_title img{
   transform: translateY(-80%);
 }
 
@@ -1491,19 +1493,19 @@ div들을 정렬하기 위한 옵션 */
 
 
 /* 메인룬 리스트 이미지 크기 설정 */
-.detail_main_rune img {
-  width: 50px;
-  filter: grayscale(1);
+.detail_main_rune img{
+  width:50px;
+  filter:grayscale(1);
 }
 
 
 
-.rewq {
-  width: 40px;
-  filter: grayscale(0);
+.rewq{
+  width:40px;
+  filter:grayscale(0);
 }
 
-.qwer {
-  width: 40px;
-  filter: grayscale(1);
+.qwer{
+  width:40px;
+  filter:grayscale(1);
 }
