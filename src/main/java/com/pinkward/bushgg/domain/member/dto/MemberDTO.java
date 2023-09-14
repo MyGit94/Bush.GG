@@ -15,19 +15,19 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
-public class Member {
+public class MemberDTO {
 	@NotBlank(message = "아이디는 필수 입력 항목입니다.")
-	@Size(min = 6, max = 12)
-	private String loginid;
+	@Size(min = 4, max = 12)
+	private String loginId;
 	@NotBlank(message = "닉네임은 필수 입력 항목입니다.")
-	@Size(min = 6, max = 12)
-	private String nickname;
+	@Size(min = 2, max = 12)
+	private String nickName;
 	@NotBlank(message = "비밀번호는 필수 입력 항목입니다.")
 	private String passwd;
 	@NotBlank(message = "이메일은 필수 입력 항목입니다.")
 	private String email;
-	private String regdate;
 	private String role;
+	private String regdate;
 }
 
 
