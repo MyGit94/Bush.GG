@@ -25,7 +25,7 @@ public class BoardController {
 	public String register(Model model) {
 		log.info("게시글 쓰기");
 		return  "article/board-register";
-	}
+	}ㅁㄴㅇ
 
 //	게시글 디테일
 	@GetMapping("/detail")
