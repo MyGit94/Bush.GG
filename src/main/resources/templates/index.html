@@ -15,14 +15,16 @@
 
 <div id="wrapper">
 
-    <img src="/img/누누.png" alt="" class="garen">
+
+<!--    로딩페이지 : 지연님이 안쓴다해서 임시로 미국보냄 -->
     <div class="loading_wrap">
-        <!--        로딩 -->
-        <div class="loading-container">
-            <div class="loading"></div>
-            <div id="loading-text">loading</div>
-        </div>
-    </div>
+
+<!--        &lt;!&ndash;        로딩 &ndash;&gt;-->
+<!--        <div class="loading-container">-->
+<!--            <div class="loading"></div>-->
+<!--            <div id="loading-text">loading</div>-->
+<!--        </div>-->
+<!--    </div>-->
 
 
     <!--   왼쪽 사이드바  -->
@@ -50,6 +52,14 @@
                 </div>
                 <!-- 실시간 정보 전체영역 -->
                 <div class="live_info_wrap">
+
+
+<!--                    실시간 정보가 아무도 없을떄 -->
+<!--                    th:if 로 실시간 정보가 null 이 아닐때는 안보이게 설정필요 -->
+                    <div class="live_error_wrap">
+                        <img src="/img/live.png" alt="">
+                    </div>
+
 
                     <!-- 실시간 정보 1칸 전체영역 -->
                     <div class="live_info_contents" th:each="gameInfo : ${currentGameInfo}"
@@ -314,9 +324,10 @@
                 </div>
                 <!-- 실시간 정보 (1줄) 전체영역  끝-->
                 <!-- 두번째 라인 컨텐츠 전체영역 -->
-                <div class="content_line2_flex line2_content">
+                <div class="line2_content">
                     <!-- 커뮤니티 -->
                     <div class="summoner_coummuity_wrap">
+
                         <h2 class="community_main_title">
                             BUSH.GG 최근 인기글
                         </h2>

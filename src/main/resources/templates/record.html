@@ -405,7 +405,7 @@
                                 <a href="" class="user_name_text"
                                    th:href="@{/summoner(summonerName=${participants.getSummonerName()})}"
                                    th:text="${participants.getSummonerName()}"
-                                   th:style="${participants.getSummonerName() == summoner.getName() ? 'font-weight: bold; color:#0a6325;' : ''}">
+                                   th:style="${participants.getSummonerName() == summoner.getName() ? 'font-weight: bold;' : ''}">
                                     란브로대머리</a>
                             </li>
                         </ul>
@@ -422,7 +422,7 @@
                                 <a href="" class="user_name_text"
                                    th:href="@{/summoner(summonerName=${participants.getSummonerName()})}"
                                    th:text="${participants.getSummonerName()}"
-                                   th:style="${participants.getSummonerName() == summoner.getName() ? 'font-weight: bold; color:#0a6325;' : ''}">란브로대머리</a>
+                                   th:style="${participants.getSummonerName() == summoner.getName() ? 'font-weight: bold;'  : ''}">란브로대머리</a>
 
 
                             </li>
@@ -1374,7 +1374,7 @@
 
 
                         <!-- 컨텐츠 전체영역 -->
-                        <div class="container rune_container">
+                        <div class="rune_container">
                             <!-- 메인 룬 전체영역 -->
                             <div class="main_rune_wrap detail_main_rune_wrap">
                                 <!-- 룬 타이틀 -->
