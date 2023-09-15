@@ -21,7 +21,7 @@ import java.util.Map;
 public class APIServiceAsiaImpl implements APIServiceAsia{
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    @Value("${riot.api.key}")
+    @Value("${riot.ranking.key}")
     private String mykey;
 
     String serverUrl = "https://asia.api.riotgames.com/lol/";

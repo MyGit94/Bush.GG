@@ -24,7 +24,7 @@ import java.util.Set;
 public class APIServiceKoImpl implements APIServiceKo {
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    @Value("${riot.api.key}")
+    @Value("${riot.ranking.key}")
     private String mykey;
     @Value("${riot.challenges.key}")
     private String challengeKey;
@@ -133,5 +133,30 @@ public class APIServiceKoImpl implements APIServiceKo {
 
         return summonerTier;
 
+    }
+
+    @Override
+    public Map<String, Object> getCurrentGame(String summonerId) {
+
+
+        Map<String, Object> currentGame;
+        try {
+            HttpClient client = HttpClientBuilder.create().build();
+            HttpGet request = new HttpGet(serverUrl + "spectator/v4/active-games/by-summoner/" + summonerId + "?api_key=" + mykey);
+
+            HttpResponse response = client.execute(request);
+
+            if (response.getStatusLine().getStatusCode() != 200) {
+                return null;
+            }
+
+            HttpEntity entity = response.getEntity();
+            currentGame = objectMapper.readValue(entity.getContent(), Map.class);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return currentGame;
     }
 }

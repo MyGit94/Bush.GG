@@ -1,13 +1,10 @@
 package com.pinkward.bushgg.web.summoner.controller;
 
 import com.pinkward.bushgg.domain.api.service.APIServiceKo;
-import com.pinkward.bushgg.domain.api.service.APIServiceKoImpl;
 import com.pinkward.bushgg.domain.challenges.dto.*;
 import com.pinkward.bushgg.domain.challenges.mapper.ChallengesMapper;
 import com.pinkward.bushgg.domain.challenges.service.ChallengesService;
-import com.pinkward.bushgg.domain.challenges.service.ChallengesServiceImpl;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
-import com.pinkward.bushgg.domain.summoner.service.SummonerServiceImpl2;
 import jakarta.servlet.http.HttpSession;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
