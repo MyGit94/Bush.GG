@@ -1,7 +1,5 @@
 package com.pinkward.bushgg.domain.match.dto;
 
-import com.pinkward.bushgg.domain.match.common.ChampionCount;
-import com.pinkward.bushgg.domain.match.common.SummonerWithCount;
 import lombok.Data;
 
 import java.util.List;
@@ -17,8 +15,8 @@ public class RecentDTO {
     private int deaths;
     private String kda;
 
-    private List<ChampionCount> championCounts;
-    private List<SummonerWithCount> summonerWithCounts;
+    private List<com.pinkward.bushgg.domain.match.common.ChampionCount> championCounts;
+    private List<com.pinkward.bushgg.domain.match.common.SummonerWithCount> summonerWithCounts;
 
 
 }

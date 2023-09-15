@@ -23,24 +23,24 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class HomeController {
-	private final ChampionService championService;
+   private final ChampionService championService;
 
 
-	@GetMapping("/")
-	public String home(Model model) {
-		List<Integer> championIds = championService.championLotation();
-		List<String> championNamesEn = new ArrayList<>();
-		List<String> championNamesKo = new ArrayList<>();
+   @GetMapping("/")
+   public String home(Model model) {
+      List<Integer> championIds = championService.championLotation();
+      List<String> championNamesEn = new ArrayList<>();
+      List<String> championNamesKo = new ArrayList<>();
 
-		for (Integer championId : championIds) {
-			String championNameEn = championService.getChampionNameEn(championId.toString()).replace(" ","").replace("'","");
-			String championNameKo = championService.getChampionNameKo(championId.toString());
-			championNamesEn.add(championNameEn);
-			championNamesKo.add(championNameKo);
-		}
+      for (Integer championId : championIds) {
+         String championNameEn = championService.getChampionNameEn(championId.toString()).replace(" ","").replace("'","");
+         String championNameKo = championService.getChampionNameKo(championId.toString());
+         championNamesEn.add(championNameEn);
+         championNamesKo.add(championNameKo);
+      }
 
-		model.addAttribute("championNamesEn",championNamesEn);
-		model.addAttribute("championNamesKo",championNamesKo);
-		return "index";
-	}
+      model.addAttribute("championNamesEn",championNamesEn);
+      model.addAttribute("championNamesKo",championNamesKo);
+      return "index";
+   }
 }
