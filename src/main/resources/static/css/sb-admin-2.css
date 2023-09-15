@@ -11,12 +11,18 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
- @font-face {
+
+@font-face {
   font-family: 'GmarketSansMedium';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
+
+body{
+  background-color: #e4e4e4;
+}
+
 
 :root {
   --blue: #4e73df;
@@ -5240,17 +5246,16 @@ a.badge-dark:focus, a.badge-dark.focus {
   padding: 0.75rem 1.25rem;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.35rem;
 }
 
 .list-group-item:first-child {
-  /* border-top-left-radius: inherit;
-  border-top-right-radius: inherit; */
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
 }
 
 .list-group-item:last-child {
-  /* border-bottom-right-radius: inherit;
-  border-bottom-left-radius: inherit; */
+  border-bottom-right-radius: inherit;
+  border-bottom-left-radius: inherit;
 }
 
 .list-group-item.disabled, .list-group-item:disabled {
@@ -5267,8 +5272,7 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .list-group-item + .list-group-item {
-  /* border-top-width: 0; */
-  border-radius: 0.35rem;
+  border-top-width: 0;
 }
 
 .list-group-item + .list-group-item.active {
@@ -9775,6 +9779,7 @@ a:focus {
 
 #wrapper {
   display: flex;
+  width:100%;
 }
 
 #wrapper #content-wrapper {
@@ -9882,7 +9887,7 @@ a:focus {
 }
 
 .bg-gradient-primary {
-  background-color: #babcbb;
+  background-color: #156549;
   /* background-image: linear-gradient(180deg,#494949 10%,#a4a4a4 100%); */
   background-size: cover;
 }

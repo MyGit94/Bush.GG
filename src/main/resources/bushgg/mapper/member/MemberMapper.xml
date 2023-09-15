@@ -5,8 +5,6 @@
 
 <mapper	namespace="com.pinkward.bushgg.domain.member.mapper.MemberMapper">
 
-
-<<<<<<< HEAD
 	<!-- select 태그를 이용하여 전체멤버 조회를 위한 SQL 매핑 -->
 	<select id="findByAll" resultType="MemberDTO">
 		SELECT loginId, nickName, email, role, TO_CHAR(regdate, 'yyyy-MM-DD HH24:MI:SS') regdate
@@ -66,27 +64,5 @@
 		
 	
 	
-
-
-	<insert id="create" parameterType="MemberDTO">
-=======
-	<insert id="create" parameterType="MemberDTO">
->>>>>>> e8b1ad9fa11251e4586b35477b82a5e16f03b3be
-        INSERT INTO member(loginId,
-                           nickName,
-                           passwd,
-                           email,
-                           role)
-        VALUES (#{loginId},
-                #{nickName},
-                #{passwd},
-                #{email},
-                #{role})
-    </insert>
-
-<<<<<<< HEAD
-
-=======
->>>>>>> e8b1ad9fa11251e4586b35477b82a5e16f03b3be
 	
 </mapper>

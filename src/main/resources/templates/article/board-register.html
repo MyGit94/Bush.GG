@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- css -->
+    <th:block th:replace="common/fragments/config :: configFragment" />
+    <link href="/css/board-register.css" rel="stylesheet">
+</head>
+
+
+<body id="page-top">
+
+    <div id="wrapper">
+
+        <!--   왼쪽 사이드바  -->
+        <th:block th:replace="common/fragments/side :: sideFragment" />
+
+
+        <!-- 메인 컨텐츠 전체영역 -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+                     <!-- 상단 헤더 -->
+                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                        <!-- (모바일) 사이드 메뉴 여닫이 버튼 -->
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+
+                        <!-- 전적 검색창 -->
+                        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group">
+                                <!-- 전적 검색 : 입력 텍스트칸 -->
+                                <input type="text" class="form-control bg-light border-0 small" placeholder="소환사명을 입력해주세요"
+                                    aria-label="Search" aria-describedby="basic-addon2">
+                                <!-- 검색 아이콘 전체영역 -->
+                                <div class="input-group-append">
+                                    <!-- 검색 버튼 네모박스 -->
+                                    <button class="btn btn-primary" type="button">
+                                        <!-- 검색 버튼 돋보기 아이콘 -->
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- 전적 검색창 끝 -->
+
+                    </nav>
+                    <!-- 상단헤더 끝 -->
+
+        <section class="boardRegister">
+        <!-- 글쓰기 헤더 -->
+        <div class="boardRegisterHeder">
+            <div class="title">
+                <h1 class="h1">게시판 글쓰기</h1>
+            </div>
+        </div>
+        <!-- 글쓰기 헤더 끝 -->
+
+            <!-- 글쓰기 -->
+            <div class="writeBody shadow-lg">
+                <div class="card-body">
+                    <form class="writing">
+                        <div class="writingHeader">
+                            <select class="category">
+                                <option selected>카테고리</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                            <button type="submit" class="btn registerBtn">등록</button>
+                        </div>
+                        <div class="writingTitle">
+                            <input type="text" class="form-control mb-3" id="floatingInput" placeholder="제목을 입력해 주세요">
+                        </div>
+                        <div class="writingTextArea">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="20" placeholder="내용을 입력해 주세요"></textarea>
+                         </div>
+                    </form>
+                </div>
+             </div>
+             <!-- 글쓰기 끝-->
+             
+            <!-- 게시판 하단 & 페이지 -->
+            <div class="aritcleBottom">
+                <div class="leftArea">
+                    <a href="javascript:window.history.back();" class="btn bottomBtn" type="button"><i class="fas fa-list"></i></a>
+                </div>
+            <!-- 게시판 하단 & 페이지 끝-->
+            </section>
+        </div>
+        <!-- 메인 컨텐츠 전체영역 끝 -->
+    </div>
+    <!--  메인 컨텐츠 끝 -->
+
+    <!--   자바 스크립트 -->
+    <th:block th:replace="common/fragments/script :: scriptFragment"/>
+
+</body>
+
+</html>

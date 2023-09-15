@@ -77,8 +77,8 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true  
   mapper-locations: 
-    - classpath:bushgg/mapper/**/*.xml
-  type-aliases-package: com.pinkward.bushgg.domain.member.dto
+    - classpath:mybatis/mapper/**/*.xml
+  type-aliases-package: com.ezen.springmvc.domain.member.dto
 
 ---
       

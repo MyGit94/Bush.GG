@@ -1,10 +1,19 @@
 package com.pinkward.bushgg.web.summoner.controller;
 
+import com.pinkward.bushgg.domain.api.service.APIServiceAsia;
+import com.pinkward.bushgg.domain.api.service.APIServiceKo;
 import com.pinkward.bushgg.domain.challenges.dto.PlayerChallengesInfoDTO;
-import com.pinkward.bushgg.domain.match.common.TimeTranslator;
-import com.pinkward.bushgg.domain.match.dto.*;
+import com.pinkward.bushgg.domain.champion.service.ChampionService;
+import com.pinkward.bushgg.domain.match.common.ChampionCount;
+import com.pinkward.bushgg.domain.match.common.RuneList;
+import com.pinkward.bushgg.domain.match.common.SummonerWithCount;
+import com.pinkward.bushgg.domain.match.dto.MatchInfoDTO;
+import com.pinkward.bushgg.domain.match.dto.ParticipantsDTO;
+import com.pinkward.bushgg.domain.match.dto.RecentDTO;
+import com.pinkward.bushgg.domain.match.service.MatchService;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
-import com.pinkward.bushgg.domain.summoner.service.SummonerServiceImpl;
+import com.pinkward.bushgg.domain.summoner.dto.SummonerTierDTO;
+import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -23,12 +32,11 @@ import java.util.*;
 @RequiredArgsConstructor
 public class SummonerController {
 
-    private final SummonerServiceImpl summonerService;
-
-    @GetMapping("/")
-    public String goIndex(){
-        return "index";
-    }
+    private final SummonerService summonerService;
+    private final APIServiceKo apiServiceKo;
+    private final APIServiceAsia apiServiceAsia;
+    private final MatchService matchService;
+    private final ChampionService championService;
 
 
     @GetMapping(value = "/summoner")
@@ -37,59 +45,68 @@ public class SummonerController {
         if (summonerName.length() == 2) {
             summonerName = summonerName.substring(0, 1) + " " + summonerName.substring(1);
         }
-        String esummonerName;
+        String esummonerName = null;
         try {
             esummonerName = URLEncoder.encode(summonerName, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
 
+//        challengerMapper.deleteChallenger();
+//        log.info("딜리트");
+//
+//        List<ChallengerRankingDTO> list  = challengerRankingService.getChallengerInfo();
+//        log.info("챌린저:{}", list);
+//        for (ChallengerRankingDTO challenger : list) {
+//            challengerMapper.insertChallenger(challenger);
+//            log.info("인서트");
+//        }
+
+
+
+
         summonerName = summonerName.replaceAll(" ","").toLowerCase();
 
         // 이름으로 소환사 정보 가져옴
-        SummonerDTO summoner = summonerService.summonerInfo(esummonerName);
-        SummonerTierDTO summonerTier = summonerService.getTierInfo(summoner.getId());
+        SummonerDTO summoner = apiServiceKo.getSummonerInfo(esummonerName);
+
+        Set<Map<String,Object>> summonerTier = apiServiceKo.getTierInfo(summoner.getId());
+        SummonerTierDTO summonerTierDTO = null;
 
         if (summonerTier != null) {
-            String tierImageUrl = "img/tier/" + summonerTier.getTier() + ".png";
+             summonerTierDTO = summonerService.getTierInfo(summonerTier);
+            String tierImageUrl = "img/tier/" + summonerTierDTO.getTier() + ".png";
             model.addAttribute("tierImageUrl", tierImageUrl);
         } else {
             // summonerTier가 null인 경우 디폴트 이미지 URL을 설정
             model.addAttribute("tierImageUrl", "img/tier/Provisional.png");
         }
-        model.addAttribute("summonerTier",summonerTier);
+
+        model.addAttribute("summonerTier",summonerTierDTO);
         model.addAttribute("summoner",summoner);
 
-        List<String> matchIds = summonerService.getMatchId(summoner.getPuuid());
+        PlayerChallengesInfoDTO playerChallengesInfo = apiServiceKo.getPlayerChallengesInfo(summoner.getPuuid());
+        model.addAttribute("playerChallengesInfo" ,playerChallengesInfo);
+
+        List<String> matchIds = apiServiceAsia.getMatchId(summoner.getPuuid());
         List<Map<String,Object>> matchInfoList = new ArrayList<>();
 
         RecentDTO recentDTO = new RecentDTO();
         List<ChampionCount> championCounts = new ArrayList<>();
         List<SummonerWithCount> summonerWithCounts = new ArrayList<>();
-        // puuid로 challenges를 가져옴
-        PlayerChallengesInfoDTO playerChallengesInfo = summonerService.getPlayerChallengesInfo(summoner.getPuuid());
 
-        // MatchIdList를 for문 돌리는중
         for (String matchId : matchIds) {
-            // 하나의 matchId로 matchInfo Map을 가져옴
-            Map<String, Object> match = summonerService.getMatch(matchId);
-            Map<String, Object> matchInfo = summonerService.matchInfo(match);
 
-            // Map에서 matchInfo 키를 가진 값을 MatchInfoDTO에 저장
-            MatchInfoDTO matchInfoDTO = (MatchInfoDTO) matchInfo.get("matchInfo");
+            Map<String, Object> match = apiServiceAsia.getMatch(matchId);
+            MatchInfoDTO matchInfoDTO = matchService.matchInfoDTO(match);
+            Map<String, Object> matchInfo = matchService.matchInfo(match);
 
-            // 참가자들 넣을 List를 만듦
-            List<ParticipantsDTO> participantsList = new ArrayList<>();
-            matchInfoDTO.setChangeGameDuration(TimeTranslator.unixMinAndSec(matchInfoDTO.getGameDuration()));
-            matchInfoDTO.setEndGame(TimeTranslator.unixToLocal(matchInfoDTO.getGameEndTimestamp()));
 
-            // matchInfoDTO를 모델에 담고있는데 얘를 Map에 담아야대
-            Map<String, Object> matchList = new HashMap<>();
-
-            // participant의 teamId 가져오기
             int teamId = 0;
             String name = "";
 
+            Map<String, Object> matchList = new HashMap<>();
+            List<ParticipantsDTO> participantsList = new ArrayList<>();
             for (int i = 0; i < 10; i++) {
                 ParticipantsDTO participant = (ParticipantsDTO) matchInfo.get("participants" + i);
 
@@ -117,6 +134,7 @@ public class SummonerController {
                     recentDTO.setKills(recentDTO.getKills()+participant.getKills());
                     recentDTO.setAssists(recentDTO.getAssists()+participant.getAssists());
                     recentDTO.setDeaths(recentDTO.getDeaths()+participant.getDeaths());
+
                     if(participant.isWin()){
                         recentDTO.setWin(recentDTO.getWin()+1);
                     } else {
@@ -134,38 +152,9 @@ public class SummonerController {
                     String formattedKda = decimalFormat.format(kda);
 
                     recentDTO.setKda(formattedKda);
-
-                    // 챔피언 최근 승률
-
-                    boolean found = false;
-                    for (ChampionCount championCount : championCounts) {
-                        if (participant.getChampionName().equals(championCount.getChampionName())) {
-                            // 존재하면 count와 win을 증가시킴
-                            championCount.setCount(championCount.getCount() + 1);
-                            if(participant.isWin()){
-                                championCount.setWin(championCount.getWin() + 1);
-                            }
-                            found = true;
-                            break;
-                        }
-                    }
-
-                    if (!found) {
-                        // 챔피언 이름이 리스트에 없으면 새 객체 생성하여 리스트에 추가
-                        ChampionCount newChampionCount = new ChampionCount();
-                        newChampionCount.setChampionName(participant.getChampionName());
-                        newChampionCount.setCount(1);
-                        if (participant.isWin()) {
-                            newChampionCount.setWin(1);
-                        } else {
-                            newChampionCount.setWin(0); // 이긴 횟수를 초기화
-                        }
-                        championCounts.add(newChampionCount);
-                    }
+                    championCounts = championService.getChampionCounts(championCounts,participant);
 
                 }
-
-                // 인게임 정보 matchInfo에 담기
                 if(i<5){
                     matchInfoDTO.setBlueGold(matchInfoDTO.getBlueGold()+participant.getGoldEarned());
                     matchInfoDTO.setBlueTotalDamageDealtToChampions(matchInfoDTO.getBlueTotalDamageDealtToChampions()+participant.getTotalDamageDealtToChampions());
@@ -184,90 +173,25 @@ public class SummonerController {
                 participantsList.add(participant);
 
             }
+            summonerWithCounts =  summonerService.getSummonerWith(matchInfo,teamId,name, summonerWithCounts);
+            matchInfoDTO =  matchService.getMatchInfoDTO(matchInfoDTO,matchInfo);
+
             matchList.put("matchInfo",matchInfoDTO);
             matchList.put("participantsList", participantsList);
 
             matchInfoList.add(matchList);
 
-            for (int i = 0; i < 10; i++) {
-                ParticipantsDTO participant = (ParticipantsDTO) matchInfo.get("participants" + i);
-
-                boolean found = false;
-
-                if(teamId==participant.getTeamId() && !name.equals(participant.getSummonerName())) {
-
-                    for (SummonerWithCount summonerWithCount : summonerWithCounts) {
-                        if (summonerWithCount.getSummonerName().equals(participant.getSummonerName())) {
-                            // 존재하면 count와 win을 증가시킴
-                            summonerWithCount.setCount(summonerWithCount.getCount() + 1);
-                            if(participant.isWin()){
-                                summonerWithCount.setWin(summonerWithCount.getWin() + 1);
-                            } else {
-                                summonerWithCount.setLose(summonerWithCount.getLose() + 1);
-                            }
-                            found = true;
-                            break;
-                        }
-                    }
-
-                    if (!found) {
-                        // 소환사 이름이 리스트에 없으면 새 객체 생성하여 리스트에 추가
-                        SummonerWithCount newSummonerWithCount = new SummonerWithCount();
-                        newSummonerWithCount.setSummonerName(participant.getSummonerName());
-                        newSummonerWithCount.setCount(1);
-                        if (participant.isWin()) {
-                            newSummonerWithCount.setWin(1);
-                            newSummonerWithCount.setLose(0);
-                        } else {
-                            newSummonerWithCount.setWin(0); // 이긴 횟수를 초기화
-                            newSummonerWithCount.setLose(1); // 진 횟수를 초기화
-                        }
-                        summonerWithCounts.add(newSummonerWithCount);
-                    }
-                }
-            }
-
-        }
-        Iterator<ChampionCount> iterator = championCounts.iterator();
-        while (iterator.hasNext()) {
-            ChampionCount championCount = iterator.next();
-            if (championCount.getCount() == 1) {
-                iterator.remove(); // count가 1인 항목을 제거합니다.
-            }
         }
 
-        // Iterator를 사용하여 리스트에서 조건을 만족하는 항목을 제거합니다.
-        Iterator<SummonerWithCount> iterator1 = summonerWithCounts.iterator();
-        while (iterator1.hasNext()) {
-            SummonerWithCount summonerWithCount = iterator1.next();
-            if (summonerWithCount.getCount() == 1) {
-                iterator1.remove(); // 조건을 만족하는 항목을 제거합니다.
-            }
-        }
+        model.addAttribute("matchInfoList",matchInfoList);
 
-
-        Collections.sort(championCounts, Comparator.comparing(ChampionCount::getCount).reversed());
-        Collections.sort(summonerWithCounts, Comparator.comparingInt(SummonerWithCount::getCount).reversed());
-        List<SummonerWithCount> filteredList = summonerWithCounts.subList(0, Math.min(5, summonerWithCounts.size()));
-        List<ChampionCount> filteredChampionCounts = championCounts.subList(0, Math.min(5, championCounts.size()));
-
-        // 이후에 winRate를 계산하고 설정
-        for (SummonerWithCount summonerWithCount: filteredList) {
-            double winRate = ((double)summonerWithCount.getWin() / summonerWithCount.getCount()) * 100;
-           summonerWithCount.setWinRate((int)Math.round(winRate));
-        }
-        for (ChampionCount championCount: filteredChampionCounts) {
-            double winRate = ((double)championCount.getWin() / championCount.getCount()) * 100;
-            championCount.setWinRate((int)Math.round(winRate));
-        }
+        List<SummonerWithCount> filteredList = summonerService.sortSummonerWith(summonerWithCounts);
+        List<ChampionCount> filteredChampionCounts = championService.sortChampionCounts(championCounts);
 
         recentDTO.setSummonerWithCounts(filteredList);
         recentDTO.setChampionCounts(filteredChampionCounts);
 
-
         model.addAttribute("recentDTO",recentDTO);
-        model.addAttribute("matchInfoList",matchInfoList);
-        model.addAttribute("playerChallengesInfo" ,playerChallengesInfo);
 
         return "record";
     }

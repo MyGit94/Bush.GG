@@ -150,35 +150,279 @@
             <div class="main_contents_wrap">
 
                 <!-- 실시간 정보 -->
-                <div class="summoner_live_table_wrap">
-                    <!-- 실시간 정보 테이블 -->
-                    <table class="live_game_info">
-                        <thead>
-                            <tr>
-                                <th></th>
-                            </tr>
-                        </thead>
+                <div class="summoner_live_wrap">
+                    <!-- 실시간 정보 - 타이틀 -->
+                    <div class="summoner_live_title">
+                        <h1 class="summoner_live_title_text">
+                            실시간 상위게임 정보
+                        </h1>
+                    </div>
+                    <!-- 실시간 정보 전체영역 -->
+                    <div class="live_info_wrap">
 
-                        <tbody>
-                            <tr>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!-- 실시간 정보테이블 끝 -->
-                </div>
-                <!-- 실시간 정보 끝 -->
+                        <!-- 실시간 정보 1칸 전체영역 -->
+                        <div class="live_info_contents" th:each="gameInfo : ${currentGameInfo}" th:with="summonersList=${gameInfo['summoners']}">
+                            <div class="live_info_vs">
+                                <!-- 큐타입 텍스트 -->
+                                <p class="live_info_match_type_text">
+                                    소환사의 협곡
+                                </p>
+                                <!-- VS 텍스트 -->
+                                <h1 class="live_info_vs_text">
+                                    VS
+                                </h1>
+                                <!-- 게임 진행시간 -->
+                                <p class="live_info_match_time">
+                                    12:01
+                                </p>
+                            </div>
 
+                            <!-- 좌우 플렉스를 위한 전체영역 -->
+                            <div class="live_flex_wrap">
+
+                                <!-- 왼쪽 컨텐츠 -->
+                                <div class="live_left_wrap"  >
+                                    <!-- 실시간 정보 리스트 -->
+                                    <div class="live_info_list" th:each="summoner,ds : ${summonersList}" th:if="${ds.index}<5">
+
+                                        <!-- 소환사 티어 -->
+                                        <div class="live_summoner_tier">
+                                            <p class="live_summoner_tier_text">
+                                                C
+                                            </p>
+                                        </div>
+
+                                        <!-- 소환사 닉네임 -->
+                                        <div class="live_summoner_name">
+                                            <p class="live_summoner_name_text" th:text="${summoner['summonerName']}">
+                                                T1 란브로대머리
+                                            </p>
+                                        </div>
+
+                                        <!-- 스펠 / 챔피언 -->
+                                        <div class="live_summoner_img_wrap">
+                                            <!-- 스펠  -->
+                                            <div class="live_summoner_spell_wrap">
+                                                <!-- 스펠1 -->
+                                                <img src="img/spell/14.png" th:src="@{'img/spell/'+${summoner['spell1Id']}+'.png'}" alt="">
+                                                <!-- 스펠2 -->
+                                                <img src="img/spell/1.png" th:src="@{'img/spell/'+${summoner['spell2Id']}+'.png'}" alt="">
+
+                                            </div>
+                                            <!-- 챔피언 얼굴 -->
+                                            <div class="live_champion_face_wrap">
+                                                <img src="img/illust/1.jpg" th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${summoner['championName']}+'.png'}" alt="">
+                                            </div>
+                                        </div>
+                                        <!-- 스펠 / 챔피언 끝 -->
+
+
+                                    </div>
+                                    <!-- 실시간 정보 리스트 (1줄) 끝 -->
+
+                                </div>
+                                <!-- 왼쪽 컨텐츠 끝 -->
+
+
+                                <!-- 우측 컨텐츠 시작 -->
+                                <div class="live_left_wrap live_right_wrap">
+
+                                    <!-- 실시간 정보 리스트 -->
+                                    <div class="live_info_list">
+
+                                        <!-- 스펠 / 챔피언 -->
+                                        <div class="live_summoner_img_wrap">
+                                            <!-- 챔피언 얼굴 -->
+                                            <div class="live_champion_face_wrap">
+                                                <img src="img/illust/1.jpg" alt="">
+                                            </div>
+                                            <!-- 스펠  -->
+                                            <div class="live_summoner_spell_wrap">
+                                                <!-- 스펠1 -->
+                                                <img src="img/spell/14.png" alt="">
+                                                <!-- 스펠2 -->
+                                                <img src="img/spell/1.png" alt="">
+
+                                            </div>
+
+                                        </div>
+                                        <!-- 스펠 / 챔피언 끝 -->
+
+                                        <!-- 소환사 닉네임 -->
+                                        <div class="live_summoner_name">
+                                            <p class="live_summoner_name_text">
+                                                T1 란브로대머리
+                                            </p>
+                                        </div>
+
+                                        <!-- 소환사 티어 -->
+                                        <div class="live_summoner_tier">
+                                            <p class="live_summoner_tier_text">
+                                                C
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- 실시간 정보 리스트 (1줄) 끝 -->
+
+
+                                    <!-- 실시간 정보 리스트 -->
+                                    <div class="live_info_list">
+
+                                        <!-- 스펠 / 챔피언 -->
+                                        <div class="live_summoner_img_wrap">
+                                            <!-- 챔피언 얼굴 -->
+                                            <div class="live_champion_face_wrap">
+                                                <img src="img/illust/1.jpg" alt="">
+                                            </div>
+                                            <!-- 스펠  -->
+                                            <div class="live_summoner_spell_wrap">
+                                                <!-- 스펠1 -->
+                                                <img src="img/spell/14.png" alt="">
+                                                <!-- 스펠2 -->
+                                                <img src="img/spell/1.png" alt="">
+
+                                            </div>
+
+                                        </div>
+                                        <!-- 스펠 / 챔피언 끝 -->
+
+                                        <!-- 소환사 닉네임 -->
+                                        <div class="live_summoner_name">
+                                            <p class="live_summoner_name_text">
+                                                T1 란브로대머리
+                                            </p>
+                                        </div>
+
+                                        <!-- 소환사 티어 -->
+                                        <div class="live_summoner_tier">
+                                            <p class="live_summoner_tier_text">
+                                                C
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- 실시간 정보 리스트 (1줄) 끝 -->
+
+
+                                    <!-- 실시간 정보 리스트 -->
+                                    <div class="live_info_list">
+
+                                        <!-- 스펠 / 챔피언 -->
+                                        <div class="live_summoner_img_wrap">
+                                            <!-- 챔피언 얼굴 -->
+                                            <div class="live_champion_face_wrap">
+                                                <img src="img/illust/1.jpg" alt="">
+                                            </div>
+                                            <!-- 스펠  -->
+                                            <div class="live_summoner_spell_wrap">
+                                                <!-- 스펠1 -->
+                                                <img src="img/spell/14.png" alt="">
+                                                <!-- 스펠2 -->
+                                                <img src="img/spell/1.png" alt="">
+
+                                            </div>
+
+                                        </div>
+                                        <!-- 스펠 / 챔피언 끝 -->
+
+                                        <!-- 소환사 닉네임 -->
+                                        <div class="live_summoner_name">
+                                            <p class="live_summoner_name_text">
+                                                T1 란브로대머리
+                                            </p>
+                                        </div>
+
+                                        <!-- 소환사 티어 -->
+                                        <div class="live_summoner_tier">
+                                            <p class="live_summoner_tier_text">
+                                                C
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- 실시간 정보 리스트 (1줄) 끝 -->
+
+
+                                    <!-- 실시간 정보 리스트 -->
+                                    <div class="live_info_list">
+
+                                        <!-- 스펠 / 챔피언 -->
+                                        <div class="live_summoner_img_wrap">
+                                            <!-- 챔피언 얼굴 -->
+                                            <div class="live_champion_face_wrap">
+                                                <img src="img/illust/1.jpg" alt="">
+                                            </div>
+                                            <!-- 스펠  -->
+                                            <div class="live_summoner_spell_wrap">
+                                                <!-- 스펠1 -->
+                                                <img src="img/spell/14.png" alt="">
+                                                <!-- 스펠2 -->
+                                                <img src="img/spell/1.png" alt="">
+                                            </div>
+                                        </div>
+                                        <!-- 스펠 / 챔피언 끝 -->
+                                        <!-- 소환사 닉네임 -->
+                                        <div class="live_summoner_name">
+                                            <p class="live_summoner_name_text">
+                                                T1 란브로대머리
+                                            </p>
+                                        </div>
+                                        <!-- 소환사 티어 -->
+                                        <div class="live_summoner_tier">
+                                            <p class="live_summoner_tier_text">
+                                                C
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- 실시간 정보 리스트 (1줄) 끝 -->
+                                    <!-- 실시간 정보 리스트 -->
+                                    <div class="live_info_list">
+
+                                        <!-- 스펠 / 챔피언 -->
+                                        <div class="live_summoner_img_wrap">
+                                            <!-- 챔피언 얼굴 -->
+                                            <div class="live_champion_face_wrap">
+                                                <img src="img/illust/1.jpg" alt="">
+                                            </div>
+                                            <!-- 스펠  -->
+                                            <div class="live_summoner_spell_wrap">
+                                                <!-- 스펠1 -->
+                                                <img src="img/spell/14.png" alt="">
+                                                <!-- 스펠2 -->
+                                                <img src="img/spell/1.png" alt="">
+
+                                            </div>
+
+                                        </div>
+                                        <!-- 스펠 / 챔피언 끝 -->
+                                        <!-- 소환사 닉네임 -->
+                                        <div class="live_summoner_name">
+                                            <p class="live_summoner_name_text">
+                                                T1 란브로대머리
+                                            </p>
+                                        </div>
+
+                                        <!-- 소환사 티어 -->
+                                        <div class="live_summoner_tier">
+                                            <p class="live_summoner_tier_text">
+                                                C
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- 실시간 정보 리스트 (1줄) 끝 -->
+                                </div>
+                                <!-- 우측컨텐츠 끝 -->
+                            </div>
+                            <!-- 좌우 플렉스를 위한 전체영역 -->
+                        </div>
+                        <!-- 실시간 정보 (1칸) 끝 -->
+                    </div>
+                    <!-- 실시간 정보 (1줄) 전체영역  끝-->
                 <!-- 두번째 라인 컨텐츠 전체영역 -->
                 <div class="content_line2_flex line2_content">
-
-
                     <!-- 커뮤니티 -->
                     <div class="summoner_coummuity_wrap">
                         <h2 class="community_main_title">
                             BUSH.GG 최근 인기글
                         </h2>
-
                         <!-- 스타일이 다른 커뮤니티 리스트 2행을 묶기위한
                         전체 영역 -->
                         <!-- forEach -->
@@ -541,7 +785,8 @@
             <!-- 중앙 컨텐츠 전체영역 끝 -->
 
 
-        </div>
+                </div>
+            </div>
         <!--  메인 컨텐츠 끝 -->
 
         <!-- 로그아웃 모달 (아직 사용할지 미정)-->
@@ -565,8 +810,9 @@
             </div>
         </div>
 
-    </div>
     <!-- 로그아웃 모달 끝-->
+        </div>
+    </div>
 
 
     <!-- Bootstrap core JavaScript-->
