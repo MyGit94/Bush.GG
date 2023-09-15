@@ -24,9 +24,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberDTO isMember(String loginid, String passwd) {
+	public MemberDTO isMember(String loginId, String passwd) {
 		
-		return memberMapper.findByIdAndPasswd(loginid,passwd);
+		return memberMapper.findByIdAndPasswd(loginId,passwd);
 	}
 
 	@Override

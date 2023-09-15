@@ -11,5 +11,5 @@ public interface MemberService {
 	public void register(MemberDTO member);
 	public MemberDTO isMember(String loginId, String passwd);
 	public List<MemberDTO> getMemberList();
-	public MemberDTO getMember(String loginId);
+	public MemberDTO getMember(String nickName);
 }
