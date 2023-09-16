@@ -76,18 +76,15 @@ spring:
     # basename: messages          # Spring Default
     basename: messages,errors
 
----
+
 
 # MyBatis 설정
 mybatis:
   configuration:
     map-underscore-to-camel-case: true  
   mapper-locations: 
-    - classpath:mybatis/mapper/**/*.xml
-  type-aliases-package: com.ezen.springmvc.domain.member.dto ,  com.pinkward.bushgg.domain.article.DTO.articleDTO
-
-
----
+    - classpath:bushgg/mapper/**/*.xml
+  type-aliases-package: com.pinkward.bushgg.domain.member.dto.MemberDTO ,  com.pinkward.bushgg.domain.article.DTO.articleDTO
 
 # 파일업로드 경로 설정
 common:

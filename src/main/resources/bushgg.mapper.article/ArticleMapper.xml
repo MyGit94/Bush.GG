@@ -3,43 +3,41 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 네임스페이스(사용영역) 설정 -->
-<mapper
-        namespace="com.pinkward.bushgg.domain.article.Mapper.ArticleMapper">
+<mapper namespace="com.pinkward.bushgg.domain.article.mapper.ArticleMapper">
 
     <!-- 게시판 등록 -->
     <insert id="create" parameterType="ArticleDTO">
+        --#7. 자유게시판 신규글 등록  테스트
         INSERT INTO article
-        (article_id,
-         writer,
-         board_id,
-         adminNo,
-         subject,
-         content,
-         regdate,
-         hitcount,
-         passwd,
-         group_no,
-         level_no,
-         order_no)
-        VALUES (article_id_seq.NEXTVAL,
-                #{writer},
-                #{boardId},
-                1,
-                #{subject},
-                #{content},
-                SYSDATE,
-                #{passwd},
-                article_id_seq.CURRVAL,
-                #{levelNo},
-                #{orderNo})
+        (articleid,
+        writer,
+        boardid,
+        subject,
+        content,
+        regdate,
+        hitcount,
+        passwd,
+        group_no,
+        level_no,
+        order_no)
+        VALUES      (article_id_seq.NEXTVAL,
+        '테스트' ,
+        20,
+        'monday',
+        'monday 신규글 제목입니다.',
+        SYSDATE ,
+        '1' ,
+        '1111',
+        article_id_seq.CURRVAL,
+        0,
+        0)
     </insert>
 
     <!-- 게시글 전체 목록 조회 -->
     <select id="findAll" resultType="ArticleDTO">
-        SELECT article_id,
+        SELECT articleid,
                writer,
-               board_id,
-               adminNo,
+               boardid,
                subject,
                content,
                regdate,
@@ -49,8 +47,8 @@
                level_no,
                order_no
         FROM article
-        WHERE  board_id = 10
-        ORDER  BY article_id DESC
+        WHERE  boardid = 20
+        ORDER  BY articleid DESC
     </select>
 
     <!--댓글 읽어오기 -->

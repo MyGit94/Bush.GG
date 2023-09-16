@@ -246,7 +246,19 @@ ingameInfoWrapElements.forEach(function (ingameInfoWrap) {
 });
 
 
+ let preferChampion = document.querySelectorAll(".champion_rate_chartbar");
 
+
+ preferChampion.forEach((element)=>{
+    let leftChart = element.querySelector(".left_rate_chart");
+    let leftChartText = element.querySelector(".left_rate_text");
+     let rightChart = element.querySelector(".right_rate_chart");
+     let rightChartText = element.querySelector(".right_rate_text");
+
+     let leftChartValue = parseFloat(leftChartTextWithoutPercent);
+     console.log(leftChartTextCount);
+
+ })
 
 
 
