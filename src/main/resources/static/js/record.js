@@ -251,12 +251,18 @@ ingameInfoWrapElements.forEach(function (ingameInfoWrap) {
 
  preferChampion.forEach((element)=>{
     let leftChart = element.querySelector(".left_rate_chart");
-    let leftChartText = element.querySelector(".left_rate_text");
+     let leftChartText = element.querySelector(".left_rate_text").innerText;
      let rightChart = element.querySelector(".right_rate_chart");
-     let rightChartText = element.querySelector(".right_rate_text");
+     let rightChartText = element.querySelector(".right_rate_text").innerText;
 
-     let leftChartValue = parseFloat(leftChartTextWithoutPercent);
-     console.log(leftChartTextCount);
+     let leftChartValue = parseFloat(leftChartText);
+     let rightChartValue = parseFloat(rightChartText);
+     console.log(leftChartValue);
+     console.log(rightChartValue);
+
+     leftChart.style.width= leftChartValue + "%";
+     rightChart.style.width= rightChartValue + "%";
+
 
  })
 
