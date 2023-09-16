@@ -49,11 +49,13 @@ public class MemberController {
 	    HttpSession session = request.getSession();
 	    session.setAttribute("loginMember", loginMember);
 	    
-	    // nickName 값을 redirectAttributes에 추가
-	    redirectAttributes.addAttribute("loginMember", loginMember);
-	    log.info("수신받은 loginMember 객체 : {} ", loginMember);
+	    // nickName 값을 FlashAttribute로 추가
+	    redirectAttributes.addFlashAttribute("nickName", loginMember.getNickName());
+	    
+	    log.info("앙기모띠 : {} ", loginMember.getNickName());
 	    
 	    return "redirect:/";
+
 	}
 
 	
