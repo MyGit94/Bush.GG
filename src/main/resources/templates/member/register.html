@@ -27,25 +27,25 @@
                             </div>
 
                             <!-- 개인정보 입력 전체영역 -->
-                            <form class="user">
+                            <form class="user" method="post" action="/member/register">
                             <!-- 아이디&닉네임 끝 -->
                                <!-- 아이디 -->
                                <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="text" class="form-control form-control-user"
-                                        id="exampleInputId" placeholder="아이디">
+                                        id="loginId" name="loginId" placeholder="아이디">
                                 </div>
                                 <!-- 닉네임 -->
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control form-control-user"
-                                        id="exampleRepeatNickName" placeholder="닉네임">
+                                        id="nickName" name="nickName" placeholder="닉네임">
                                 </div>
                             </div>
                              <!-- 아이디&닉네임 끝 -->
 
                                 <!-- 이메일 -->
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                    <input type="email" class="form-control form-control-user" id="email" name="email"
                                         placeholder="이메일">
                                 </div>
                                 <!-- 이메일 끝 -->
@@ -55,21 +55,20 @@
                                     <!-- 비밀번호 -->
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="비밀번호">
+                                            id="passwd" name="passwd" placeholder="비밀번호">
                                     </div>
 
                                     <!-- 비밀번호 확인 -->
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="비밀번호 확인">
+                                            id="re-upasswd" name="re-upasswd" placeholder="비밀번호 확인">
                                     </div>
                                 </div>
                                 <!-- 비밀번호 끝 -->
 
                                 <!-- 회원가입 버튼 -->
-                                <a href="login.html" class="btn reigserBtn">
-                                    회원가입
-                                </a>
+                                <input type="submit" value="회원가입" class="btn reigserBtn">
+                                
                                 <!-- 구분선 -->
                                 <hr>
 

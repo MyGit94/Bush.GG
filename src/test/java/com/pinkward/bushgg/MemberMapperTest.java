@@ -23,7 +23,7 @@ public class MemberMapperTest {
 	
 	// 멤버 전체 조회
 	@Test
-//	@Disabled
+	@Disabled
 	public void findByAllTest() {
 		List<MemberDTO> list = memberMapper.findByAll();
 		for (MemberDTO member : list) {
@@ -72,14 +72,14 @@ public class MemberMapperTest {
 	
 	// 회원 가입
 	@Test
-	@Disabled
+//	@Disabled
 	void createTest() {
 		MemberDTO member = MemberDTO
 				.builder()
-				.loginId("userTest3")
-				.nickName("유저테스트3")
+				.loginId("userTest5")
+				.nickName("유저테스트5")
 				.passwd("1234")
-				.email("user3@test.com")
+				.email("user5@test.com")
 				.role("유저")
 				.build();
 		memberMapper.create(member);

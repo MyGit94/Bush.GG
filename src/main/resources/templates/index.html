@@ -34,7 +34,7 @@
 
             <!-- 왼쪽 사이드바 로고 영역 -->
             <li class="nav-item active">
-                <a class="nav-link nav-link2" href="index.html">
+                <a class="nav-link nav-link2" href="/">
                     <!-- <p class="nav-item-text">BUSH.GG</p> -->
                     <img src="img/logo.png" alt="" class="nav-item-img">
                 </a>
@@ -715,7 +715,7 @@
                         <!-- 로테이션 타이틀 -->
                        <div class="rotation_champion_title">
                         <!-- 로테이션 타이틀 텍스트 -->
-                        <h1 class="rotation_champion_title_text">
+                        <h1 class="rotation_champion_title_text" th:text="${loginMember.getNickName()}">
                             금주의 로테이션 챔피언
                         </h1>
                        </div>
