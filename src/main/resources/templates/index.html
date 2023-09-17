@@ -142,7 +142,20 @@
                 </form>
                 <!-- 전적 검색창 끝 -->
 
-            </nav>
+
+				<!-- 로그인 , 회원가입 -->
+                <div class="navbar_login_wrap">
+                    <!-- 로그인 -->
+                    <a th:if="${loginMember == null}" class="navbar_login" th:href="@{/member/login}">로그인</a>
+                    <strong th:if="${loginMember != null}" class="" th:text="${loginMember.nickName} + '님 즐거운 하루 되세요'"></strong>
+
+                    <!-- 회원가입 -->
+                    <a th:if="${loginMember == null}" class="navbar_register" th:href="@{/member/register}">회원가입</a>
+                    <a th:if="${loginMember != null}" class="navbar_register" th:href="@{/member/logout}">로그아웃</a>
+                </div>
+                
+                
+           		 </nav>
             <!-- 상단헤더 끝 -->
 
 
@@ -715,9 +728,10 @@
                         <!-- 로테이션 타이틀 -->
                        <div class="rotation_champion_title">
                         <!-- 로테이션 타이틀 텍스트 -->
-                        <h1 class="rotation_champion_title_text" th:text="${loginMember.getNickName()}">
+                        <h1 class="rotation_champion_title_text">
                             금주의 로테이션 챔피언
                         </h1>
+                        
                        </div>
                        <!-- 로테이션 타이틀 끝 -->
 

@@ -88,11 +88,21 @@ mybatis:
 
 
 ---
+ 
+# 세션 설정 
+server:
+  servlet:
+    session:
+      tracking-modes: cookie
+
+---
 
 # 파일업로드 경로 설정
 common:
   uploadPath: C:/ezen-fullstack/workspace/final_project_template/upload/
   
+
+
   
   
   

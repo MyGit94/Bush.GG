@@ -25,16 +25,23 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
                             </div>
+                            <div th:if="${successMessage}" class="alert alert-success">
+    							<span th:text="${successMessage}"></span>
+							</div>
 
                             <!-- 개인정보 입력 전체영역 -->
-                            <form class="user" method="post" action="/member/register">
-                            <!-- 아이디&닉네임 끝 -->
+						    <!-- 아이디&닉네임 끝 -->
+                           <form class="user" method="post" action="/member/register" th:action="@{/member/register}" th:object="${member}">
+                            
                                <!-- 아이디 -->
                                <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="text" class="form-control form-control-user"
-                                        id="loginId" name="loginId" placeholder="아이디">
-                                </div>
+                                    th:field="*{loginId}" th:errorclass="text-danger" id="loginId" name="loginId" placeholder="아이디">
+								<p th:errors="*{loginId}" th:class="text-danger">입력 오류메시지</p>
+                                </div> 
+                                
+
                                 <!-- 닉네임 -->
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control form-control-user"
