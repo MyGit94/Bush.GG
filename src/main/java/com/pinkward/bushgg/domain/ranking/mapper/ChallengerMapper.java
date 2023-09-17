@@ -18,7 +18,7 @@ public interface ChallengerMapper {
     @Delete("Delete FROM CHALLENGER")
     void deleteChallenger();
 
-    @Select("SELECT summonerId FROM TIER")
+    @Select("SELECT summonerId FROM TIER WHERE TIER = 'CHALLENGER'")
     public List<String> getChallengerInfo();
 
     @Select("SELECT tier FROM TIER WHERE SUMMONERNAME = #{summonerName}")

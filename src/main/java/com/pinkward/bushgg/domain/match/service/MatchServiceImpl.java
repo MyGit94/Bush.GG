@@ -1,5 +1,7 @@
 package com.pinkward.bushgg.domain.match.service;
 
+import com.pinkward.bushgg.domain.api.service.APIServiceKo;
+import com.pinkward.bushgg.domain.champion.mapper.ChampionMapper;
 import com.pinkward.bushgg.domain.match.common.ChampionCount;
 import com.pinkward.bushgg.domain.match.common.RuneList;
 import com.pinkward.bushgg.domain.match.common.SummonerWithCount;
@@ -8,6 +10,8 @@ import com.pinkward.bushgg.domain.match.dto.MatchInfoDTO;
 import com.pinkward.bushgg.domain.match.dto.ParticipantsDTO;
 import com.pinkward.bushgg.domain.match.dto.RecentDTO;
 import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
+import com.pinkward.bushgg.domain.summoner.dto.SummonerTierDTO;
+import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,6 +25,9 @@ import java.util.*;
 public class MatchServiceImpl implements MatchService {
 
     private final ChallengerMapper challengerMapper;
+    private final ChampionMapper championMapper;
+    private final APIServiceKo apiServiceKo;
+    private final SummonerService summonerService;
 
     @Override
     public MatchInfoDTO matchInfoDTO(Map<String, Object> match) {
@@ -77,7 +84,6 @@ public class MatchServiceImpl implements MatchService {
 
         matchInfoDTO.setRedWin((boolean) redTeam.get("win"));
 
-
         matchInfoDTO.setChangeGameDuration(TimeTranslator.unixMinAndSec(matchInfoDTO.getGameDuration()));
         matchInfoDTO.setEndGame(TimeTranslator.unixToLocal(matchInfoDTO.getGameEndTimestamp()));
 
@@ -86,17 +92,13 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     public Map<String, Object> matchInfo(Map<String, Object> match) {
-        // 필요한 match정보만 저장하기 위한 맵
+
         Map<String, Object> matchInfo = new HashMap<>();
 
         Map<String, Object> info = (Map<String, Object>) match.get("info");
 
-        // "participants" 맵에 접근
         List<Map<String, Object>> participants = (List<Map<String, Object>>) info.get("participants");
 
-        // 얘 돌려쓰자
-
-        // 각 참가자 정보를 처리하고 맵에 저장
         for (int i = 0; i < participants.size(); i++) {
             ParticipantsDTO participantsDTO = new ParticipantsDTO();
             Map<String, Object> participant = participants.get(i);
@@ -104,11 +106,20 @@ public class MatchServiceImpl implements MatchService {
             participantsDTO.setAssists((int) participant.get("assists"));
             participantsDTO.setChampLevel((int) participant.get("champLevel"));
             participantsDTO.setChampionId((int) participant.get("championId"));
-            participantsDTO.setChampionName((String) participant.get("championName"));
+            participantsDTO.setChampionName(championMapper.getChampionEnName(participantsDTO.getChampionId()));
             participantsDTO.setDeaths((int) participant.get("deaths"));
+            participantsDTO.setSummonerId((String) participant.get("summonerId"));
+
+            if (challengerMapper.getTierById(participantsDTO.getSummonerId())==null) {
+                SummonerTierDTO summonerTierDTO = summonerService.getTierInfo(apiServiceKo.getTierInfo(participantsDTO.getSummonerId()));
+                log.info("{}",summonerTierDTO);
+                participantsDTO.setTier(summonerTierDTO.getTierName());
+                log.info("{}",participantsDTO.getTier());
+            } else {
+                participantsDTO.setTier(challengerMapper.getTierById(participantsDTO.getSummonerId()));
+            }
 
             participantsDTO.setGoldEarned((int) participant.get("goldEarned"));
-
             participantsDTO.setItem0((int) participant.get("item0"));
             participantsDTO.setItem1((int) participant.get("item1"));
             participantsDTO.setItem2((int) participant.get("item2"));
@@ -119,7 +130,6 @@ public class MatchServiceImpl implements MatchService {
             participantsDTO.setKills((int) participant.get("kills"));
             participantsDTO.setLargestMultiKill((int) participant.get("largestMultiKill"));
 
-            // 아레나
             if(participant.get("placement") != null){
                 participantsDTO.setPlacement((int) participant.get("placement"));
                 participantsDTO.setPlayerAugment1((int) participant.get("playerAugment1"));
@@ -128,41 +138,33 @@ public class MatchServiceImpl implements MatchService {
                 participantsDTO.setPlayerAugment4((int) participant.get("playerAugment4"));
             }
 
-
             participantsDTO.setSummoner1Id((int) participant.get("summoner1Id"));
             participantsDTO.setSummoner2Id((int) participant.get("summoner2Id"));
 
-
-            participantsDTO.setSummonerId((String) participant.get("summonerId"));
             if(challengerMapper.getNameById(participantsDTO.getSummonerId())==null){
                 participantsDTO.setSummonerName((String) participant.get("summonerName"));
             } else {
                 participantsDTO.setSummonerName(challengerMapper.getNameById(participantsDTO.getSummonerId()));
             }
-            participantsDTO.setTier(challengerMapper.getTierById(participantsDTO.getSummonerId()));
+
             participantsDTO.setTeamId((int) participant.get("teamId"));
             participantsDTO.setTotalDamageDealtToChampions((int) participant.get("totalDamageDealtToChampions"));
             participantsDTO.setTotalDamageTaken((int) participant.get("totalDamageTaken"));
-
-            // 미니언에 오브젝트까지 더해야함...
+            
             participantsDTO.setTotalMinionsKilled((int) participant.get("totalMinionsKilled")+(int)participant.get("neutralMinionsKilled"));
-
 
             participantsDTO.setVisionScore((int) participant.get("visionScore"));
             participantsDTO.setWardsKilled((int) participant.get("wardsKilled"));
             participantsDTO.setWardsPlaced((int) participant.get("wardsPlaced"));
             participantsDTO.setWin((boolean) participant.get("win"));
 
-            // KDA 계산
             double kda = ((double) participantsDTO.getKills() + participantsDTO.getAssists()) / participantsDTO.getDeaths();
 
-            // DecimalFormat을 사용하여 소수점 두 자리까지 포맷 지정
             DecimalFormat decimalFormat = new DecimalFormat("0.00");
             String formattedKda = decimalFormat.format(kda);
 
             participantsDTO.setKda(formattedKda);
 
-            // 룬 정보 가져오기
             Map<String, Object> perks = (Map<String, Object>) participant.get("perks");
             if (perks != null) {
                 Map<String, Object> statPerks = (Map<String, Object>) perks.get("statPerks");
@@ -172,22 +174,17 @@ public class MatchServiceImpl implements MatchService {
 
                 List<Map<String, Object>> styles = (List<Map<String, Object>>) perks.get("styles");
                 if (styles != null && styles.size() >= 2) {
-                    // 룬 저장할 list
-                    List<Integer> perkList = new ArrayList<>();
 
-                    // 첫 번째 스타일과 두 번째 스타일 가져오기
                     Map<String, Object> primaryStyle = styles.get(0);
                     Map<String, Object> subStyle = styles.get(1);
                     participantsDTO.setMainRune((int) primaryStyle.get("style"));
                     participantsDTO.setSubRune((int) subStyle.get("style"));
-
 
                     List<Map<String, Object>> selections = (List<Map<String, Object>>) primaryStyle.get("selections");
                     for (int j = 0; j < selections.size(); j++) {
                         Map<String, Object> selection = selections.get(j);
                         int perk = (int) selection.get("perk");
 
-                        // participantsDTO 객체의 필드 업데이트
                         if (j == 0) {
                             participantsDTO.setMainRune1(perk);
                         } else if (j == 1) {
@@ -196,7 +193,7 @@ public class MatchServiceImpl implements MatchService {
                             participantsDTO.setMainRune3(perk);
                         } else if (j == 3) {
                             participantsDTO.setMainRune4(perk);
-                        }// 필요한 만큼 반복
+                        }
                     }
 
                     selections = (List<Map<String, Object>>) subStyle.get("selections");
@@ -204,7 +201,6 @@ public class MatchServiceImpl implements MatchService {
                         Map<String, Object> selection = selections.get(j);
                         int perk = (int) selection.get("perk");
 
-                        // participantsDTO 객체의 필드 업데이트
                         if (j == 0) {
                             participantsDTO.setSubRune1(perk);
                         } else if (j == 1) {
@@ -219,9 +215,7 @@ public class MatchServiceImpl implements MatchService {
             }
 
             matchInfo.put("participants"+i,participantsDTO);
-            ParticipantsDTO parti = (ParticipantsDTO)matchInfo.get("participants"+i);
         }
-
         return matchInfo;
     }
 

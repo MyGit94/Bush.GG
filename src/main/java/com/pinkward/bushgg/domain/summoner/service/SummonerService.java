@@ -21,5 +21,6 @@ public interface SummonerService {
     public List<SummonerWithCount> sortSummonerWith(List<SummonerWithCount> summonerWithCounts);
 
     public String changeTierName(String tier);
+    public String changeRank(String rank);
 
 }

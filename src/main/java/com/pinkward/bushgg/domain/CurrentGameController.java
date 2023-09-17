@@ -34,9 +34,11 @@ public class CurrentGameController {
         int index = 1;
         List<String> challengerIds = challengerMapper.getChallengerInfo();
 
+
         for (String participantId : challengerIds) {
+            log.info("{}",index);
             index++;
-            if (count > 3 || index >100) {
+            if (count > 3 || index >50) {
                 break;
             }
             Map<String, Object> currentGame = apiServiceKo.getCurrentGame(participantId);
@@ -54,7 +56,6 @@ public class CurrentGameController {
                         break;
                     }
                 }
-
                 if (!isDuplicate) {
                     currentGames.add(currentGame);
                     count++;

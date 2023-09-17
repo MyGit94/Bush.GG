@@ -9,6 +9,7 @@ import com.pinkward.bushgg.domain.match.common.TimeTranslator;
 import com.pinkward.bushgg.domain.match.service.MatchService;
 import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
+import com.pinkward.bushgg.domain.summoner.dto.SummonerTierDTO;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,11 +28,12 @@ import java.util.*;
 @Slf4j
 @RequiredArgsConstructor
 public class CurrentGameServiceImpl implements CurrentGameService {
-    private ObjectMapper objectMapper = new ObjectMapper();
+
     private final MatchService matchService;
     private final ChampionMapper championMapper;
     private final ChallengerMapper challengerMapper;
     private final SummonerService summonerService;
+    private final APIServiceKo apiServiceKo;
 
 
     @Value("${riot.api.key}")
@@ -59,7 +61,15 @@ public class CurrentGameServiceImpl implements CurrentGameService {
                 currentGameDTO.setChampionName(championMapper.getChampionEnName((int)participant.get("championId")));
                 currentGameDTO.setSummonerName((String) participant.get("summonerName"));
                 currentGameDTO.setSummonerId((String) participant.get("summonerId"));
-                currentGameDTO.setSummonerTier(summonerService.changeTierName(challengerMapper.getTierById(currentGameDTO.getSummonerId())));
+                log.info("{}",challengerMapper.getTierById(currentGameDTO.getSummonerId()));
+                if(challengerMapper.getTierById(currentGameDTO.getSummonerId())!= null){
+                    currentGameDTO.setSummonerTier(summonerService.changeTierName(challengerMapper.getTierById(currentGameDTO.getSummonerId())));
+                } else {
+                    SummonerTierDTO summonerTierDTO = summonerService.getTierInfo(apiServiceKo.getTierInfo(currentGameDTO.getSummonerId()));
+                    log.info("{}",summonerTierDTO.getTier());
+                    currentGameDTO.setSummonerTier(summonerService.changeTierName(summonerTierDTO.getTierName()));
+                }
+
                 log.info("{}",currentGameDTO.getSummonerTier());
 
                 currentSummoner.add(currentGameDTO);

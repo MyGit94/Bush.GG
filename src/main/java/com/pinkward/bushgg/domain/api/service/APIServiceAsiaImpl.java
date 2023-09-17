@@ -30,7 +30,7 @@ public class APIServiceAsiaImpl implements APIServiceAsia{
     public List<String> getMatchId(String puuid) {
         List<String> matchId = null;
         int start = 0;
-        int count = 20;
+        int count = 10;
 
         try {
             HttpClient client = HttpClientBuilder.create().build();

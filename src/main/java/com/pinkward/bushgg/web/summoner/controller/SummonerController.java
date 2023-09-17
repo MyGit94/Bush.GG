@@ -60,6 +60,7 @@ public class SummonerController {
         // 이름으로 소환사 정보 가져옴
         SummonerDTO summoner = apiServiceKo.getSummonerInfo(esummonerName);
 
+
         Set<Map<String,Object>> summonerTier = apiServiceKo.getTierInfo(summoner.getId());
         SummonerTierDTO summonerTierDTO = null;
 
@@ -99,10 +100,6 @@ public class SummonerController {
             List<ParticipantsDTO> participantsList = new ArrayList<>();
             for (int i = 0; i < 10; i++) {
                 ParticipantsDTO participant = (ParticipantsDTO) matchInfo.get("participants" + i);
-                log.info("{} : {}",participant.getSummonerId(),participant.getSummonerName());
-                participant.setTier(challengerMapper.getTierById(participant.getSummonerId()));
-                log.info("{}",participant.getTier());
-
                 String getSummonerName = participant.getSummonerName().replaceAll(" ", "").toLowerCase();
 
                 if (summonerName.equals(getSummonerName)) {
@@ -150,13 +147,13 @@ public class SummonerController {
 
                 }
                 matchInfoDTO =matchService.getMatchInfoDTO(matchInfoDTO, matchInfo);
-                log.info("{}",participant);
+
                 participantsList.add(participant);
 
             }
             summonerWithCounts =  summonerService.getSummonerWith(matchInfo,teamId,name, summonerWithCounts);
             matchInfoDTO =  matchService.getMatchInfoDTO(matchInfoDTO,matchInfo);
-
+            log.info("{}",matchInfoDTO);
             matchList.put("matchInfo",matchInfoDTO);
             matchList.put("participantsList", participantsList);
 

@@ -14,14 +14,30 @@ public class SummonerServiceImpl implements SummonerService{
 
     public SummonerTierDTO getTierInfo(Set<Map<String,Object>> summonerTier) {
         SummonerTierDTO summonerTierDTO = new SummonerTierDTO();
-
+        if(summonerTier == null) {
+            summonerTierDTO.setTier(null);
+        } else {
+            String tier = "CHALLENGER";
+            String tier1 = "GRANDMASTER";
+            String tier2 ="MASTER";
             Map<String, Object> metadata = (Map<String, Object>) summonerTier.iterator().next();
-            summonerTierDTO.setTier((String) metadata.get("tier"));
+            if(tier.equals((String)metadata.get("tier")) || tier1.equals((String)metadata.get("tier")) ||tier2.equals((String)metadata.get("tier"))){
+                summonerTierDTO.setTier((String) metadata.get("tier"));
+                summonerTierDTO.setTierName((String) metadata.get("tier"));
+            } else{
+                summonerTierDTO.setTier((String) metadata.get("tier"));
+                summonerTierDTO.setTierName((String) metadata.get("tier")+' '+changeRank((String) metadata.get("rank")));
+            }
+
             summonerTierDTO.setLeaguePoints((int) metadata.get("leaguePoints"));
             summonerTierDTO.setWins((int) metadata.get("wins"));
             summonerTierDTO.setLosses((int) metadata.get("losses"));
             double winRate = ((double)summonerTierDTO.getWins() / (summonerTierDTO.getWins() + summonerTierDTO.getLosses())) * 100;
             summonerTierDTO.setWinRate((int)Math.round(winRate));
+        }
+
+
+
 
         return summonerTierDTO;
     }
@@ -89,6 +105,9 @@ public class SummonerServiceImpl implements SummonerService{
 
     @Override
     public String changeTierName(String tier) {
+        if (tier == null) {
+            return null;
+        }
         switch (tier) {
             case "CHALLENGER" :
                 return "C";
@@ -104,8 +123,42 @@ public class SummonerServiceImpl implements SummonerService{
                 return "D3";
             case "DIAMOND 4":
                 return "D4";
+            case "EMERALD 1":
+                return "E1";
+            case "EMERALD 2":
+                return "E2";
+            case "EMERALD 3":
+                return "E3";
+            case "EMERALD 4":
+                return "E4";
+            case "PLATINUM 1":
+                return "P1";
+            case "PLATINUM 2":
+                return "P2";
+            case "PLATINUM 3":
+                return "P3";
+            case "PLATINUM 4":
+                return "P4";
             default:
                 return "알 수 없음";
+        }
+    }
+    @Override
+    public String changeRank(String rank) {
+        if (rank == null) {
+            return null;
+        }
+        switch (rank) {
+            case "I":
+                return "1";
+            case "II":
+                return "2";
+            case "III":
+                return "3";
+            case "IV":
+                return "4";
+            default:
+                return "알수없음";
         }
     }
 }
