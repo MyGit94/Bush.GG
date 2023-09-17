@@ -74,8 +74,6 @@ public class PlayerChallengesController {
                 .map(ChallengesInfoDTO::getChallengeId)
                 .collect(Collectors.toList());
 
-        log.info("제발나와라:{}",apiServiceKo.getSummonerInfoByPuuid(summoner.getPuuid()));
-
         model.addAttribute("challengeIds", challengeIds);
         model.addAttribute("summoner", summoner);
         model.addAttribute("playerChallengesInfo", playerChallengesInfo);
@@ -85,7 +83,7 @@ public class PlayerChallengesController {
     }
 
     @GetMapping(value="/challenge/rank/{challengeId}")
-    public String challengeRankPage(@PathVariable("challengeId") int challengeId, Model model, HttpSession session){
+    public String challengeRankPage(@PathVariable("challengeId") int challengeId, Model model){
         model.addAttribute("challengeId", challengeId);
 
         List<ChallengeRankingPlayerDTO> ranking = challengesService.challengeRanking(challengeId);

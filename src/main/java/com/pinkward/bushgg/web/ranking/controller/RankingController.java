@@ -33,7 +33,7 @@ public class RankingController {
         int count =1;
         for(RankingDTO rankingDTO : challengerRanking){
             SummonerDTO summoner = apiServiceKo.getSummonerInfo(rankingDTO.getSummonerName().replace(" ","%20"));
-            rankingDTO.setLevel(summoner.getSummonerLevel());
+//            rankingDTO.setLevel(summoner.getSummonerLevel());
             log.info("{} {} ",count, rankingDTO);
             count++;
         }

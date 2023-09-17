@@ -11,8 +11,11 @@ import com.pinkward.bushgg.domain.match.dto.MatchInfoDTO;
 import com.pinkward.bushgg.domain.match.dto.ParticipantsDTO;
 import com.pinkward.bushgg.domain.match.dto.RecentDTO;
 import com.pinkward.bushgg.domain.match.service.MatchService;
+import com.pinkward.bushgg.domain.ranking.dto.RankingDTO;
+import com.pinkward.bushgg.domain.ranking.service.RankingServiceImpl;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerTierDTO;
+import com.pinkward.bushgg.domain.summoner.mapper.SummonerMapper;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +40,8 @@ public class SummonerController {
     private final APIServiceAsia apiServiceAsia;
     private final MatchService matchService;
     private final ChampionService championService;
+    private final SummonerMapper summonerMapper;
+    private final RankingServiceImpl rankingService;
 
 
     @GetMapping(value = "/summoner")
@@ -52,18 +57,14 @@ public class SummonerController {
             throw new RuntimeException(e);
         }
 
-//        challengerMapper.deleteChallenger();
-//        log.info("딜리트");
-//
-//        List<ChallengerRankingDTO> list  = challengerRankingService.getChallengerInfo();
-//        log.info("챌린저:{}", list);
-//        for (ChallengerRankingDTO challenger : list) {
-//            challengerMapper.insertChallenger(challenger);
-//            log.info("인서트");
-//        }
-
-
-
+//        summonerMapper.deleteTier();
+//        rankingService.challengerRanking(0,999);
+//        rankingService.grandMasterRanking(0,999);
+//        rankingService.masterRanking(0,9999);
+//        rankingService.diamond1Ranking(0,999);
+//        rankingService.diamond2Ranking(0,999);
+//        rankingService.diamond3Ranking(0,999);
+//        rankingService.diamond4Ranking(0,999);
 
         summonerName = summonerName.replaceAll(" ","").toLowerCase();
 
