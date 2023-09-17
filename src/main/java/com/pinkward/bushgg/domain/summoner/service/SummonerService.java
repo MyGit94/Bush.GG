@@ -20,4 +20,7 @@ public interface SummonerService {
     public List<SummonerWithCount> getSummonerWith(Map<String, Object> matchInfo, int teamId, String name, List<SummonerWithCount> summonerWithCounts);
     public List<SummonerWithCount> sortSummonerWith(List<SummonerWithCount> summonerWithCounts);
 
+    public String changeTierName(String tier);
+    public String changeRank(String rank);
+
 }

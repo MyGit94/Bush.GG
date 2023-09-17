@@ -1,6 +1,8 @@
 package com.pinkward.bushgg.web.home.controller;
 
+import com.pinkward.bushgg.domain.champion.mapper.ChampionMapper;
 import com.pinkward.bushgg.domain.champion.service.ChampionService;
+import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HomeController {
 	private final ChampionService championService;
+	private final ChampionMapper championMapper;
 
 
 	@GetMapping("/")
@@ -33,10 +36,8 @@ public class HomeController {
 		List<String> championNamesKo = new ArrayList<>();
 
 		for (Integer championId : championIds) {
-			String championNameEn = championService.getChampionNameEn(championId.toString()).replace(" ","").replace("'","");
-			String championNameKo = championService.getChampionNameKo(championId.toString());
-			championNamesEn.add(championNameEn);
-			championNamesKo.add(championNameKo);
+			championNamesEn.add(championMapper.getChampionEnName(championId));
+			championNamesKo.add(championMapper.getChampionKoName(championId));
 		}
 
 		model.addAttribute("championNamesEn",championNamesEn);

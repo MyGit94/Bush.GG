@@ -16,5 +16,6 @@ public interface APIServiceKo {
     public SummonerDTO getSummonerInfoByPuuid(String puuid);
     public PlayerChallengesInfoDTO getPlayerChallengesInfo(String puuid);
     public Set<Map<String,Object>> getTierInfo(String summonerId);
+    public Map<String, Object> getCurrentGame(String summonerId);
 
 }

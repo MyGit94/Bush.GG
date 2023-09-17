@@ -7,20 +7,19 @@ public class ParticipantsDTO {
 
     // 유저 및 팀
     private String summonerName;
+    private String summonerId;
     private int champLevel;
     private int championId;
     private String championName;
     private int teamId;
-    private String individualPosition;
     private boolean win;
+    private String tier;
 
     // KDA관련
     private int assists;
     private int deaths;
     private int kills;
     private String kda;
-    private boolean firstBloodKill;
-    private boolean firstTowerKill;
 
     // 아이템, 돈
     private int goldEarned;
@@ -32,9 +31,8 @@ public class ParticipantsDTO {
     private int item5;
     private int item6;
 
-    //최대킬, 펜타킬 횟수
+    //최대킬
     private int largestMultiKill;
-    private int pentaKills;
 
     //스펠
     private int summoner1Id;
@@ -43,7 +41,6 @@ public class ParticipantsDTO {
     // 데미지
     private int totalDamageDealtToChampions;
     private int totalDamageTaken;
-    private int totalHeal;
 
     // 미니언
     private int totalMinionsKilled;
@@ -52,8 +49,6 @@ public class ParticipantsDTO {
 
     // 와드
     private int visionScore;
-    private int sightWardsBoughtInGame;
-    private int visionWardsBoughtInGame;
     private int wardsKilled;
     private int wardsPlaced;
 
