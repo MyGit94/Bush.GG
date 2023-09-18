@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <!-- css -->
+    <th:block th:replace="common/fragments/config :: configFragment" />
+    <link rel="stylesheet" href="/css/register.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image">
+                        <img src="/img/member/register.jpg" alt="">
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
+                            </div>
+                            <div th:if="${successMessage}" class="alert alert-success">
+    							<span th:text="${successMessage}"></span>
+							</div>
+
+                            <!-- 개인정보 입력 전체영역 -->
+						    <!-- 아이디&닉네임 끝 -->
+                           <form class="user" method="post" action="/member/register" th:action="@{/member/register}" th:object="${member}">
+                            
+                               <!-- 아이디 -->
+                               <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="text" class="form-control form-control-user"
+                                    th:field="*{loginId}" th:errorclass="text-danger" id="loginId" name="loginId" placeholder="아이디">
+								<p th:errors="*{loginId}" th:class="text-danger">입력 오류메시지</p>
+                                </div> 
+                                
+
+                                <!-- 닉네임 -->
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control form-control-user"
+                                        id="nickName" name="nickName" placeholder="닉네임">
+                                </div>
+                            </div>
+                             <!-- 아이디&닉네임 끝 -->
+
+                                <!-- 이메일 -->
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" id="email" name="email"
+                                        placeholder="이메일">
+                                </div>
+                                <!-- 이메일 끝 -->
+
+                                <!-- 비밀번호 -->
+                                <div class="form-group row">
+                                    <!-- 비밀번호 -->
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="passwd" name="passwd" placeholder="비밀번호">
+                                    </div>
+
+                                    <!-- 비밀번호 확인 -->
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="re-upasswd" name="re-upasswd" placeholder="비밀번호 확인">
+                                    </div>
+                                </div>
+                                <!-- 비밀번호 끝 -->
+
+                                <!-- 회원가입 버튼 -->
+                                <input type="submit" value="회원가입" class="btn reigserBtn">
+                                
+                                <!-- 구분선 -->
+                                <hr>
+
+                                <!-- 구글 회원가입 버튼 -->
+                                <a href="index.html" class="btn googleBtn">
+                                    <i class="fab fa-google fa-fw"></i> Google로 회원가입
+                                </a>
+
+                            </form>
+                            <!-- 개인정보 입력 전체영역 끝 -->
+                            <!-- 구분선 -->
+                            <hr>
+
+                            <!-- 비밀번호 찾기 -->
+                            <div class="text-center">
+                                <a class="find_passwd" href="forgot-password.html">비밀번호를 잊으셨나요? </a>
+                            </div>
+
+                            <!-- 로그인하기 -->
+                            <div class="text-center">
+                                <a class="login_bushgg" href="login.html">이미 계정이 있나요? 로그인!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+       <!--   자바 스크립트 -->
+    <th:block th:replace="common/fragments/script :: scriptFragment"/>
+</body>
+</html>
