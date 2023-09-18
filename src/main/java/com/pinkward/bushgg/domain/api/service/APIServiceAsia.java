@@ -12,9 +12,9 @@ import java.util.Set;
  */
 public interface APIServiceAsia {
 
-    //
-    List<String> getMatchId(String puuid);
 
-    Map<String, Object> getMatch(String matchId);
+    public List<String> getMatchId(String puuid);
+
+    public Map<String, Object> getMatch(String matchId);
 
 }

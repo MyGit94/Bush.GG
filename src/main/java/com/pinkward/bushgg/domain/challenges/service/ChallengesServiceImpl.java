@@ -65,7 +65,7 @@ public class ChallengesServiceImpl implements ChallengesService {
         List<ChallengeRankingPlayerDTO> rankingList = new ArrayList<>();
         try {
             HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "/lol/challenges/v1/challenges/" + challengeId + "/leaderboards/by-level/CHALLENGER?limit=50&api_key=" + riotApiKey);
+            HttpGet request = new HttpGet(serverUrl + "/lol/challenges/v1/challenges/" + challengeId + "/leaderboards/by-level/CHALLENGER?limit=30&api_key=" + riotApiKey);
 
             HttpResponse response = client.execute(request);
 

@@ -10,8 +10,10 @@ import java.util.Map;
 
 public interface MatchService {
 
-    MatchInfoDTO matchInfoDTO(Map<String, Object> match);
+    public MatchInfoDTO matchInfoDTO(Map<String, Object> match);
     Map<String, Object> matchInfo(Map<String, Object> match);
 
-    MatchInfoDTO getMatchInfoDTO(MatchInfoDTO matchInfoDTO, Map<String, Object> matchInfo);
+    public MatchInfoDTO getMatchInfoDTO(MatchInfoDTO matchInfoDTO, Map<String, Object> matchInfo);
+
+    public String matchQueueName(int queueId);
 }

@@ -21,7 +21,7 @@ import java.util.Map;
 public class APIServiceAsiaImpl implements APIServiceAsia{
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @Value("${riot.api.key}")
+    @Value("${riot.ranking.key}")
     private String mykey;
 
     String serverUrl = "https://asia.api.riotgames.com/lol/";
@@ -30,7 +30,7 @@ public class APIServiceAsiaImpl implements APIServiceAsia{
     public List<String> getMatchId(String puuid) {
         List<String> matchId = null;
         int start = 0;
-        int count = 20;
+        int count = 10;
 
         try {
             HttpClient client = HttpClientBuilder.create().build();

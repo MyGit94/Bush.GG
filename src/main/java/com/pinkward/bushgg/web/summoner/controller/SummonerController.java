@@ -11,8 +11,11 @@ import com.pinkward.bushgg.domain.match.dto.MatchInfoDTO;
 import com.pinkward.bushgg.domain.match.dto.ParticipantsDTO;
 import com.pinkward.bushgg.domain.match.dto.RecentDTO;
 import com.pinkward.bushgg.domain.match.service.MatchService;
+import com.pinkward.bushgg.domain.ranking.service.RankingAPIServiceImpl;
+import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerTierDTO;
+import com.pinkward.bushgg.domain.summoner.mapper.SummonerMapper;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +41,9 @@ public class SummonerController {
     private final APIServiceAsia apiServiceAsia;
     private final MatchService matchService;
     private final ChampionService championService;
+    private final ChallengerMapper challengerMapper;
+    private final SummonerMapper summonerMapper;
+    private final RankingAPIServiceImpl rankingService;
 
 
     @GetMapping(value = "/summoner")
@@ -49,23 +55,15 @@ public class SummonerController {
         String esummonerName = null;
         esummonerName = URLEncoder.encode(summonerName, StandardCharsets.UTF_8);
 
-//        challengerMapper.deleteChallenger();
-//        log.info("딜리트");
-//
-//        List<ChallengerRankingDTO> list  = challengerRankingService.getChallengerInfo();
-//        log.info("챌린저:{}", list);
-//        for (ChallengerRankingDTO challenger : list) {
-//            challengerMapper.insertChallenger(challenger);
-//            log.info("인서트");
-//        }
-
-
-
-
         summonerName = summonerName.replaceAll(" ","").toLowerCase();
 
         // 이름으로 소환사 정보 가져옴
         SummonerDTO summoner = apiServiceKo.getSummonerInfo(esummonerName);
+        log.info("{}",summoner);
+        if(summoner == null) {
+            return "/404";
+        }
+
 
         Set<Map<String,Object>> summonerTier = apiServiceKo.getTierInfo(summoner.getId());
         SummonerTierDTO summonerTierDTO = null;
@@ -97,7 +95,7 @@ public class SummonerController {
             Map<String, Object> match = apiServiceAsia.getMatch(matchId);
             MatchInfoDTO matchInfoDTO = matchService.matchInfoDTO(match);
             Map<String, Object> matchInfo = matchService.matchInfo(match);
-
+            matchInfoDTO.setQueueName(matchService.matchQueueName(matchInfoDTO.getQueueId()));
 
             int teamId = 0;
             String name = "";
@@ -106,7 +104,6 @@ public class SummonerController {
             List<ParticipantsDTO> participantsList = new ArrayList<>();
             for (int i = 0; i < 10; i++) {
                 ParticipantsDTO participant = (ParticipantsDTO) matchInfo.get("participants" + i);
-
                 String getSummonerName = participant.getSummonerName().replaceAll(" ", "").toLowerCase();
 
                 if (summonerName.equals(getSummonerName)) {
@@ -151,28 +148,17 @@ public class SummonerController {
                     recentDTO.setKda(formattedKda);
                     championCounts = championService.getChampionCounts(championCounts,participant);
 
-                }
-                if(i<5){
-                    matchInfoDTO.setBlueGold(matchInfoDTO.getBlueGold()+participant.getGoldEarned());
-                    matchInfoDTO.setBlueTotalDamageDealtToChampions(matchInfoDTO.getBlueTotalDamageDealtToChampions()+participant.getTotalDamageDealtToChampions());
-                    matchInfoDTO.setBlueWardsPlaced(matchInfoDTO.getBlueWardsPlaced()+participant.getWardsPlaced());
-                    matchInfoDTO.setBlueTotalDamageTaken(matchInfoDTO.getBlueTotalDamageTaken()+participant.getTotalDamageTaken());
-                    matchInfoDTO.setBlueTotalMinionsKilled(matchInfoDTO.getBlueTotalMinionsKilled()+participant.getTotalMinionsKilled());
 
-                } else {
-                    matchInfoDTO.setRedGold(matchInfoDTO.getRedGold()+participant.getGoldEarned());
-                    matchInfoDTO.setRedTotalDamageDealtToChampions(matchInfoDTO.getRedTotalDamageDealtToChampions()+participant.getTotalDamageDealtToChampions());
-                    matchInfoDTO.setRedWardsPlaced(matchInfoDTO.getRedWardsPlaced()+participant.getWardsPlaced());
-                    matchInfoDTO.setRedTotalDamageTaken(matchInfoDTO.getRedTotalDamageTaken()+participant.getTotalDamageTaken());
-                    matchInfoDTO.setRedTotalMinionsKilled(matchInfoDTO.getRedTotalMinionsKilled()+participant.getTotalMinionsKilled());
                 }
+                matchInfoDTO =matchService.getMatchInfoDTO(matchInfoDTO, matchInfo);
 
                 participantsList.add(participant);
 
             }
             summonerWithCounts =  summonerService.getSummonerWith(matchInfo,teamId,name, summonerWithCounts);
             matchInfoDTO =  matchService.getMatchInfoDTO(matchInfoDTO,matchInfo);
-
+            log.info("{}",matchInfoDTO);
+            log.info("{}",participantsList);
             matchList.put("matchInfo",matchInfoDTO);
             matchList.put("participantsList", participantsList);
 
