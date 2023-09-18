@@ -79,11 +79,17 @@
           AND group_no = #{groupNo}ORDER BY order_no ASC
     </select>
 
+    <select id="getCountAll" resultType="int">
+        SELECT COUNT(articleid)
+        FROM article
+        </select>
+
+
     <!-- 댓글 등록 -->
     <insert parameterType="ArticleDTO" id="createComment">
         INSERT INTO article
-        (article_id,
-         board_id,
+        (articleid,
+         boardid,
          writer,
          subject,
          content,
