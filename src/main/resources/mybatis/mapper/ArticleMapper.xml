@@ -64,7 +64,7 @@
         WHERE articleid = #{articleId}
     </select>
 
-<!--    댓글읽기-->
+    <!--    댓글읽기-->
     <select parameterType="int" id="readComment" resultType="ArticleDTO">
         SELECT subject,
                writer,
@@ -82,7 +82,7 @@
     <select id="getCountAll" resultType="int">
         SELECT COUNT(articleid)
         FROM article
-        </select>
+    </select>
 
 
     <!-- 댓글 등록 -->
@@ -107,8 +107,31 @@
                 #{levelNo},
                 (SELECT MAX(order_no) + 1
                  FROM article
-                 WHERE
-                 board_id = #{boardId} AND group_no = #{groupNo}))
+                 WHERE board_id = #{boardId}
+                   AND group_no = #{groupNo}))
     </insert>
+
+    <select id="findByAll" resultType="ArticleDTO" parameterType="PageParams">
+        SELECT articleid,
+               subject,
+               writer,
+               regdate,
+               hitcount
+        FROM   (SELECT  CEIL(rownum / #{pageParams.elementSize}) request_page,
+                        articleid,
+                        subject,
+                        writer,
+                        TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss') regdate,
+                        hitcount
+                FROM   (SELECT articleid,
+                               subject,
+                               writer,
+                               regdate,
+                               hitcount
+                        FROM    article
+                        ORDER  BY group_no DESC, order_no ASC, level_no ASC))
+        WHERE  request_page = #{pageParams.requestPage}
+    </select>
+
 
 </mapper>

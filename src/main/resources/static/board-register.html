@@ -152,7 +152,7 @@
             <!-- 글쓰기 -->
             <div class="writeBody shadow-lg">
                 <div class="card-body">
-                    <form class="writing">
+                    <form class="writing" method="post" action="/board/register">
                         <div class="writingHeader">
                             <select class="category">
                                 <option selected>카테고리</option>
@@ -163,10 +163,10 @@
                             <button type="submit" class="btn registerBtn">등록</button>
                         </div>
                         <div class="writingTitle">
-                            <input type="text" class="form-control mb-3" id="floatingInput" placeholder="제목을 입력해 주세요">
+                            <input type="text" class="form-control mb-3" id="floatingInput" placeholder="제목을 입력해 주세요" name="subject">
                         </div>
                         <div class="writingTextArea">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="20" placeholder="내용을 입력해 주세요"></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="20" placeholder="내용을 입력해 주세요" name="content"></textarea>
                          </div>
                     </form>
                 </div>
