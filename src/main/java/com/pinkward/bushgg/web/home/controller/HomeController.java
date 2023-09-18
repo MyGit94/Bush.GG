@@ -107,4 +107,13 @@ public class HomeController {
 
 		return "index";
 	}
+
+
+	@GetMapping("/live")
+	public String live(Model model){
+
+		return "live";
+	}
+
+
 }

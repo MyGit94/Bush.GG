@@ -50,6 +50,24 @@
         ORDER BY articleid DESC
     </select>
 
+    <!-- 게시글 전체 목록 조회 :: 추천수 20개 이상 기준-->
+    <select id="findAllByHitcount" resultType="ArticleDTO">
+        SELECT articleid,
+               writer,
+               boardid,
+               subject,
+               content,
+               regdate,
+               hitcount,
+               passwd,
+               group_no,
+               level_no,
+               order_no
+        FROM article
+        WHERE hitcount >=20
+        ORDER BY hitcount DESC
+    </select>
+
     <!--    게시글 상세보기 -->
     <select id="detail" parameterType="int" resultType="ArticleDTO">
         SELECT articleid,
@@ -63,6 +81,7 @@
         FROM article
         WHERE articleid = #{articleId}
     </select>
+
 
     <!--    댓글읽기-->
     <select parameterType="int" id="readComment" resultType="ArticleDTO">
@@ -118,18 +137,21 @@
                subject,
                writer,
                regdate,
-               hitcount
+               hitcount,
+               boardId
         FROM (SELECT CEIL(rownum / #{pageParams.elementSize}) request_page,
                      articleid,
                      subject,
                      writer,
                      TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss')  regdate,
-                     hitcount
+                     hitcount,
+                     boardId
               FROM (SELECT articleid,
                            subject,
                            writer,
                            regdate,
-                           hitcount
+                           hitcount,
+                           boardId
                     FROM article
                     ORDER BY group_no DESC, order_no ASC, level_no ASC))
         WHERE request_page = #{pageParams.requestPage}
@@ -143,6 +165,13 @@
         WHERE boardid = #{boardId}
           AND writer = #{writer}
           AND passwd = #{passwd}
+    </update>
+
+    <!-- 게시글 수정 -->
+    <update id="updateHitcount" parameterType="ArticleDTO">
+        UPDATE article
+        SET hitcount = #{hitcount}+1
+        WHERE articleId = #{articleId}
     </update>
 
     <!-- 삭제 -->

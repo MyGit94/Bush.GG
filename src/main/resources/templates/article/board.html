@@ -2,37 +2,39 @@
 <html lang="en">
 <head>
     <!-- css -->
-    <th:block th:replace="common/fragments/config :: configFragment" />
+    <th:block th:replace="common/fragments/config :: configFragment"/>
     <link rel="stylesheet" href="/css/board.css">
 </head>
 
 
 <body id="page-top">
-    
-    <div id="wrapper">
 
-        <!--   왼쪽 사이드바  -->
-        <th:block th:replace="common/fragments/side :: sideFragment" />
+<div id="wrapper">
+
+    <!--   왼쪽 사이드바  -->
+    <th:block th:replace="common/fragments/side :: sideFragment"/>
 
 
-        <!-- 메인 컨텐츠 전체영역 -->
-        <div id="content-wrapper" class="d-flex flex-column">
+    <!-- 메인 컨텐츠 전체영역 -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- 검색창 -->
-            <th:block th:replace="common/fragments/header :: headerFragment"/>
+        <!-- 검색창 -->
+        <th:block th:replace="common/fragments/header :: headerFragment"/>
 
 
         <section class="board">
-        <!-- 게시판 헤더 -->
-        <div class="boardHeder">
-            <div class="title">
-                <h1 class="h1">자유게시판</h1>
+            <!-- 게시판 헤더 -->
+            <div class="boardHeder">
+                <div class="title">
+                    <h1 class="h1">자유게시판</h1>
+                </div>
+                <div class="boardHederBtn">
+                    <form action="/board" method="post">
+                        <button type="submit" class="btn bestBtn">🔥 인기글</button>
+                    </form>
+                </div>
             </div>
-            <div class="boardHederBtn">
-                <button type="button" class="btn bestBtn">🔥 인기글</button>
-            </div>
-        </div>
-        <!-- 게시판 헤더 끝 --> 
+            <!-- 게시판 헤더 끝 -->
 
             <!-- 게시판 -->
             <div class="boardBody">
@@ -43,18 +45,28 @@
                     <div class="table">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr>
-                                    <th>번호</th>
-                                    <th>제목</th>
-                                    <th>글쓴이</th>
-                                    <th>등록일</th>
-                                    <th>조회</th>
-                                </tr>
+                            <tr>
+                                <th>번호</th>
+                                <th>카테고리</th>
+                                <th>제목</th>
+                                <th>글쓴이</th>
+                                <th>등록일</th>
+                                <th>조회</th>
+                            </tr>
                             </thead>
                             <tbody class="trs">
-                            <tr th:each="articleDTO : ${list}">
+                            <tr th:each="articleDTO : ${list}"
+                                th:style="${articleDTO.hitcount >= 20 ? 'background-color:#f0f2ff;' : ''} +
+                                ${articleDTO.boardId == 30 ? 'background-color:#ffe6e6;' : ''}">
+
                                 <td th:text="${articleDTO.articleId}">일</td>
-                                <td><a href="#" th:href="@{/board/detail/{articleId}(articleId=${articleDTO.articleId})}" th:text="${articleDTO.subject}">첫번째 게시글입니다</a></td>
+                                <td th:text="${articleDTO.boardId == 20} ? '자유게시판' : '공지사항'"></td>
+                                <td>
+                                    <img src="/img/best.png" alt="" th:if="${articleDTO.hitcount >= 20}" class="best">
+                                    <a href="#"
+                                       th:href="@{/board/detail/{articleId}(articleId=${articleDTO.articleId})}"
+                                       th:text="${articleDTO.subject}" class="board_subject">첫번째 게시글입니다</a>
+                                </td>
                                 <td th:text="${articleDTO.writer}">홍길동</td>
                                 <td th:text="${articleDTO.regdate}">날짜</td>
                                 <td th:text="${articleDTO.hitcount}">5</td>
@@ -63,8 +75,8 @@
                         </table>
                     </div>
                 </div>
-             </div>
-             <!-- 게시판 끝-->
+            </div>
+            <!-- 게시판 끝-->
 
             <!-- 게시판 하단 & 페이지 -->
             <div class="boardBottom">
@@ -72,35 +84,36 @@
                 <form class="boardSearch">
                     <!-- 게시글 검색 : 입력 텍스트칸 -->
                     <input type="text" class="form-control small" placeholder="검색 내용을 입력해주세요"
-                        aria-label="Search" aria-describedby="basic-addon2">
-                        <!-- 검색 버튼 네모박스 -->
-                        <button onclick="location.href='index.html';" class="btn boardSearchBtn" type="button">
-                            <!-- 검색 버튼 돋보기 아이콘 -->
-                            <i class="fas fa-search fa-sm"></i>
-                        </button>
+                           aria-label="Search" aria-describedby="basic-addon2">
+                    <!-- 검색 버튼 네모박스 -->
+                    <button onclick="location.href='index.html';" class="btn boardSearchBtn" type="button">
+                        <!-- 검색 버튼 돋보기 아이콘 -->
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
                 </form>
                 <!-- 검색 전체 끝-->
-                  <div class="page-item">
-                      <a th:href="@{/board(requestPage=${pagination.previousStartPage})}">
-                    <button class="btn prevBtn" type="button">
-                        <i class="fa fa-angle-double-left"></i>
-                    </button>
-                      </a>
+                <div class="page-item">
+                    <a th:href="@{/board(requestPage=${pagination.previousStartPage})}">
+                        <button class="btn prevBtn" type="button">
+                            <i class="fa fa-angle-double-left"></i>
+                        </button>
+                    </a>
 
-                      <a th:href="@{/board(requestPage=${pagination.totalPages})}">
-                    <button class="btn nextBtn" type="button">
-                        <i class="fa fa-angle-double-right"></i>
-                    </button>
-                      </a>
-                  </div>
+                    <a th:href="@{/board(requestPage=${pagination.totalPages})}">
+                        <button class="btn nextBtn" type="button">
+                            <i class="fa fa-angle-double-right"></i>
+                        </button>
+                    </a>
+                </div>
             </div>
             <!-- 게시판 하단 & 페이지 끝-->
         </section>
-        </div>
-        <!-- 메인 컨텐츠 전체영역 끝 -->
     </div>
-    <!--  메인 컨텐츠 끝 -->
-    <!--   자바 스크립트 -->
-    <th:block th:replace="common/fragments/script :: scriptFragment"/>
+    <!-- 메인 컨텐츠 전체영역 끝 -->
+</div>
+<!--  메인 컨텐츠 끝 -->
+<!--   자바 스크립트 -->
+<th:block th:replace="common/fragments/script :: scriptFragment"/>
+<script src="/js/board.js"></script>
 </body>
 </html>

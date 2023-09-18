@@ -23,7 +23,7 @@ public class BoardController {
 
     private final ArticleMapper articleMapper;
     private  final ArticleService articleService;
-    private final int ELEMENT_SIZE = 4;
+    private final int ELEMENT_SIZE = 8;
     private final int PAGE_SIZE = 5;
 
 
@@ -32,7 +32,8 @@ public class BoardController {
     public String article(
             Model model ,
             HttpSession session,
-            @RequestParam(defaultValue = "1") int requestPage
+            @RequestParam(defaultValue = "1") int requestPage ,
+            @RequestParam(defaultValue = "true") boolean status
     ) {
         int selectPage = requestPage;
         int rowCount = articleService.countAll();
@@ -40,19 +41,30 @@ public class BoardController {
         Pagination pagination = new Pagination(pageParams);
         List<ArticleDTO> list;
         if(requestPage !=0){
-            list = articleService.findByAll2(pageParams);
-            log.info("list1 실행됨 : {}" , list);
+            if (status){
+                list = articleService.findByAll2(pageParams);
+                log.info("페이징이 포함된 list 실행됨 {} " , list);
+            } else {
+                list = articleMapper.findAllByHitcount();
+                log.info("추천글 list 활성화됨 {} " , list);
+            }
+
         } else {
             list = articleService.findByAll();
-            log.info("list2 실행됨 : {}" , list);
         }
 
-        session.setAttribute("list", list);
         model.addAttribute("list", list);
         model.addAttribute("pagination", pagination);
         model.addAttribute("requestPage", requestPage);
 
         return "article/board";
+    }
+
+//   게시판 :: 인기글 버튼 눌렀을시
+    @PostMapping("")
+    public String Article2(RedirectAttributes  redirectAttributes){
+        redirectAttributes.addAttribute("status", false);
+        return "redirect:/board";
     }
 
 //    글쓰기 페이지 입장
@@ -91,6 +103,7 @@ public class BoardController {
     @GetMapping("/detail/{articleId}")
     public String detail(@PathVariable int articleId, Model model){
         ArticleDTO articleDTO = articleService.detail(articleId);
+        articleMapper.updateHitcount(articleDTO);
         int groupNo = articleDTO.getGroupNo();
         List<ArticleDTO> comments = articleService.read(groupNo);
         log.info("{}",articleDTO);
