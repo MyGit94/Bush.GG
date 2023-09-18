@@ -1,5 +1,6 @@
 package com.pinkward.bushgg.web.ranking.controller;
 
+import com.pinkward.bushgg.domain.api.service.APIRankingService;
 import com.pinkward.bushgg.domain.api.service.APIServiceKo;
 import com.pinkward.bushgg.domain.ranking.dto.RankingDTO;
 import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
