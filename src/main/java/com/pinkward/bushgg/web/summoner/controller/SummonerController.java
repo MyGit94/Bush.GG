@@ -11,8 +11,7 @@ import com.pinkward.bushgg.domain.match.dto.MatchInfoDTO;
 import com.pinkward.bushgg.domain.match.dto.ParticipantsDTO;
 import com.pinkward.bushgg.domain.match.dto.RecentDTO;
 import com.pinkward.bushgg.domain.match.service.MatchService;
-import com.pinkward.bushgg.domain.ranking.dto.RankingDTO;
-import com.pinkward.bushgg.domain.ranking.service.RankingServiceImpl;
+import com.pinkward.bushgg.domain.ranking.service.RankingAPIServiceImpl;
 import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerTierDTO;
@@ -43,7 +42,7 @@ public class SummonerController {
     private final ChampionService championService;
     private final ChallengerMapper challengerMapper;
     private final SummonerMapper summonerMapper;
-    private final RankingServiceImpl rankingService;
+    private final RankingAPIServiceImpl rankingService;
 
 
     @GetMapping(value = "/summoner")
@@ -59,19 +58,14 @@ public class SummonerController {
             throw new RuntimeException(e);
         }
 
-//        summonerMapper.deleteTier();
-//        rankingService.challengerRanking(0,999);
-//        rankingService.grandMasterRanking(0,999);
-//        rankingService.masterRanking(0,9999);
-//        rankingService.diamond1Ranking(0,999);
-//        rankingService.diamond2Ranking(0,999);
-//        rankingService.diamond3Ranking(0,999);
-//        rankingService.diamond4Ranking(0,999);
-
         summonerName = summonerName.replaceAll(" ","").toLowerCase();
 
         // 이름으로 소환사 정보 가져옴
         SummonerDTO summoner = apiServiceKo.getSummonerInfo(esummonerName);
+        log.info("{}",summoner);
+        if(summoner == null) {
+            return "/404";
+        }
 
 
         Set<Map<String,Object>> summonerTier = apiServiceKo.getTierInfo(summoner.getId());

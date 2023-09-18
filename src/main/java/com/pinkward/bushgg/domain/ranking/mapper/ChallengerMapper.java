@@ -29,4 +29,6 @@ public interface ChallengerMapper {
 
     @Select("SELECT summonerName FROM TIER WHERE SUMMONERID = #{summonerId}")
     public String getNameById(String summonerId);
+
+
 }
