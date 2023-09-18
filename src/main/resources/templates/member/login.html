@@ -12,12 +12,9 @@
 
     <!-- 컨텐츠 전체영역 -->
     <div class="container">
-
         <!-- Outer Row -->
         <div class="row justify-content-center">
-
             <div class="col-xl-10 col-lg-12 col-md-9">
-
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
@@ -79,14 +76,9 @@
                                     <!-- 로그인 전체영역 -->
                                     <hr>
 
-                                    <!-- 비밀번호 찾기 -->
-                                    <div class="text-center">
-                                        <a class="find_passwd" href="forgot-password.html">비밀번호를 잊으셨나요?</a>
-                                    </div>
-
                                     <!-- 로그인하기 -->
                                     <div class="text-center">
-                                        <a class="login_bushgg" href="register.html">계정을 만드세요!</a>
+                                        <a class="login_bushgg" th:href="@{/member/register}">계정을 만드세요!</a>
                                     </div>
                                     <!-- 회원가입 -->
                                 </div>

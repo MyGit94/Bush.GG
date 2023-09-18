@@ -4,14 +4,17 @@ import com.pinkward.bushgg.domain.api.service.APIServiceKo;
 import com.pinkward.bushgg.domain.champion.mapper.ChampionMapper;
 import com.pinkward.bushgg.domain.champion.service.ChampionService;
 import com.pinkward.bushgg.domain.currentgame.service.CurrentGameService;
+import com.pinkward.bushgg.domain.member.dto.MemberDTO;
 import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +40,12 @@ public class HomeController {
 
 
 	@GetMapping("/")
-	public String home(Model model) {
+	public String home(@SessionAttribute(name="loginMember", required = false) MemberDTO loginMember, Model model , HttpSession httpSession) {
+
+		if (loginMember != null) {
+			model.addAttribute("loginMember", loginMember);
+		}
+
 		List<Map<String, Object>> currentGames = new ArrayList<>();
 		int count = 1;
 		int index = 1;

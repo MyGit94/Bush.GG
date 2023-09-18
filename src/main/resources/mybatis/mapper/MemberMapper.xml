@@ -18,7 +18,7 @@
 							    passwd,
 							    email,
 						   		role)
-		VALUES(#{loginId}, #{nickName}, #{passwd}, #{email}, '유저')
+		VALUES(#{loginId}, #{nickName}, #{passwd}, #{email},'유저')
 	</insert>
 	
 	<!-- 아이디와 비밀번호로 찾기 -->

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="headerFragment">
     <!-- 상단 헤더 -->
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -25,6 +25,16 @@
             </div>
         </form>
         <!-- 전적 검색창 끝 -->
+        <!-- 로그인 , 회원가입 -->
+        <div class="navbar_login_wrap">
+            <!-- 로그인 -->
+            <a th:if="${loginMember == null}" class="navbar_login" th:href="@{/member/login}">로그인</a>
+            <strong th:if="${loginMember != null}" class="" th:text="${loginMember.nickName} + '님 즐거운 하루 되세요'"></strong>
+
+            <!-- 회원가입 -->
+            <a th:if="${loginMember == null}" class="navbar_register" th:href="@{/member/register}">회원가입</a>
+            <a th:if="${loginMember != null}" class="navbar_register" th:href="@{/member/logout}">로그아웃</a>
+        </div>
     </nav>
     <!-- 상단헤더 끝 -->
 </th:block>
