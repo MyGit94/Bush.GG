@@ -111,27 +111,47 @@
                    AND group_no = #{groupNo}))
     </insert>
 
+
+    <!--    페이징 -->
     <select id="findByAll" resultType="ArticleDTO" parameterType="PageParams">
         SELECT articleid,
                subject,
                writer,
                regdate,
                hitcount
-        FROM   (SELECT  CEIL(rownum / #{pageParams.elementSize}) request_page,
-                        articleid,
-                        subject,
-                        writer,
-                        TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss') regdate,
-                        hitcount
-                FROM   (SELECT articleid,
-                               subject,
-                               writer,
-                               regdate,
-                               hitcount
-                        FROM    article
-                        ORDER  BY group_no DESC, order_no ASC, level_no ASC))
-        WHERE  request_page = #{pageParams.requestPage}
+        FROM (SELECT CEIL(rownum / #{pageParams.elementSize}) request_page,
+                     articleid,
+                     subject,
+                     writer,
+                     TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss')  regdate,
+                     hitcount
+              FROM (SELECT articleid,
+                           subject,
+                           writer,
+                           regdate,
+                           hitcount
+                    FROM article
+                    ORDER BY group_no DESC, order_no ASC, level_no ASC))
+        WHERE request_page = #{pageParams.requestPage}
     </select>
+
+
+    <!-- 게시글 수정 -->
+    <update id="update" parameterType="ArticleDTO">
+        UPDATE article
+        SET content = #{content}
+        WHERE boardid = #{boardId}
+          AND writer = #{writer}
+          AND passwd = #{passwd}
+    </update>
+
+    <!-- 삭제 -->
+    <delete id="removeComment" parameterType="ArticleDTO">
+        DELETE
+        FROM article
+        WHERE article_id = #{articleId}
+          AND passwd = #{passwd}
+    </delete>
 
 
 </mapper>

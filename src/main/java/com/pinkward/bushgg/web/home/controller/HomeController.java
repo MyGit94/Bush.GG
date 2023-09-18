@@ -1,6 +1,8 @@
 package com.pinkward.bushgg.web.home.controller;
 
 import com.pinkward.bushgg.domain.api.service.APIServiceKo;
+import com.pinkward.bushgg.domain.article.dto.ArticleDTO;
+import com.pinkward.bushgg.domain.article.mapper.ArticleMapper;
 import com.pinkward.bushgg.domain.champion.mapper.ChampionMapper;
 import com.pinkward.bushgg.domain.champion.service.ChampionService;
 import com.pinkward.bushgg.domain.currentgame.service.CurrentGameService;
@@ -32,6 +34,7 @@ import java.util.Map;
 @Slf4j
 @RequiredArgsConstructor
 public class HomeController {
+	private	final ArticleMapper articleMapper;
 	private final ChampionService championService;
 	private final ChampionMapper championMapper;
 	private final CurrentGameService currentGameService;
@@ -94,6 +97,14 @@ public class HomeController {
 
 		model.addAttribute("championNamesEn",championNamesEn);
 		model.addAttribute("championNamesKo",championNamesKo);
+
+
+		// 09/18 추가 -송우성- 커뮤니티
+		List<ArticleDTO> articleDTO=articleMapper.findAll();
+//		model.addAttribute("community" , articleDTO);
+		List<ArticleDTO> limitedList = articleDTO.subList(0, 10); // 최대 요소 개수 제한
+		model.addAttribute("community", limitedList);
+
 		return "index";
 	}
 }
