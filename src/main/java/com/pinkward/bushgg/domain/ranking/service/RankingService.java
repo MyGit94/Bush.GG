@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface RankingService {
 
-    public List<RankingDTO> ranking();
+    List<RankingDTO> ranking();
 
-    public List<RankingDTO> challengerRanking(int start, int end);
+    List<RankingDTO> challengerRanking(int start, int end);
 }

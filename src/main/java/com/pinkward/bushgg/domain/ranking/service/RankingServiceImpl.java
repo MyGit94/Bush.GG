@@ -22,7 +22,7 @@ import java.util.*;
 @Slf4j
 @PropertySource(ignoreResourceNotFound = false, value = "classpath:application.yml")
 public class RankingServiceImpl implements RankingService{
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Value("${riot.ranking.key}")
     private String mykey;

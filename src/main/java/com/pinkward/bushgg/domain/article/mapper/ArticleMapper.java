@@ -9,13 +9,13 @@ import java.util.List;
 public interface ArticleMapper {
 
 //	/** 신규 게시글 등록 */
-	public void create(ArticleDTO articleDTO);
+void create(ArticleDTO articleDTO);
 
 //	/** 전체 게시글 목록 반환 */
-	public List<ArticleDTO> findAll();
+List<ArticleDTO> findAll();
 
 //	/** 페이징 계산에 필요한 게시글 전체 갯수 반환 */
-	public int getCountAll();
+int getCountAll();
 
 //	/** 페이징 계산(검색값 포함)에 필요한 게시글 전체 갯수 반환 */
 //    public int getCountAll(PageParams pageParams);
@@ -26,22 +26,22 @@ public interface ArticleMapper {
 //	/** 댓글, 대댓글 쓰기, 게시글 상세보기, 게시글 수정, 게시글 삭제 등 기능 추가*/
 
 //	/** 댓글 등록*/
-	public void createComment(ArticleDTO articleDTO);
+void createComment(ArticleDTO articleDTO);
 
 //	/** 대댓글 등록*/
-	public void commentByComment(ArticleDTO articleDTO);
+void commentByComment(ArticleDTO articleDTO);
 
-	public List<ArticleDTO> readComment(int groupNo);
+	List<ArticleDTO> readComment(int groupNo);
 
 
 //	/** 댓글 삭제*/
-	public void removeComment(int articleId, String passwd);
+void removeComment(int articleId, String passwd);
 
 //	/** 댓글 수정*/
-	public void update(ArticleDTO articleDTO);
+void update(ArticleDTO articleDTO);
 
 //	/** 게시글 상세보기 */
-	public ArticleDTO detail(int articleId);
+ArticleDTO detail(int articleId);
 
 	
 }

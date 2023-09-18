@@ -9,6 +9,6 @@ import java.util.List;
 
 @PropertySource(ignoreResourceNotFound = false, value = "classpath:application.yml")
 public interface ChallengesService {
-    public List<ChallengesDTO> allChallengesInfo();
-    public List<ChallengeRankingPlayerDTO> challengeRanking(int challengeId);
+    List<ChallengesDTO> allChallengesInfo();
+    List<ChallengeRankingPlayerDTO> challengeRanking(int challengeId);
 }

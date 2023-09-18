@@ -28,7 +28,7 @@ public class LoggerAspect {
 		Object[] arsg = joinPoint.getArgs();
 		log.info("=> " + className + "#" + methodName + "비즈니스 메소드 실행");
 		for (Object object : arsg) {
-			log.info("  -> 전달인자 : " + object.getClass().getName() + " / " + object.toString());
+			log.info("  -> 전달인자 : " + object.getClass().getName() + " / " + object);
 		}
 		try {
 			obj = joinPoint.proceed();

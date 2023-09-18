@@ -5,5 +5,5 @@ import com.pinkward.bushgg.domain.ranking.dto.ChallengerRankingDTO;
 import java.util.List;
 
 public interface ChallengerRankingService {
-    public List<ChallengerRankingDTO> getChallengerInfo ();
+    List<ChallengerRankingDTO> getChallengerInfo();
 }

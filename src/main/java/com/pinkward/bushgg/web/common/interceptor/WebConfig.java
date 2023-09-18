@@ -19,7 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer{
 	
-	public List<String> loginEssential = Arrays.asList("/**");
+	public List<String> loginEssential = List.of("/**");
 	
 	public List<String> loginNotEssential = Arrays.asList("/", "/**/*.ico", "/**/*.html", "/**/css/**", "/**/js/**", "/**/vendor/**", 
 				"/error", "/member", "/member/register", "/member/login", "/member/logout", "/member/valid/{path}", "/member/rest/{path}");

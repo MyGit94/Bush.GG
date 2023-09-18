@@ -22,7 +22,7 @@ public class SummonerServiceImpl2 implements SummonerService{
     public SummonerTierDTO getTierInfo(Set<Map<String,Object>> summonerTier) {
         SummonerTierDTO summonerTierDTO = new SummonerTierDTO();
 
-            Map<String, Object> metadata = (Map<String, Object>) summonerTier.iterator().next();
+            Map<String, Object> metadata = summonerTier.iterator().next();
             summonerTierDTO.setTier((String) metadata.get("tier"));
             summonerTierDTO.setLeaguePoints((int) metadata.get("leaguePoints"));
             summonerTierDTO.setWins((int) metadata.get("wins"));

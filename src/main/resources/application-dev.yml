@@ -82,8 +82,8 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
   mapper-locations:
-    - classpath:bushgg/mapper/article/*.xml
-  type-aliases-package: com.pinkward.bushgg.domain.member.dto, com.pinkward.bushgg.domain.article.dto
+    - classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.pinkward.bushgg.domain.member.dto , com.pinkward.bushgg.domain.article.dto
 
 
 # 파일업로드 경로 설정

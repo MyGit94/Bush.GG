@@ -24,7 +24,7 @@ import java.util.Map;
 @Slf4j
 @RequiredArgsConstructor
 public class CurrentGameServiceImpl implements CurrentGameService {
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
     private final ChampionService championService;
 
     @Value("${riot.api.key}")

@@ -95,7 +95,7 @@ thymeleaf:
     configuration:
       map-underscore-to-camel-case: true
     mapper-locations:
-      - classpath:bushgg/mapper/article/*.xml
+      - classpath:mybatis/mapper/*.xml
     type-aliases-package: com.pinkward.bushgg.domain.member.dto, com.pinkward.bushgg.domain.article.dto
 
 

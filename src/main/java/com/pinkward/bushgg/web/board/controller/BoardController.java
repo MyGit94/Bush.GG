@@ -2,6 +2,7 @@ package com.pinkward.bushgg.web.board.controller;
 
 import com.pinkward.bushgg.domain.article.dto.ArticleDTO;
 import com.pinkward.bushgg.domain.article.mapper.ArticleMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ public class BoardController {
 	private final ArticleMapper articleMapper;
 
 	private final int ELEMENT_SIZE = 8;
+
 	private final int PAGE_SIZE = 5;
 	
 	@GetMapping

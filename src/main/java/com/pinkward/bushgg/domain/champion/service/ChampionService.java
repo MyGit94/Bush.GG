@@ -6,14 +6,14 @@ import com.pinkward.bushgg.domain.match.dto.ParticipantsDTO;
 import java.util.List;
 
 public interface ChampionService {
-    public String getChampionNameKo(String championId);
-    public String getChampionNameEn(String championId);
+    String getChampionNameKo(String championId);
+    String getChampionNameEn(String championId);
 
     // champion 로테이션 가져오기 (메인페이지 용)
-    public List<Integer> championLotation();
-    public String getChampionIdByName(String championName);
+    List<Integer> championLotation();
+    String getChampionIdByName(String championName);
 
-    public List<ChampionCount> getChampionCounts (List<ChampionCount> championCounts, ParticipantsDTO participant);
+    List<ChampionCount> getChampionCounts(List<ChampionCount> championCounts, ParticipantsDTO participant);
 
-    public List<ChampionCount> sortChampionCounts(List<ChampionCount> championCounts);
+    List<ChampionCount> sortChampionCounts(List<ChampionCount> championCounts);
 }

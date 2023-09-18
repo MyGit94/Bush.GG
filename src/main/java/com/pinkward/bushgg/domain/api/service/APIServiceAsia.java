@@ -13,8 +13,8 @@ import java.util.Set;
 public interface APIServiceAsia {
 
     //
-    public List<String> getMatchId(String puuid);
+    List<String> getMatchId(String puuid);
 
-    public Map<String, Object> getMatch(String matchId);
+    Map<String, Object> getMatch(String matchId);
 
 }

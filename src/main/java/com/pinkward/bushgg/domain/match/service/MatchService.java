@@ -10,8 +10,8 @@ import java.util.Map;
 
 public interface MatchService {
 
-    public MatchInfoDTO matchInfoDTO(Map<String, Object> match);
+    MatchInfoDTO matchInfoDTO(Map<String, Object> match);
     Map<String, Object> matchInfo(Map<String, Object> match);
 
-    public MatchInfoDTO getMatchInfoDTO(MatchInfoDTO matchInfoDTO, Map<String, Object> matchInfo);
+    MatchInfoDTO getMatchInfoDTO(MatchInfoDTO matchInfoDTO, Map<String, Object> matchInfo);
 }
