@@ -1,10 +1,7 @@
 package com.pinkward.bushgg.domain.ranking.service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pinkward.bushgg.domain.ranking.dto.RankingDTO;
-import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import com.pinkward.bushgg.domain.summoner.mapper.SummonerMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpEntity;
@@ -23,7 +20,7 @@ import java.util.*;
 @Service
 @Slf4j
 @PropertySource(ignoreResourceNotFound = false, value = "classpath:application.yml")
-public class RankingServiceImpl implements RankingService {
+public class RankingAPIServiceImpl implements RankingAPIService {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired

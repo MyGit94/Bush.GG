@@ -11,8 +11,7 @@ import com.pinkward.bushgg.domain.match.dto.MatchInfoDTO;
 import com.pinkward.bushgg.domain.match.dto.ParticipantsDTO;
 import com.pinkward.bushgg.domain.match.dto.RecentDTO;
 import com.pinkward.bushgg.domain.match.service.MatchService;
-import com.pinkward.bushgg.domain.ranking.dto.RankingDTO;
-import com.pinkward.bushgg.domain.ranking.service.RankingServiceImpl;
+import com.pinkward.bushgg.domain.ranking.service.RankingAPIServiceImpl;
 import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerTierDTO;
@@ -43,7 +42,7 @@ public class SummonerController {
     private final ChampionService championService;
     private final ChallengerMapper challengerMapper;
     private final SummonerMapper summonerMapper;
-    private final RankingServiceImpl rankingService;
+    private final RankingAPIServiceImpl rankingService;
 
 
     @GetMapping(value = "/summoner")
@@ -167,6 +166,7 @@ public class SummonerController {
             summonerWithCounts =  summonerService.getSummonerWith(matchInfo,teamId,name, summonerWithCounts);
             matchInfoDTO =  matchService.getMatchInfoDTO(matchInfoDTO,matchInfo);
             log.info("{}",matchInfoDTO);
+            log.info("{}",participantsList);
             matchList.put("matchInfo",matchInfoDTO);
             matchList.put("participantsList", participantsList);
 

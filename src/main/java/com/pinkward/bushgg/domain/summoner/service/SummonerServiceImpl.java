@@ -139,6 +139,38 @@ public class SummonerServiceImpl implements SummonerService{
                 return "P3";
             case "PLATINUM 4":
                 return "P4";
+            case "GOLD 1":
+                return "G1";
+            case "GOLD 2":
+                return "G2";
+            case "GOLD 3":
+                return "G3";
+            case "GOLD 4":
+                return "G4";
+            case "SILVER 1":
+                return "S1";
+            case "SILVER 2":
+                return "S2";
+            case "SILVER 3":
+                return "S3";
+            case "SILVER 4":
+                return "S4";
+            case "BRONZE 1":
+                return "B1";
+            case "BRONZE 2":
+                return "B2";
+            case "BRONZE 3":
+                return "B3";
+            case "BRONZE 4":
+                return "B4";
+            case "IRON 1":
+                return "I1";
+            case "IRON 2":
+                return "I2";
+            case "IRON 3":
+                return "I3";
+            case "IRON 4":
+                return "I4";
             default:
                 return "알 수 없음";
         }

@@ -4,7 +4,7 @@ import com.pinkward.bushgg.domain.ranking.dto.RankingDTO;
 
 import java.util.List;
 
-public interface RankingService {
+public interface RankingAPIService {
 
     public List<RankingDTO> challengerRanking(int start, int end);
     public List<RankingDTO> grandMasterRanking(int start, int end);
