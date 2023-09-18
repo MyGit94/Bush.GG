@@ -49,7 +49,6 @@
                                     <th>글쓴이</th>
                                     <th>등록일</th>
                                     <th>조회</th>
-                                    <th>추천</th>  
                                 </tr>
                             </thead>
                             <tbody class="trs">
@@ -57,8 +56,8 @@
                                 <td th:text="${articleDTO.articleId}">일</td>
                                 <td><a href="#" th:href="@{/board/detail/{articleId}(articleId=${articleDTO.articleId})}" th:text="${articleDTO.subject}">첫번째 게시글입니다</a></td>
                                 <td th:text="${articleDTO.writer}">홍길동</td>
-                                <td th:text="${articleDTO.hitcount}">5</td>
                                 <td th:text="${articleDTO.regdate}">날짜</td>
+                                <td th:text="${articleDTO.hitcount}">5</td>
                             </tr>
                             </tbody>
                         </table>

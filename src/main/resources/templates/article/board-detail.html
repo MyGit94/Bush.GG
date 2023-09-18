@@ -27,23 +27,25 @@
 
         
         <div class="articleHeder">
-            <div class="category">
-                <a href="../../static/index.html" class="linkBoard"><strong>. 카테고리</strong>
-                    <i class="fas fa-angle-right"></i>
-                </a>
-            </div>
-            <div class="titleArea">
-                <h3 class="titleText">제목 내용입니다?제목 내용입니다?제목 내용입니다?</h3>
-            </div>
-            <div class="nickBox">
-                <button id="" class="nickname"> 홍길동 </button>
-            </div>
-            <div class="articleInfoBox">
-                <div class="articleInfo">
-                    <span class="date">2023-09-04</span>
-                    <span class="count">조회 15</span>
+                <div class="category">
+                    <a href="../../static/index.html" class="linkBoard">
+                        <strong th:text="${articleDTO.boardId == 20 ? '자유게시판' : (articleDTO.boardId == 30 ? '공지사항' : '')}">카테고리</strong>
+
+                        <i class="fas fa-angle-right"></i>
+                    </a>
                 </div>
-                <div class="commentCount">
+                <div class="titleArea">
+                    <h3 class="titleText" th:text="${articleDTO.subject}">제목 내용입니다?제목 내용입니다?제목 내용입니다?</h3>
+                </div>
+                <div class="nickBox">
+                    <button id="" class="nickname" th:text="${articleDTO.writer}"> 홍길동 </button>
+                </div>
+                <div class="articleInfoBox">
+                    <div class="articleInfo">
+                        <span class="date" th:text="${articleDTO.regdate}">2023-09-04</span>
+                        <span class="count" th:text="${articleDTO.hitcount}">조회 15</span>
+                    </div>
+                    <div class="commentCount">
                     <span class="titleText">💬</span>
                     <span class="titleText">댓글 ?개 </span>
                 </div>
@@ -57,18 +59,7 @@
 
                 <div class="card-body">
                     <div class="content" rows="10">
-                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora l
-                        audantium nihil maiores. Cum libero est porro harum amet quam quae, perferendi
-                        s pariatur? Rerum, fugit reprehenderit eveniet voluptates alias fuga soluta!
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora l
-                        audantium nihil maiores. Cum libero est porro harum amet quam quae, perferendi
-                        s pariatur? Rerum, fugit reprehenderit eveniet voluptates alias fuga soluta!
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora l
-                        audantium nihil maiores. Cum libero est porro harum amet quam quae, perferendi
-                        s pariatur? Rerum, fugit reprehenderit eveniet voluptates alias fuga soluta!
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora l
-                        audantium nihil maiores. Cum libero est porro harum amet quam quae, perferendi
-                        s pariatur? Rerum, fugit reprehenderit eveniet voluptates alias fuga soluta!</p>
+                       <p th:text="${articleDTO.content}">댓글내용</p>
                     </div>
                     <div class="d-flex justify-content-center mt-5">
                         <button type="submit" class="btn hartCountBtn">
@@ -83,6 +74,9 @@
                 <div class="commentCountBox">
                     <h5 class="titleText">💬</h5><h5 class="titleText">댓글 ?개 </h5>
                 </div>
+
+
+<!--            댓글 -->
             <div class="commentBox">
                 <ul class="list-group commentList">
                     <li id="#" class="list-group-item CommentItem"><span>닉네임</span>
