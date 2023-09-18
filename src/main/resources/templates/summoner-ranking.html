@@ -1,350 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
+<tbody class="summoner_rank_table_body">
+<tr th:each="ranking, iterStat : ${challengerRanking}">
+  <!-- 랭킹등수 -->
+  <td class="rank_table_number" th:text="${(page - 1) * 100 + iterStat.count}">1</td>
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>최종 프로젝트 - BUSH.GG</title>
-  <!-- 커스텀 폰트 -->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
+  <!-- 소환사명 -->
+  <td class="rank_table_name" th:text="${ranking.getSummonerName()}">사각</td>
+  <!-- 티어 -->
+  <td class="rank_table_tier" >
+    <!-- 티어 이미지 -->
+    <img src="img/tier/Challenger.png" th:src="@{'img/tier/' + ${ranking.getTier()} + '.png'}" alt="">
+    <!-- 티어명 -->
+    <p th:text=" ${ranking.getTier()} ">Challenger</p>
+  </td>
+  <!-- Lp -->
+  <td class="rank_table_lp" th:text="${ranking.getLeaguePoints()}">1799p</td>
+  <!-- 승률 -->
+  <td class="rank_table_rate">80%</td>
+  <!-- 승 -->
+  <td class="rank_table_win" th:text="${ranking.getWins()}">80</td>
+  <!-- 패 -->
+  <td class="rank_table_lose" th:text="${ranking.getLosses()}">20</td>
+  <!-- 레벨 -->
+  <td class="rank_table_level">9999</td>
+</tr>
+</tbody>
+<!-- 테이블 내용 (1행) 끝 -->
+</table>
+</div>
+<!-- 소환사 랭크 테이블 전체영역 끝 -->
 
+<!-- 랭크 페이징 버튼 -->
+<div class="summoner_rank_page_bt">
+  <!-- 버튼 위치 조정을 위한 전체영역 -->
+  <div class="summoner_rank_page_flex">
+    <!-- 이전 버튼 -->
+    <a href="/ranking?page=1" class="summoner_rank_page summoner_rank_page_previous">
+      << </a>
+    <!-- 1 -->
+    <!-- 현재 페이지를 나타내는 페이지에
+    on 클래스가 붙으면서 현재페이지임을 스타일로 지정 -->
+    <a href="/ranking?page=1" class="summoner_rank_page on">
+      1
+    </a>
 
-  <!-- 부트스트랩 기본 CSS -->
-  <link href="css/sb-admin-2.css" rel="stylesheet">
-  <!-- 기본 css  -->
-  <link rel="stylesheet" href="css/style.css">
-  <!-- 소환사 랭킹 css -->
-  <link rel="stylesheet" href="css/summoner-ranking.css">
+    <!-- 2 -->
+    <a href="/ranking?page=2" class="summoner_rank_page">
+      2
+    </a>
 
-</head>
+    <!-- 3 -->
+    <a href="/ranking?page=3" class="summoner_rank_page">
+      3
+    </a>
 
+    <!-- 4 -->
+    <a href="/ranking?page=4" class="summoner_rank_page">
+      4
+    </a>
 
-<body id="page-top">
+    <!-- 5 -->
+    <a href="/ranking?page=5" class="summoner_rank_page">
+      5
+    </a>
 
-  <div id="wrapper">
+    <a href="/ranking?page=6" class="summoner_rank_page">
+      6
+    </a>
 
-    <!-- 좌측 사이드바 전체 영역 -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+    <a href="/ranking?page=7" class="summoner_rank_page">
+      7
+    </a>
 
-      <!-- 왼쪽 사이드바 로고 영역 -->
-      <li class="nav-item active">
-        <a class="nav-link nav-link2" href="index.html">
-          <!-- <p class="nav-item-text">BUSH.GG</p> -->
-          <img src="img/logo.png" alt="" class="nav-item-img">
-        </a>
-      </li>
+    <a href="/ranking?page=8" class="summoner_rank_page">
+      8
+    </a>
 
-      <!-- 구분선1 -->
-      <hr class="sidebar-divider">
+    <a href="/ranking?page=9" class="summoner_rank_page">
+      9
+    </a>
 
-      <!-- 사이드바 카테고리1 : 사용자 -->
-      <div class="sidebar-heading">
-        사용자
-      </div>
+    <a href="/ranking?page=10" class="summoner_rank_page">
+      10
+    </a>
 
-      <!-- 사이드메뉴 :: 상단 메뉴 - 사용자 -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-          aria-expanded="true" aria-controls="collapseUtilities">
-          <!-- 상단 메뉴 아이콘 -->
-          <i class="fas fa-fw fa-wrench"></i>
-          <!-- 상단 메뉴 텍스트 -->
-          <span>뭘 적어둘지 몰라서 비워뒀음</span>
-        </a>
-      </li>
-
-      <!-- 구분선2 -->
-      <hr class="sidebar-divider">
-
-      <!-- 사이드바 카테고리2 : 컨텐츠 -->
-      <div class="sidebar-heading">
-        Contents
-      </div>
-
-      <!-- 패치노트 -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-          aria-controls="collapsePages">
-          <!-- 패치노트 아이콘-->
-          <i class="fas fa-fw fa-folder"></i>
-          <span>패치노트</span>
-        </a>
-      </li>
-
-      <!-- 랭킹 -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <!-- 랭킹 아이콘-->
-          <i class="fas fa-fw fa-chart-area"></i>
-          <!-- 랭킹 텍스트 -->
-          <span>랭킹</span></a>
-      </li>
-
-      <!-- 커뮤니티 -->
-      <li class="nav-item">
-        <a class="nav-link" href="board.html">
-          <!-- 커뮤니티 아이콘 -->
-          <i class="fas fa-fw fa-table"></i>
-          <!-- 커뮤니티 텍스트 -->
-          <span>커뮤니티</span></a>
-      </li>
-
-      <!-- 구분선3 -->
-      <hr class="sidebar-divider d-none d-md-block">
-
-      <!-- 사이드바 열기/닫기 버튼 전체영역 -->
-      <div class="text-center d-none d-md-inline">
-        <!-- 사이드바 버튼 -->
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-
-
-    </ul>
-    <!-- 사이드바 끝 -->
-
-
-    <!-- 메인 컨텐츠 전체영역 -->
-    <div id="content-wrapper" class="d-flex flex-column">
-
-      <!-- 상단 헤더 -->
-      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-        <!-- (모바일) 사이드 메뉴 여닫이 버튼 -->
-        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-          <i class="fa fa-bars"></i>
-        </button>
-
-        <!-- 전적 검색창 -->
-        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-          <div class="input-group">
-            <!-- 전적 검색 : 입력 텍스트칸 -->
-            <input type="text" class="form-control bg-light border-0 small" placeholder="소환사명을 입력해주세요"
-              aria-label="Search" aria-describedby="basic-addon2">
-            <!-- 검색 아이콘 전체영역 -->
-            <div class="input-group-append">
-              <!-- 검색 버튼 네모박스 -->
-              <button class="btn btn-primary" type="button">
-                <!-- 검색 버튼 돋보기 아이콘 -->
-                <i class="fas fa-search fa-sm"></i>
-              </button>
-            </div>
-          </div>
-        </form>
-        <!-- 전적 검색창 끝 -->
-
-      </nav>
-      <!-- 상단헤더 끝 -->
-
-
-      <!-- 소환사 랭크 전체영역 -->
-      <div class="summoner_rank_wrap">
-        <!-- 소환사 랭크 header 전체영역 -->
-        <div class="summoner_rank_profile_wrap">
-
-          <!-- 소환사 랭크 header Line1 전체영역 -->
-          <div class="summoner_rank_profile">
-            <!-- Bush.gg 아이콘 -->
-            <div class="summoner_rank_profile_img">
-              <img src="img/logo.png" alt="">
-            </div>
-
-            <!-- 솔로랭크 , 소환사랭킹 -->
-            <div class="summoner_rank_profile_name">
-              <!-- 랭킹리스트 타입 -->
-              <h1 class="summoner_rank_type">
-                솔로 랭크
-              </h1>
-
-              <!-- 소환사 랭킹 -->
-              <p class="summoner_ranking">
-                소환사 랭킹
-              </p>
-            </div>
-
-          </div>
-          <!-- 소환사 랭크 header Line1 전체영역 끝 -->
-
-          <!-- 그랜드마스터 , 챌린저 점수컷 전체영역 -->
-          <div class="summoner_rank_cut">
-            <!-- 챌린저 -->
-            <div class="summoner_rank_challenger">
-              <!-- 챌린저 이미지 -->
-              <img src="img/tier/Challenger.png" alt="">
-              <!-- 챌린저 점수컷 텍스트 -->
-              <p class="summoner_rank_challenger_text">1500p</p>
-            </div>
-
-            <!-- 그랜드마스터 -->
-            <div class="summoner_rank_grandmaster">
-              <!-- 그랜드마스터 이미지 -->
-              <img src="img/tier/GrandMaster.png" alt="">
-              <!-- 그랜드마스터 점수컷 텍스트 -->
-              <p class="summoner_rank_grandmaster_text">1000p</p>
-            </div>
-
-          </div>
-          <!-- 그랜드마스터 , 챌린저 점수컷 전체영역 끝 -->
-
-        </div>
-        <!-- 소환사 header 전체영역 끝 -->
-
-        <!-- 소환사 랭크 리스트 전체영역 -->
-        <div class="summoner_rank_list_wrap">
-          <!-- 소환사 랭크 리스트 테이블 전체영역 -->
-          <table class="summoner_rank_table">
-            <!-- 테이블 헤더 -->
-            <thead>
-              <tr>
-                <!-- 5 -->
-                <td class="rank_table_header_number">Number</td>
-                <!-- 25 -->
-                <td class="rank_table_header_name">Summoner_Name</td>
-                <!-- 15 -->
-                <td class="rank_table_header_tier">Tier</td>
-                <!-- 15 -->
-                <td class="rank_table_header_lp">LP</td>
-                <!-- 10 -->
-                <td class="rank_table_header_rate">승률</td>
-                <td class="rank_table_header_win">승</td>
-                <td class="rank_table_header_lose">패</td>
-                <td class="rank_table_header_level">레벨</td>
-              </tr>
-            </thead>
-
-            <!-- 테이블 내용 (1행) forEach-->
-            <tbody class="summoner_rank_table_body">
-              <tr th:each="ranking, iterStat : ${challengerRanking}">
-                <!-- 랭킹등수 -->
-                <td class="rank_table_number" th:text="${iterStat.count}">1</td>
-                <!-- 소환사명 -->
-                <td class="rank_table_name" th:text="${ranking.getSummonerName()}">사각</td>
-                <!-- 티어 -->
-                <td class="rank_table_tier">
-                  <!-- 티어 이미지 -->
-                  <img src="img/tier/Challenger.png" th:src="@{'img/tier/' + ${ranking.getTier()} + '.png'}" alt="">
-                  <!-- 티어명 -->
-                  Challenger
-                </td>
-                <!-- Lp -->
-                <td class="rank_table_lp" th:text="${ranking.getLeaguePoints()}">1799p</td>
-                <!-- 승률 -->
-                <td class="rank_table_rate">80%</td>
-                <!-- 승 -->
-                <td class="rank_table_win" th:text="${ranking.getWins()}">80</td>
-                <!-- 패 -->
-                <td class="rank_table_lose" th:text="${ranking.getLosses()}">20</td>
-                <!-- 레벨 -->
-                <td class="rank_table_level">9999</td>
-              </tr>
-            </tbody>
-            <!-- 테이블 내용 (1행) 끝 -->
-          </table>
-        </div>
-        <!-- 소환사 랭크 테이블 전체영역 끝 -->
-
-        <!-- 랭크 페이징 버튼 -->
-        <div class="summoner_rank_page_bt">
-          <!-- 버튼 위치 조정을 위한 전체영역 -->
-          <div class="summoner_rank_page_flex">
-            <!-- 이전 버튼 -->
-            <a href="" class="summoner_rank_page summoner_rank_page_previous">
-              << </a>
-                <!-- 1 -->
-                <!-- 현재 페이지를 나타내는 페이지에
-                on 클래스가 붙으면서 현재페이지임을 스타일로 지정 -->
-                <a href="#" class="summoner_rank_page on">
-                  1
-                </a>
-
-                <!-- 2 -->
-                <a href="#" class="summoner_rank_page">
-                  2
-                </a>
-
-                <!-- 3 -->
-                <a href="#" class="summoner_rank_page">
-                  3
-                </a>
-
-                <!-- 4 -->
-                <a href="#" class="summoner_rank_page">
-                  4
-                </a>
-
-                <!-- 5 -->
-                <a href="#" class="summoner_rank_page">
-                  5
-                </a>
-
-                <!-- 다음버튼 -->
-                <a href="" class="summoner_rank_page summoner_rank_page_next">
-                  >>
-                </a>
-          </div>
-          <!-- 버튼 위치조정을 위한 전체영역 끝 -->
-        </div>
-        <!-- 페이징 전체영역 끝 = -->
-      </div>
-      <!-- 소환사 랭크 전체영역 끝 -->
-    </div>
-    <!--  메인 컨텐츠 끝 -->
-
-
-
-
-
-    <!-- 로그아웃 모달 (아직 사용할지 미정)-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <!-- 다음버튼 -->
+    <a href="/ranking?page=10" class="summoner_rank_page summoner_rank_page_next">
+      >>
+    </a>
   </div>
-  <!-- 로그아웃 모달 끝-->
-
-
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
-
-
-
-
-</body>
-
-
-</html>
+  <!-- 버튼 위치조정을 위한 전체영역 끝 -->
+</div>
+<!-- 페이징 전체영역 끝 = -->

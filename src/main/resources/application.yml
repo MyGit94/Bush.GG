@@ -35,3 +35,73 @@ thymeleaf:
   prefix: classpath:/templates/
   suffix: .html
   enabled: true
+
+
+  # Logging 설정
+  logging:
+    pattern:
+      console: "[%d{yy-MM-dd}][%thread][%-5level]\\(%F: %method\\(\\): %L\\) : %msg%n"
+      file: "[%d{yyyy-MM-dd HH:mm:ss}][%thread][%-5level]\\(%F: %method\\(\\): %L\\) : %msg%n"
+    file:
+      name: C:/ezen-fullstack/workspace/final_project_template/log/application-dev.log
+    logback:
+      rollingpolicy:
+        max-file-size: 1MB         #default 10M
+        max-history: 31            #default 7
+        file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}.%i.zip
+    # 패키지별 Log Level 설정
+    level:
+      org:
+        apache:
+          coyote:
+            http11: info          # http 요청메시지 로그
+        springframework:
+          jdbc: debug              # jdbc 처리 로그
+          datasource:
+            DataSourceTransactionManager: debug
+          transaction:
+            interceptor: trace
+
+      com:
+        ezen:
+          springmvc:
+            domain:
+              member:
+                mapper: trace       # mybatis 처리 로그
+
+  # Spring 설정
+  spring:
+    #Database 연결 정보 설정
+    config:
+      import: db-config.properties
+    # Thymeleaf 설정
+    thymeleaf:
+      # prefix: classpath:/templates/
+      # suffix: .html
+      cache: false                 # Cache 사용하지 않게 설정
+    # File Upload 설정
+    servlet:
+      multipart:
+        max-file-size: 50MB
+        max-request-size: 100MB
+    # MessageSource 설정
+    messages:
+      # basename: messages          # Spring Default
+      basename: messages,errors
+
+
+
+  mybatis:
+    configuration:
+      map-underscore-to-camel-case: true
+    mapper-locations:
+      - classpath:bushgg/mapper/article/*.xml
+    type-aliases-package: com.pinkward.bushgg.domain.member.dto, com.pinkward.bushgg.domain.article.dto
+
+
+  # 파일업로드 경로 설정
+  common:
+    uploadPath: C:/ezen-fullstack/workspace/final_project_template/upload/
+
+
+

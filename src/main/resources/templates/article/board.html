@@ -53,12 +53,12 @@
                                 </tr>
                             </thead>
                             <tbody class="trs">
-                            <tr th:each="article : ${list}">
-                                <td th:text="${article.articleId}">일</td>
-                                <td><a href="#" th:href="@{/article/read/{articleId}(articleId=${article.articleId})}" th:text="${article.subject}">첫번째 게시글입니다</a></td>
-                                <td th:text="${article.writer}">홍길동</td>
-                                <td th:text="${article.hitcount}">5</td>
-                                <td th:text="${article.regdate}">날짜</td>
+                            <tr th:each="articleDTO : ${list}">
+                                <td th:text="${articleDTO.articleId}">일</td>
+                                <td><a href="#" th:href="@{/board/detail/{articleId}(articleId=${articleDTO.articleId})}" th:text="${articleDTO.subject}">첫번째 게시글입니다</a></td>
+                                <td th:text="${articleDTO.writer}">홍길동</td>
+                                <td th:text="${articleDTO.hitcount}">5</td>
+                                <td th:text="${articleDTO.regdate}">날짜</td>
                             </tr>
                             </tbody>
                         </table>

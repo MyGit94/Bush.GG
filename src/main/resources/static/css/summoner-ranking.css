@@ -13,7 +13,9 @@ h5 {
   width: 80%;
   margin: 0 auto;
   height: 200px;
-  background-color: rgb(47, 55, 45);
+  background-image:url(../img/illust/Rift3.png);
+  background-size:100% 200px;
+  background-repeat: no-repeat;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -39,14 +41,14 @@ h5 {
 
 /* 랭크 타입 */
 .summoner_rank_type {
-  color: rgb(255, 86, 86);
+  color: #fff;
   margin-right: 10px;
 }
 
 /* 그랜드마스터 , 챌린저 랭킹점수컷 전체영역 */
 .summoner_rank_cut {
   display: flex;
-  width: 15%;
+  width: 25%;
   background-color: #00000059;
   color: #fff;
   font-weight: bold;
@@ -110,7 +112,7 @@ h5 {
 /* 랭킹 등수 */
 .rank_table_header_number,
 .rank_table_number {
-  width: 5%;
+  width: 10%;
 }
 
 /* 소환사 이름 */
@@ -139,13 +141,13 @@ h5 {
 /* 티어 */
 .rank_table_header_tier,
 .rank_table_tier {
-  width: 15%;
+  width: 25%;
 }
 
 /*  lp */
 .rank_table_header_lp,
 .rank_table_lp {
-  width: 15%;
+  width: 10%;
 }
 
 /*  승률 , 승 , 패 , 레벨 */
@@ -186,7 +188,6 @@ h5 {
 .rank_table_lp {
   height: 83px;
   align-items: center;
-  background-color: #ebebeb;
 }
 
 /* 랭크 페이징 버튼 */

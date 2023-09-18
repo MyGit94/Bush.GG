@@ -1,6 +1,6 @@
-package com.pinkward.bushgg.domain.article.Mapper;
+package com.pinkward.bushgg.domain.article.mapper;
 
-import com.pinkward.bushgg.domain.article.DTO.ArticleDTO;
+import com.pinkward.bushgg.domain.article.dto.ArticleDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

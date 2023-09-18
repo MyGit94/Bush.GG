@@ -1,4 +1,4 @@
-package com.pinkward.bushgg.domain.article.DTO;
+package com.pinkward.bushgg.domain.article.dto;
 
 import lombok.*;
 
