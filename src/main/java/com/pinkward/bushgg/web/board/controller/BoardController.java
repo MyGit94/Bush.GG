@@ -5,7 +5,9 @@ import com.pinkward.bushgg.domain.article.mapper.ArticleMapper;
 import com.pinkward.bushgg.domain.article.service.ArticleService;
 import com.pinkward.bushgg.domain.common.web.PageParams;
 import com.pinkward.bushgg.domain.common.web.Pagination;
+import com.pinkward.bushgg.domain.member.dto.MemberDTO;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -107,11 +109,32 @@ public class BoardController {
         int groupNo = articleDTO.getGroupNo();
         List<ArticleDTO> comments = articleService.read(groupNo);
         log.info("{}",articleDTO);
+
         model.addAttribute("comments", comments);
         model.addAttribute("articleDTO", articleDTO);
         return "article/board-detail";
     }
 
+
+
+//    댓글쓰기
+    @PostMapping("/detail")
+    public String comment(
+            RedirectAttributes redirectAttributes ,
+            Model model ,
+            HttpSession session ,
+      @Valid @RequestParam("comment") String comment
+    ){
+        MemberDTO  member= (MemberDTO)session.getAttribute("loginMember");
+      ArticleDTO articleDTO = (ArticleDTO)model.getAttribute("comments");
+
+      articleDTO.setWriter(member.getLoginId());
+      articleDTO.setContent(comment);
+      articleDTO.setPasswd(member.getPasswd());
+      articleDTO.setGroupNo(articleDTO.getGroupNo());
+//      articleDTO.setWriter("멤버로바꿀예정");
+        return "redirect:/board/detail";
+    }
 
 }
 

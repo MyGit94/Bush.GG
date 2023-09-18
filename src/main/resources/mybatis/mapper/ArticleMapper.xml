@@ -77,26 +77,12 @@
                content,
                TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss') regdate,
                group_no,
+               order_no,
                hitcount
         FROM article
         WHERE articleid = #{articleId}
     </select>
 
-
-    <!--    댓글읽기-->
-    <select parameterType="int" id="readComment" resultType="ArticleDTO">
-        SELECT subject,
-               writer,
-               content,
-               passwd,
-               TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss') as "regdate",
-               group_no,
-               level_no,
-               order_no
-        FROM article
-        WHERE level_no >= 1
-          AND group_no = #{groupNo}ORDER BY order_no ASC
-    </select>
 
     <select id="getCountAll" resultType="int">
         SELECT COUNT(articleid)
@@ -108,27 +94,25 @@
     <insert parameterType="ArticleDTO" id="createComment">
         INSERT INTO article
         (articleid,
-         boardid,
          writer,
-         subject,
          content,
          passwd,
          group_no,
-         level_no,
+         level_no
          order_no)
         VALUES (article_id_seq.NEXTVAL,
-                #{boardId},
                 #{writer},
-                #{subject},
                 #{content},
                 #{passwd},
                 #{groupNo},
-                #{levelNo},
+                1,
                 (SELECT MAX(order_no) + 1
                  FROM article
                  WHERE board_id = #{boardId}
                    AND group_no = #{groupNo}))
     </insert>
+
+
 
 
     <!--    페이징 -->
@@ -167,7 +151,7 @@
           AND passwd = #{passwd}
     </update>
 
-    <!-- 게시글 수정 -->
+    <!-- 조회수 증가 -->
     <update id="updateHitcount" parameterType="ArticleDTO">
         UPDATE article
         SET hitcount = #{hitcount}+1
