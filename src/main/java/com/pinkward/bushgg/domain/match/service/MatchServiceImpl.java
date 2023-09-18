@@ -110,14 +110,14 @@ public class MatchServiceImpl implements MatchService {
             participantsDTO.setDeaths((int) participant.get("deaths"));
             participantsDTO.setSummonerId((String) participant.get("summonerId"));
 
-            if (challengerMapper.getTierById(participantsDTO.getSummonerId())==null) {
-                SummonerTierDTO summonerTierDTO = summonerService.getTierInfo(apiServiceKo.getTierInfo(participantsDTO.getSummonerId()));
-                log.info("{}",summonerTierDTO);
-                participantsDTO.setTier(summonerTierDTO.getTierName());
-                log.info("{}",participantsDTO.getTier());
-            } else {
-                participantsDTO.setTier(challengerMapper.getTierById(participantsDTO.getSummonerId()));
-            }
+//            if (challengerMapper.getTierById(participantsDTO.getSummonerId())==null) {
+//                SummonerTierDTO summonerTierDTO = summonerService.getTierInfo(apiServiceKo.getTierInfo(participantsDTO.getSummonerId()));
+//                log.info("{}",summonerTierDTO);
+//                participantsDTO.setTier(summonerTierDTO.getTierName());
+//                log.info("{}",participantsDTO.getTier());
+//            } else {
+//                participantsDTO.setTier(challengerMapper.getTierById(participantsDTO.getSummonerId()));
+//            }
 
             participantsDTO.setGoldEarned((int) participant.get("goldEarned"));
             participantsDTO.setItem0((int) participant.get("item0"));

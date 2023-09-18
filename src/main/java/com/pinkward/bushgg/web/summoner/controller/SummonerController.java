@@ -58,19 +58,14 @@ public class SummonerController {
             throw new RuntimeException(e);
         }
 
-//        summonerMapper.deleteTier();
-//        rankingService.challengerRanking(0,999);
-//        rankingService.grandMasterRanking(0,999);
-//        rankingService.masterRanking(0,9999);
-//        rankingService.diamond1Ranking(0,999);
-//        rankingService.diamond2Ranking(0,999);
-//        rankingService.diamond3Ranking(0,999);
-//        rankingService.diamond4Ranking(0,999);
-
         summonerName = summonerName.replaceAll(" ","").toLowerCase();
 
         // 이름으로 소환사 정보 가져옴
         SummonerDTO summoner = apiServiceKo.getSummonerInfo(esummonerName);
+        log.info("{}",summoner);
+        if(summoner == null) {
+            return "/404";
+        }
 
 
         Set<Map<String,Object>> summonerTier = apiServiceKo.getTierInfo(summoner.getId());
