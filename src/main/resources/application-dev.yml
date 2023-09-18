@@ -83,7 +83,7 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true  
   mapper-locations: classpath:mybatis/mapper/*.xml
-  type-aliases-package:  com.pinkward.bushgg.domain.article.dto, com.pinkward.bushgg.domain.member.dto
+  type-aliases-package:  com.pinkward.bushgg.domain.article.dto, com.pinkward.bushgg.domain.member.dto , com.pinkward.bushgg.domain.common.web
 
 ---
 

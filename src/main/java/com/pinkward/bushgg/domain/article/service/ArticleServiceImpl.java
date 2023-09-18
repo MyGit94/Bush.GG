@@ -65,7 +65,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<ArticleDTO> findByAll2(PageParams pageParams) {
-        return null;
+        return articleMapper.findByAll(pageParams);
     }
 
 

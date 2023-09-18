@@ -41,8 +41,10 @@ public class BoardController {
         List<ArticleDTO> list;
         if(requestPage !=0){
             list = articleService.findByAll2(pageParams);
+            log.info("list1 실행됨 : {}" , list);
         } else {
             list = articleService.findByAll();
+            log.info("list2 실행됨 : {}" , list);
         }
 
         session.setAttribute("list", list);

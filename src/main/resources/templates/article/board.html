@@ -86,12 +86,17 @@
                 </form>
                 <!-- 검색 전체 끝-->
                   <div class="page-item">
+                      <a th:href="@{/board(requestPage=${pagination.previousStartPage})}">
                     <button class="btn prevBtn" type="button">
                         <i class="fa fa-angle-double-left"></i>
                     </button>
+                      </a>
+
+                      <a th:href="@{/board(requestPage=${pagination.totalPages})}">
                     <button class="btn nextBtn" type="button">
                         <i class="fa fa-angle-double-right"></i>
                     </button>
+                      </a>
                   </div>
             </div>
             <!-- 게시판 하단 & 페이지 끝-->
