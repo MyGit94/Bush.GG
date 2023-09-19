@@ -20,8 +20,11 @@
         <!-- 구분선1 -->
         <hr class="sidebar-divider">
         <!-- 사이드바 카테고리1 : 사용자 -->
-        <div class="sidebar-heading">
+        <div class="sidebar-heading" th:if="${loginMember == null}">
             사용자
+        </div>
+        <div class="user" th:if="${loginMember != null}">
+            😀 환영합니다!
         </div>
         <!-- 사이드메뉴 :: 상단 메뉴 - 사용자 -->
         <li class="nav-item">
