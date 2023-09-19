@@ -51,7 +51,7 @@
     </select>
 
 
-<!--   제목으로 게시글 조회 -->
+    <!--   제목으로 게시글 조회 -->
     <select id="findSubject" resultType="ArticleDTO" parameterType="String">
         SELECT articleid,
                writer,
@@ -129,21 +129,29 @@
     <insert parameterType="ArticleDTO" id="createComment">
         INSERT INTO article
         (articleid,
+         hitcount,
+         subject,
          writer,
          content,
          passwd,
+         boardid,
          group_no,
-         level_no
+         regdate,
+         level_no,
          order_no)
         VALUES (article_id_seq.NEXTVAL,
+                #{hitcount},
+                #{subject},
                 #{writer},
                 #{content},
                 #{passwd},
+                #{boardId},
                 #{groupNo},
+                sysdate ,
                 1,
                 (SELECT MAX(order_no) + 1
                  FROM article
-                 WHERE board_id = #{boardId}
+                 WHERE boardid = #{boardId}
                    AND group_no = #{groupNo}))
     </insert>
 

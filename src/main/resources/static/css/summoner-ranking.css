@@ -13,9 +13,7 @@ h5 {
   width: 80%;
   margin: 0 auto;
   height: 200px;
-  background-image:url(../img/illust/Rift3.png);
-  background-size:100% 200px;
-  background-repeat: no-repeat;
+  background-image:url(/img/ranking.png);
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -34,9 +32,10 @@ h5 {
 
 /* 솔로랭크 소환사 랭킹 */
 .summoner_rank_profile_name {
-  margin-left: 10px;
+  margin-left: 30px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 /* 랭크 타입 */
@@ -100,7 +99,7 @@ h5 {
 }
 
 .summoner_rank_table thead td {
-  background-color: beige;
+  background-color: #b1e5cb;
   color: #000;
   font-weight: bold;
 }
@@ -203,7 +202,7 @@ h5 {
 /* 버튼 위치 조정을 위한 전체영역 */
 .summoner_rank_page_flex{
   display: flex;
-  width:150px;
+  width:400px;
   justify-content: space-evenly;
 }
 

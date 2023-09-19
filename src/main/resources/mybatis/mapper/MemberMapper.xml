@@ -23,9 +23,10 @@
 
 	<!-- 아이디와 비밀번호로 찾기 -->
 	<select id="findByIdAndPasswd" resultType="MemberDTO">
-		SELECT loginId, nickName, email, role, TO_CHAR(regdate, 'yyyy-MM-DD HH24:MI:SS') regdate
+		SELECT loginId, nickName, passwd , email, role, TO_CHAR(regdate, 'yyyy-MM-DD HH24:MI:SS') regdate
 		FROM member
-		WHERE loginId = #{loginId} AND passwd = #{passwd}
+		WHERE loginId = #{loginId}
+		  AND passwd = #{passwd}
 	</select>
 
 	<!--  비밀번호 찾기 -->
