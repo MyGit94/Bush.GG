@@ -1,21 +1,24 @@
 package com.pinkward.bushgg.web.home.controller;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
+import com.pinkward.bushgg.domain.api.service.APIServiceKo;
+import com.pinkward.bushgg.domain.champion.mapper.ChampionMapper;
+import com.pinkward.bushgg.domain.champion.service.ChampionService;
+import com.pinkward.bushgg.domain.currentgame.service.CurrentGameService;
+import com.pinkward.bushgg.domain.member.dto.MemberDTO;
+import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
+import com.pinkward.bushgg.domain.summoner.service.SummonerService;
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import com.pinkward.bushgg.domain.champion.service.ChampionService;
-import com.pinkward.bushgg.domain.member.dto.MemberDTO;
-
-import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 홈페이지 요청을 처리하는 세부 컨트롤러 구현 클래스
@@ -29,28 +32,68 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 public class HomeController {
-   private final ChampionService championService;
+	private final ChampionService championService;
+	private final ChampionMapper championMapper;
+	private final CurrentGameService currentGameService;
+	private final ChallengerMapper challengerMapper;
+	private final APIServiceKo apiServiceKo;
 
 
-   @GetMapping("/")
-   public String home(@SessionAttribute(name="loginMember", required = false) MemberDTO loginMember, Model model , HttpSession httpSession) {
-      List<Integer> championIds = championService.championLotation();
-      List<String> championNamesEn = new ArrayList<>();
-      List<String> championNamesKo = new ArrayList<>();
-
-      for (Integer championId : championIds) {
-         String championNameEn = championService.getChampionNameEn(championId.toString()).replace(" ","").replace("'","");
-         String championNameKo = championService.getChampionNameKo(championId.toString());
-         championNamesEn.add(championNameEn);
-         championNamesKo.add(championNameKo);
-      }
+	@GetMapping("/")
+	public String home(@SessionAttribute(name="loginMember", required = false) MemberDTO loginMember, Model model , HttpSession httpSession) {
 
 		if (loginMember != null) {
 			model.addAttribute("loginMember", loginMember);
 		}
-		
-      model.addAttribute("championNamesEn",championNamesEn);
-      model.addAttribute("championNamesKo",championNamesKo);
-      return "index";
-   }
+
+		List<Map<String, Object>> currentGames = new ArrayList<>();
+		int count = 1;
+		int index = 1;
+		List<String> challengerIds = challengerMapper.getChallengerInfo();
+
+
+		for (String participantId : challengerIds) {
+			log.info("{}",index);
+			index++;
+			if (count > 3 || index >50) {
+				break;
+			}
+			Map<String, Object> currentGame = apiServiceKo.getCurrentGame(participantId);
+
+			// 중복된 currentGame 패스
+			if (currentGame != null) {
+				boolean isDuplicate = false;
+
+				for (Map<String, Object> existingGame : currentGames) {
+					long existingGameId = (long) existingGame.get("gameId");
+					long currentGameId = (long) currentGame.get("gameId");
+
+					if (currentGameId==(existingGameId)) {
+						isDuplicate = true;
+						break;
+					}
+				}
+				if (!isDuplicate) {
+					currentGames.add(currentGame);
+					count++;
+				}
+			}
+		}
+		List<Map<String, Object>> currentGameInfo = currentGameService.getCurrentGameInfo(currentGames);
+		log.info("{}",currentGameInfo);
+
+		model.addAttribute("currentGameInfo", currentGameInfo);
+		List<Integer> championIds = championService.championLotation();
+		List<String> championNamesEn = new ArrayList<>();
+		List<String> championNamesKo = new ArrayList<>();
+
+		for (Integer championId : championIds) {
+			championNamesEn.add(championMapper.getChampionEnName(championId));
+			championNamesKo.add(championMapper.getChampionKoName(championId));
+		}
+
+		model.addAttribute("championNamesEn",championNamesEn);
+		model.addAttribute("championNamesKo",championNamesKo);
+		return "index";
+	}
 }

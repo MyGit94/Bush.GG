@@ -59,23 +59,25 @@
             <!-- 글쓰기 -->
             <div class="writeBody shadow-lg">
                 <div class="card-body">
-                    <form class="writing">
-                        <div class="writingHeader">
-                            <select class="category">
-                                <option selected>카테고리</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            <button type="submit" class="btn registerBtn">등록</button>
-                        </div>
-                        <div class="writingTitle">
-                            <input type="text" class="form-control mb-3" id="floatingInput" placeholder="제목을 입력해 주세요">
-                        </div>
-                        <div class="writingTextArea">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="20" placeholder="내용을 입력해 주세요"></textarea>
-                         </div>
-                    </form>
+                    <!-- 글쓰기 -->
+                    <div class="writeBody shadow-lg">
+                        <div class="card-body">
+                            <form class="writing" method="post" action="/board/register">
+                                <div class="writingHeader">
+                                    <select class="category"  name="category">
+                                        <option selected>카테고리</option>
+                                        <option value="20">자유게시판</option>
+                                        <option value="30">공지사항</option>
+                                    </select>
+                                    <button type="submit" class="btn registerBtn">등록</button>
+                                </div>
+                                <div class="writingTitle">
+                                    <input type="text" class="form-control mb-3" id="floatingInput" placeholder="제목을 입력해 주세요" name="subject">
+                                </div>
+                                <div class="writingTextArea">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="20" placeholder="내용을 입력해 주세요" name="content"></textarea>
+                                </div>
+                            </form>
                 </div>
              </div>
              <!-- 글쓰기 끝-->

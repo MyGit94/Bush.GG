@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- css -->
-    <th:block th:replace="common/fragments/config :: configFragment" />
+    <th:block th:replace="common/fragments/config :: configFragment"/>
 
     <!--record css-->
     <link rel="stylesheet" href="/css/record.css">
@@ -13,8 +13,10 @@
 
 <div id="wrapper">
 
+
+
     <!--   왼쪽 사이드바  -->
-    <th:block th:replace="common/fragments/side :: sideFragment" />
+    <th:block th:replace="common/fragments/side :: sideFragment"/>
 
 
     <!-- 메인 컨텐츠 전체영역 -->
@@ -39,7 +41,7 @@
                     <div class="summoner_icon">
                         <!-- 소환사 아이콘 이미지 패치버전 꼭 확인하기 -->
                         <img src="/img/champion/Aatrox.png"
-                             th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/profileicon/' + ${summoner.getProfileIconId()}+'.png'}"
+                             th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/profileicon/' + ${summoner.getProfileIconId()}+'.png'}"
                              alt="">
                     </div>
 
@@ -175,7 +177,7 @@
 
                         <!-- 챔피언  -->
                         <div class="recent_champion_table_header">
-                            <h1 class="champion_table_header_text1">챔피언</h1.>
+                            <h1 class="champion_table_header_text1">챔피언</h1>
                                 <h1 class="champion_table_header_text2">이름</h1>
                                 <h1 class="champion_table_header_text3">승률</h1>
                         </div>
@@ -186,7 +188,7 @@
                             <!-- 챔피언 이미지 -->
                             <div class="champion_face">
                                 <img src="/img/champion/Leblanc.png"
-                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/' + ${row.getChampionName()}+'.png'}"
+                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/' + ${row.getChampionName()}+'.png'}"
                                      alt="">
                             </div>
 
@@ -278,13 +280,8 @@
                     <!-- 게임정보를 기록하는 전체영역 -->
                     <div class="record_info">
                         <!-- 게임종류 :: 칼바람 ,협곡 , 랭크등등  if문으로바꾸기-->
-                        <h2 class="match_type" th:if="${matchInfo.getQueueId == 420}">솔로 랭크</h2>
-                        <h2 class="match_type" th:if="${matchInfo.getQueueId() == 430}">일반</h2>
-                        <h2 class="match_type" th:if="${matchInfo.getQueueId() == 440}">자유 랭크</h2>
-                        <h2 class="match_type" th:if="${matchInfo.getQueueId() == 450}">무작위 총력전</h2>
-                        <h2 class="match_type" th:if="${matchInfo.getQueueId() == 900}">우르프 모드</h2>
-                        <h2 class="match_type" th:if="${matchInfo.getQueueId() == 1700}">아레나</h2>
-                        <h2 class="match_type" th:if="${matchInfo.getQueueId() == 1900}">우르프 모드</h2>
+                        <h2 class="match_type" th:text="${matchInfo.getQueueName()}">솔로 랭크</h2>
+
                         <!-- 지난시간정보 :: 12시간전 , 1일전 등등 -->
                         <p class="match_past" th:text="${matchInfo.getEndGame()}">3일전</p>
                         <!-- 게임 결과 : 승리 , 패배 // 진행한 게임시간 -->
@@ -302,7 +299,7 @@
                         <div class="match_champion_profile">
                             <!-- 챔피언 이미지 경로 --> <p></p>
                             <img src="/img/champion/Teemo.png"
-                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/' + ${participant.getChampionName()}+'.png'}"
+                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/' + ${participant.getChampionName()}+'.png'}"
                                  alt="">
                             <!-- 챔피언 레벨 -->
                             <div class="match_champion_level" th:text="${participant.getChampLevel()}"></div>
@@ -368,7 +365,7 @@
                             <div class="item_img_wrap" th:each="itemNum, item : ${#numbers.sequence(0, 2)}"
                                  th:with="getItem=${participant['getItem' + itemNum]}">
                                 <img th:if="${getItem != 0}"
-                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/item/' +__${getItem}__+ '.png'}"
+                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/item/' +__${getItem}__+ '.png'}"
                                      alt="">
                                 <img th:unless="${getItem != 0}" th:src="@{'/img/item/0.png'}" alt="">
                             </div>
@@ -380,7 +377,7 @@
                             <div class="item_img_wrap" th:each="itemNum, item : ${#numbers.sequence(3, 6)}"
                                  th:with="getItem=${participant['getItem' + itemNum]}">
                                 <img th:if="${getItem != 0}"
-                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/item/' +__${getItem}__+ '.png'}"
+                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/item/' +__${getItem}__+ '.png'}"
                                      alt="">
                                 <img th:unless="${getItem != 0}" th:src="@{'/img/item/0.png'}" alt="">
                             </div>
@@ -397,13 +394,13 @@
                             <li th:each="participants, status: ${participantsList}" th:if="${status.index < 5}">
                                 <!-- 챔피언 이미지 -->
                                 <img src="/img/champion/Aatrox.png"
-                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                      alt="">
                                 <!-- 유저 닉네임 -->
                                 <a href="" class="user_name_text"
                                    th:href="@{/summoner(summonerName=${participants.getSummonerName()})}"
                                    th:text="${participants.getSummonerName()}"
-                                   th:style="${participants.getSummonerName() == summoner.getName() ? 'font-weight: bold; color:#0a6325;' : ''}">
+                                   th:style="${participants.getSummonerName() == summoner.getName() ? 'font-weight: bold;' : ''}">
                                     란브로대머리</a>
                             </li>
                         </ul>
@@ -414,13 +411,13 @@
                             <li th:each="participants, status: ${participantsList}" th:if="${status.index > 4}">
                                 <!-- 챔피언 이미지 -->
                                 <img src="/img/champion/Aatrox.png"
-                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/' + ${participants.getChampionName()}+'.png'}"
+                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/' + ${participants.getChampionName()}+'.png'}"
                                      alt="">
                                 <!-- 유저 닉네임 -->
                                 <a href="" class="user_name_text"
                                    th:href="@{/summoner(summonerName=${participants.getSummonerName()})}"
                                    th:text="${participants.getSummonerName()}"
-                                   th:style="${participants.getSummonerName() == summoner.getName() ? 'font-weight: bold; color:#0a6325;' : ''}">란브로대머리</a>
+                                   th:style="${participants.getSummonerName() == summoner.getName() ? 'font-weight: bold;'  : ''}">란브로대머리</a>
 
 
                             </li>
@@ -461,7 +458,7 @@
                                 <div class="detail_champion_face">
                                     <!-- 챔피언 이미지 파일 -->
                                     <img src="img/champion/Annie.png"
-                                         th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                         th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                          alt="">
                                 </div>
 
@@ -504,9 +501,9 @@
                                         란브로대머리
                                     </p>
 
-                                    <p class="summoner_tier">
-                                        challenger
-                                    </p>
+<!--                                    <p class="summoner_tier" th:text="${participants.getTier()}">-->
+<!--                                        challenger-->
+<!--                                    </p>-->
                                 </div>
                                 <!-- 소환사 닉네임 , 티어정보 끝 -->
 
@@ -604,7 +601,7 @@
                                     <div th:each="itemNum, item : ${#numbers.sequence(0, 6)}"
                                          th:with="getItem=${participants['getItem' + itemNum]}">
                                         <img th:if="${getItem != 0}"
-                                             th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/item/' +__${getItem}__+ '.png'}"
+                                             th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/item/' +__${getItem}__+ '.png'}"
                                              alt="">
                                         <img th:unless="${getItem != 0}" th:src="@{'/img/item/0.png'}" alt="">
                                     </div>
@@ -682,7 +679,7 @@
                                 <div class="detail_champion_face">
                                     <!-- 챔피언 이미지 파일 -->
                                     <img src="img/champion/Annie.png"
-                                         th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                         th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                          alt="">
                                 </div>
 
@@ -725,7 +722,7 @@
                                         란브로대머리
                                     </p>
 
-                                    <p class="summoner_tier">
+                                    <p class="summoner_tier" th:text="${participants.getTier()}">
                                         challenger
                                     </p>
                                 </div>
@@ -822,7 +819,7 @@
                                     <div th:each="itemNum, item : ${#numbers.sequence(0, 6)}"
                                          th:with="getItem=${participants['getItem' + itemNum]}">
                                         <img th:if="${getItem != 0}"
-                                             th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/item/' +__${getItem}__+ '.png'}"
+                                             th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/item/' +__${getItem}__+ '.png'}"
                                              alt="">
                                         <img th:unless="${getItem != 0}" th:src="@{'/img/item/0.png'}" alt="">
                                     </div>
@@ -873,7 +870,7 @@
                                             th:if="${status.index < 5}">
                                             <!-- 챔피언 이미지 -->
                                             <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                                  alt="">
                                             <!-- 그래프 전체영역 -->
                                             <div class="kill_bar_graph">
@@ -918,7 +915,7 @@
                                             th:if="${status.index > 4}">
                                             <!-- 챔피언 이미지 -->
                                             <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                                  alt="">
                                             <!-- 그래프 전체영역 -->
                                             <div class="kill_bar_graph lose_kill_bar_graph">
@@ -955,7 +952,7 @@
                                             th:if="${status.index < 5}">
                                             <!-- 블루팀 챔피언 이미지 -->
                                             <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                                  alt="">
                                             <!-- 블루팀 그래프 전체영역 -->
                                             <div class="kill_bar_graph">
@@ -1001,7 +998,7 @@
                                             th:if="${status.index > 4}">
                                             <!-- 레드팀 챔피언 이미지 -->
                                             <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                                  alt="">
                                             <!-- 레드팀 그래프 전체영역 -->
                                             <div class="kill_bar_graph lose_kill_bar_graph">
@@ -1040,7 +1037,7 @@
                                             th:if="${status.index < 5}">
                                             <!-- 승리팀 챔피언 이미지 -->
                                             <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                                  alt="">
                                             <!-- 승리팀 그래프 전체영역 -->
                                             <div class="kill_bar_graph">
@@ -1086,7 +1083,7 @@
                                             th:if="${status.index > 4}">
                                             <!-- 패배팀 챔피언 이미지 -->
                                             <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                                  alt="">
                                             <!-- 패배팀 그래프 전체영역 -->
                                             <div class="kill_bar_graph lose_kill_bar_graph">
@@ -1124,7 +1121,7 @@
                                             th:if="${status.index < 5}">
                                             <!-- 승리팀 챔피언 이미지 -->
                                             <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                                  alt="">
                                             <!-- 승리팀 그래프 전체영역 -->
                                             <div class="kill_bar_graph">
@@ -1170,7 +1167,7 @@
                                             th:if="${status.index > 4}">
                                             <!-- 패배팀 챔피언 이미지 -->
                                             <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                                  alt="">
                                             <!-- 패배팀 그래프 전체영역 -->
                                             <div class="kill_bar_graph lose_kill_bar_graph">
@@ -1208,7 +1205,7 @@
                                             th:if="${status.index < 5}">
                                             <!-- 승리팀 챔피언 이미지 -->
                                             <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                                  alt="">
                                             <!-- 승리팀 그래프 전체영역 -->
                                             <div class="kill_bar_graph">
@@ -1254,7 +1251,7 @@
                                             th:if="${status.index > 4}">
                                             <!-- 패배팀 챔피언 이미지 -->
                                             <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                                  alt="">
                                             <!-- 패배팀 그래프 전체영역 -->
                                             <div class="kill_bar_graph lose_kill_bar_graph">
@@ -1290,7 +1287,7 @@
                                             th:if="${status.index < 5}">
                                             <!-- 승리팀 챔피언 이미지 -->
                                             <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                                  alt="">
                                             <!-- 승리팀 그래프 전체영역 -->
                                             <div class="kill_bar_graph">
@@ -1336,7 +1333,7 @@
                                             th:if="${status.index > 4}">
                                             <!-- 패배팀 챔피언 이미지 -->
                                             <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                                  alt="">
                                             <!-- 패배팀 그래프 전체영역 -->
                                             <div class="kill_bar_graph lose_kill_bar_graph">
@@ -1372,7 +1369,7 @@
 
 
                         <!-- 컨텐츠 전체영역 -->
-                        <div class="container rune_container">
+                        <div class="rune_container">
                             <!-- 메인 룬 전체영역 -->
                             <div class="main_rune_wrap detail_main_rune_wrap">
                                 <!-- 룬 타이틀 -->
@@ -1548,7 +1545,6 @@
     <!--  메인 컨텐츠 끝 -->
 
 </div>
-
 
 
 <!-- 타임리프를 통해 데이터 전달 -->

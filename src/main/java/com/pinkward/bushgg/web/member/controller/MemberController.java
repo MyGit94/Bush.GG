@@ -15,6 +15,7 @@ import com.pinkward.bushgg.domain.member.service.MemberService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,14 +29,14 @@ public class MemberController {
 	
 	@GetMapping("/register")
 	public String register(Model model) {
-	    MemberDTO member = MemberDTO.builder().build();
-	    model.addAttribute("member", member);
+	    MemberDTO memberDTO = MemberDTO.builder().build();
+	    model.addAttribute("memberDTO", memberDTO);
 	    return "member/register";
 	}
 	
 	// 회원 데이터 검증 - #3. Bean Validation 사용
 	@PostMapping("/register")
-	public String register(@Validated @ModelAttribute MemberDTO member, BindingResult bindingResult,
+	public String register(@Validated @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult,
 	        RedirectAttributes redirectAttributes, Model model) {
 
 	    // 데이터 검증 실패 시 회원가입 화면으로 Forward
@@ -44,52 +45,42 @@ public class MemberController {
 	    }
 	    
 	    // 데이터 검증 성공 시 DB 저장 후 성공 메시지와 함께 홈페이지로 리다이렉트
-	    memberService.register(member);
+	    memberService.register(memberDTO);
+	    
+	    log.info("DB저장완료 : {}");
 	    
 	    // 리다이렉트 시 메시지 전달
 	    redirectAttributes.addFlashAttribute("successMessage", "회원 가입이 성공적으로 완료되었습니다.");
-	    return "redirect:/";
+	    return "redirect:/member/login";
 	}
-		
-	
-//	@PostMapping("/register")
-//	public String register(@ModelAttribute MemberDTO member,
-//	                       RedirectAttributes redirectAttributes, Model model) {
-//
-//	    // 데이터 저장 시 데이터 검증을 수행하지 않고 직접 DB에 저장
-//	    memberService.register(member);
-//	    
-//	    log.info("DB 저장 완료");
-//
-//	    // 회원 가입 후 보여주는 회원 상세 페이지 타이틀과
-//	    // 회원 정보 조회 시 보여주는 회원 상세 페이지 타이틀을 변경할 수 있도록 status 속성 추가
-////	    redirectAttributes.addFlashAttribute("status", true);
-//	    return "redirect:/member/login";
-//	}
+
 	
 	@GetMapping("/login")
 	public String login(Model model) {
-	    MemberDTO member = MemberDTO.builder().build();
-	    model.addAttribute("member", member);
+	    MemberDTO memberDTO = MemberDTO.builder().build();
+	    model.addAttribute("memberDTO", memberDTO);
 	    return "member/login";
 	}
 	
 	@PostMapping("/login") 
-	public String login(@ModelAttribute MemberDTO member, HttpServletRequest request) {
-				
-		MemberDTO loginMember = memberService.isMember(member.getLoginId(), member.getPasswd());
+	public String login(@Valid @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult, HttpServletRequest request) {
+		
+//		if (bindingResult.hasErrors()) {
+//			return "member/login";
+//		}
+		
+		MemberDTO loginMember = memberService.isMember(memberDTO.getLoginId(), memberDTO.getPasswd());
 		
 		// 회원이 아닌 경우
 		if (loginMember == null) {
-			
+			bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
 			return "member/login";
 		}
-		
 		// 회원인 경우
 		HttpSession session =  request.getSession();
-	    session.setAttribute("loginMember", loginMember); 	
+		session.setAttribute("loginMember", loginMember);
 		
-		log.info("로그인한 멤버 객체  : {} ", loginMember);
+		log.info("로그인한 멤버{}", loginMember);
 		
 		return "redirect:/";
 	}

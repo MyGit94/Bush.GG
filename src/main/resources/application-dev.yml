@@ -82,18 +82,8 @@ spring:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true  
-  mapper-locations: 
-    - classpath:bushgg/mapper/**/*.xml
-  type-aliases-package: com.pinkward.bushgg.domain.member.dto ,  com.pinkward.bushgg.domain.article.DTO.articleDTO
-
-
----
- 
-# 세션 설정 
-server:
-  servlet:
-    session:
-      tracking-modes: cookie
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package:  com.pinkward.bushgg.domain.article.dto, com.pinkward.bushgg.domain.member.dto , com.pinkward.bushgg.domain.common.web
 
 ---
 
@@ -101,8 +91,6 @@ server:
 common:
   uploadPath: C:/ezen-fullstack/workspace/final_project_template/upload/
   
-
-
   
   
   

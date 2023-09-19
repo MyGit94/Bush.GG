@@ -14,4 +14,6 @@ public interface MatchService {
     Map<String, Object> matchInfo(Map<String, Object> match);
 
     public MatchInfoDTO getMatchInfoDTO(MatchInfoDTO matchInfoDTO, Map<String, Object> matchInfo);
+
+    public String matchQueueName(int queueId);
 }

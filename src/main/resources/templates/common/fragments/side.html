@@ -2,7 +2,15 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="sideFragment">
 
-    <div id="wrapper">
+    <!--    로딩페이지 : 지연님이 안쓴다해서 임시로 미국보냄 -->
+    <div class="loading_wrap">
+
+        <img src="/img/nunu.gif" class="nunu">
+        <!--        로딩 -->
+        <div class="loading-container">
+            <div id="loading-text">로딩중...</div>
+        </div>
+    </div>
 
         <!-- 좌측 사이드바 전체 영역 -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -30,7 +38,7 @@
                     <!-- 상단 메뉴 아이콘 -->
                     <i class="fas fa-fw fa-wrench"></i>
                     <!-- 상단 메뉴 텍스트 -->
-                    <span>조장님바보</span>
+                    <span>사용자</span>
                 </a>
             </li>
 
@@ -54,7 +62,7 @@
 
             <!-- 랭킹 -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/ranking">
                     <!-- 랭킹 아이콘-->
                     <i class="fas fa-fw fa-chart-area"></i>
                     <!-- 랭킹 텍스트 -->
@@ -63,7 +71,7 @@
 
             <!-- 커뮤니티 -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/board">
                     <!-- 커뮤니티 아이콘 -->
                     <i class="fas fa-fw fa-table"></i>
                     <!-- 커뮤니티 텍스트 -->

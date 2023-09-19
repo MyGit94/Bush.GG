@@ -10,7 +10,7 @@
 		SELECT loginId, nickName, email, role, TO_CHAR(regdate, 'yyyy-MM-DD HH24:MI:SS') regdate
 		FROM member
 	</select>
-	
+
 	<!-- insert 태그를 이용하여 멤버 생성 -->
 	<insert id="create" parameterType="MemberDTO">
 		INSERT INTO member(		loginId,
@@ -18,23 +18,23 @@
 							    passwd,
 							    email,
 						   		role)
-		VALUES(#{loginId}, #{nickName}, #{passwd}, #{email}, '유저')
+		VALUES(#{loginId}, #{nickName}, #{passwd}, #{email},'유저')
 	</insert>
-	
+
 	<!-- 아이디와 비밀번호로 찾기 -->
 	<select id="findByIdAndPasswd" resultType="MemberDTO">
 		SELECT loginId, nickName, email, role, TO_CHAR(regdate, 'yyyy-MM-DD HH24:MI:SS') regdate
 		FROM member
 		WHERE loginId = #{loginId} AND passwd = #{passwd}
 	</select>
-	
+
 	<!--  비밀번호 찾기 -->
 	<select id="findByPasswd" resultType="MemberDTO">
 		SELECT loginId, nickName, passwd, email, role, TO_CHAR(regdate, 'yyyy-MM-DD HH24:MI:SS') regdate
 		FROM member
 		WHERE loginId = #{loginId} AND nickName = #{nickName} AND email = #{email}
 	</select>
-	
+
 	<!-- 벨류값이 들어간 닉네임 정보 출력 -->
 	<select id="findBySearchNick" parameterType="string"
 		resultType="MemberDTO">
@@ -45,24 +45,24 @@
 				and nickName LIKE '%' || #{value} || '%'
 			</if>
 		</where>
-	</select>  
-	
+	</select>
+
 	<!-- 로그인한 아이디로 닉네임변경 -->
 	<update id="updateNickName" parameterType="MemberDTO">
 		UPDATE member
 		SET nickName = #{nickName}
 		WHERE loginId = #{loginId}
 	</update>
-	
-		<!--  
+
+		<!--
 	<select id="findBySearchNick" parameterType="string"
 		resultType="MemberDTO">
 		SELECT loginId, nickName, email, role, TO_CHAR(regdate, 'yyyy-MM-DD HH24:MI:SS') regdate
 		FROM member
 		WHERE nickName = #{value}
 	</select> -->
-		
-	
-	
+
+
+
 	
 </mapper>

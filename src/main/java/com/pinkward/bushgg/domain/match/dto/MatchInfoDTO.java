@@ -7,20 +7,17 @@ public class MatchInfoDTO {
 
     // 게임정보
     private String matchId;
-    private long gameCreation;
     private int gameDuration;
     private String changeGameDuration;
     private String endGame;
     private long gameEndTimestamp;
     private int queueId;
-    private long gameStartTimestamp;
-    private String gameVersion;
+    private String queueName;
 
     // blue팀 정보
     private int blueBaron;
     private int blueKills;
     private int blueDragon;
-    private int blueRiftHerald;
     private int blueTowerKills;
     private boolean blueWin;
     private int blueGold;
@@ -33,7 +30,6 @@ public class MatchInfoDTO {
     private int redBaron;
     private int redKills;
     private int redDragon;
-    private int redRiftHerald;
     private int redTowerKills;
     private boolean redWin;
     private int redGold;

@@ -1,13 +1,10 @@
 package com.pinkward.bushgg.web.summoner.controller;
 
 import com.pinkward.bushgg.domain.api.service.APIServiceKo;
-import com.pinkward.bushgg.domain.api.service.APIServiceKoImpl;
 import com.pinkward.bushgg.domain.challenges.dto.*;
 import com.pinkward.bushgg.domain.challenges.mapper.ChallengesMapper;
 import com.pinkward.bushgg.domain.challenges.service.ChallengesService;
-import com.pinkward.bushgg.domain.challenges.service.ChallengesServiceImpl;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
-import com.pinkward.bushgg.domain.summoner.service.SummonerServiceImpl2;
 import jakarta.servlet.http.HttpSession;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
@@ -74,8 +71,6 @@ public class PlayerChallengesController {
                 .map(ChallengesInfoDTO::getChallengeId)
                 .collect(Collectors.toList());
 
-        log.info("제발나와라:{}",apiServiceKo.getSummonerInfoByPuuid(summoner.getPuuid()));
-
         model.addAttribute("challengeIds", challengeIds);
         model.addAttribute("summoner", summoner);
         model.addAttribute("playerChallengesInfo", playerChallengesInfo);
@@ -85,7 +80,7 @@ public class PlayerChallengesController {
     }
 
     @GetMapping(value="/challenge/rank/{challengeId}")
-    public String challengeRankPage(@PathVariable("challengeId") int challengeId, Model model, HttpSession session){
+    public String challengeRankPage(@PathVariable("challengeId") int challengeId, Model model){
         model.addAttribute("challengeId", challengeId);
 
         List<ChallengeRankingPlayerDTO> ranking = challengesService.challengeRanking(challengeId);

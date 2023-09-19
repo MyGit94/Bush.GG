@@ -204,7 +204,7 @@
 
           <!-- 랭크 리스트 (1개) ForEach-->
           <div class="rank_list" th:each="rank : ${ranking}">
-            
+
             <!-- 랭킹 등수 -->
             <div class="rank_number rank_flex">
               <!-- 랭킹숫자 텍스트 -->
@@ -220,8 +220,7 @@
               </div>
               <!-- 소환사 이름 -->
               <h1 class="rank_name" th:text="${@APIServiceKoImpl.getSummonerInfoByPuuid(rank.puuid).getName()}">
-                사각
-              </h1>
+                사각</h1>
             </div>
 
             <!-- 달성티어 -->
@@ -230,7 +229,7 @@
               <p class="rank_tier_text">
                 Challenger
               </p>
-            </div>\
+            </div>
 
             <!-- 랭킹 포인트 전체영역 -->
             <div class="rank_flex rank_points">
@@ -287,11 +286,3 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
-
-
-
-
-</body>
-
-
-</html>

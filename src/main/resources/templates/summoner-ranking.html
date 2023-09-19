@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="utf-8">
@@ -34,7 +34,7 @@
 
       <!-- 왼쪽 사이드바 로고 영역 -->
       <li class="nav-item active">
-        <a class="nav-link nav-link2" href="index.html">
+        <a class="nav-link nav-link2" href="/">
           <!-- <p class="nav-item-text">BUSH.GG</p> -->
           <img src="img/logo.png" alt="" class="nav-item-img">
         </a>
@@ -79,7 +79,7 @@
 
       <!-- 랭킹 -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="/ranking">
           <!-- 랭킹 아이콘-->
           <i class="fas fa-fw fa-chart-area"></i>
           <!-- 랭킹 텍스트 -->
@@ -122,11 +122,12 @@
         </button>
 
         <!-- 전적 검색창 -->
-        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <form action="/summoner" method="get"
+              class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
           <div class="input-group">
             <!-- 전적 검색 : 입력 텍스트칸 -->
             <input type="text" class="form-control bg-light border-0 small" placeholder="소환사명을 입력해주세요"
-              aria-label="Search" aria-describedby="basic-addon2">
+                   aria-label="Search" aria-describedby="basic-addon2" name="summonerName">
             <!-- 검색 아이콘 전체영역 -->
             <div class="input-group-append">
               <!-- 검색 버튼 네모박스 -->
@@ -178,7 +179,7 @@
               <!-- 챌린저 이미지 -->
               <img src="img/tier/Challenger.png" alt="">
               <!-- 챌린저 점수컷 텍스트 -->
-              <p class="summoner_rank_challenger_text">1500p</p>
+              <p class="summoner_rank_challenger_text" th:text="${challengerPoint}+'p'">1500p</p>
             </div>
 
             <!-- 그랜드마스터 -->
@@ -186,7 +187,7 @@
               <!-- 그랜드마스터 이미지 -->
               <img src="img/tier/GrandMaster.png" alt="">
               <!-- 그랜드마스터 점수컷 텍스트 -->
-              <p class="summoner_rank_grandmaster_text">1000p</p>
+              <p class="summoner_rank_grandmaster_text" th:text="${grandmasterPoint}+'p'">1000p</p>
             </div>
 
           </div>
@@ -222,20 +223,21 @@
             <tbody class="summoner_rank_table_body">
               <tr th:each="ranking, iterStat : ${challengerRanking}">
                 <!-- 랭킹등수 -->
-                <td class="rank_table_number" th:text="${iterStat.count}">1</td>
+                <td class="rank_table_number" th:text="${(page - 1) * 100 + iterStat.count}">1</td>
+
                 <!-- 소환사명 -->
                 <td class="rank_table_name" th:text="${ranking.getSummonerName()}">사각</td>
                 <!-- 티어 -->
-                <td class="rank_table_tier">
+                <td class="rank_table_tier" >
                   <!-- 티어 이미지 -->
                   <img src="img/tier/Challenger.png" th:src="@{'img/tier/' + ${ranking.getTier()} + '.png'}" alt="">
                   <!-- 티어명 -->
-                  Challenger
+                  <p th:text=" ${ranking.getTier()} ">Challenger</p>
                 </td>
                 <!-- Lp -->
                 <td class="rank_table_lp" th:text="${ranking.getLeaguePoints()}">1799p</td>
                 <!-- 승률 -->
-                <td class="rank_table_rate">80%</td>
+                <td class="rank_table_rate" th:text="${ranking.getWinRate()+'%'}">80%</td>
                 <!-- 승 -->
                 <td class="rank_table_win" th:text="${ranking.getWins()}">80</td>
                 <!-- 패 -->

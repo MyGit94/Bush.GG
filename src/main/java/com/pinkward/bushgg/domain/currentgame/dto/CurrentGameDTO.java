@@ -7,7 +7,6 @@ public class CurrentGameDTO {
     private int teamId;
     private int spell1Id;
     private int spell2Id;
-    private int championId;
     private String championName;
     private String summonerName;
     private String summonerId;

@@ -1,9 +1,12 @@
 package com.pinkward.bushgg.web.ranking.controller;
 
+import com.pinkward.bushgg.domain.api.service.APIRankingService;
 import com.pinkward.bushgg.domain.api.service.APIServiceKo;
-import com.pinkward.bushgg.domain.match.service.MatchServiceImpl;
 import com.pinkward.bushgg.domain.ranking.dto.RankingDTO;
+import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
+import com.pinkward.bushgg.domain.ranking.service.RankingAPIService;
 import com.pinkward.bushgg.domain.ranking.service.RankingService;
+import com.pinkward.bushgg.domain.ranking.service.RankingAPIService;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Slf4j
@@ -23,25 +27,56 @@ public class RankingController {
     private final RankingService rankingService;
     private final SummonerService summonerService;
     private final APIServiceKo apiServiceKo;
+    private final APIRankingService apiRankingService;
+
 
     @GetMapping(value="/ranking")
+    public String raking(@RequestParam(name = "page", defaultValue = "1") int page, Model model) {
+        List<Map<String, Object>> entries1 = apiRankingService.challengerRanking();
+        List<Map<String, Object>> entries2 = apiRankingService.grandMasterRanking();
 
-    public String raking(Model model) {
         int start = 0;
-        int end = 50;
-        List<RankingDTO> challengerRanking =  rankingService.challengerRanking(start, end);
-        int count =1;
-        for(RankingDTO rankingDTO : challengerRanking){
-            SummonerDTO summoner = apiServiceKo.getSummonerInfo(rankingDTO.getSummonerName().replace(" ","%20"));
-            rankingDTO.setLevel(summoner.getSummonerLevel());
-            log.info("{} {} ",count, rankingDTO);
-            count++;
+        int end = 100;
+        List<RankingDTO> challengerRanking = null;
+        log.info("{}",page);
+        if(page==1 || page==4){
+            start =0;
+            end = 100;
+        } else if(page ==2 || page==5) {
+            start= 100;
+            end = 200;
+        } else if(page ==3 || page==6) {
+            start= 200;
+            end = 300;
+        } else if(page ==7) {
+            start= 300;
+            end = 400;
+        } else if(page ==8) {
+            start= 400;
+            end = 500;
+        } else if(page ==9) {
+            start= 500;
+            end = 600;
+        } else if(page ==10) {
+            start= 600;
+            end = 700;
         }
 
+        if (page<4) {
+            challengerRanking =  rankingService.challengerRanking(start, end, entries1);
+        } else {
+            challengerRanking =  rankingService.grandMasterRanking(start, end, entries2);
+        }
 
-        log.info("{}",challengerRanking);
+        int challengerPoint = rankingService.challengerPoint(entries1);
+        int grandmasterPoint =rankingService.grandmasterPoint(entries2);
+
         model.addAttribute("challengerRanking",challengerRanking);
+        model.addAttribute("grandmasterPoint",grandmasterPoint);
+        model.addAttribute("page",page);
+        model.addAttribute("challengerPoint",challengerPoint);
         return "summoner-ranking";
     }
+
 
 }
