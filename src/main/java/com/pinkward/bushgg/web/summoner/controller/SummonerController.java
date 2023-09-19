@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -50,14 +51,10 @@ public class SummonerController {
     public String searchSummonerInfo(@RequestParam("summonerName") String summonerName, Model model){
         // 두 글자인 경우 글자 사이에 띄어쓰기 추가
         if (summonerName.length() == 2) {
-            summonerName = summonerName.substring(0, 1) + " " + summonerName.substring(1);
+            summonerName = summonerName.charAt(0) + " " + summonerName.substring(1);
         }
         String esummonerName = null;
-        try {
-            esummonerName = URLEncoder.encode(summonerName, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
+        esummonerName = URLEncoder.encode(summonerName, StandardCharsets.UTF_8);
 
         summonerName = summonerName.replaceAll(" ","").toLowerCase();
 

@@ -23,10 +23,9 @@ public class LoggerInterceptor implements HandlerInterceptor {
 		String requestURI = request.getRequestURI();
 
 		// @Controller가 아니라 /resources/static와 같은 정적 리소스 요청의 경우, ResourceHttpRequestHandler가 핸들러 정보로 전달된다.
-		if (handler instanceof ParameterizableViewController) {
+		if (handler instanceof ParameterizableViewController handlerMethod) {
 			// @Controller , @RequestMapping을 활용한 핸들러 매핑 시 핸들러 정보로 HandlerMethod 전달된다.
 			// 호출할 세부 컨트롤러 메서드의 모든 정보가 포함되어 있다.
-			ParameterizableViewController handlerMethod = (ParameterizableViewController) handler;
 			// log.info("세부 컨트롤러 정보 : {}", handlerMethod.toString());
 		}
 		log.info("[로그 인터셉터 실행] : HTTP 요청(세부 컨트롤러 호출 전) => {}, {}", requestURI, handler);

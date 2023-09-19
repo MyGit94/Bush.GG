@@ -1,5 +1,6 @@
 package com.pinkward.bushgg.domain.article.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Getter
@@ -20,6 +21,7 @@ public class ArticleDTO {
 //    제목
     String subject;
 //    내용
+    @NotBlank
     String content;
 //    가입날짜
     String regdate;

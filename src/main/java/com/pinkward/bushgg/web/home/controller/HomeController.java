@@ -1,6 +1,8 @@
 package com.pinkward.bushgg.web.home.controller;
 
 import com.pinkward.bushgg.domain.api.service.APIServiceKo;
+import com.pinkward.bushgg.domain.article.dto.ArticleDTO;
+import com.pinkward.bushgg.domain.article.mapper.ArticleMapper;
 import com.pinkward.bushgg.domain.champion.mapper.ChampionMapper;
 import com.pinkward.bushgg.domain.champion.service.ChampionService;
 import com.pinkward.bushgg.domain.currentgame.service.CurrentGameService;
@@ -33,12 +35,12 @@ import java.util.Map;
 @Slf4j
 @RequiredArgsConstructor
 public class HomeController {
+	private	final ArticleMapper articleMapper;
 	private final ChampionService championService;
 	private final ChampionMapper championMapper;
 	private final CurrentGameService currentGameService;
 	private final ChallengerMapper challengerMapper;
 	private final APIServiceKo apiServiceKo;
-	private final RankingAPIService rankingAPIService;
 
 
 	@GetMapping("/")
@@ -47,6 +49,33 @@ public class HomeController {
 		if (loginMember != null) {
 			model.addAttribute("loginMember", loginMember);
 		}
+
+		List<Integer> championIds = championService.championLotation();
+		List<String> championNamesEn = new ArrayList<>();
+		List<String> championNamesKo = new ArrayList<>();
+
+		for (Integer championId : championIds) {
+			championNamesEn.add(championMapper.getChampionEnName(championId));
+			championNamesKo.add(championMapper.getChampionKoName(championId));
+		}
+
+		model.addAttribute("championNamesEn",championNamesEn);
+		model.addAttribute("championNamesKo",championNamesKo);
+
+
+		// 09/18 추가 -송우성- 커뮤니티
+		List<ArticleDTO> articleDTO= articleMapper.findAllByHitcount();
+		log.info("조회수순으로 정렬한 리스트 {} " ,articleDTO);
+		List<ArticleDTO> limitedList = articleDTO.subList(0, 10); // 최대 요소 개수 제한
+
+		model.addAttribute("community", limitedList);
+
+		return "index";
+	}
+
+
+	@GetMapping("/live")
+	public String live(Model model){
 
 		List<Map<String, Object>> currentGames = new ArrayList<>();
 		int count = 1;
@@ -57,7 +86,7 @@ public class HomeController {
 		for (String participantId : challengerIds) {
 			log.info("{}",index);
 			index++;
-			if (count > 3 || index > 50) {
+			if (count > 3 || index >100) {
 				break;
 			}
 			Map<String, Object> currentGame = apiServiceKo.getCurrentGame(participantId);
@@ -83,31 +112,9 @@ public class HomeController {
 		}
 		List<Map<String, Object>> currentGameInfo = currentGameService.getCurrentGameInfo(currentGames);
 		log.info("{}",currentGameInfo);
-
 		model.addAttribute("currentGameInfo", currentGameInfo);
-		List<Integer> championIds = championService.championLotation();
-		List<String> championNamesEn = new ArrayList<>();
-		List<String> championNamesKo = new ArrayList<>();
-
-		for (Integer championId : championIds) {
-			championNamesEn.add(championMapper.getChampionEnName(championId));
-			championNamesKo.add(championMapper.getChampionKoName(championId));
-		}
-
-		model.addAttribute("championNamesEn",championNamesEn);
-		model.addAttribute("championNamesKo",championNamesKo);
-		return "index";
+		return "live";
 	}
 
 
-//	@GetMapping("/test")
-//	public void test1(){
-//		rankingAPIService.challengerRanking(0, 999);
-//		rankingAPIService.grandMasterRanking(0, 999);
-//		rankingAPIService.masterRanking(0,9999);
-//		rankingAPIService.diamond1Ranking(0,999);
-//		rankingAPIService.diamond2Ranking(0,999);
-//		rankingAPIService.diamond3Ranking(0,999);
-//		rankingAPIService.diamond4Ranking(0,999);
-//	}
 }
