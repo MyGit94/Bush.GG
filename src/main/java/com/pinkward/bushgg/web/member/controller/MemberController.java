@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.pinkward.bushgg.domain.member.dto.LoginForm;
 import com.pinkward.bushgg.domain.member.dto.MemberDTO;
 import com.pinkward.bushgg.domain.member.service.MemberService;
 
@@ -56,31 +57,32 @@ public class MemberController {
 
 	
 	@GetMapping("/login")
-	public String login(Model model) {
-	    MemberDTO memberDTO = MemberDTO.builder().build();
-	    model.addAttribute("memberDTO", memberDTO);
-	    return "member/login";
+	public String loginForm(Model model) {
+		MemberDTO memberDTO = MemberDTO.builder().build();
+		model.addAttribute("memberDTO", memberDTO);
+		return "member/login";
 	}
-	
+
 	@PostMapping("/login") 
 	public String login(@Valid @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult, HttpServletRequest request) {
 		
-//		if (bindingResult.hasErrors()) {
-//			return "member/login";
-//		}
+//		log.info("{}",10/0);
 		
+		if (bindingResult.hasErrors()) {
+		    log.info("BindingResult has errors: {}", bindingResult.getAllErrors());
+		    return "member/login";
+		}
+
 		MemberDTO loginMember = memberService.isMember(memberDTO.getLoginId(), memberDTO.getPasswd());
 		
 		// 회원이 아닌 경우
 		if (loginMember == null) {
-			bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
+			bindingResult.reject("loginFail", "아이디와 비밀번호를 확인해주세요.");
 			return "member/login";
 		}
 		// 회원인 경우
 		HttpSession session =  request.getSession();
 		session.setAttribute("loginMember", loginMember);
-		
-		log.info("로그인한 멤버{}", loginMember);
 		
 		return "redirect:/";
 	}
