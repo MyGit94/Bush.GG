@@ -34,7 +34,16 @@ a:hover {
 
 
 }
+/* 로그인 영역*/
+#nickname{
+	color: #fff;
+	
+}
 
+#nickname:hover{
+	color: #fff;
+	
+}
 
 /* 왼쪽 사이드바 로고 전체 영역 */
 .nav-link2 {
@@ -73,31 +82,6 @@ a:hover {
     border-radius: 0.35rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-
-.navbar_login_wrap a:hover {
-    color: #156549;
-}
-
-/* 로그인 */
-.navbar_login,
-.navbar_register {
-    color: #000000;
-    font-size: 15px;
-    text-decoration: none;
-}
-
-.navbar_login::after {
-    content: " | ";
-    color: #333;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-/* 회원가입 */
-.navbar_register {
-    /* margin-left: 10px; */
-}
-
 
 /* 메인 컨텐츠 전체영역 */
 .main_contents_wrap {

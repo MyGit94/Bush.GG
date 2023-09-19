@@ -35,7 +35,7 @@ public class MemberRestController {
 	// 회원 데이터 검증 -  #3. Bean Validation 사용
 	@PostMapping("/register")
 	@ResponseBody
-	public Object register(@RequestBody @Validated  MemberDTO member, BindingResult bindingResult) {
+	public Object register(@RequestBody @Validated  MemberDTO memberDTO, BindingResult bindingResult) {
 		log.info("회원 가입 API 요청");
 		if (bindingResult.hasErrors()) {
 			// bindingResult를 모델에 저장하고, 타임리프 HTML 템플릿 페이지에서 렌더링하는 것이 아니라
@@ -44,8 +44,8 @@ public class MemberRestController {
 		}
 		
 		// 데이터 검증 성공 시 DB 저장 후 응답메시지 바디에 회원정보를 JSON으로 출력한다.
-		memberService.register(member);
-		return member;
+		memberService.register(memberDTO);
+		return memberDTO;
 	}
 }
 

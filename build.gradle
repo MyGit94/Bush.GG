@@ -71,7 +71,6 @@ dependencies {
     // json
     implementation 'org.json:json:20210307' // 또는 최신 버전을 사용하세요
 
-
 }
 
 tasks.named('test') {
