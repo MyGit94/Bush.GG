@@ -84,6 +84,11 @@ public class PlayerChallengesController {
         model.addAttribute("challengeId", challengeId);
 
         List<ChallengeRankingPlayerDTO> ranking = challengesService.challengeRanking(challengeId);
+        for (ChallengeRankingPlayerDTO list: ranking) {
+            SummonerDTO summonerDTO =apiServiceKo.getSummonerInfoByPuuid(list.getPuuid());
+            list.setName(summonerDTO.getName());
+            list.setProfileIcon(summonerDTO.getProfileIconId());
+        }
         model.addAttribute("ranking", ranking);
 
         return "challenge-ranking";

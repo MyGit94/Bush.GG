@@ -28,17 +28,6 @@ import java.util.Map;
 @PropertySource(ignoreResourceNotFound = false, value = "classpath:application.yml")
 public class RankingServiceImpl implements RankingService{
 
-    private ObjectMapper objectMapper = new ObjectMapper();
-    private final APIRankingService apiRankingService;
-
-
-//    @Value("${riot.ranking.key}")
-//    private String mykey;
-
-    @Value("${riot.api.key}")
-    private String mykey;
-    String serverUrl = "https://kr.api.riotgames.com/lol/";
-
     @Override
     public List<RankingDTO> challengerRanking(int start, int end, List<Map<String, Object>> entries) {
 

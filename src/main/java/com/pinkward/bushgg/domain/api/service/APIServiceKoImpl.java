@@ -26,6 +26,8 @@ public class APIServiceKoImpl implements APIServiceKo {
 
     @Value("${riot.ranking.key}")
     private String mykey;
+    @Value("${riot.api.key}")
+    private String mykey2;
     @Value("${riot.challenges.key}")
     private String challengeKey;
 
@@ -37,7 +39,7 @@ public class APIServiceKoImpl implements APIServiceKo {
 
         try {
             HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "summoner/v4/summoners/by-name/" + summonerName + "?api_key=" + mykey);
+            HttpGet request = new HttpGet(serverUrl + "summoner/v4/summoners/by-name/" + summonerName + "?api_key=" + mykey2);
 
             HttpResponse response = client.execute(request);
 
@@ -86,7 +88,7 @@ public class APIServiceKoImpl implements APIServiceKo {
         PlayerChallengesInfoDTO playerChallengesInfo;
         try {
             HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "challenges/v1/player-data/" + puuid + "?api_key="+ mykey);
+            HttpGet request = new HttpGet(serverUrl + "challenges/v1/player-data/" + puuid + "?api_key="+ mykey2);
 
             HttpResponse response = client.execute(request);
 

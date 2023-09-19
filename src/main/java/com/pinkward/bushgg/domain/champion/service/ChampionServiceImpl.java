@@ -29,15 +29,12 @@ public class ChampionServiceImpl implements ChampionService{
     private ObjectMapper objectMapper = new ObjectMapper();
 
 
-
     @Value("${riot.api.key}")
     private String mykey;
-
+    String serverUrl = "https://kr.api.riotgames.com";
     @Override
     public List<Integer> championLotation() {
         List<Integer> championLotation = null;
-
-        String serverUrl = "https://kr.api.riotgames.com";
 
         try {
             HttpClient client = HttpClientBuilder.create().build();
