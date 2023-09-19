@@ -1,34 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <th:block th:replace="common/fragments/config :: configFragment" />
     <!-- 내 Stylce CSS 8/29일 추가됨  -->
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/footer.css">
-
 </head>
-
-
 <body id="page-top">
-
     <div id="wrapper">
-
         <!--   왼쪽 사이드바  -->
         <th:block th:replace="common/fragments/side :: sideFragment" />
-
-
         <!-- 메인 컨텐츠 전체영역 -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- 검색창 -->
             <th:block th:replace="common/fragments/header :: headerFragment"/>
-
-
-
             <!-- 중앙 컨텐츠 전체영역 -->
             <div class="main_contents_wrap">
-
                 <!-- 실시간 정보 -->
                 <div class="summoner_live_wrap">
                     <!-- 실시간 정보 - 타이틀 -->
@@ -39,14 +26,11 @@
                     </div>
                     <!-- 실시간 정보 전체영역 -->
                     <div class="live_info_wrap">
-<!--                        <p th:if="${currentGameInfo.isEmpty()}">진행중인 게임이 없습니다.</p>-->
-
                         <!-- 실시간 정보 1칸 전체영역 -->
                         <div class="live_info_contents" th:each="gameInfo : ${currentGameInfo}" th:with="summonersList=${gameInfo['summoners']}">
                             <div class="live_info_vs">
                                 <!-- 큐타입 텍스트 -->
                                 <p class="live_info_match_type_text" th:text="${gameInfo['gameQueueName']}">솔로 랭크</p>
-
                                 <!-- VS 텍스트 -->
                                 <h1 class="live_info_vs_text">
                                     VS
@@ -56,29 +40,24 @@
                                     12:01
                                 </p>
                             </div>
-
                             <!-- 좌우 플렉스를 위한 전체영역 -->
                             <div class="live_flex_wrap">
-
                                 <!-- 왼쪽 컨텐츠 -->
                                 <div class="live_left_wrap">
                                     <!-- 실시간 정보 리스트 -->
                                     <div class="live_info_list" th:each="summoner,ds : ${summonersList}" th:if="${ds.index}<5">
-
                                         <!-- 소환사 티어 -->
                                         <div class="live_summoner_tier">
                                             <p class="live_summoner_tier_text" th:text="${summoner['summonerTier']}">
                                                 C
                                             </p>
                                         </div>
-
                                         <!-- 소환사 닉네임 -->
                                         <div class="live_summoner_name">
                                             <p class="live_summoner_name_text" th:text="${summoner['summonerName']}">
                                                 T1 란브로대머리
                                             </p>
                                         </div>
-
                                         <!-- 스펠 / 챔피언 -->
                                         <div class="live_summoner_img_wrap">
                                             <!-- 스펠  -->
@@ -87,7 +66,6 @@
                                                 <img src="img/spell/14.png" th:src="@{'img/spell/'+${summoner['spell1Id']}+'.png'}" alt="">
                                                 <!-- 스펠2 -->
                                                 <img src="img/spell/1.png" th:src="@{'img/spell/'+${summoner['spell2Id']}+'.png'}" alt="">
-
                                             </div>
                                             <!-- 챔피언 얼굴 -->
                                             <div class="live_champion_face_wrap">
@@ -95,21 +73,14 @@
                                             </div>
                                         </div>
                                         <!-- 스펠 / 챔피언 끝 -->
-
-
                                     </div>
                                     <!-- 실시간 정보 리스트 (1줄) 끝 -->
-
                                 </div>
                                 <!-- 왼쪽 컨텐츠 끝 -->
-
-
                                 <!-- 우측 컨텐츠 시작 -->
                                 <div class="live_left_wrap live_right_wrap">
-
                                     <!-- 실시간 정보 리스트 -->
                                     <div class="live_info_list" th:each="summoner,ds : ${summonersList}" th:if="${ds.index}> 4">
-
                                         <!-- 스펠 / 챔피언 -->
                                         <div class ="live_summoner_img_wrap">
                                             <!-- 챔피언 얼굴 -->
@@ -122,19 +93,15 @@
                                                 <img src="img/spell/14.png" th:src="@{'img/spell/'+${summoner['spell1Id']}+'.png'}" alt="">
                                                 <!-- 스펠2 -->
                                                 <img src="img/spell/1.png" th:src="@{'img/spell/'+${summoner['spell2Id']}+'.png'}" alt="">
-
                                             </div>
-
                                         </div>
                                         <!-- 스펠 / 챔피언 끝 -->
-
                                         <!-- 소환사 닉네임 -->
                                         <div class="live_summoner_name">
                                             <p class="live_summoner_name_text" th:text="${summoner['summonerName']}">
                                                 T1 란브로대머리
                                             </p>
                                         </div>
-
                                         <div class="live_summoner_tier">
                                             <p class="live_summoner_tier_text"  th:text="${summoner['summonerTier']}">
                                                 C
@@ -142,7 +109,6 @@
                                         </div>
                                     </div>
                                     <!-- 실시간 정보 리스트 (1줄) 끝 -->
-
                                 </div>
                                 <!-- 우측컨텐츠 끝 -->
                             </div>
@@ -172,7 +138,6 @@
                                         <div class="community_index">
                                             1
                                         </div>
-
                                         <!-- 게시글 제목 -->
                                         <h1 class="community_title">
                                             오늘 보쌈 기?
@@ -180,7 +145,6 @@
                                     </div>
                                     <!-- 텍스트 구간 전체영역-->
                                     <div class="community_text_wrap">
-
                                         <!-- 몇시간전 -->
                                         <p class="community_time">
                                             24시간전
@@ -193,7 +157,6 @@
                                     <!-- 텍스트 구간 끝 -->
                                 </div>
                                 <!-- 커뮤니티 리스트 끝 -->
-
                                 <!-- 커뮤니티 리스트 전체영역 -->
                                 <div class="community_list_wrap">
 
@@ -203,7 +166,6 @@
                                         <div class="community_index">
                                             1
                                         </div>
-
                                         <!-- 게시글 제목 -->
                                         <h1 class="community_title">
                                             오늘 보쌈 기?
@@ -211,7 +173,6 @@
                                     </div>
                                     <!-- 텍스트 구간 전체영역-->
                                     <div class="community_text_wrap">
-
                                         <!-- 몇시간전 -->
                                         <p class="community_time">
                                             24시간전
@@ -225,11 +186,8 @@
                                 </div>
                                 <!-- 커뮤니티 리스트 끝 -->
                             </div>
-                          
                         </div>
                      <!-- 커뮤니티 리스트2개 전체영역 끝  -->
-
-
                          <!-- 스타일이 다른 커뮤니티 리스트 2행을 묶기위한
                         전체 영역 -->
                         <!-- forEach -->
@@ -244,7 +202,6 @@
                                         <div class="community_index">
                                             1
                                         </div>
-
                                         <!-- 게시글 제목 -->
                                         <h1 class="community_title">
                                             오늘 보쌈 기?
@@ -252,7 +209,6 @@
                                     </div>
                                     <!-- 텍스트 구간 전체영역-->
                                     <div class="community_text_wrap">
-
                                         <!-- 몇시간전 -->
                                         <p class="community_time">
                                             24시간전
@@ -265,17 +221,14 @@
                                     <!-- 텍스트 구간 끝 -->
                                 </div>
                                 <!-- 커뮤니티 리스트 끝 -->
-
                                 <!-- 커뮤니티 리스트 전체영역 -->
                                 <div class="community_list_wrap">
-
                                     <!-- 타이틀 구간 전체영역 -->
                                     <div class="community_title_wrap">
                                         <!-- 게시글 번호 -->
                                         <div class="community_index">
                                             1
                                         </div>
-
                                         <!-- 게시글 제목 -->
                                         <h1 class="community_title">
                                             오늘 보쌈 기?
@@ -283,7 +236,6 @@
                                     </div>
                                     <!-- 텍스트 구간 전체영역-->
                                     <div class="community_text_wrap">
-
                                         <!-- 몇시간전 -->
                                         <p class="community_time">
                                             24시간전
@@ -297,10 +249,8 @@
                                 </div>
                                 <!-- 커뮤니티 리스트 끝 -->
                             </div>
-                          
                         </div>
                      <!-- 커뮤니티 리스트2개 전체영역 끝  -->
-
                          <!-- 스타일이 다른 커뮤니티 리스트 2행을 묶기위한
                         전체 영역 -->
                         <!-- forEach -->
@@ -308,14 +258,12 @@
                             <div class="community_list2_wrap">
                                 <!-- 커뮤니티 리스트 전체영역 -->
                                 <div class="community_list_wrap first">
-
                                     <!-- 타이틀 구간 전체영역 -->
                                     <div class="community_title_wrap">
                                         <!-- 게시글 번호 -->
                                         <div class="community_index">
                                             1
                                         </div>
-
                                         <!-- 게시글 제목 -->
                                         <h1 class="community_title">
                                             오늘 보쌈 기?
@@ -323,7 +271,6 @@
                                     </div>
                                     <!-- 텍스트 구간 전체영역-->
                                     <div class="community_text_wrap">
-
                                         <!-- 몇시간전 -->
                                         <p class="community_time">
                                             24시간전
@@ -336,17 +283,14 @@
                                     <!-- 텍스트 구간 끝 -->
                                 </div>
                                 <!-- 커뮤니티 리스트 끝 -->
-
                                 <!-- 커뮤니티 리스트 전체영역 -->
                                 <div class="community_list_wrap">
-
                                     <!-- 타이틀 구간 전체영역 -->
                                     <div class="community_title_wrap">
                                         <!-- 게시글 번호 -->
                                         <div class="community_index">
                                             1
                                         </div>
-
                                         <!-- 게시글 제목 -->
                                         <h1 class="community_title">
                                             오늘 보쌈 기?
@@ -354,7 +298,6 @@
                                     </div>
                                     <!-- 텍스트 구간 전체영역-->
                                     <div class="community_text_wrap">
-
                                         <!-- 몇시간전 -->
                                         <p class="community_time">
                                             24시간전
@@ -368,10 +311,8 @@
                                 </div>
                                 <!-- 커뮤니티 리스트 끝 -->
                             </div>
-                          
                         </div>
                      <!-- 커뮤니티 리스트2개 전체영역 끝  -->
-
                       <!-- 스타일이 다른 커뮤니티 리스트 2행을 묶기위한
                         전체 영역 -->
                         <!-- forEach -->
@@ -379,14 +320,12 @@
                             <div class="community_list2_wrap">
                                 <!-- 커뮤니티 리스트 전체영역 -->
                                 <div class="community_list_wrap first">
-
                                     <!-- 타이틀 구간 전체영역 -->
                                     <div class="community_title_wrap">
                                         <!-- 게시글 번호 -->
                                         <div class="community_index">
                                             1
                                         </div>
-
                                         <!-- 게시글 제목 -->
                                         <h1 class="community_title">
                                             오늘 보쌈 기?
@@ -394,7 +333,6 @@
                                     </div>
                                     <!-- 텍스트 구간 전체영역-->
                                     <div class="community_text_wrap">
-
                                         <!-- 몇시간전 -->
                                         <p class="community_time">
                                             24시간전
@@ -407,17 +345,14 @@
                                     <!-- 텍스트 구간 끝 -->
                                 </div>
                                 <!-- 커뮤니티 리스트 끝 -->
-
                                 <!-- 커뮤니티 리스트 전체영역 -->
                                 <div class="community_list_wrap">
-
                                     <!-- 타이틀 구간 전체영역 -->
                                     <div class="community_title_wrap">
                                         <!-- 게시글 번호 -->
                                         <div class="community_index">
                                             1
                                         </div>
-
                                         <!-- 게시글 제목 -->
                                         <h1 class="community_title">
                                             오늘 보쌈 기?
@@ -425,7 +360,6 @@
                                     </div>
                                     <!-- 텍스트 구간 전체영역-->
                                     <div class="community_text_wrap">
-
                                         <!-- 몇시간전 -->
                                         <p class="community_time">
                                             24시간전
@@ -439,12 +373,10 @@
                                 </div>
                                 <!-- 커뮤니티 리스트 끝 -->
                             </div>
-                          
                         </div>
                      <!-- 커뮤니티 리스트2개 전체영역 끝  -->
                     </div>
                     <!-- 커뮤니티 끝  -->
-
                     <!-- 로테이션 챔피언 -->
                     <div class="rotation_champion_wrap">
                         <!-- 로테이션 타이틀 -->
@@ -455,10 +387,8 @@
                         </h1>
                        </div>
                        <!-- 로테이션 타이틀 끝 -->
-
                        <!-- 로테이션 챔피언 목록 1줄 -->
                        <div class="rotation_champion_list">
-
                             <!-- 챔피언 사진 , 이름 -->
                            <div class="rotation_champion_face_list" th:each="championNameEn, iterStat : ${championNamesEn}" th:if="${iterStat.index < 5}" th:with="count=${iterStat.index}">
                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
@@ -469,10 +399,8 @@
                             <!-- 챔피언 사진 , 이름 끝 -->
                         </div>
                        <!-- 로테이션 챔피언 목록 (1줄) 끝 -->
-
                         <!-- 로테이션 챔피언 목록 1줄 -->
                         <div class="rotation_champion_list">
-
                             <!-- 챔피언 사진 , 이름 -->
                             <div class="rotation_champion_face_list" th:each="championNameEn, iterStat : ${championNamesEn}" th:if="${iterStat.index > 4 && iterStat.index < 10}" th:with="count=${iterStat.index}">
                                 <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
@@ -483,10 +411,8 @@
                             <!-- 챔피언 사진 , 이름 끝 -->
                        </div>
                        <!-- 로테이션 챔피언 목록 (1줄) 끝 -->
-
                         <!-- 로테이션 챔피언 목록 1줄 -->
                         <div class="rotation_champion_list">
-
                             <!-- 챔피언 사진 , 이름 -->
                             <div class="rotation_champion_face_list" th:each="championNameEn, iterStat : ${championNamesEn}" th:if="${iterStat.index > 9 && iterStat.index < 15}" th:with="count=${iterStat.index}">
                                 <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
@@ -497,10 +423,8 @@
                             <!-- 챔피언 사진 , 이름 끝 -->
                        </div>
                        <!-- 로테이션 챔피언 목록 (1줄) 끝 -->
-
                         <!-- 로테이션 챔피언 목록 1줄 -->
                         <div class="rotation_champion_list">
-
                             <!-- 챔피언 사진 , 이름 -->
                             <div class="rotation_champion_face_list" th:each="championNameEn, iterStat : ${championNamesEn}" th:if="${iterStat.index > 14}" th:with="count=${iterStat.index}">
                                 <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
@@ -511,27 +435,17 @@
                             <!-- 챔피언 사진 , 이름 끝 -->
                         </div>
                         <!-- 로테이션 챔피언 목록 (1줄) 끝 -->
-
                     </div>
                     <!-- 로테이션 끝 -->
                 </div>
                 <!-- 두번째 라인 컨텐츠 전체영역 끝 -->
             </div>
             <!-- 중앙 컨텐츠 전체영역 끝 -->
-
-
         </div>
     </div>
     <!--  메인 컨텐츠 끝 -->
-
-
 </div>
-
-
 <!--   자바 스크립트 -->
 <th:block th:replace="common/fragments/script :: scriptFragment"/>
-
 </body>
-
-
 </html>

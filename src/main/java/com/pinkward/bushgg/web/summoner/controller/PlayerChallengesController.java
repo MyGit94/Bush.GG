@@ -84,6 +84,7 @@ public class PlayerChallengesController {
         model.addAttribute("challengeId", challengeId);
 
         List<ChallengeRankingPlayerDTO> ranking = challengesService.challengeRanking(challengeId);
+
         model.addAttribute("ranking", ranking);
 
         return "challenge-ranking";

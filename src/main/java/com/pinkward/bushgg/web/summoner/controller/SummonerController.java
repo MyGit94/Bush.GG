@@ -42,7 +42,8 @@ public class SummonerController {
     private final ChampionService championService;
     private final ChallengerMapper challengerMapper;
     private final SummonerMapper summonerMapper;
-    private final RankingAPIServiceImpl rankingService;
+    private final RankingAPIServiceImpl rankingAPIService;
+
 
 
     @GetMapping(value = "/summoner")
@@ -66,7 +67,6 @@ public class SummonerController {
         if(summoner == null) {
             return "/404";
         }
-
 
         Set<Map<String,Object>> summonerTier = apiServiceKo.getTierInfo(summoner.getId());
         SummonerTierDTO summonerTierDTO = null;

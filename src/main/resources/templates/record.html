@@ -54,8 +54,6 @@
 
                         <!-- 전적 갱신 버튼 -->
                         <!-- 버튼을 누를때마다 서버에서 최신정보 갱신 -->
-                        <!-- 현재 사이트의 모든 정보를 다시 받아오는 코드를 컨트롤러를 통해서
-                    설계할 예정 -->
                         <form th:action="@{/summoner}" method="get">
                             <input type="hidden" name="summonerName" th:value="${summoner.getName()}"/>
                             <button type="submit" class="summoner_refresh">
@@ -400,7 +398,7 @@
                                 <a href="" class="user_name_text"
                                    th:href="@{/summoner(summonerName=${participants.getSummonerName()})}"
                                    th:text="${participants.getSummonerName()}"
-                                   th:style="${participants.getSummonerName() == summoner.getName() ? 'font-weight: bold;' : ''}">
+                                   th:style="${participants.getSummonerName() == summoner.getName() ? 'font-weight: bold; font-style: italic; color: navy'  : ''}">
                                     란브로대머리</a>
                             </li>
                         </ul>
@@ -417,11 +415,8 @@
                                 <a href="" class="user_name_text"
                                    th:href="@{/summoner(summonerName=${participants.getSummonerName()})}"
                                    th:text="${participants.getSummonerName()}"
-                                   th:style="${participants.getSummonerName() == summoner.getName() ? 'font-weight: bold;'  : ''}">란브로대머리</a>
-
-
+                                   th:style="${participants.getSummonerName() == summoner.getName() ? 'font-weight: bold; font-style: italic; color: navy'  : ''}">란브로대머리</a>
                             </li>
-
                         </ul>
                     </div>
                     <!-- 같이 게임한 유저 목록 끝 -->

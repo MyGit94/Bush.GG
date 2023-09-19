@@ -6,6 +6,7 @@ import com.pinkward.bushgg.domain.champion.service.ChampionService;
 import com.pinkward.bushgg.domain.currentgame.service.CurrentGameService;
 import com.pinkward.bushgg.domain.member.dto.MemberDTO;
 import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
+import com.pinkward.bushgg.domain.ranking.service.RankingAPIService;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +38,7 @@ public class HomeController {
 	private final CurrentGameService currentGameService;
 	private final ChallengerMapper challengerMapper;
 	private final APIServiceKo apiServiceKo;
+	private final RankingAPIService rankingAPIService;
 
 
 	@GetMapping("/")
@@ -55,7 +57,7 @@ public class HomeController {
 		for (String participantId : challengerIds) {
 			log.info("{}",index);
 			index++;
-			if (count > 3 || index >50) {
+			if (count > 3 || index > 50) {
 				break;
 			}
 			Map<String, Object> currentGame = apiServiceKo.getCurrentGame(participantId);
@@ -96,4 +98,16 @@ public class HomeController {
 		model.addAttribute("championNamesKo",championNamesKo);
 		return "index";
 	}
+
+
+//	@GetMapping("/test")
+//	public void test1(){
+//		rankingAPIService.challengerRanking(0, 999);
+//		rankingAPIService.grandMasterRanking(0, 999);
+//		rankingAPIService.masterRanking(0,9999);
+//		rankingAPIService.diamond1Ranking(0,999);
+//		rankingAPIService.diamond2Ranking(0,999);
+//		rankingAPIService.diamond3Ranking(0,999);
+//		rankingAPIService.diamond4Ranking(0,999);
+//	}
 }
