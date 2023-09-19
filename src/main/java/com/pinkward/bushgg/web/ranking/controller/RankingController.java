@@ -6,7 +6,6 @@ import com.pinkward.bushgg.domain.ranking.dto.RankingDTO;
 import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
 import com.pinkward.bushgg.domain.ranking.service.RankingAPIService;
 import com.pinkward.bushgg.domain.ranking.service.RankingService;
-import com.pinkward.bushgg.domain.ranking.service.RankingAPIService;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +27,6 @@ public class RankingController {
     private final SummonerService summonerService;
     private final APIServiceKo apiServiceKo;
     private final APIRankingService apiRankingService;
-
 
     @GetMapping(value="/ranking")
     public String raking(@RequestParam(name = "page", defaultValue = "1") int page, Model model) {

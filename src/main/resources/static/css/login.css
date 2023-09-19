@@ -2,6 +2,8 @@
 body {
     height:900px;
     background-image: url('../img/illust/Rift.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
    }
    
    a{

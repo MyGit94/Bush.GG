@@ -22,10 +22,12 @@ import java.util.Set;
 @Slf4j
 @PropertySource(ignoreResourceNotFound = false, value = "classpath:application.yml")
 public class APIServiceKoImpl implements APIServiceKo {
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Value("${riot.ranking.key}")
     private String mykey;
+    @Value("${riot.api.key}")
+    private String mykey2;
     @Value("${riot.challenges.key}")
     private String challengeKey;
 
@@ -37,7 +39,7 @@ public class APIServiceKoImpl implements APIServiceKo {
 
         try {
             HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "summoner/v4/summoners/by-name/" + summonerName + "?api_key=" + mykey);
+            HttpGet request = new HttpGet(serverUrl + "summoner/v4/summoners/by-name/" + summonerName + "?api_key=" + mykey2);
 
             HttpResponse response = client.execute(request);
 
@@ -86,7 +88,7 @@ public class APIServiceKoImpl implements APIServiceKo {
         PlayerChallengesInfoDTO playerChallengesInfo;
         try {
             HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "challenges/v1/player-data/" + puuid + "?api_key="+ mykey);
+            HttpGet request = new HttpGet(serverUrl + "challenges/v1/player-data/" + puuid + "?api_key="+ mykey2);
 
             HttpResponse response = client.execute(request);
 
@@ -110,7 +112,7 @@ public class APIServiceKoImpl implements APIServiceKo {
 
         try {
             HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "league/v4/entries/by-summoner/" + summonerId + "?api_key=" + mykey);
+            HttpGet request = new HttpGet(serverUrl + "league/v4/entries/by-summoner/" + summonerId + "?api_key=" + mykey2);
 
             HttpResponse response = client.execute(request);
 

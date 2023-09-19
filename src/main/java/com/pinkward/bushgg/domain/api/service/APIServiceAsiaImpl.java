@@ -19,9 +19,9 @@ import java.util.Map;
 @Slf4j
 @PropertySource(ignoreResourceNotFound = false, value = "classpath:application.yml")
 public class APIServiceAsiaImpl implements APIServiceAsia{
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @Value("${riot.ranking.key}")
+    @Value("${riot.api.key}")
     private String mykey;
 
     String serverUrl = "https://asia.api.riotgames.com/lol/";

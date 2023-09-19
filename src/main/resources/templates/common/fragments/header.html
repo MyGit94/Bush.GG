@@ -13,7 +13,7 @@
             <div class="input-group">
                 <!-- 전적 검색 : 입력 텍스트칸 -->
                 <input type="text" class="form-control bg-light border-0 small" placeholder="소환사명을 입력해주세요"
-                       aria-label="Search" aria-describedby="basic-addon2" name="summonerName">
+                       aria-label="Search" aria-describedby="basic-addon2" name="summonerName" id="top_search_input">
                 <!-- 검색 아이콘 전체영역 -->
                 <div class="input-group-append">
                     <!-- 검색 버튼 네모박스 -->
@@ -25,6 +25,16 @@
             </div>
         </form>
         <!-- 전적 검색창 끝 -->
+        <!-- 로그인 , 회원가입 -->
+        <div class="navbar_login_wrap">
+            <!-- 로그인 -->
+            <a th:if="${loginMember == null}" class="navbar_login" th:href="@{/member/login}">로그인</a>
+            <strong th:if="${loginMember != null}" class="" th:text="${loginMember.nickName} + '님 즐거운 하루 되세요'"></strong>
+
+            <!-- 회원가입 -->
+            <a th:if="${loginMember == null}" class="navbar_register" th:href="@{/member/register}">회원가입</a>
+            <a th:if="${loginMember != null}" class="navbar_register" th:href="@{/member/logout}">로그아웃</a>
+        </div>
     </nav>
     <!-- 상단헤더 끝 -->
 </th:block>

@@ -121,7 +121,8 @@
                 </ul>
                 <form class="commentWriter">
                     <div class="commentInBox">
-                        <textarea class="form-control" placeholder="댓글을 남겨보세요" rows="5"></textarea>
+                        <textarea class="form-control" placeholder="댓글을 남겨보세요" rows="5" name="comment"></textarea>
+                        <p th:error="*{comments}" style="color: red;">입력 오류메시지</p>
                     </div>
                     <div class="register d-flex justify-content-end mt-2">
                         <button type="submit" class="regiserBtn">등록</button>

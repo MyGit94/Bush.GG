@@ -57,13 +57,12 @@ table {
   justify-content: flex-end;
 }
 
-.table-bordered td {
-  border-bottom: 1px solid #e3e6f0;
-  text-align: center;
-}
 
-.trs :hover{
-  background-color: #e3e6f0;
+/* 추천글일시 제목 옆에 나오는 이미지*/
+.best{
+  margin-right:10px;
+  width:30px;
+  height:30px;
 }
 
 /* 게시판 하단*/
@@ -149,4 +148,6 @@ table {
 }
 
 
-
+.board_subject{
+  color:#0f6848;
+}

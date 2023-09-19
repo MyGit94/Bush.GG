@@ -5,7 +5,6 @@ import com.pinkward.bushgg.domain.challenges.dto.*;
 import com.pinkward.bushgg.domain.challenges.mapper.ChallengesMapper;
 import com.pinkward.bushgg.domain.challenges.service.ChallengesService;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
-import jakarta.servlet.http.HttpSession;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -39,14 +39,10 @@ public class PlayerChallengesController {
     @GetMapping(value="/challenge")
     public String playerChallenges (@RequestParam("summonerName") String summonerName, Model model){
         if (summonerName.length() == 2) {
-            summonerName = summonerName.substring(0, 1) + " " + summonerName.substring(1);
+            summonerName = summonerName.charAt(0) + " " + summonerName.substring(1);
         }
         String esummonerName = null;
-        try {
-            esummonerName = URLEncoder.encode(summonerName, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
+        esummonerName = URLEncoder.encode(summonerName, StandardCharsets.UTF_8);
 
         // 등급순으로 정렬해주기 위한 작업
         Map<String, Integer> levelOrder = new HashMap<>();
@@ -84,6 +80,11 @@ public class PlayerChallengesController {
         model.addAttribute("challengeId", challengeId);
 
         List<ChallengeRankingPlayerDTO> ranking = challengesService.challengeRanking(challengeId);
+        for (ChallengeRankingPlayerDTO list: ranking) {
+            SummonerDTO summonerDTO =apiServiceKo.getSummonerInfoByPuuid(list.getPuuid());
+            list.setName(summonerDTO.getName());
+            list.setProfileIcon(summonerDTO.getProfileIconId());
+        }
         model.addAttribute("ranking", ranking);
 
         return "challenge-ranking";

@@ -32,40 +32,33 @@
                                     </div>
 
                                     <!-- 로그인 폼태그 -->
-                                    <form class="user" method="post" th:action="@{/member/login}"
-                                    	th:object="${memberDTO}">
+                                    <form class="user" method="post" action="/member/login">
                                         <!-- 아이디 -->
                                         <div class="form-group">
-                                        <div id="loginIdHelp">아이디를 입력하세요.</div>
                                             <input type="text" class="form-control form-control-user"
                                                 id="loginId" name="loginId" aria-describedby="loginIdHelp"
-                                                placeholder="아이디를 입력하세요."
-                                                th:field="*{loginId}">
-                                        <!-- 에러 메시지 표시 -->
-     									   <span class="text-danger" th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}"></span>
+                                                placeholder="아이디를 입력하세요.">
                                         </div>
                                         <!-- 아이디 끝 -->
 
                                         <!-- 패스워드 -->
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="passwd"  name="passwd" placeholder="비밀번호를 입력하세요."
-                                                th:field="*{passwd}">
+                                                id="passwd"  name="passwd" placeholder="비밀번호를 입력하세요.">
                                         </div>
                                         <!-- 패스워드 끝 -->
 
-										<!-- 아이디 저장 -->
-										<div class="form-group">
-										    <div class="custom-control custom-checkbox small">
-										        <!-- 아이디 저장 체크박스 -->
-										        <input type="checkbox" class="custom-control-input" id="customCheck" name="rememberMe" th:checked="${rememberMe}">
-										        <label class="custom-control-label" for="customCheck">
-										            아이디 저장
-										        </label>
-										    </div>
-										</div>
-										<!-- 아이디 저장 끝 -->
-
+                                        <!-- 아이디 저장 -->
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <!-- 아이디 저장 체크박스 -->
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">
+                                                    아이디 저장
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- 아이디 저장 끝 -->
 
                                         <!-- 로그인 버튼 -->
                                         <input type="submit" value="로그인" class="btn btn loginBtn">
