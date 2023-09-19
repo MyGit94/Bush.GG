@@ -36,9 +36,6 @@ public class CurrentGameServiceImpl implements CurrentGameService {
     private final APIServiceKo apiServiceKo;
 
 
-    @Value("${riot.api.key}")
-    private String mykey;
-
     @Override
     public List<Map<String,Object>> getCurrentGameInfo(List<Map<String, Object>> currentGames) {
         List<Map<String,Object>> currentGameDTOS = new ArrayList<>();

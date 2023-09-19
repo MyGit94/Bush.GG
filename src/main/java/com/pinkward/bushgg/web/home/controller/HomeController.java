@@ -8,6 +8,7 @@ import com.pinkward.bushgg.domain.champion.service.ChampionService;
 import com.pinkward.bushgg.domain.currentgame.service.CurrentGameService;
 import com.pinkward.bushgg.domain.member.dto.MemberDTO;
 import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
+import com.pinkward.bushgg.domain.ranking.service.RankingAPIService;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
