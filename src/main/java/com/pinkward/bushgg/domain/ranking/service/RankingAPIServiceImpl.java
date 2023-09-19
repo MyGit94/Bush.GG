@@ -28,17 +28,16 @@ public class RankingAPIServiceImpl implements RankingAPIService {
 
     @Value("${riot.ranking.key}")
     private String mykey;
-
+    String serverUrl = "https://kr.api.riotgames.com/lol/";
 
     @Override
     public List<RankingDTO> challengerRanking(int start, int end) {
 
-        String serverUrl = "https://kr.api.riotgames.com";
         List<RankingDTO> challengerRanking = new ArrayList<>();
 
         try {
             HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "/lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5?api_key=" + mykey);
+            HttpGet request = new HttpGet(serverUrl + "league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5?api_key=" + mykey);
 
             HttpResponse response = client.execute(request);
 
@@ -86,12 +85,11 @@ public class RankingAPIServiceImpl implements RankingAPIService {
     @Override
     public List<RankingDTO> grandMasterRanking(int start, int end) {
 
-        String serverUrl = "https://kr.api.riotgames.com";
         List<RankingDTO> grandMasterRanking = new ArrayList<>();
 
         try {
             HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "/lol/league/v4/grandmasterleagues/by-queue/RANKED_SOLO_5x5?api_key=" + mykey);
+            HttpGet request = new HttpGet(serverUrl + "league/v4/grandmasterleagues/by-queue/RANKED_SOLO_5x5?api_key=" + mykey);
 
             HttpResponse response = client.execute(request);
 
@@ -137,12 +135,11 @@ public class RankingAPIServiceImpl implements RankingAPIService {
     @Override
     public List<RankingDTO> masterRanking(int start, int end) {
 
-        String serverUrl = "https://kr.api.riotgames.com";
         List<RankingDTO> masterRanking = new ArrayList<>();
 
         try {
             HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "/lol/league/v4/masterleagues/by-queue/RANKED_SOLO_5x5?api_key=" + mykey);
+            HttpGet request = new HttpGet(serverUrl + "league/v4/masterleagues/by-queue/RANKED_SOLO_5x5?api_key=" + mykey);
 
             HttpResponse response = client.execute(request);
 
@@ -188,7 +185,6 @@ public class RankingAPIServiceImpl implements RankingAPIService {
     @Override
     public List<RankingDTO> diamond1Ranking(int start, int end) {
 
-        String serverUrl = "https://kr.api.riotgames.com";
         List<RankingDTO> diamondRanking = new ArrayList<>();
 
         int page = 1;
@@ -196,7 +192,7 @@ public class RankingAPIServiceImpl implements RankingAPIService {
 
         while (hasMoreData) {
             HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "/lol/league/v4/entries/RANKED_SOLO_5x5/DIAMOND/I?page=" + page + "&api_key=" + mykey);
+            HttpGet request = new HttpGet(serverUrl + "league/v4/entries/RANKED_SOLO_5x5/DIAMOND/I?page=" + page + "&api_key=" + mykey);
 
             HttpResponse response;
             try {
@@ -253,7 +249,6 @@ public class RankingAPIServiceImpl implements RankingAPIService {
     @Override
     public List<RankingDTO> diamond2Ranking(int start, int end) {
 
-        String serverUrl = "https://kr.api.riotgames.com";
         List<RankingDTO> diamondRanking = new ArrayList<>();
 
         int page = 1;
@@ -261,7 +256,7 @@ public class RankingAPIServiceImpl implements RankingAPIService {
 
         while (hasMoreData) {
             HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "/lol/league/v4/entries/RANKED_SOLO_5x5/DIAMOND/II?page=" + page + "&api_key=" + mykey);
+            HttpGet request = new HttpGet(serverUrl + "league/v4/entries/RANKED_SOLO_5x5/DIAMOND/II?page=" + page + "&api_key=" + mykey);
 
             HttpResponse response;
             try {
@@ -319,7 +314,6 @@ public class RankingAPIServiceImpl implements RankingAPIService {
     @Override
     public List<RankingDTO> diamond3Ranking(int start, int end) {
 
-        String serverUrl = "https://kr.api.riotgames.com";
         List<RankingDTO> diamondRanking = new ArrayList<>();
 
         int page = 1;
@@ -327,7 +321,7 @@ public class RankingAPIServiceImpl implements RankingAPIService {
 
         while (hasMoreData) {
             HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "/lol/league/v4/entries/RANKED_SOLO_5x5/DIAMOND/III?page=" + page + "&api_key=" + mykey);
+            HttpGet request = new HttpGet(serverUrl + "league/v4/entries/RANKED_SOLO_5x5/DIAMOND/III?page=" + page + "&api_key=" + mykey);
 
             HttpResponse response;
             try {
@@ -385,7 +379,6 @@ public class RankingAPIServiceImpl implements RankingAPIService {
     @Override
     public List<RankingDTO> diamond4Ranking(int start, int end) {
 
-        String serverUrl = "https://kr.api.riotgames.com";
         List<RankingDTO> diamondRanking = new ArrayList<>();
 
         int page = 1;
@@ -393,7 +386,7 @@ public class RankingAPIServiceImpl implements RankingAPIService {
 
         while (hasMoreData) {
             HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "/lol/league/v4/entries/RANKED_SOLO_5x5/DIAMOND/IV?page=" + page + "&api_key=" + mykey);
+            HttpGet request = new HttpGet(serverUrl + "league/v4/entries/RANKED_SOLO_5x5/DIAMOND/IV?page=" + page + "&api_key=" + mykey);
 
             HttpResponse response;
             try {

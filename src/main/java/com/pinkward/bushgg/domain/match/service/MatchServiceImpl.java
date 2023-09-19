@@ -26,8 +26,6 @@ public class MatchServiceImpl implements MatchService {
 
     private final ChallengerMapper challengerMapper;
     private final ChampionMapper championMapper;
-    private final APIServiceKo apiServiceKo;
-    private final SummonerService summonerService;
 
     @Override
     public MatchInfoDTO matchInfoDTO(Map<String, Object> match) {

@@ -26,6 +26,8 @@ public class APIServiceKoImpl implements APIServiceKo {
 
     @Value("${riot.ranking.key}")
     private String mykey;
+    @Value("${riot.api.key}")
+    private String mykey2;
     @Value("${riot.challenges.key}")
     private String challengeKey;
     @Value("${riot.api.key}")

@@ -2,23 +2,8 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>BUSH.GG :: 도전과제 랭킹</title>
-  <!-- 커스텀 폰트 -->
-  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
-
-
-  <!-- 부트스트랩 기본 CSS -->
-  <link href="/css/sb-admin-2.css" rel="stylesheet">
-  <!-- 기본 스타일 css -->
-  <link rel="stylesheet" href="/css/style.css">
+  <!-- css -->
+  <th:block th:replace="common/fragments/config :: configFragment"/>
   <!-- 도전과제 랭크 css -->
   <link rel="stylesheet" href="/css/chllenge-ranking.css ">
 </head>
@@ -28,118 +13,15 @@
 
   <div id="wrapper">
 
-    <!-- 좌측 사이드바 전체 영역 -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-      <!-- 왼쪽 사이드바 로고 영역 -->
-      <li class="nav-item active">
-        <a class="nav-link nav-link2" href="index.html" th:href="@{/}">
-          <!-- <p class="nav-item-text">BUSH.GG</p> -->
-          <img src="/img/logo.png" alt="" class="nav-item-img">
-        </a>
-      </li>
-
-      <!-- 구분선1 -->
-      <hr class="sidebar-divider">
-
-      <!-- 사이드바 카테고리1 : 사용자 -->
-      <div class="sidebar-heading">
-        사용자
-      </div>
-
-      <!-- 사이드메뉴 :: 상단 메뉴 - 사용자 -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-          aria-expanded="true" aria-controls="collapseUtilities">
-          <!-- 상단 메뉴 아이콘 -->
-          <i class="fas fa-fw fa-wrench"></i>
-          <!-- 상단 메뉴 텍스트 -->
-          <span>123</span>
-        </a>
-      </li>
-
-      <!-- 구분선2 -->
-      <hr class="sidebar-divider">
-
-      <!-- 사이드바 카테고리2 : 컨텐츠 -->
-      <div class="sidebar-heading">
-        Contents
-      </div>
-
-      <!-- 패치노트 -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-          aria-controls="collapsePages">
-          <!-- 패치노트 아이콘-->
-          <i class="fas fa-fw fa-folder"></i>
-          <span>패치노트</span>
-        </a>
-      </li>
-
-      <!-- 랭킹 -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <!-- 랭킹 아이콘-->
-          <i class="fas fa-fw fa-chart-area"></i>
-          <!-- 랭킹 텍스트 -->
-          <span>랭킹</span></a>
-      </li>
-
-      <!-- 커뮤니티 -->
-      <li class="nav-item">
-        <a class="nav-link" href="board.html">
-          <!-- 커뮤니티 아이콘 -->
-          <i class="fas fa-fw fa-table"></i>
-          <!-- 커뮤니티 텍스트 -->
-          <span>커뮤니티</span></a>
-      </li>
-
-      <!-- 구분선3 -->
-      <hr class="sidebar-divider d-none d-md-block">
-
-      <!-- 사이드바 열기/닫기 버튼 전체영역 -->
-      <div class="text-center d-none d-md-inline">
-        <!-- 사이드바 버튼 -->
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-
-
-    </ul>
-    <!-- 사이드바 끝 -->
+    <!--   왼쪽 사이드바  -->
+    <th:block th:replace="common/fragments/side :: sideFragment"/>
 
 
     <!-- 메인 컨텐츠 전체영역 -->
     <div id="content-wrapper" class="d-flex flex-column">
 
-      <!-- 상단 헤더 -->
-      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-        <!-- (모바일) 사이드 메뉴 여닫이 버튼 -->
-        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-          <i class="fa fa-bars"></i>
-        </button>
-
-        <!-- 전적 검색창 -->
-        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-          <div class="input-group">
-            <!-- 전적 검색 : 입력 텍스트칸 -->
-            <input type="text" class="form-control bg-light border-0 small" placeholder="소환사명을 입력해주세요"
-              aria-label="Search" aria-describedby="basic-addon2">
-            <!-- 검색 아이콘 전체영역 -->
-            <div class="input-group-append">
-              <!-- 검색 버튼 네모박스 -->
-              <button class="btn btn-primary" type="button">
-                <!-- 검색 버튼 돋보기 아이콘 -->
-                <i class="fas fa-search fa-sm"></i>
-              </button>
-            </div>
-          </div>
-        </form>
-        <!-- 전적 검색창 끝 -->
-
-      </nav>
-      <!-- 상단헤더 끝 -->
+      <!-- 검색창 -->
+      <th:block th:replace="common/fragments/header :: headerFragment"/>
 
       <!-- 도전과제 프로필 전체영역 -->
       <div class="rank_profile">
@@ -216,10 +98,10 @@
             <div class="rank_flex rank_title">
               <!-- 소환사 아이콘 -->
               <div class="rank_img rank_flex">
-                <img th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/profileicon/' + ${@APIServiceKoImpl.getSummonerInfoByPuuid(rank.puuid).getProfileIconId()}+'.png'}">
+                <img th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/profileicon/' + ${rank.getProfileIcon()}+'.png'}">
               </div>
               <!-- 소환사 이름 -->
-              <h1 class="rank_name" th:text="${@APIServiceKoImpl.getSummonerInfoByPuuid(rank.puuid).getName()}">
+              <h1 class="rank_name" th:text="${rank.getName()}">
                 사각</h1>
             </div>
 

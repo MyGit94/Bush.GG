@@ -5,7 +5,6 @@ import com.pinkward.bushgg.domain.challenges.dto.*;
 import com.pinkward.bushgg.domain.challenges.mapper.ChallengesMapper;
 import com.pinkward.bushgg.domain.challenges.service.ChallengesService;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
-import jakarta.servlet.http.HttpSession;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -84,7 +83,11 @@ public class PlayerChallengesController {
         model.addAttribute("challengeId", challengeId);
 
         List<ChallengeRankingPlayerDTO> ranking = challengesService.challengeRanking(challengeId);
-
+        for (ChallengeRankingPlayerDTO list: ranking) {
+            SummonerDTO summonerDTO =apiServiceKo.getSummonerInfoByPuuid(list.getPuuid());
+            list.setName(summonerDTO.getName());
+            list.setProfileIcon(summonerDTO.getProfileIconId());
+        }
         model.addAttribute("ranking", ranking);
 
         return "challenge-ranking";
