@@ -160,15 +160,20 @@ a:hover {
 }
 
 /* 로그인 영역*/
+.user{
+    font-size: 14px;
+    color: #fff;
+    padding-left: 1rem;
+}
 #nickname{
     color: #fff;
-
 }
 
 #nickname:hover{
     color: #fff;
 
 }
+
 
 /* 커뮤니티 */
 .summoner_coummuity_wrap {
