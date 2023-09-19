@@ -30,8 +30,6 @@ public class APIServiceKoImpl implements APIServiceKo {
     private String mykey2;
     @Value("${riot.challenges.key}")
     private String challengeKey;
-    @Value("${riot.api.key}")
-    private String mykey2;
 
     String serverUrl = "https://kr.api.riotgames.com/lol/";
 
@@ -114,7 +112,7 @@ public class APIServiceKoImpl implements APIServiceKo {
 
         try {
             HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(serverUrl + "league/v4/entries/by-summoner/" + summonerId + "?api_key=" + mykey);
+            HttpGet request = new HttpGet(serverUrl + "league/v4/entries/by-summoner/" + summonerId + "?api_key=" + mykey2);
 
             HttpResponse response = client.execute(request);
 
