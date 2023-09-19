@@ -81,12 +81,12 @@
             <!-- 게시판 하단 & 페이지 -->
             <div class="boardBottom">
                 <!-- 검색 전체-->
-                <form class="boardSearch">
+                <form class="boardSearch" action="/board/search" method="post">
                     <!-- 게시글 검색 : 입력 텍스트칸 -->
                     <input type="text" class="form-control small" placeholder="검색 내용을 입력해주세요"
-                           aria-label="Search" aria-describedby="basic-addon2">
+                          name="searchSubject" aria-label="Search" aria-describedby="basic-addon2">
                     <!-- 검색 버튼 네모박스 -->
-                    <button onclick="location.href='index.html';" class="btn boardSearchBtn" type="button">
+                    <button onclick="location.href='index.html';" class="btn boardSearchBtn" type="submit">
                         <!-- 검색 버튼 돋보기 아이콘 -->
                         <i class="fas fa-search fa-sm"></i>
                     </button>

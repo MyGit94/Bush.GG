@@ -1,134 +1,142 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="common/fragments/config :: configFragment"></th:block>
+<!--link css-->
+<link rel="stylesheet" href="/css/live.css">
 <body>
-<div id="wrap">
+<div id="wrapper">
 <th:block th:replace="common/fragments/side :: sideFragment"></th:block>
+
+    <div id="content-wrapper" class="d-flex flex-column">
 <th:block th:replace="common/fragments/header :: headerFragment"></th:block>
-
-    <!-- 실시간 정보 -->
-    <div class="summoner_live_wrap">
-        <!-- 실시간 정보 - 타이틀 -->
-        <div class="summoner_live_title">
-            <h1 class="summoner_live_title_text">
-                실시간 상위게임 정보
-            </h1>
-        </div>
-        <!-- 실시간 정보 전체영역 -->
-        <div class="live_info_wrap">
-            <!--                        <p th:if="${currentGameInfo.isEmpty()}">진행중인 게임이 없습니다.</p>-->
-
-            <!-- 실시간 정보 1칸 전체영역 -->
-            <div class="live_info_contents" th:each="gameInfo : ${currentGameInfo}" th:with="summonersList=${gameInfo['summoners']}">
-                <div class="live_info_vs">
-                    <!-- 큐타입 텍스트 -->
-                    <p class="live_info_match_type_text" th:text="${gameInfo['gameQueueName']}">솔로 랭크</p>
-
-                    <!-- VS 텍스트 -->
-                    <h1 class="live_info_vs_text">
-                        VS
-                    </h1>
-                    <!-- 게임 진행시간 -->
-                    <p class="live_info_match_time" th:text="${gameInfo['gameLength']}">
-                        12:01
-                    </p>
-                </div>
-
-                <!-- 좌우 플렉스를 위한 전체영역 -->
-                <div class="live_flex_wrap">
-
-                    <!-- 왼쪽 컨텐츠 -->
-                    <div class="live_left_wrap">
-                        <!-- 실시간 정보 리스트 -->
-                        <div class="live_info_list" th:each="summoner,ds : ${summonersList}" th:if="${ds.index}<5">
-
-                            <!-- 소환사 티어 -->
-                            <div class="live_summoner_tier">
-                                <p class="live_summoner_tier_text" th:text="${summoner['summonerTier']}">
-                                    C
-                                </p>
-                            </div>
-
-                            <!-- 소환사 닉네임 -->
-                            <div class="live_summoner_name">
-                                <p class="live_summoner_name_text" th:text="${summoner['summonerName']}">
-                                    T1 란브로대머리
-                                </p>
-                            </div>
-
-                            <!-- 스펠 / 챔피언 -->
-                            <div class="live_summoner_img_wrap">
-                                <!-- 스펠  -->
-                                <div class="live_summoner_spell_wrap">
-                                    <!-- 스펠1 -->
-                                    <img src="img/spell/14.png" th:src="@{'img/spell/'+${summoner['spell1Id']}+'.png'}" alt="">
-                                    <!-- 스펠2 -->
-                                    <img src="img/spell/1.png" th:src="@{'img/spell/'+${summoner['spell2Id']}+'.png'}" alt="">
-
-                                </div>
-                                <!-- 챔피언 얼굴 -->
-                                <div class="live_champion_face_wrap">
-                                    <img src="img/illust/1.jpg" th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${summoner['championName']}+'.png'}" alt="">
-                                </div>
-                            </div>
-                            <!-- 스펠 / 챔피언 끝 -->
-
-
-                        </div>
-                        <!-- 실시간 정보 리스트 (1줄) 끝 -->
-
-                    </div>
-                    <!-- 왼쪽 컨텐츠 끝 -->
-
-
-                    <!-- 우측 컨텐츠 시작 -->
-                    <div class="live_left_wrap live_right_wrap">
-
-                        <!-- 실시간 정보 리스트 -->
-                        <div class="live_info_list" th:each="summoner,ds : ${summonersList}" th:if="${ds.index}> 4">
-
-                            <!-- 스펠 / 챔피언 -->
-                            <div class ="live_summoner_img_wrap">
-                                <!-- 챔피언 얼굴 -->
-                                <div class="live_champion_face_wrap">
-                                    <img src="img/illust/1.jpg" th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${summoner['championName']}+'.png'}" alt="">
-                                </div>
-                                <!-- 스펠  -->
-                                <div class="live_summoner_spell_wrap">
-                                    <!-- 스펠1 -->
-                                    <img src="img/spell/14.png" th:src="@{'img/spell/'+${summoner['spell1Id']}+'.png'}" alt="">
-                                    <!-- 스펠2 -->
-                                    <img src="img/spell/1.png" th:src="@{'img/spell/'+${summoner['spell2Id']}+'.png'}" alt="">
-
-                                </div>
-
-                            </div>
-                            <!-- 스펠 / 챔피언 끝 -->
-
-                            <!-- 소환사 닉네임 -->
-                            <div class="live_summoner_name">
-                                <p class="live_summoner_name_text" th:text="${summoner['summonerName']}">
-                                    T1 란브로대머리
-                                </p>
-                            </div>
-
-                            <div class="live_summoner_tier">
-                                <p class="live_summoner_tier_text"  th:text="${summoner['summonerTier']}">
-                                    C
-                                </p>
-                            </div>
-                        </div>
-                        <!-- 실시간 정보 리스트 (1줄) 끝 -->
-
-                    </div>
-                    <!-- 우측컨텐츠 끝 -->
-                </div>
-                <!-- 좌우 플렉스를 위한 전체영역 -->
+        <!-- 중앙 컨텐츠 전체영역 -->
+        <div class="main_contents_wrap">
+        <!-- 실시간 정보 -->
+        <div class="summoner_live_wrap">
+            <!-- 실시간 정보 - 타이틀 -->
+            <div class="summoner_live_title">
+                <h1 class="summoner_live_title_text">
+                    실시간 상위게임 정보
+                </h1>
             </div>
-            <!-- 실시간 정보 (1칸) 끝 -->
-        </div>
-        <!-- 실시간 정보 (1줄) 전체영역  끝-->
+            <!-- 실시간 정보 전체영역 -->
+            <div class="live_info_wrap">
+                <!--                        <p th:if="${currentGameInfo.isEmpty()}">진행중인 게임이 없습니다.</p>-->
 
+                <!-- 실시간 정보 1칸 전체영역 -->
+                <div class="live_info_contents" th:each="gameInfo : ${currentGameInfo}" th:with="summonersList=${gameInfo['summoners']}">
+                    <div class="live_info_vs">
+                        <!-- 큐타입 텍스트 -->
+                        <p class="live_info_match_type_text" th:text="${gameInfo['gameQueueName']}">솔로 랭크</p>
+
+                        <!-- VS 텍스트 -->
+                        <h1 class="live_info_vs_text">
+                            VS
+                        </h1>
+                        <!-- 게임 진행시간 -->
+                        <p class="live_info_match_time" th:text="${gameInfo['gameLength']}">
+                            12:01
+                        </p>
+                    </div>
+
+                    <!-- 좌우 플렉스를 위한 전체영역 -->
+                    <div class="live_flex_wrap">
+
+                        <!-- 왼쪽 컨텐츠 -->
+                        <div class="live_left_wrap">
+                            <!-- 실시간 정보 리스트 -->
+                            <div class="live_info_list" th:each="summoner,ds : ${summonersList}" th:if="${ds.index}<5">
+
+                                <!-- 소환사 티어 -->
+                                <div class="live_summoner_tier">
+                                    <p class="live_summoner_tier_text" th:text="${summoner['summonerTier']}">
+                                        C
+                                    </p>
+                                </div>
+
+                                <!-- 소환사 닉네임 -->
+                                <div class="live_summoner_name">
+                                    <p class="live_summoner_name_text" th:text="${summoner['summonerName']}">
+                                        T1 란브로대머리
+                                    </p>
+                                </div>
+
+                                <!-- 스펠 / 챔피언 -->
+                                <div class="live_summoner_img_wrap">
+                                    <!-- 스펠  -->
+                                    <div class="live_summoner_spell_wrap">
+                                        <!-- 스펠1 -->
+                                        <img src="img/spell/14.png" th:src="@{'img/spell/'+${summoner['spell1Id']}+'.png'}" alt="">
+                                        <!-- 스펠2 -->
+                                        <img src="img/spell/1.png" th:src="@{'img/spell/'+${summoner['spell2Id']}+'.png'}" alt="">
+
+                                    </div>
+                                    <!-- 챔피언 얼굴 -->
+                                    <div class="live_champion_face_wrap">
+                                        <img src="img/illust/1.jpg" th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${summoner['championName']}+'.png'}" alt="">
+                                    </div>
+                                </div>
+                                <!-- 스펠 / 챔피언 끝 -->
+
+
+                            </div>
+                            <!-- 실시간 정보 리스트 (1줄) 끝 -->
+
+                        </div>
+                        <!-- 왼쪽 컨텐츠 끝 -->
+
+
+                        <!-- 우측 컨텐츠 시작 -->
+                        <div class="live_left_wrap live_right_wrap">
+
+                            <!-- 실시간 정보 리스트 -->
+                            <div class="live_info_list" th:each="summoner,ds : ${summonersList}" th:if="${ds.index}> 4">
+
+                                <!-- 스펠 / 챔피언 -->
+                                <div class ="live_summoner_img_wrap">
+                                    <!-- 챔피언 얼굴 -->
+                                    <div class="live_champion_face_wrap">
+                                        <img src="img/illust/1.jpg" th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${summoner['championName']}+'.png'}" alt="">
+                                    </div>
+                                    <!-- 스펠  -->
+                                    <div class="live_summoner_spell_wrap">
+                                        <!-- 스펠1 -->
+                                        <img src="img/spell/14.png" th:src="@{'img/spell/'+${summoner['spell1Id']}+'.png'}" alt="">
+                                        <!-- 스펠2 -->
+                                        <img src="img/spell/1.png" th:src="@{'img/spell/'+${summoner['spell2Id']}+'.png'}" alt="">
+
+                                    </div>
+
+                                </div>
+                                <!-- 스펠 / 챔피언 끝 -->
+
+                                <!-- 소환사 닉네임 -->
+                                <div class="live_summoner_name">
+                                    <p class="live_summoner_name_text" th:text="${summoner['summonerName']}">
+                                        T1 란브로대머리
+                                    </p>
+                                </div>
+
+                                <div class="live_summoner_tier">
+                                    <p class="live_summoner_tier_text"  th:text="${summoner['summonerTier']}">
+                                        C
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- 실시간 정보 리스트 (1줄) 끝 -->
+
+                        </div>
+                        <!-- 우측컨텐츠 끝 -->
+                    </div>
+                    <!-- 좌우 플렉스를 위한 전체영역 -->
+                </div>
+                <!-- 실시간 정보 (1칸) 끝 -->
+            </div>
+            <!-- 실시간 정보 (1줄) 전체영역  끝-->
+        </div>
+<!--            메인컨텐츠 끝 -->
+</div>
+<!--        컨텐츠 전체영역 끝-->
 <th:block th:replace="common/fragments/script :: scriptFragment"></th:block>
 </div>
 </body>

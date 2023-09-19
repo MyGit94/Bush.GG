@@ -49,5 +49,5 @@ public interface ArticleMapper {
     //	게시글 상세보기 조회수 업
     public void updateHitcount(ArticleDTO articleDTO);
 
-
+    public List<ArticleDTO> findSubject(String subject);
 }

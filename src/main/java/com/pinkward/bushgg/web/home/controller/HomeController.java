@@ -49,6 +49,33 @@ public class HomeController {
 			model.addAttribute("loginMember", loginMember);
 		}
 
+		List<Integer> championIds = championService.championLotation();
+		List<String> championNamesEn = new ArrayList<>();
+		List<String> championNamesKo = new ArrayList<>();
+
+		for (Integer championId : championIds) {
+			championNamesEn.add(championMapper.getChampionEnName(championId));
+			championNamesKo.add(championMapper.getChampionKoName(championId));
+		}
+
+		model.addAttribute("championNamesEn",championNamesEn);
+		model.addAttribute("championNamesKo",championNamesKo);
+
+
+		// 09/18 추가 -송우성- 커뮤니티
+		List<ArticleDTO> articleDTO= articleMapper.findAllByHitcount();
+		log.info("조회수순으로 정렬한 리스트 {} " ,articleDTO);
+		List<ArticleDTO> limitedList = articleDTO.subList(0, 10); // 최대 요소 개수 제한
+
+		model.addAttribute("community", limitedList);
+
+		return "index";
+	}
+
+
+	@GetMapping("/live")
+	public String live(Model model){
+
 		List<Map<String, Object>> currentGames = new ArrayList<>();
 		int count = 1;
 		int index = 1;
@@ -58,7 +85,7 @@ public class HomeController {
 		for (String participantId : challengerIds) {
 			log.info("{}",index);
 			index++;
-			if (count > 3 || index >50) {
+			if (count > 3 || index >100) {
 				break;
 			}
 			Map<String, Object> currentGame = apiServiceKo.getCurrentGame(participantId);
@@ -84,34 +111,7 @@ public class HomeController {
 		}
 		List<Map<String, Object>> currentGameInfo = currentGameService.getCurrentGameInfo(currentGames);
 		log.info("{}",currentGameInfo);
-
 		model.addAttribute("currentGameInfo", currentGameInfo);
-		List<Integer> championIds = championService.championLotation();
-		List<String> championNamesEn = new ArrayList<>();
-		List<String> championNamesKo = new ArrayList<>();
-
-		for (Integer championId : championIds) {
-			championNamesEn.add(championMapper.getChampionEnName(championId));
-			championNamesKo.add(championMapper.getChampionKoName(championId));
-		}
-
-		model.addAttribute("championNamesEn",championNamesEn);
-		model.addAttribute("championNamesKo",championNamesKo);
-
-
-		// 09/18 추가 -송우성- 커뮤니티
-		List<ArticleDTO> articleDTO=articleMapper.findAll();
-//		model.addAttribute("community" , articleDTO);
-		List<ArticleDTO> limitedList = articleDTO.subList(0, 10); // 최대 요소 개수 제한
-		model.addAttribute("community", limitedList);
-
-		return "index";
-	}
-
-
-	@GetMapping("/live")
-	public String live(Model model){
-
 		return "live";
 	}
 
