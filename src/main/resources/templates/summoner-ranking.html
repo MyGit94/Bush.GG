@@ -2,232 +2,193 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <!-- css -->
   <th:block th:replace="common/fragments/config :: configFragment"/>
   <!-- 소환사 랭킹 css -->
   <link rel="stylesheet" href="css/summoner-ranking.css">
 
 </head>
-
-
 <body id="page-top">
+<div id="wrapper">
+  <th:block th:replace="common/fragments/side :: sideFragment"/>
+  <!-- 메인 컨텐츠 전체영역 -->
+  <div id="content-wrapper" class="d-flex flex-column">
 
-  <div id="wrapper">
-
-    <!--   왼쪽 사이드바  -->
-    <th:block th:replace="common/fragments/side :: sideFragment"/>
-
-
-    <!-- 메인 컨텐츠 전체영역 -->
-    <div id="content-wrapper" class="d-flex flex-column">
-
-      <!-- 검색창 -->
-      <th:block th:replace="common/fragments/header :: headerFragment"/>
+    <th:block th:replace="common/fragments/header :: headerFragment"/>
 
 
-      <!-- 소환사 랭크 전체영역 -->
-      <div class="summoner_rank_wrap">
-        <!-- 소환사 랭크 header 전체영역 -->
-        <div class="summoner_rank_profile_wrap">
+    <!-- 소환사 랭크 전체영역 -->
+    <div class="summoner_rank_wrap">
+      <!-- 소환사 랭크 header 전체영역 -->
+      <div class="summoner_rank_profile_wrap">
 
-          <!-- 소환사 랭크 header Line1 전체영역 -->
-          <div class="summoner_rank_profile">
-            <!-- Bush.gg 아이콘 -->
-            <div class="summoner_rank_profile_img">
-              <img src="img/logo.png" alt="">
-            </div>
-
-            <!-- 솔로랭크 , 소환사랭킹 -->
-            <div class="summoner_rank_profile_name">
-              <!-- 랭킹리스트 타입 -->
-              <h1 class="summoner_rank_type">
-                솔로 랭크
-              </h1>
-
-              <!-- 소환사 랭킹 -->
-              <p class="summoner_ranking">
-                소환사 랭킹
-              </p>
-            </div>
-
+        <!-- 소환사 랭크 header Line1 전체영역 -->
+        <div class="summoner_rank_profile">
+          <!-- Bush.gg 아이콘 -->
+          <div class="summoner_rank_profile_img">
+            <img src="img/logo.png" alt="">
           </div>
-          <!-- 소환사 랭크 header Line1 전체영역 끝 -->
 
-          <!-- 그랜드마스터 , 챌린저 점수컷 전체영역 -->
-          <div class="summoner_rank_cut">
-            <!-- 챌린저 -->
-            <div class="summoner_rank_challenger">
-              <!-- 챌린저 이미지 -->
-              <img src="img/tier/Challenger.png" alt="">
-              <!-- 챌린저 점수컷 텍스트 -->
-              <p class="summoner_rank_challenger_text" th:text="${challengerPoint}+'p'">1500p</p>
-            </div>
+          <!-- 솔로랭크 , 소환사랭킹 -->
+          <div class="summoner_rank_profile_name">
+            <!-- 랭킹리스트 타입 -->
+            <h1 class="summoner_rank_type">
+              솔로 랭크
+            </h1>
 
-            <!-- 그랜드마스터 -->
-            <div class="summoner_rank_grandmaster">
-              <!-- 그랜드마스터 이미지 -->
-              <img src="img/tier/GrandMaster.png" alt="">
-              <!-- 그랜드마스터 점수컷 텍스트 -->
-              <p class="summoner_rank_grandmaster_text" th:text="${grandmasterPoint}+'p'">1000p</p>
-            </div>
-
+            <!-- 소환사 랭킹 -->
+            <p class="summoner_ranking">
+              소환사 랭킹
+            </p>
           </div>
-          <!-- 그랜드마스터 , 챌린저 점수컷 전체영역 끝 -->
 
         </div>
-        <!-- 소환사 header 전체영역 끝 -->
+        <!-- 소환사 랭크 header Line1 전체영역 끝 -->
 
-        <!-- 소환사 랭크 리스트 전체영역 -->
-        <div class="summoner_rank_list_wrap">
-          <!-- 소환사 랭크 리스트 테이블 전체영역 -->
-          <table class="summoner_rank_table">
-            <!-- 테이블 헤더 -->
-            <thead>
-              <tr>
-                <!-- 5 -->
-                <td class="rank_table_header_number">#</td>
-                <!-- 25 -->
-                <td class="rank_table_header_name">소환사명</td>
-                <!-- 15 -->
-                <td class="rank_table_header_tier">티어</td>
-                <!-- 15 -->
-                <td class="rank_table_header_lp">LP</td>
-                <!-- 10 -->
-                <td class="rank_table_header_rate">승률</td>
-                <td class="rank_table_header_win">승</td>
-                <td class="rank_table_header_lose">패</td>
-                <td class="rank_table_header_level">레벨</td>
-              </tr>
-            </thead>
-
-            <!-- 테이블 내용 (1행) forEach-->
-            <tbody class="summoner_rank_table_body">
-              <tr th:each="ranking, iterStat : ${challengerRanking}">
-                <!-- 랭킹등수 -->
-                <td class="rank_table_number" th:text="${(page - 1) * 100 + iterStat.count}">1</td>
-
-                <!-- 소환사명 -->
-                <td class="rank_table_name" th:text="${ranking.getSummonerName()}">사각</td>
-                <!-- 티어 -->
-                <td class="rank_table_tier" >
-                  <!-- 티어 이미지 -->
-                  <img src="img/tier/Challenger.png" th:src="@{'img/tier/' + ${ranking.getTier()} + '.png'}" alt="">
-                  <!-- 티어명 -->
-                  <p th:text=" ${ranking.getTier()} ">Challenger</p>
-                </td>
-                <!-- Lp -->
-                <td class="rank_table_lp" th:text="${ranking.getLeaguePoints()}">1799p</td>
-                <!-- 승률 -->
-                <td class="rank_table_rate" th:text="${ranking.getWinRate()+'%'}">80%</td>
-                <!-- 승 -->
-                <td class="rank_table_win" th:text="${ranking.getWins()}">80</td>
-                <!-- 패 -->
-                <td class="rank_table_lose" th:text="${ranking.getLosses()}">20</td>
-                <!-- 레벨 -->
-                <td class="rank_table_level">9999</td>
-              </tr>
-            </tbody>
-            <!-- 테이블 내용 (1행) 끝 -->
-          </table>
-        </div>
-        <!-- 소환사 랭크 테이블 전체영역 끝 -->
-
-        <!-- 랭크 페이징 버튼 -->
-        <div class="summoner_rank_page_bt">
-          <!-- 버튼 위치 조정을 위한 전체영역 -->
-          <div class="summoner_rank_page_flex">
-            <!-- 이전 버튼 -->
-            <a href="" class="summoner_rank_page summoner_rank_page_previous">
-              << </a>
-                <!-- 1 -->
-                <!-- 현재 페이지를 나타내는 페이지에
-                on 클래스가 붙으면서 현재페이지임을 스타일로 지정 -->
-                <a href="#" class="summoner_rank_page on">
-                  1
-                </a>
-
-                <!-- 2 -->
-                <a href="#" class="summoner_rank_page">
-                  2
-                </a>
-
-                <!-- 3 -->
-                <a href="#" class="summoner_rank_page">
-                  3
-                </a>
-
-                <!-- 4 -->
-                <a href="#" class="summoner_rank_page">
-                  4
-                </a>
-
-                <!-- 5 -->
-                <a href="#" class="summoner_rank_page">
-                  5
-                </a>
-
-                <!-- 다음버튼 -->
-                <a href="" class="summoner_rank_page summoner_rank_page_next">
-                  >>
-                </a>
+        <!-- 그랜드마스터 , 챌린저 점수컷 전체영역 -->
+        <div class="summoner_rank_cut">
+          <!-- 챌린저 -->
+          <div class="summoner_rank_challenger">
+            <!-- 챌린저 이미지 -->
+            <img src="img/tier/Challenger.png" alt="">
+            <!-- 챌린저 점수컷 텍스트 -->
+            <p class="summoner_rank_challenger_text" th:text="${challengerPoint}+'p'">1500p</p>
           </div>
-          <!-- 버튼 위치조정을 위한 전체영역 끝 -->
+
+          <!-- 그랜드마스터 -->
+          <div class="summoner_rank_grandmaster">
+            <!-- 그랜드마스터 이미지 -->
+            <img src="img/tier/GrandMaster.png" alt="">
+            <!-- 그랜드마스터 점수컷 텍스트 -->
+            <p class="summoner_rank_grandmaster_text" th:text="${grandmasterPoint}+'p'">1000p</p>
+          </div>
+
         </div>
-        <!-- 페이징 전체영역 끝 = -->
+        <!-- 그랜드마스터 , 챌린저 점수컷 전체영역 끝 -->
+
       </div>
-      <!-- 소환사 랭크 전체영역 끝 -->
-    </div>
-    <!--  메인 컨텐츠 끝 -->
+      <!-- 소환사 header 전체영역 끝 -->
 
+      <!-- 소환사 랭크 리스트 전체영역 -->
+      <div class="summoner_rank_list_wrap">
+        <!-- 소환사 랭크 리스트 테이블 전체영역 -->
+        <table class="summoner_rank_table">
+          <!-- 테이블 헤더 -->
+          <thead>
+          <tr>
+            <!-- 5 -->
+            <td class="rank_table_header_number">Number</td>
+            <!-- 25 -->
+            <td class="rank_table_header_name">Summoner_Name</td>
+            <!-- 15 -->
+            <td class="rank_table_header_tier">Tier</td>
+            <!-- 15 -->
+            <td class="rank_table_header_lp">LP</td>
+            <!-- 10 -->
+            <td class="rank_table_header_rate">승률</td>
+            <td class="rank_table_header_win">승</td>
+            <td class="rank_table_header_lose">패</td>
+            <td class="rank_table_header_level">레벨</td>
+          </tr>
+          </thead>
 
+          <!-- 테이블 내용 (1행) forEach-->
+          <tbody class="summoner_rank_table_body">
+          <tr th:each="ranking, iterStat : ${challengerRanking}">
+            <!-- 랭킹등수 -->
+            <td class="rank_table_number" th:text="${(page - 1) * 100 + iterStat.count}">1</td>
 
-
-
-    <!-- 로그아웃 모달 (아직 사용할지 미정)-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
-        </div>
+            <!-- 소환사명 -->
+            <td class="rank_table_name" th:text="${ranking.getSummonerName()}">사각</td>
+            <!-- 티어 -->
+            <td class="rank_table_tier" >
+              <!-- 티어 이미지 -->
+              <img src="img/tier/Challenger.png" th:src="@{'img/tier/' + ${ranking.getTier()} + '.png'}" alt="">
+              <!-- 티어명 -->
+              <p th:text=" ${ranking.getTier()} ">Challenger</p>
+            </td>
+            <!-- Lp -->
+            <td class="rank_table_lp" th:text="${ranking.getLeaguePoints()}">1799p</td>
+            <!-- 승률 -->
+            <td class="rank_table_rate" th:text="${ranking.getWinRate()+'%'}">80%</td>
+            <!-- 승 -->
+            <td class="rank_table_win" th:text="${ranking.getWins()}">80</td>
+            <!-- 패 -->
+            <td class="rank_table_lose" th:text="${ranking.getLosses()}">20</td>
+            <!-- 레벨 -->
+            <td class="rank_table_level">9999</td>
+          </tr>
+          </tbody>
+          <!-- 테이블 내용 (1행) 끝 -->
+        </table>
       </div>
-    </div>
+      <!-- 소환사 랭크 테이블 전체영역 끝 -->
 
+      <!-- 랭크 페이징 버튼 -->
+      <div class="summoner_rank_page_bt">
+        <!-- 버튼 위치 조정을 위한 전체영역 -->
+        <div class="summoner_rank_page_flex">
+          <!-- 이전 버튼 -->
+          <a href="/ranking?page=1" class="summoner_rank_page summoner_rank_page_previous">
+            << </a>
+          <!-- 1 -->
+          <!-- 현재 페이지를 나타내는 페이지에
+          on 클래스가 붙으면서 현재페이지임을 스타일로 지정 -->
+          <a href="/ranking?page=1" class="summoner_rank_page on">
+            1
+          </a>
+
+          <!-- 2 -->
+          <a href="/ranking?page=2" class="summoner_rank_page">
+            2
+          </a>
+
+          <!-- 3 -->
+          <a href="/ranking?page=3" class="summoner_rank_page">
+            3
+          </a>
+
+          <!-- 4 -->
+          <a href="/ranking?page=4" class="summoner_rank_page">
+            4
+          </a>
+
+          <!-- 5 -->
+          <a href="/ranking?page=5" class="summoner_rank_page">
+            5
+          </a>
+
+          <a href="/ranking?page=6" class="summoner_rank_page">
+            6
+          </a>
+
+          <a href="/ranking?page=7" class="summoner_rank_page">
+            7
+          </a>
+
+          <a href="/ranking?page=8" class="summoner_rank_page">
+            8
+          </a>
+
+          <a href="/ranking?page=9" class="summoner_rank_page">
+            9
+          </a>
+
+          <a href="/ranking?page=10" class="summoner_rank_page">
+            10
+          </a>
+
+          <!-- 다음버튼 -->
+          <a href="/ranking?page=10" class="summoner_rank_page summoner_rank_page_next">
+            >>
+          </a>
+        </div>
+        <!-- 버튼 위치조정을 위한 전체영역 끝 -->
+      </div>
+      <!-- 페이징 전체영역 끝 = -->
+    </div>
+    <!-- 소환사 랭크 전체영역 끝 -->
   </div>
-  <!-- 로그아웃 모달 끝-->
-
-
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
-
-
-
-
+  <!--  메인 컨텐츠 끝 -->
+<th:block th:replace="common/fragments/script :: scriptFragment"/>
 </body>
-
-
 </html>

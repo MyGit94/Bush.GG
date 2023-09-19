@@ -123,25 +123,6 @@ a:hover {
 }
 
 
-/* 로그인 */
-.navbar_login,
-.navbar_register {
-    color: #000000;
-    font-size: 15px;
-    text-decoration: none;
-}
-
-.navbar_login::after {
-    content: " | ";
-    color: #333;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-/* 회원가입 */
-.navbar_register {
-    /* margin-left: 10px; */
-}
 
 
 /* 메인 컨텐츠 전체영역 */
@@ -176,6 +157,17 @@ a:hover {
     width: 49%;
     border: 1px solid rgb(234, 234, 234);
     /* background-color: pink; */
+}
+
+/* 로그인 영역*/
+#nickname{
+    color: #fff;
+
+}
+
+#nickname:hover{
+    color: #fff;
+
 }
 
 /* 커뮤니티 */
