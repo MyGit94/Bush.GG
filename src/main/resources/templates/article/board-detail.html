@@ -82,9 +82,7 @@
                     <li id="#" class="list-group-item CommentItem"><span>닉네임</span>
                         <div class="commentTextBox">
                             <p>
-                                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                     Beatae ab non, aspernatur adipisci ullam quas officiis dolores eveniet commodi, ea place
-                                    at voluptate. Ea aspernatur nulla omnis inventore similique iure hic.</span>
+                                <span>Lorem</span>
                             </p>
                             <div class="commentInfoBox">
                                 <span class="comment_info_date">2023-09-04</span>
@@ -119,10 +117,10 @@
                         </div>
                     </li>
                 </ul>
-                <form class="commentWriter">
+                <form class="commentWriter" action="/board/detail" method="post">
                     <div class="commentInBox">
                         <textarea class="form-control" placeholder="댓글을 남겨보세요" rows="5" name="comment"></textarea>
-                        <p th:error="*{comments}" style="color: red;">입력 오류메시지</p>
+                        <p th:error="*{comments}" style="color: red;"></p>
                     </div>
                     <div class="register d-flex justify-content-end mt-2">
                         <button type="submit" class="regiserBtn">등록</button>

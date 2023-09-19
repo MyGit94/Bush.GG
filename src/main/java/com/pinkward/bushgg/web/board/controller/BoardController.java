@@ -38,6 +38,7 @@ public class BoardController {
             @RequestParam(defaultValue = "0" , required = false) int status,
             @RequestParam(name = "searchSubject", required = false) String subject
     ) {
+        MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
         int selectPage = requestPage;
         int rowCount = articleService.countAll();
         PageParams pageParams = new PageParams(ELEMENT_SIZE, PAGE_SIZE, selectPage, rowCount);
@@ -87,7 +88,8 @@ public class BoardController {
 
 //    글쓰기 페이지 입장
         @GetMapping("/register")
-        public String register (Model model){
+        public String register (Model model , HttpSession session){
+            MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
             log.info("글쓰기 페이지 실행됨");
             ArticleDTO articleDTO = ArticleDTO.builder().build();
             model.addAttribute("articleDTO", articleDTO);
@@ -118,14 +120,17 @@ public class BoardController {
 //    게시글 상세보기
 
         @GetMapping("/detail/{articleId}")
-        public String detail ( @PathVariable int articleId, Model model){
+        public String detail ( @PathVariable int articleId, Model model , HttpSession session){
+            MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
             ArticleDTO articleDTO = articleService.detail(articleId);
             articleMapper.updateHitcount(articleDTO);
             int groupNo = articleDTO.getGroupNo();
             List<ArticleDTO> comments = articleService.read(groupNo);
             log.info("{}", articleDTO);
 
+//            댓글 읽기
             model.addAttribute("comments", comments);
+//            게시글 정보
             model.addAttribute("articleDTO", articleDTO);
             return "article/board-detail";
         }
@@ -142,11 +147,20 @@ public class BoardController {
             MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
             ArticleDTO articleDTO = (ArticleDTO) model.getAttribute("comments");
 
-            articleDTO.setWriter(member.getLoginId());
-            articleDTO.setContent(comment);
-            articleDTO.setPasswd(member.getPasswd());
-            articleDTO.setGroupNo(articleDTO.getGroupNo());
-//      articleDTO.setWriter("멤버로바꿀예정");
+            log.info("불러들여온 회원 정보 {}" , member);
+            if(member != null){
+                articleDTO.setWriter(member.getNickName());
+                articleDTO.setContent(comment);
+                articleDTO.setPasswd(member.getPasswd());
+                articleDTO.setGroupNo(articleDTO.getGroupNo());
+            } else {
+                log.info("로그인이 되지 않아 댓글쓰기를 실패하였습니다");
+            }
+
+           articleMapper.createComment(articleDTO);
+            redirectAttributes.addFlashAttribute("writeComment" , articleDTO);
+            log.info("정상적으로 댓글이 등록되었습니다 {} " , articleDTO);
+
             return "redirect:/board/detail";
         }
 

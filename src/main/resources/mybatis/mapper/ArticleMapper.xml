@@ -104,16 +104,17 @@
 
     <!--댓글 상세보기 -->
     <select id="readComment" resultType="ArticleDTO" parameterType="int">
-        SELECT subject,
-               writer,
-               content,
-               passwd,
-               TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss') as "regdate",
-               group_no,
-               level_no,
-               order_no
+        SELECT
+            writer,
+            content,
+            passwd,
+            TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss') as "regdate",
+            group_no,
+            level_no,
+            order_no
         FROM article
-        WHERE level_no >= 1 AND group_no = #{groupNo}
+        WHERE level_no >= 1
+          AND group_no = #{groupNo}
         ORDER BY order_no ASC
     </select>
 
