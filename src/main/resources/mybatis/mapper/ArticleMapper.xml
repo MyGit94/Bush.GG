@@ -94,7 +94,7 @@
                writer,
                subject,
                content,
-               TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss') regdate,
+               regdate,
                group_no,
                order_no,
                hitcount
@@ -108,7 +108,7 @@
             writer,
             content,
             passwd,
-            TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss') as "regdate",
+            REGDATE,
             group_no,
             level_no,
             order_no

@@ -68,7 +68,7 @@ public class HomeController {
 		List<ArticleDTO> limitedList = articleDTO.subList(0, 10); // 최대 요소 개수 제한
 
 		model.addAttribute("community", limitedList);
-
+		httpSession.setAttribute("status" , 0);
 		return "index";
 	}
 
