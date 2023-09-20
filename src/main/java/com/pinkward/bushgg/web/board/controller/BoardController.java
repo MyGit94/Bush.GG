@@ -29,6 +29,8 @@ public class BoardController {
     private final int PAGE_SIZE = 5;
 
 
+
+
     //    게시판 입장
     @GetMapping
     public String article(
@@ -48,8 +50,8 @@ public class BoardController {
 
         if (requestPage != 0) {
             List<ArticleDTO> list;
-           int status = (int) session.getAttribute("status");
-           log.info("if 문에서 실행된 status 값 : {}" , status);
+            int status = (int) session.getAttribute("status");
+            log.info("if 문에서 실행된 status 값 : {}" , status);
             switch (status) {
                 case 0: // 페이징
                     list = articleService.findByAll2(pageParams);
@@ -123,9 +125,14 @@ public class BoardController {
                              @RequestParam("subject") String subject,
                              @RequestParam("content") String content,
                              @ModelAttribute("articleDTO") ArticleDTO articleDTO ,
-                             @RequestParam("category") int category){
+                             @RequestParam("category") int category ,
+                             HttpSession session){
 
         log.info("글쓰기 페이지 서버작업 실행됨");
+
+        MemberDTO memberDTO=(MemberDTO) session.getAttribute("loginMember");
+        articleDTO.setWriter(memberDTO.getNickName());
+        articleDTO.setPasswd(memberDTO.getPasswd());
         articleDTO.setBoardId(category);
         articleDTO.setSubject(subject);
         articleDTO.setContent(content);
@@ -153,6 +160,12 @@ public class BoardController {
 
         int countComments  = articleMapper.cellComments(groupNo);
         log.info("댓글수 계산 결과 입니다 : {} " ,countComments);
+
+
+        List<ArticleDTO> readCommentReplys = articleMapper.readCommentReply(groupNo);
+
+//        대댓글 읽기
+        model.addAttribute("commentReplys" , readCommentReplys);
 
 //        댓글수 계산
         model.addAttribute("countComments" , countComments);
@@ -195,6 +208,40 @@ public class BoardController {
 
         articleMapper.createComment(articleDTO);
         redirectAttributes.addFlashAttribute("writeComment" , articleDTO);
+
+
+        return "redirect:/board/detail/"+articleDTO.getArticleId();
+    }
+
+
+    //    대댓글 쓰기
+    @PostMapping("/detail/reply")
+    public String commentReply (
+            RedirectAttributes redirectAttributes,
+            Model model,
+            HttpSession session,
+            @Valid @RequestParam("comment") String comment
+    ){
+        MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
+        log.info("(detail) 읽어온 회원 정보 : {}" , member);
+//        게시글 디테일 정보 받기
+        ArticleDTO articleDTO = (ArticleDTO) session.getAttribute("articleDTO");
+        log.info("post요청 :: 받아온 articleDTO 정보 : {}" , articleDTO);
+        if(member != null){
+            articleDTO.setHitcount(articleDTO.getHitcount());
+            articleDTO.setSubject(articleDTO.getSubject());
+            articleDTO.setWriter(member.getNickName());
+            articleDTO.setContent(comment);
+            articleDTO.setPasswd(member.getPasswd());
+            articleDTO.setGroupNo(articleDTO.getGroupNo());
+            articleDTO.setBoardId(articleDTO.getBoardId());
+
+        } else {
+            log.info("로그인이 되지 않아 댓글쓰기를 실패하였습니다");
+        }
+
+        articleMapper.commentByComment(articleDTO);
+        redirectAttributes.addFlashAttribute("writeCommentReply" , articleDTO);
 
 
         return "redirect:/board/detail/"+articleDTO.getArticleId();

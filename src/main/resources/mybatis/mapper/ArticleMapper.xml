@@ -21,13 +21,13 @@
          level_no,
          order_no)
         VALUES (article_id_seq.NEXTVAL,
-                '테스트',
+                #{writer},
                 #{boardId},
                 #{subject},
                 #{content},
                 SYSDATE,
                 '0',
-                '1111',
+                #{passwd},
                 article_id_seq.CURRVAL,
                 0,
                 0)
@@ -102,18 +102,34 @@
         WHERE articleid = #{articleId}
     </select>
 
-    <!--댓글 상세보기 -->
+    <!--게시글 상세보기에 댓글출력 -->
     <select id="readComment" resultType="ArticleDTO" parameterType="int">
         SELECT
             writer,
             content,
             passwd,
-            TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss') as "regdate",
+            regdate,
             group_no,
             level_no,
             order_no
         FROM article
-        WHERE level_no >= 1
+        WHERE level_no = 1
+          AND group_no = #{groupNo}
+        ORDER BY order_no ASC
+    </select>
+
+    <!--게시글 상세보기에 답글출력 -->
+    <select id="readCommentReply" resultType="ArticleDTO" parameterType="int">
+        SELECT
+            writer,
+            content,
+            passwd,
+            regdate,
+            group_no,
+            level_no,
+            order_no
+        FROM article
+        WHERE level_no = 2
           AND group_no = #{groupNo}
         ORDER BY order_no ASC
     </select>
@@ -156,7 +172,7 @@
                 #{passwd},
                 #{boardId},
                 #{groupNo},
-                sysdate ,
+                SYSDATE,
                 1,
                 (SELECT MAX(order_no) + 1
                  FROM article
@@ -164,8 +180,34 @@
                    AND group_no = #{groupNo}))
     </insert>
 
-
-
+<!--    답글쓰기 -->
+   <insert id="commentByComment" parameterType="ArticleDTO">
+    INSERT INTO article
+    (articleid,
+     hitcount,
+    boardid,
+    writer,
+    subject,
+    content,
+    passwd,
+    group_no,
+    level_no,
+    order_no)
+    VALUES      (
+    article_id_seq.NEXTVAL,
+    #{hitcount},
+    #{boardId},
+    #{writer},
+    #{subject},
+    #{content},
+    #{passwd},
+    #{groupNo},
+    2,
+    (SELECT MAX(order_no) + 1
+     FROM article
+     WHERE boardid = #{boardId}
+       AND group_no = #{groupNo}))
+   </insert>
 
     <!--    페이징 -->
     <select id="findByAll" resultType="ArticleDTO" parameterType="PageParams">

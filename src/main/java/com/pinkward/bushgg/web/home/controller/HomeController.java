@@ -70,6 +70,7 @@ public class HomeController {
 
 		model.addAttribute("community", limitedList);
 
+		httpSession.setAttribute("status" , 0);
 		return "index";
 	}
 
