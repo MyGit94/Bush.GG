@@ -40,9 +40,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public boolean isLoginIdExists(String loginId) {
-		
-		return false;
-	}	
-
+	public boolean checkDuplicate(String loginId) {
+	    return memberMapper.existsByLogin(loginId);
+	}
 }

@@ -37,9 +37,13 @@
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="text" class="form-control form-control-user"
                                     	th:field="*{loginId}" th:errorclass="text-danger" placeholder="아이디">
-								<div class="errors">
-									<p th:errors="*{loginId}" th:class="text-danger">입력 오류메시지</p>
-                                </div>
+									<div class="errors">
+										<div>
+											<p th:class="error" th:errors="*{loginId}">입력 오류메시지</p>
+											<!-- 아이디 중복 체크 결과 표시 -->
+											<p th:class="error" th:text="${loginIdError}" th:style="${loginIdError} ? 'margin: 0.35rem 0rem 0rem' : 'margin: 0' ">중복체크</p>
+										</div>
+	                               </div>
                                 </div> 
                                 
                                 <!-- 닉네임 -->
@@ -47,7 +51,9 @@
                                     <input type="text" class="form-control form-control-user"
                                     	th:field="*{nickName}" placeholder="닉네임">
                                     <div class="errors">
-                                    	<p th:errors="*{nickName}" th:class="text-danger">입력 오류메시지</p>
+                                   		<div>
+                                    		<p class="error" th:errors="*{nickName}">입력 오류메시지</p>
+                                    	</div>
                                 	</div>
                                 </div>
                             </div>
@@ -58,7 +64,9 @@
                                     <input type="email" class="form-control form-control-user"
                                     	th:field="*{email}" placeholder="이메일">
                                     <div class="errors">
-                                    	<p th:errors="*{email}" th:class="text-danger">입력 오류메시지</p>
+                                   		<div>
+                                    		<p class="error" th:errors="*{email}">입력 오류메시지</p>
+                                    	</div>
                                 	</div>
                                 </div>
                                 <!-- 이메일 끝 -->
@@ -70,7 +78,9 @@
                                         <input type="password" class="form-control form-control-user"
                                             th:field="*{passwd}"placeholder="비밀번호">
                                        <div class="errors">
-                                        	<p th:errors="*{passwd}" th:class="text-danger">입력 오류메시지</p>
+                                 		   <div>
+                                        		<p class="error" th:errors="*{passwd}">입력 오류메시지</p>
+                                        	</div>
                                     	</div>
                                     </div>
 
@@ -79,7 +89,9 @@
                                         <input type="password" class="form-control form-control-user"
                                             th:field="*{passwd}" placeholder="비밀번호 확인">
                                         <div class="errors">
-                                       		<p th:errors="*{passwd}" th:class="text-danger">입력 오류메시지</p>
+                                       		 <div>
+                                       			<p class="error" th:errors="*{passwd}">입력 오류메시지</p>
+                                       		</div> 
                                   		</div>
                                     </div>
                                 </div>
@@ -114,6 +126,29 @@
     </div>
        <!--   자바 스크립트 -->
     <th:block th:replace="common/fragments/script :: scriptFragment"/>
+    
+<script>
+    $(document).ready(function() {
+        // 중복 체크 버튼 클릭 이벤트
+        $("#checkDuplicateButton").click(function() {
+            var loginId = $("#loginId").val();
+            if (!loginId) {
+                $("#loginIdError").text("아이디를 입력하세요.");
+                return;
+            }
+            
+            // 중복 체크 요청
+            $.get("/member/api/check-duplicate-loginid/" + loginId, function(data) {
+                if (data.isDuplicate) {
+                    $("#loginIdError").text("이미 사용 중인 아이디입니다.");
+                } else {
+                    $("#loginIdError").text("사용 가능한 아이디입니다.");
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 
 

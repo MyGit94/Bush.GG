@@ -13,6 +13,6 @@ public interface MemberService {
 	public List<MemberDTO> getMemberList();
 	public MemberDTO getMember(String nickName);
 	
-	 boolean isLoginIdExists(String loginId);
+	boolean checkDuplicate(String loginId);
 	
 }

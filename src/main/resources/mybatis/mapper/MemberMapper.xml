@@ -62,4 +62,10 @@
 		WHERE nickName = #{value}
 	</select> -->
 	
+	<select id="existsByLogin" resultType="boolean">
+    SELECT COUNT(*) 
+    FROM member 
+    WHERE loginId = #{loginId}
+	</select>
+	
 </mapper>
