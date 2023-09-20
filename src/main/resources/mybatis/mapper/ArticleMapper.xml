@@ -119,6 +119,15 @@
     </select>
 
 
+<!--    댓글 갯수 계산-->
+    <select id="cellComments" resultType="int" parameterType="int">
+        SELECT NVL(COUNT(articleid), 0) AS commentCount
+        FROM article
+        WHERE group_no = #{groupNo}
+          AND level_no >= 1
+
+    </select>
+
     <select id="getCountAll" resultType="int">
         SELECT COUNT(articleid)
         FROM article
@@ -165,21 +174,25 @@
                writer,
                regdate,
                hitcount,
-               boardId
+               boardId ,
+               level_no
         FROM (SELECT CEIL(rownum / #{pageParams.elementSize}) request_page,
                      articleid,
                      subject,
                      writer,
                      TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss')  regdate,
                      hitcount,
-                     boardId
+                     boardId ,
+                     level_no
               FROM (SELECT articleid,
                            subject,
                            writer,
                            regdate,
                            hitcount,
-                           boardId
+                           boardId ,
+                           level_no
                     FROM article
+                    WHERE order_no = 0
                     ORDER BY group_no DESC, order_no ASC, level_no ASC))
         WHERE request_page = #{pageParams.requestPage}
     </select>

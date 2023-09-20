@@ -86,21 +86,21 @@
                     <input type="text" class="form-control small" placeholder="검색 내용을 입력해주세요"
                           name="searchSubject" aria-label="Search" aria-describedby="basic-addon2">
                     <!-- 검색 버튼 네모박스 -->
-                    <button onclick="location.href='index.html';" class="btn boardSearchBtn" type="submit">
+                    <button class="btn boardSearchBtn" type="submit">
                         <!-- 검색 버튼 돋보기 아이콘 -->
                         <i class="fas fa-search fa-sm"></i>
                     </button>
                 </form>
                 <!-- 검색 전체 끝-->
                 <div class="page-item">
-                    <a th:href="@{/board(requestPage=${pagination.previousStartPage})}">
+                    <a th:if="${pageParams.getRequestPage() != 1}"   th:href="@{/board(requestPage=${pageParams.getRequestPage() - 1})}">
                         <button class="btn prevBtn" type="button">
                             <i class="fa fa-angle-double-left"></i>
                         </button>
                     </a>
 
-                    <a th:href="@{/board(requestPage=${pagination.totalPages})}">
-                        <button class="btn nextBtn" type="button">
+                    <a th:href="@{/board(requestPage=${pageParams.getRequestPage() + 1})}">
+                    <button class="btn nextBtn" type="button">
                             <i class="fa fa-angle-double-right"></i>
                         </button>
                     </a>

@@ -51,6 +51,7 @@ public class MemberController {
 	    
 	    // 리다이렉트 시 메시지 전달
 	    redirectAttributes.addFlashAttribute("successMessage", "회원 가입이 성공적으로 완료되었습니다.");
+
 	    return "redirect:/member/login";
 	}
 
@@ -95,5 +96,10 @@ public class MemberController {
 		return "redirect:/";
 	}
 
+	@GetMapping("/nickname")
+	public String nickname(Model model) {
+		model.addAttribute("successMessage2", "닉네임 등록이 성공적으로 완료되었습니다.");
+		return "member/nickname";
+	}
 	
 }

@@ -72,26 +72,35 @@
              <!-- 게시판 끝-->
              <!-- 댓글 목록 -->
                 <div class="commentCountBox">
-                    <h5 class="titleText">💬</h5><h5 class="titleText">댓글 ?개 </h5>
+<!--                    댓글 갯수 -->
+                    <h5 class="titleText">💬</h5><h5 class="titleText" th:text=" '댓글:'+${countComments} + '개'"></h5>
                 </div>
 
 
 <!--            댓글 -->
             <div class="commentBox">
                 <ul class="list-group commentList">
-                    <li id="#" class="list-group-item CommentItem"><span>닉네임</span>
+<!--                    li 기준으로 EACH -->
+                    <li class="list-group-item CommentItem" th:each="comment : ${comments}">
+<!--                        닉네임 -->
+                        <span th:text="${comment.writer}"></span>
                         <div class="commentTextBox">
                             <p>
-                                <span>Lorem</span>
+<!--                                내용 -->
+                                <span th:text="${comment.content}">Lorem</span>
                             </p>
                             <div class="commentInfoBox">
-                                <span class="comment_info_date">2023-09-04</span>
+<!--                                날짜 -->
+                                <span class="comment_info_date" th:text="${comment.regdate}"></span>
+<!--                                답글쓰기 버튼-->
                                 <a href="#" role="button" class="commentInfoBtn"> 답글쓰기 </a>
+
                             </div>
                         </div>
-                    </li>
-                    <li id="#" class="list-group-item CommentItemReply"><span>닉네임</span>
-                        <div class="Comment_text_Box">
+
+<!--                        답글-->
+                        <div class="list-group-item CommentItemReply Comment_text_Box">
+                            <span>닉네임</span>
                             <p>
                                 <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                                      Beatae ab non, aspernatur adipisci ullam quas officiis dolores eveniet commodi, ea place
@@ -101,23 +110,24 @@
                                 <span class="comment_info_date">2023-09-04</span>
                                 <a href="#" role="button" class="commentInfoBtn"> 답글쓰기 </a>
                             </div>
+
+                            <form class="commentWriter" action="/board/detail/commentReply" method="post">
+                                <div class="commentInBox">
+                                    <textarea class="form-control" placeholder="댓글을 남겨보세요" rows="5" name="comment"></textarea>
+                                    <p th:error="*{comments}" style="color: red;"></p>
+                                </div>
+                                <div class="register d-flex justify-content-end mt-2">
+                                    <button type="submit" class="regiserBtn">등록</button>
+                                </div>
+                            </form>
                         </div>
                     </li>
-                    <li id="#" class="list-group-item CommentItemReply"><span>닉네임</span>
-                        <div class="Comment_text_Box">
-                            <p>
-                                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                     Beatae ab non, aspernatur adipisci ullam quas officiis dolores eveniet commodi, ea place
-                                    at voluptate. Ea aspernatur nulla omnis inventore similique iure hic.</span>
-                            </p>
-                            <div class="commentInfoBox">
-                                <span class="comment_info_date">2023-09-04</span>
-                                <a href="#" role="button" class="commentInfoBtn"> 답글쓰기 </a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <form class="commentWriter" action="/board/detail" method="post">
+
+
+
+
+<!--                    댓글쓰기-->
+                <form class="commentWriter" action="/board/detail/comment" method="post">
                     <div class="commentInBox">
                         <textarea class="form-control" placeholder="댓글을 남겨보세요" rows="5" name="comment"></textarea>
                         <p th:error="*{comments}" style="color: red;"></p>

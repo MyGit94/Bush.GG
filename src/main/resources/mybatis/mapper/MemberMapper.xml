@@ -48,6 +48,8 @@
 		</where>
 	</select>
 
+
+
 	<!-- 로그인한 아이디로 닉네임변경 -->
 	<update id="updateNickName" parameterType="MemberDTO">
 		UPDATE member
