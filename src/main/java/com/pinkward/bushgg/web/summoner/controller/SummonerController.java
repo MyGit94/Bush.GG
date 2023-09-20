@@ -60,7 +60,6 @@ public class SummonerController {
 
         // 이름으로 소환사 정보 가져옴
         SummonerDTO summoner = apiServiceKo.getSummonerInfo(esummonerName);
-        log.info("{}",summoner);
         if(summoner == null) {
             return "/404";
         }
@@ -157,8 +156,6 @@ public class SummonerController {
             }
             summonerWithCounts =  summonerService.getSummonerWith(matchInfo,teamId,name, summonerWithCounts);
             matchInfoDTO =  matchService.getMatchInfoDTO(matchInfoDTO,matchInfo);
-            log.info("{}",matchInfoDTO);
-            log.info("{}",participantsList);
             matchList.put("matchInfo",matchInfoDTO);
             matchList.put("participantsList", participantsList);
 
