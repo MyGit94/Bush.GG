@@ -49,5 +49,8 @@ public interface ArticleMapper {
     //	게시글 상세보기 조회수 업
     public void updateHitcount(ArticleDTO articleDTO);
 
+//    댓글 갯수 계산
+    public int cellComments(int groupNo);
+
     public List<ArticleDTO> findSubject(String subject);
 }

@@ -5271,9 +5271,6 @@ a.badge-dark:focus, a.badge-dark.focus {
   border-color: #4e73df;
 }
 
-.list-group-item + .list-group-item {
-  border-top-width: 0;
-}
 
 .list-group-item + .list-group-item.active {
   margin-top: -1px;

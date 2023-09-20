@@ -27,7 +27,7 @@ public interface MemberMapper {
 	// 검색 타입별 회원 검색
 	public List<MemberDTO> findBySearchNick(@Param("type") String type, @Param("value") String value);
 	
-	
+
 	// 닉네임 찾기
 	public MemberDTO findByNick(String nickName);
 	

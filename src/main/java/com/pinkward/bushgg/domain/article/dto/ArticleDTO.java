@@ -16,8 +16,6 @@ public class ArticleDTO {
     String writer;
 //    게시판번호
     int boardId;
-//    관리자번호
-    String adminNo;
 //    제목
     String subject;
 //    내용
