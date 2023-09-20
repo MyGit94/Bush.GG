@@ -38,6 +38,11 @@ public class MemberServiceImpl implements MemberService{
 	public MemberDTO getMember(String nickName) {
 		return memberMapper.findByNick(nickName);
 	}
-	
+
+	@Override
+	public boolean isLoginIdExists(String loginId) {
+		
+		return false;
+	}	
 
 }

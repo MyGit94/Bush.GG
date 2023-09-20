@@ -34,4 +34,7 @@ public interface MemberMapper {
 	// 닉네임 수정
 	public void updateNickName(MemberDTO memberDTO);
 	
+    // 로그인 아이디로 회원 존재 여부 확인
+    public boolean existsByLoginId(String loginId);
+	
 }
