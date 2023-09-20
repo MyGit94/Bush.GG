@@ -2,10 +2,14 @@ package com.pinkward.bushgg.domain.member.mapper;
 
 import java.util.List;
 
+import com.pinkward.bushgg.domain.challenges.dto.ChallengeDTO;
+import com.pinkward.bushgg.domain.ranking.dto.ChallengerRankingDTO;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.pinkward.bushgg.domain.member.dto.MemberDTO;
+import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface MemberMapper {
@@ -33,5 +37,8 @@ public interface MemberMapper {
 	
 	// 닉네임 수정
 	public void updateNickName(MemberDTO memberDTO);
-	
+
+	@Select("SELECT * FROM MEMBER WHERE loginId = #{loginId}")
+	MemberDTO getUserById(String loginId);
+
 }

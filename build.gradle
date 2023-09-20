@@ -71,6 +71,11 @@ dependencies {
     // json
     implementation 'org.json:json:20210307' // 또는 최신 버전을 사용하세요
 
+    implementation 'com.google.oauth-client:google-oauth-client:1.31.5'
+    implementation 'com.google.http-client:google-http-client-jackson2:1.39.2'
+    implementation 'com.google.api-client:google-api-client:1.31.5'
+    implementation 'com.google.apis:google-api-services-people:v1-rev537-1.25.0'
+
 
 }
 

@@ -20,26 +20,30 @@ public class SummonerServiceImpl implements SummonerService{
             String tier = "CHALLENGER";
             String tier1 = "GRANDMASTER";
             String tier2 ="MASTER";
-            Map<String, Object> metadata = (Map<String, Object>) summonerTier.iterator().next();
-            if(tier.equals((String)metadata.get("tier")) || tier1.equals((String)metadata.get("tier")) ||tier2.equals((String)metadata.get("tier"))){
-                summonerTierDTO.setTier((String) metadata.get("tier"));
-                summonerTierDTO.setTierName((String) metadata.get("tier"));
-            } else{
-                summonerTierDTO.setTier((String) metadata.get("tier"));
-                summonerTierDTO.setTierName((String) metadata.get("tier")+' '+changeRank((String) metadata.get("rank")));
+            String queueType ="RANKED_SOLO_5x5";
+            for (Map<String, Object> metadata : summonerTier) {
+                log.info(" 메타데이터 :{}",metadata);
+                if ("RANKED_SOLO_5x5".equals(metadata.get("queueType"))) {
+                    if(tier.equals((String)metadata.get("tier")) || tier1.equals((String)metadata.get("tier")) ||tier2.equals((String)metadata.get("tier"))){
+                        summonerTierDTO.setTier((String) metadata.get("tier"));
+                        summonerTierDTO.setTierName((String) metadata.get("tier"));
+                    } else{
+                        summonerTierDTO.setTier((String) metadata.get("tier"));
+                        summonerTierDTO.setTierName((String) metadata.get("tier")+' '+changeRank((String) metadata.get("rank")));
+                    }
+
+                    summonerTierDTO.setLeaguePoints((int) metadata.get("leaguePoints"));
+                    summonerTierDTO.setWins((int) metadata.get("wins"));
+                    summonerTierDTO.setLosses((int) metadata.get("losses"));
+                    double winRate = ((double)summonerTierDTO.getWins() / (summonerTierDTO.getWins() + summonerTierDTO.getLosses())) * 100;
+                    summonerTierDTO.setWinRate((int)Math.round(winRate));
+                    break;
+
+                }
             }
-
-            summonerTierDTO.setLeaguePoints((int) metadata.get("leaguePoints"));
-            summonerTierDTO.setWins((int) metadata.get("wins"));
-            summonerTierDTO.setLosses((int) metadata.get("losses"));
-            double winRate = ((double)summonerTierDTO.getWins() / (summonerTierDTO.getWins() + summonerTierDTO.getLosses())) * 100;
-            summonerTierDTO.setWinRate((int)Math.round(winRate));
         }
-
-
-
-
         return summonerTierDTO;
+
     }
     public List<SummonerWithCount> getSummonerWith(Map<String, Object> matchInfo, int teamId, String name, List<SummonerWithCount> summonerWithCounts){
 

@@ -4,10 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pinkward.bushgg.domain.member.dto.MemberDTO;
@@ -87,4 +84,35 @@ public class MemberController {
 		}
 		return "redirect:/";
 	}
+
+	@GetMapping("/nickname")
+	public String nickname(Model model) {
+		model.addAttribute("successMessage2", "닉네임 등록이 성공적으로 완료되었습니다.");
+		return "member/nickname";
+	}
+
+	@PostMapping("/nickname")
+	public String nicknameFinish(@RequestParam String nickName, HttpSession session) {
+		String userId = (String) session.getAttribute("userId");
+		String userEmail = (String) session.getAttribute("userEmail");
+		log.info("닉네임 : {}",nickName);
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setNickName(nickName);
+		memberDTO.setPasswd("1111");
+		memberDTO.setLoginId(userId);
+		memberDTO.setEmail(userEmail);
+		memberService.register(memberDTO);
+		MemberDTO loginMember = memberService.isMember(memberDTO.getLoginId(), memberDTO.getPasswd());
+		session.setAttribute("loginMember", loginMember);
+		return "redirect:/";
+	}
+
+	@GetMapping("/googleLogin")
+	public String gooleLogin(HttpSession session){
+		MemberDTO member = (MemberDTO) session.getAttribute("Member");
+		session.setAttribute("loginMember", member);
+		return "redirect:/";
+	}
+
+
 }
