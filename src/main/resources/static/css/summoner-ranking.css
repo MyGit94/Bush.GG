@@ -7,6 +7,10 @@ h5 {
   margin: 0;
 }
 
+a.on {
+  font-weight: bold;
+  color: mediumvioletred;
+}
 
 /* 소환사 랭크 header 전체영역 */
 .summoner_rank_profile_wrap {

@@ -10,3 +10,7 @@ window.addEventListener("unload", () =>{
    loading.classList.toggle("on");
 })
 
+$('#videoModal').on('hidden.bs.modal', function (e) {
+   // Note: '#video' is the id of the iframe
+   $('#video').attr('src', $('#video').attr('src'));
+});
