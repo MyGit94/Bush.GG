@@ -65,7 +65,6 @@ public class HomeController {
 
 		// 09/18 추가 -송우성- 커뮤니티
 		List<ArticleDTO> articleDTO= articleMapper.findAllByHitcount();
-		log.info("조회수순으로 정렬한 리스트 {} " ,articleDTO);
 		List<ArticleDTO> limitedList = articleDTO.subList(0, 10); // 최대 요소 개수 제한
 
 		model.addAttribute("community", limitedList);
@@ -84,7 +83,6 @@ public class HomeController {
 
 
 		for (String participantId : challengerIds) {
-			log.info("{}",index);
 			index++;
 			if (count > 3 || index >100) {
 				break;
@@ -111,7 +109,6 @@ public class HomeController {
 			}
 		}
 		List<Map<String, Object>> currentGameInfo = currentGameService.getCurrentGameInfo(currentGames);
-		log.info("{}",currentGameInfo);
 		model.addAttribute("currentGameInfo", currentGameInfo);
 		return "live";
 	}

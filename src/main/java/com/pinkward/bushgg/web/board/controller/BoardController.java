@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 @Controller
@@ -38,6 +39,7 @@ public class BoardController {
             @RequestParam(defaultValue = "0" , required = false) int status,
             @RequestParam(name = "searchSubject", required = false) String subject
     ) {
+        session.getAttribute("loginMember");
         int selectPage = requestPage;
         int rowCount = articleService.countAll();
         PageParams pageParams = new PageParams(ELEMENT_SIZE, PAGE_SIZE, selectPage, rowCount);
@@ -62,7 +64,6 @@ public class BoardController {
             }
 
         }
-
             model.addAttribute("pagination", pagination);
             model.addAttribute("requestPage", requestPage);
 

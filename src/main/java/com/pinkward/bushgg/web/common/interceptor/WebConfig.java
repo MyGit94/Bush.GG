@@ -26,13 +26,13 @@ public class WebConfig implements WebMvcConfigurer{
 
 	 @Override
 	 public void addInterceptors(InterceptorRegistry registry) {
-		 // 세부 컨트롤러 로그 기록 인터셉터 등록
-		 //registry.addInterceptor(new LoggerInterceptor())
-		 //.order(1)
-		 // 하위 패스에 상관없이 모든 요청에 인터셉터 적용 
-		 //.addPathPatterns("/**")
-		 //인터셉터에서 제외할 패턴 설정
-		 //.excludePathPatterns("/*.ico", "/*.html", "/css/**", "/vendor/**", "/error"); 
+//		  세부 컨트롤러 로그 기록 인터셉터 등록
+//		 registry.addInterceptor(new LoggerInterceptor())
+//		 .order(1)
+//		  하위 패스에 상관없이 모든 요청에 인터셉터 적용
+//		 .addPathPatterns("/**")
+//		 인터셉터에서 제외할 패턴 설정
+//		 .excludePathPatterns("/*.ico", "/*.html", "/css/**", "/vendor/**", "/error");
 		 
 		 // 세부 컨트롤러 실행 전 로그인 체크 인터셉터 등록
 //		 registry.addInterceptor(new LoginCheckInterceptor())

@@ -64,11 +64,7 @@ public class MemberController {
 	
 	@PostMapping("/login") 
 	public String login(@Valid @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult, HttpServletRequest request) {
-		
-//		if (bindingResult.hasErrors()) {
-//			return "member/login";
-//		}
-		
+
 		MemberDTO loginMember = memberService.isMember(memberDTO.getLoginId(), memberDTO.getPasswd());
 		
 		// 회원이 아닌 경우
@@ -79,9 +75,6 @@ public class MemberController {
 		// 회원인 경우
 		HttpSession session =  request.getSession();
 		session.setAttribute("loginMember", loginMember);
-		
-		log.info("로그인한 멤버{}", loginMember);
-		
 		return "redirect:/";
 	}
 	
@@ -94,6 +87,4 @@ public class MemberController {
 		}
 		return "redirect:/";
 	}
-
-	
 }

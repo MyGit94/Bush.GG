@@ -101,8 +101,8 @@
                 <img th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/profileicon/' + ${rank.getProfileIcon()}+'.png'}">
               </div>
               <!-- 소환사 이름 -->
-              <h1 class="rank_name" th:text="${rank.getName()}">
-                사각</h1>
+              <h1 class="rank_name"><a th:href="@{/summoner(summonerName=${rank.getName()})}" th:text="${rank.getName()}">>
+                사각</a></h1>
             </div>
 
             <!-- 달성티어 -->

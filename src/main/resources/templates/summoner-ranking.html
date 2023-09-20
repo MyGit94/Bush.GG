@@ -97,7 +97,7 @@
             <td class="rank_table_number" th:text="${(page - 1) * 100 + iterStat.count}">1</td>
 
             <!-- 소환사명 -->
-            <td class="rank_table_name" th:text="${ranking.getSummonerName()}">사각</td>
+            <td class="rank_table_name"><a th:href="@{/summoner(summonerName=${ranking.getSummonerName()})}" th:text="${ranking.getSummonerName()}">사각</a></td>
             <!-- 티어 -->
             <td class="rank_table_tier" >
               <!-- 티어 이미지 -->
@@ -187,5 +187,6 @@
   </div>
   <!--  메인 컨텐츠 끝 -->
 <th:block th:replace="common/fragments/script :: scriptFragment"/>
+</div>
 </body>
 </html>
