@@ -29,8 +29,6 @@ public interface ArticleMapper {
     //   /** 요청 페이지, 페이지당 보여지는 목록 갯수에 따른 목록 반환 */
     public List<ArticleDTO> findByAll(PageParams pageParams);
 
-//   /** 댓글, 대댓글 쓰기, 게시글 상세보기, 게시글 수정, 게시글 삭제 등 기능 추가*/
-
     //   /** 댓글 등록*/
     void createComment(ArticleDTO articleDTO);
 
