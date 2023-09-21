@@ -39,20 +39,22 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.findByNick(nickName);
 	}
 
+	// 중복 체크
+	
 	@Override
-	public boolean checkDuplicate(String loginId) {
-	    return memberMapper.existsByLogin(loginId);
+	public boolean checkLoginId(String loginId) {
+	    return memberMapper.checkLoginId(loginId);
 	}
-//	@Override
-//	public boolean checkNickName(String nickName) {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-//
-//	@Override
-//	public boolean checkEmail(String email) {
-//		// TODO Auto-generated method stub
-//		return false;
-//		}	
+	
+	@Override
+	public boolean checkNickName(String nickName) {
+	    return memberMapper.checkNickName(nickName);
 	}
+	
+	@Override
+	public boolean checkEmail(String email) {
+		return memberMapper.checkEmail(email);
+	}
+
+}
 

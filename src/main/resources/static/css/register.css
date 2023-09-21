@@ -67,18 +67,17 @@ body {
  /* 오류메시지 */
  .errors{
 	margin-top: 0.5rem;
-    display: flex;
+    display: c;
     color: red;
     text-align: center;
     justify-content: center;
  }
- 
-/*.form-group {
-    margin-top: 1rem !important;
-    margin-bottom: 1rem !important;
-} */
+.errorBox{
+    display: flex;
+    justify-content: center;
+ }
 .error {
 	margin: 0.35rem 0rem 0rem !important;
-    font-size: 12px;
+    font-size: 14px;
     color: red;
 }

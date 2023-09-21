@@ -13,8 +13,9 @@ public interface MemberService {
 	public List<MemberDTO> getMemberList();
 	public MemberDTO getMember(String nickName);
 	
-	boolean checkDuplicate(String loginId);
-//	boolean checkNickName(String nickName);
-//	boolean checkEmail(String email);
+	// 중복 체크
+	boolean checkLoginId(String loginId);
+	boolean checkNickName(String nickName);
+	boolean checkEmail(String email);
 	
 }

@@ -62,10 +62,25 @@
 		WHERE nickName = #{value}
 	</select> -->
 	
-	<select id="existsByLogin" resultType="boolean">
+	<!-- loginId로 회원 존재 여부 확인 -->
+	<select id="checkLoginId" resultType="boolean">
     SELECT COUNT(*) 
     FROM member 
     WHERE loginId = #{loginId}
+	</select>
+	
+	<!-- nickName로 회원 존재 여부 확인 -->
+	<select id="checkNickName" resultType="boolean">
+	    SELECT COUNT(*) 
+	    FROM member 
+	    WHERE nickName = #{nickName}
+	</select>
+
+	<!-- email로 회원 존재 여부 확인 -->
+	<select id="checkEmail" resultType="boolean">
+	    SELECT COUNT(*) 
+	    FROM member 
+	    WHERE email = #{email}
 	</select>
 	
 </mapper>
