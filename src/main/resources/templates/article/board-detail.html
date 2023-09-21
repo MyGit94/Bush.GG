@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- css -->
     <th:block th:replace="common/fragments/config :: configFragment" />
@@ -96,33 +96,8 @@
                                 <span class="comment_info_date" th:text="${comment.regdate}"></span>
 <!--                                답글쓰기 버튼-->
                                 <a href="#" role="button" class="commentInfoBtn"> 답글쓰기 </a>
-
                             </div>
                         </div>
-
-<!--                        답글-->
-                        <div class="list-group-item CommentItemReply Comment_text_Box" th:each="reply : ${comment.replies}">
-                            <span th:text="${reply.writer}">닉네임</span>
-                            <p>
-                                <span th:text="${reply.content}">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                     Beatae ab non, aspernatur adipisci ullam quas officiis dolores eveniet commodi, ea place
-                                    at voluptate. Ea aspernatur nulla omnis inventore similique iure hic.</span>
-                            </p>
-                            <div class="commentInfoBox">
-                                <span class="comment_info_date" th:text="${reply.regdate}">2023-09-04</span>
-                                <a href="#" role="button" class="commentInfoBtn"> 답글쓰기 </a>
-                            </div>
-                        </div>
-
-                        <form class="commentWriter" action="/board/detail/reply" method="post">
-                            <div class="commentInBox">
-                                <textarea class="form-control" placeholder="댓글을 남겨보세요" rows="5" name="comment"></textarea>
-                                <p th:error="*{comments}" style="color: red;"></p>
-                            </div>
-                            <div class="register d-flex justify-content-end mt-2">
-                                <button type="submit" class="regiserBtn">등록</button>
-                            </div>
-                        </form>
                     </li>
 
 

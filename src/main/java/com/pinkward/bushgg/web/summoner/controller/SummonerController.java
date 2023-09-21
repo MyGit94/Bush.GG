@@ -12,7 +12,7 @@ import com.pinkward.bushgg.domain.match.dto.ParticipantsDTO;
 import com.pinkward.bushgg.domain.match.dto.RecentDTO;
 import com.pinkward.bushgg.domain.match.service.MatchService;
 import com.pinkward.bushgg.domain.ranking.service.RankingAPIServiceImpl;
-import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
+import com.pinkward.bushgg.domain.ranking.mapper.TierMapper;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerTierDTO;
 import com.pinkward.bushgg.domain.summoner.mapper.SummonerMapper;
@@ -40,7 +40,7 @@ public class SummonerController {
     private final APIServiceAsia apiServiceAsia;
     private final MatchService matchService;
     private final ChampionService championService;
-    private final ChallengerMapper challengerMapper;
+    private final TierMapper challengerMapper;
     private final SummonerMapper summonerMapper;
     private final RankingAPIServiceImpl rankingAPIService;
 

@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @Slf4j
-public class GoogleLoginExample {
+public class GoogleLoginService {
 
     private static final String CALLBACK_URI = "http://localhost/member/callback";
     private static final Collection<String> SCOPES = Arrays.asList("profile", "email");

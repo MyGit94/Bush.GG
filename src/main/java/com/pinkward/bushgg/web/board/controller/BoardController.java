@@ -65,7 +65,7 @@ public class BoardController {
                     break;
             }
         }
-
+        session.setAttribute("loginMember", member);
         model.addAttribute("pageParams" , pageParams);
         model.addAttribute("pagination", pagination);
         model.addAttribute("requestPage", requestPage);
@@ -103,23 +103,34 @@ public class BoardController {
 
     //    글쓰기 페이지 서버 작업
     @PostMapping("/register")
-    public String register2 (RedirectAttributes redirectAttributes,
+    public @ResponseBody String register2 (RedirectAttributes redirectAttributes,
                              @RequestParam("subject") String subject,
                              @RequestParam("content") String content,
                              @ModelAttribute("articleDTO") ArticleDTO articleDTO ,
                              @RequestParam("category") int category ,
                              HttpSession session){
 
-
         MemberDTO memberDTO=(MemberDTO) session.getAttribute("loginMember");
+
+        // member.role이 admin인 member만 공지사항 작성 가능
+        if (!"admin".equals(memberDTO.getRole())) {
+            if (category == 30) {
+                return "error";
+            }
+        }
+
+
         articleDTO.setWriter(memberDTO.getNickName());
         articleDTO.setPasswd(memberDTO.getPasswd());
         articleDTO.setBoardId(category);
         articleDTO.setSubject(subject);
         articleDTO.setContent(content);
+
         redirectAttributes.addFlashAttribute("registeredArticle", articleDTO);
+
         articleMapper.create(articleDTO);
-        return "redirect:/board";
+
+        return "success";
     }
 
 
@@ -138,13 +149,6 @@ public class BoardController {
         List<ArticleDTO> comments = articleService.read(groupNo);
 
         int countComments  = articleMapper.cellComments(groupNo);
-
-
-        for (ArticleDTO comment : comments) {
-            List<ArticleDTO> replys = articleMapper.readCommentReply(comment.getGroupNo());
-            comment.setReplies(replys);
-        }
-
 
 //        댓글수 계산
         model.addAttribute("countComments" , countComments);
@@ -170,7 +174,6 @@ public class BoardController {
 //        게시글 디테일 정보 받기
         ArticleDTO articleDTO = (ArticleDTO) session.getAttribute("articleDTO");
         if(member != null){
-            articleDTO.setHitcount(articleDTO.getHitcount());
             articleDTO.setSubject(articleDTO.getSubject());
             articleDTO.setWriter(member.getNickName());
             articleDTO.setContent(comment);
@@ -183,37 +186,6 @@ public class BoardController {
 
         articleMapper.createComment(articleDTO);
         redirectAttributes.addFlashAttribute("writeComment" , articleDTO);
-
-
-        return "redirect:/board/detail/"+articleDTO.getArticleId();
-    }
-
-
-    //    대댓글 쓰기
-    @PostMapping("/detail/reply")
-    public String commentReply (
-            RedirectAttributes redirectAttributes,
-            Model model,
-            HttpSession session,
-            @Valid @RequestParam("comment") String comment
-    ){
-        MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
-//        게시글 디테일 정보 받기
-        ArticleDTO articleDTO = (ArticleDTO) session.getAttribute("articleDTO");
-        if(member != null){
-            articleDTO.setHitcount(articleDTO.getHitcount());
-            articleDTO.setSubject(articleDTO.getSubject());
-            articleDTO.setWriter(member.getNickName());
-            articleDTO.setContent(comment);
-            articleDTO.setPasswd(member.getPasswd());
-            articleDTO.setGroupNo(articleDTO.getGroupNo());
-            articleDTO.setBoardId(articleDTO.getBoardId());
-
-        } else {
-        }
-
-        articleMapper.commentByComment(articleDTO);
-        redirectAttributes.addFlashAttribute("writeCommentReply" , articleDTO);
 
 
         return "redirect:/board/detail/"+articleDTO.getArticleId();

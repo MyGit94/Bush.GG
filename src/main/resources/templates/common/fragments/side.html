@@ -20,30 +20,30 @@
         <!-- 구분선1 -->
         <hr class="sidebar-divider">
         <!-- 사이드바 카테고리1 : 사용자 -->
-        <div class="sidebar-heading" th:if="${loginMember == null}">
+        <div class="sidebar-heading" th:if="${session.loginMember == null}">
             사용자
         </div>
-        <div class="user" th:if="${loginMember != null}">
+        <div class="user" th:if="${session.loginMember != null}">
             😀 환영합니다!
         </div>
         <!-- 사이드메뉴 :: 상단 메뉴 - 사용자 -->
         <li class="nav-item">
             <!-- 로그인 -->
-            <a th:if="${loginMember == null}"th:href="@{/member/login}"
+            <a th:if="${session.loginMember == null}"th:href="@{/member/login}"
                class="nav-link collapsed">
                 <i class="fas fa-fw fa-user"></i>
                 <span>로그인</span>
             </a>
-            <strong th:if="${loginMember != null}" class="nav-link" id="nickname" th:text="${loginMember.nickName}">
+            <strong th:if="${session.loginMember != null}" class="nav-link" id="nickname" th:text="${session.loginMember.nickName}">
             </strong>
 
             <!-- 회원가입-->
-            <a th:if="${loginMember == null}" th:href="@{/member/register}"
+            <a th:if="${session.loginMember == null}" th:href="@{/member/register}"
                class="nav-link collapsed">
                 <i class="fas fa-fw fa-user"></i>
                 <span>회원가입</span>
             </a>
-            <a th:if="${loginMember != null}" th:href="@{/member/logout}"
+            <a th:if="${session.loginMember != null}" th:href="@{/member/logout}"
                class="nav-link collapsed">
                 <i class="fas fa-fw fa-user"></i>
                 <span>로그아웃</span>

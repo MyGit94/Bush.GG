@@ -16,6 +16,22 @@ a:hover {
   height:100px;
 }
 
+/* 로그인 영역*/
+.user{
+  font-size: 14px;
+  color: #fff;
+  padding-left: 1rem;
+}
+#nickname{
+  color: #fff;
+}
+
+#nickname:hover{
+  color: #fff;
+
+}
+
+
 /* 상단 헤더 버튼 */
 .btn {
   display: inline-block;

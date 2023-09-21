@@ -32,7 +32,6 @@ public class ArticleDTO {
     int groupNo;
     int levelNo;
     int orderNo;
-    private List<ArticleDTO> replies;  // 대댓글 리스트
 
 
 }

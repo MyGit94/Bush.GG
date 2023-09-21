@@ -3,7 +3,7 @@ package com.pinkward.bushgg.web.home.controller;
 import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
 import com.google.api.services.people.v1.model.EmailAddress;
 import com.google.api.services.people.v1.model.Person;
-import com.pinkward.bushgg.domain.GoogleLoginExample;
+import com.pinkward.bushgg.domain.GoogleLoginService;
 import com.pinkward.bushgg.domain.api.service.APIServiceKo;
 import com.pinkward.bushgg.domain.member.mapper.MemberMapper;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;
@@ -11,9 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
@@ -24,7 +22,7 @@ import java.util.List;
 @Slf4j
 public class LoginController {
 
-    private final GoogleLoginExample googleLogin;
+    private final GoogleLoginService googleLogin;
     private final MemberMapper memberMapper;
     private final APIServiceKo apiServiceKo;
     private final SummonerService summonerService;
@@ -33,7 +31,7 @@ public class LoginController {
         this.memberMapper = memberMapper;
         this.apiServiceKo = apiServiceKo;
         this.summonerService = summonerService;
-        this.googleLogin = new GoogleLoginExample();
+        this.googleLogin = new GoogleLoginService();
     }
 
     @GetMapping("/login2")

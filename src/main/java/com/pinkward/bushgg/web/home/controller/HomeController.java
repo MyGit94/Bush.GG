@@ -7,9 +7,7 @@ import com.pinkward.bushgg.domain.champion.mapper.ChampionMapper;
 import com.pinkward.bushgg.domain.champion.service.ChampionService;
 import com.pinkward.bushgg.domain.currentgame.service.CurrentGameService;
 import com.pinkward.bushgg.domain.member.dto.MemberDTO;
-import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
-import com.pinkward.bushgg.domain.ranking.service.RankingAPIService;
-import com.pinkward.bushgg.domain.summoner.service.SummonerService;
+import com.pinkward.bushgg.domain.ranking.mapper.TierMapper;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +37,7 @@ public class HomeController {
 	private final ChampionService championService;
 	private final ChampionMapper championMapper;
 	private final CurrentGameService currentGameService;
-	private final ChallengerMapper challengerMapper;
+	private final TierMapper challengerMapper;
 	private final APIServiceKo apiServiceKo;
 
 

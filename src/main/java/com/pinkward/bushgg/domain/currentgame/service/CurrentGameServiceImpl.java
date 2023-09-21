@@ -1,27 +1,17 @@
 package com.pinkward.bushgg.domain.currentgame.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pinkward.bushgg.domain.api.service.APIServiceKo;
 import com.pinkward.bushgg.domain.champion.mapper.ChampionMapper;
-import com.pinkward.bushgg.domain.champion.service.ChampionService;
 import com.pinkward.bushgg.domain.currentgame.dto.CurrentGameDTO;
 import com.pinkward.bushgg.domain.match.common.TimeTranslator;
 import com.pinkward.bushgg.domain.match.service.MatchService;
-import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
-import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
+import com.pinkward.bushgg.domain.ranking.mapper.TierMapper;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerTierDTO;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.*;
 
 @Service
@@ -31,7 +21,7 @@ public class CurrentGameServiceImpl implements CurrentGameService {
 
     private final MatchService matchService;
     private final ChampionMapper championMapper;
-    private final ChallengerMapper challengerMapper;
+    private final TierMapper challengerMapper;
     private final SummonerService summonerService;
     private final APIServiceKo apiServiceKo;
 

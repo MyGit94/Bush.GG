@@ -38,14 +38,3 @@ public class LoggerAspect {
 		return obj;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-

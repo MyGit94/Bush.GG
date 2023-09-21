@@ -20,7 +20,6 @@ public class MemberServiceImpl implements MemberService{
 	@Transactional
 	public void register(MemberDTO member) {
 		memberMapper.create(member);
-		
 	}
 
 	@Override

@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @Mapper
-public interface ChallengerMapper {
+public interface TierMapper {
     @Insert("INSERT INTO CHALLENGER (SUMMONERID, SUMMONERNAME) VALUES (#{summonerId}, #{summonerName})")
     void insertChallenger(ChallengerRankingDTO challengerRankingDTO);
 
