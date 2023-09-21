@@ -21,13 +21,13 @@
          level_no,
          order_no)
         VALUES (article_id_seq.NEXTVAL,
-                '테스트',
+                #{writer},
                 #{boardId},
                 #{subject},
                 #{content},
                 SYSDATE,
                 '0',
-                '1111',
+                #{passwd},
                 article_id_seq.CURRVAL,
                 0,
                 0)

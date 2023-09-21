@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 @Controller
@@ -104,8 +105,11 @@ public class BoardController {
                              @RequestParam("subject") String subject,
                              @RequestParam("content") String content,
                              @ModelAttribute("articleDTO") ArticleDTO articleDTO ,
-                             @RequestParam("category") int category){
-
+                             @RequestParam("category") int category,
+                             HttpSession session){
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("loginMember");
+        articleDTO.setWriter(memberDTO.getNickName());
+        articleDTO.setPasswd(memberDTO.getPasswd());
         articleDTO.setBoardId(category);
         articleDTO.setSubject(subject);
         articleDTO.setContent(content);
