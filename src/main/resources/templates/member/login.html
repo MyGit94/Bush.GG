@@ -30,6 +30,9 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">로그인</h1>
                                     </div>
+	                        		 <div th:if="${successMessage}" class="alert alert-success">
+	    								<span th:text="${successMessage}"></span>
+									</div>
 
                                     <!-- 로그인 폼태그 -->
                                     <form class="user" method="post" th:action="@{/member/login}"  th:object="${loginForm}">  
@@ -46,7 +49,9 @@
                                                placeholder="아이디를 입력하세요."
                                                th:field="*{loginId}">
                                             <div class="errors">
-                                          		<p th:errors="*{loginId}">입력 오류메시지</p>
+                                            	<div>
+										            <p class="error" th:errors="*{loginId}">입력 오류메시지</p>
+										        </div>
                                             </div>
                                         </div>
                                         <!-- 아이디 끝 -->
@@ -56,9 +61,11 @@
                                             <input type="password" class="form-control form-control-user"
                                                 placeholder="비밀번호를 입력하세요."
                                                 th:field="*{passwd}">
-                                            <div class="errors">
-                                            	<p th:errors="*{passwd}">입력 오류메시지</p>
-                                            </div>
+										    <div class="errors">
+										        <div>
+										            <p class="error" th:errors="*{passwd}">입력 오류메시지</p>
+										        </div>
+										    </div>
                                         </div>
                                         <!-- 패스워드 끝 -->
 

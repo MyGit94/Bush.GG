@@ -43,4 +43,16 @@ public class MemberServiceImpl implements MemberService{
 	public boolean checkDuplicate(String loginId) {
 	    return memberMapper.existsByLogin(loginId);
 	}
-}
+//	@Override
+//	public boolean checkNickName(String nickName) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
+//
+//	@Override
+//	public boolean checkEmail(String email) {
+//		// TODO Auto-generated method stub
+//		return false;
+//		}	
+	}
+

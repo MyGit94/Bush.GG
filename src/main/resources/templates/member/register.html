@@ -24,11 +24,8 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
                             </div>
-                            <div th:if="${successMessage}" class="alert alert-success">
-    							<span th:text="${successMessage}"></span>
-							</div>
-
                             <!-- 개인정보 입력 전체영역 -->
+                            
 						    <!-- 아이디&닉네임 끝 -->
                            <form class="user" method="post" action="/member/register" th:action="@{/member/register}" th:object="${memberDTO}">
                             
@@ -37,13 +34,12 @@
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="text" class="form-control form-control-user"
                                     	th:field="*{loginId}" th:errorclass="text-danger" placeholder="아이디">
-									<div class="errors">
-										<div>
-											<p th:class="error" th:errors="*{loginId}">입력 오류메시지</p>
-											<!-- 아이디 중복 체크 결과 표시 -->
-											<p th:class="error" th:text="${loginIdError}" th:style="${loginIdError} ? 'margin: 0.35rem 0rem 0rem' : 'margin: 0' ">중복체크</p>
-										</div>
-	                               </div>
+										<div class="errors">
+								            <p th:class="error" th:errors="*{loginId}">입력 오류메시지</p>
+								            <!-- 아이디 중복 체크 결과 표시 -->
+								            <!-- loginIdError가 있을 때만 렌더링 -->
+								            <p th:if="${loginIdError}" th:class="error" th:text="${loginIdError}">중복체크</p>
+							        	</div>
                                 </div> 
                                 
                                 <!-- 닉네임 -->
@@ -73,27 +69,30 @@
 
                                 <!-- 비밀번호 -->
                                 <div class="form-group row">
-                                    <!-- 비밀번호 -->
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            th:field="*{passwd}"placeholder="비밀번호">
-                                       <div class="errors">
-                                 		   <div>
-                                        		<p class="error" th:errors="*{passwd}">입력 오류메시지</p>
-                                        	</div>
-                                    	</div>
-                                    </div>
-
-                                    <!-- 비밀번호 확인 -->
-                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            th:field="*{passwd}" placeholder="비밀번호 확인">
-                                        <div class="errors">
-                                       		 <div>
-                                       			<p class="error" th:errors="*{passwd}">입력 오류메시지</p>
-                                       		</div> 
-                                  		</div>
-                                    </div>
+      
+									<!-- 비밀번호 -->
+									<div class="col-sm-6 mb-3 mb-sm-0">
+									    <input type="password" class="form-control form-control-user"
+									        th:field="*{passwd}" placeholder="비밀번호">
+									    <div class="errors">
+									        <div>
+									            <p class="error" th:errors="*{passwd}">입력 오류메시지</p>
+									        </div>
+									    </div>
+									</div>
+									
+									<!-- 비밀번호 확인 -->
+									<div class="col-sm-6">
+									    <input type="password" class="form-control form-control-user"
+									        th:field="*{checkpasswd}" placeholder="비밀번호 확인">
+									    <div class="errors">
+									        <div>
+									            <p class="error" th:errors="*{checkpasswd}">입력 오류메시지</p>
+									            <!-- 비밀번호 확인 오류 메시지 표시 -->
+            									<p th:if="${checkPasswordError}" th:class="error" th:text="${checkPasswordError}">비밀번호 확인 오류</p>
+									        </div>
+									    </div>
+									</div>
                                 </div>
                                 <!-- 비밀번호 끝 -->
 

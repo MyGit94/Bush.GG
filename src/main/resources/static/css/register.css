@@ -66,16 +66,17 @@ body {
 
  /* 오류메시지 */
  .errors{
+	margin-top: 0.5rem;
     display: flex;
     color: red;
     text-align: center;
     justify-content: center;
  }
  
-.form-group {
-    margin-top: 0.5rem !important;
-    margin-bottom: 0.5rem !important;
-}
+/*.form-group {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+} */
 .error {
 	margin: 0.35rem 0rem 0rem !important;
     font-size: 12px;

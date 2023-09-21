@@ -67,6 +67,12 @@ public class MemberController {
 	    		if(session != null) {
 	    			session.invalidate();
 	    		}
+	    		
+		        // 데이터 검증 성공 시 비밀번호 확인
+		        if (!memberDTO.getPasswd().equals(memberDTO.getCheckpasswd())) {
+		            model.addAttribute("checkPasswordError", "비밀번호가 일치하지 않습니다.");
+		            return "member/register";
+		        }
 	        	
 	            model.addAttribute("loginIdError", "이미 사용 중인 아이디입니다.");
 	            return "member/register";

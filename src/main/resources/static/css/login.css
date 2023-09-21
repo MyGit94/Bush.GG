@@ -61,7 +61,26 @@ body {
  
  /* 오류메시지 */
  .errors{
-	color: red;
+	margin-top: 0.5rem;
+    display: flex;
+    color: red;
     text-align: center;
-    padding-top: 1rem;
+    justify-content: center;
  }
+ 
+.error {
+	margin: 0.35rem 0rem 0rem !important;
+    font-size: 12px;
+    color: red;
+}
+
+/* 회원 가입시 */
+
+.alert-success {
+    padding-top: 1rem;
+    text-align: center;
+    color: #0f6848;
+    background-color: #d2f4e8;
+    border-color: #bff0de;
+    border-radius: 10rem;
+}
