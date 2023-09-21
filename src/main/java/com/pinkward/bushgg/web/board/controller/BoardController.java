@@ -162,10 +162,11 @@ public class BoardController {
         log.info("댓글수 계산 결과 입니다 : {} " ,countComments);
 
 
-        List<ArticleDTO> readCommentReplys = articleMapper.readCommentReply(groupNo);
+        for (ArticleDTO comment : comments) {
+            List<ArticleDTO> replys = articleMapper.readCommentReply(comment.getGroupNo());
+            comment.setReplies(replys);
+        }
 
-//        대댓글 읽기
-        model.addAttribute("commentReplys" , readCommentReplys);
 
 //        댓글수 계산
         model.addAttribute("countComments" , countComments);

@@ -130,7 +130,7 @@
             order_no
         FROM article
         WHERE level_no = 2
-          AND group_no = #{groupNo}
+        AND group_no = #{groupNo}
         ORDER BY order_no ASC
     </select>
 

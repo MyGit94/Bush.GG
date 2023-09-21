@@ -1,0 +1,7 @@
+@media screen and (max-width: 1010px){
+    /*테이블 내용 폰트 사이즈*/
+    .trs td{
+        font-size:16px;
+    }
+
+}

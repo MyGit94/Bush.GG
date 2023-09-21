@@ -3,6 +3,8 @@ package com.pinkward.bushgg.domain.article.dto;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -30,5 +32,7 @@ public class ArticleDTO {
     int groupNo;
     int levelNo;
     int orderNo;
+    private List<ArticleDTO> replies;  // 대댓글 리스트
+
 
 }

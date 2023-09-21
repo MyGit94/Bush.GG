@@ -3,8 +3,10 @@
 <head>
     <!-- css -->
     <th:block th:replace="common/fragments/config :: configFragment" />
+<!--    보드 css -->
     <link rel="stylesheet" href="/css/board-detail.css">
-
+<!--    반응형 -->
+    <link rel="stylesheet" href="/css/board_media.css">
 </head>
 
 
@@ -25,7 +27,7 @@
         <!-- 제목 라인 -->
         <section class="article">
 
-        
+
         <div class="articleHeder">
                 <div class="category">
                     <a href="../../static/index.html" class="linkBoard">
@@ -52,7 +54,7 @@
             </div>
          </div>
          <!-- 제목 라인 끝-->
-        <!-- 게시판 헤더 끝 --> 
+        <!-- 게시판 헤더 끝 -->
 
             <!-- 게시판 -->
             <div class="card shadow">
@@ -99,7 +101,7 @@
                         </div>
 
 <!--                        답글-->
-                        <div class="list-group-item CommentItemReply Comment_text_Box" th:each="reply : ${commentReplys}">
+                        <div class="list-group-item CommentItemReply Comment_text_Box" th:each="reply : ${comment.replies}">
                             <span th:text="${reply.writer}">닉네임</span>
                             <p>
                                 <span th:text="${reply.content}">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -137,7 +139,7 @@
                     </div>
                </form>
             </div>
-            
+
              <!-- 댓글 목록 끝-->
 
 
