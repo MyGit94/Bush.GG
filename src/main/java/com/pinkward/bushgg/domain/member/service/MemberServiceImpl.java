@@ -20,6 +20,7 @@ public class MemberServiceImpl implements MemberService{
 	@Transactional
 	public void register(MemberDTO member) {
 		memberMapper.create(member);
+
 	}
 
 	@Override
@@ -37,6 +38,23 @@ public class MemberServiceImpl implements MemberService{
 	public MemberDTO getMember(String nickName) {
 		return memberMapper.findByNick(nickName);
 	}
+
+	// 중복 체크
 	
+	@Override
+	public boolean checkLoginId(String loginId) {
+	    return memberMapper.checkLoginId(loginId);
+	}
+	
+	@Override
+	public boolean checkNickName(String nickName) {
+	    return memberMapper.checkNickName(nickName);
+	}
+	
+	@Override
+	public boolean checkEmail(String email) {
+		return memberMapper.checkEmail(email);
+	}
 
 }
+

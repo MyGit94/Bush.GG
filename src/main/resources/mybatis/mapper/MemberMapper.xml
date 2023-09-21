@@ -23,10 +23,9 @@
 
 	<!-- 아이디와 비밀번호로 찾기 -->
 	<select id="findByIdAndPasswd" resultType="MemberDTO">
-		SELECT loginId, nickName, passwd , email, role, TO_CHAR(regdate, 'yyyy-MM-DD HH24:MI:SS') regdate
+		SELECT loginId, nickName, email, role, TO_CHAR(regdate, 'yyyy-MM-DD HH24:MI:SS') regdate
 		FROM member
-		WHERE loginId = #{loginId}
-		  AND passwd = #{passwd}
+		WHERE loginId = #{loginId} AND passwd = #{passwd}
 	</select>
 
 	<!--  비밀번호 찾기 -->
@@ -48,8 +47,6 @@
 		</where>
 	</select>
 
-
-
 	<!-- 로그인한 아이디로 닉네임변경 -->
 	<update id="updateNickName" parameterType="MemberDTO">
 		UPDATE member
@@ -65,7 +62,25 @@
 		WHERE nickName = #{value}
 	</select> -->
 
+	<!-- loginId로 회원 존재 여부 확인 -->
+	<select id="checkLoginId" resultType="boolean">
+    SELECT COUNT(*) 
+    FROM member 
+    WHERE loginId = #{loginId}
+	</select>
+	
+	<!-- nickName로 회원 존재 여부 확인 -->
+	<select id="checkNickName" resultType="boolean">
+	    SELECT COUNT(*) 
+	    FROM member 
+	    WHERE nickName = #{nickName}
+	</select>
 
-
+	<!-- email로 회원 존재 여부 확인 -->
+	<select id="checkEmail" resultType="boolean">
+	    SELECT COUNT(*) 
+	    FROM member 
+	    WHERE email = #{email}
+	</select>
 	
 </mapper>

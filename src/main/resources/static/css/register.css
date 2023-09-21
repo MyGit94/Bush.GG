@@ -63,3 +63,21 @@ body {
   color: #fff;
   background-color: #bc382c;
 }
+
+ /* 오류메시지 */
+ .errors{
+	margin-top: 0.5rem;
+    display: c;
+    color: red;
+    text-align: center;
+    justify-content: center;
+ }
+.errorBox{
+    display: flex;
+    justify-content: center;
+ }
+.error {
+	margin: 0.35rem 0rem 0rem !important;
+    font-size: 14px;
+    color: red;
+}
