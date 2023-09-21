@@ -10,16 +10,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class MatchServiceImpl implements MatchService {
 
-    private final TierMapper tierMapper;
+    private final TierMapper challengerMapper;
     private final ChampionMapper championMapper;
 
     @Override
@@ -32,6 +30,7 @@ public class MatchServiceImpl implements MatchService {
 
         Map<String, Object> info = (Map<String, Object>) match.get("info");
 
+        // DTO 만들었다 넣자..
         matchInfoDTO.setGameDuration((Integer) info.get("gameDuration"));
         matchInfoDTO.setGameEndTimestamp((Long) info.get("gameEndTimestamp"));
         matchInfoDTO.setQueueId((int) info.get("queueId"));
@@ -41,6 +40,7 @@ public class MatchServiceImpl implements MatchService {
         Map<String, Object> blueTeam = teams.get(0);
         Map<String, Object> redTeam = teams.get(1);
 
+        // blueTeam
         Map<String, Object> blueTeamObjectives = (Map<String, Object>) blueTeam.get("objectives");
 
         Map<String, Object> baron = (Map<String, Object>) blueTeamObjectives.get("baron");
@@ -52,12 +52,13 @@ public class MatchServiceImpl implements MatchService {
         Map<String, Object> dragon = (Map<String, Object>) blueTeamObjectives.get("dragon");
         matchInfoDTO.setBlueDragon((int) dragon.get("kills"));
 
+
         Map<String, Object> tower = (Map<String, Object>) blueTeamObjectives.get("tower");
         matchInfoDTO.setBlueTowerKills((int) tower.get("kills"));
 
         matchInfoDTO.setBlueWin((boolean) blueTeam.get("win"));
 
-
+        // redTeam
         Map<String, Object> redTeamObjectives = (Map<String, Object>) redTeam.get("objectives");
 
         baron = (Map<String, Object>) redTeamObjectives.get("baron");
@@ -131,10 +132,10 @@ public class MatchServiceImpl implements MatchService {
             participantsDTO.setSummoner1Id((int) participant.get("summoner1Id"));
             participantsDTO.setSummoner2Id((int) participant.get("summoner2Id"));
 
-            if(tierMapper.getNameById(participantsDTO.getSummonerId())==null){
+            if(challengerMapper.getNameById(participantsDTO.getSummonerId())==null){
                 participantsDTO.setSummonerName((String) participant.get("summonerName"));
             } else {
-                participantsDTO.setSummonerName(tierMapper.getNameById(participantsDTO.getSummonerId()));
+                participantsDTO.setSummonerName(challengerMapper.getNameById(participantsDTO.getSummonerId()));
             }
 
             participantsDTO.setTeamId((int) participant.get("teamId"));
@@ -197,8 +198,13 @@ public class MatchServiceImpl implements MatchService {
                             participantsDTO.setSubRune2(perk);
                         }
                     }
+                } else {
+                    log.info("Styles field is null or doesn't have enough styles");
                 }
+            } else {
+                log.info("Perks field is null");
             }
+
             matchInfo.put("participants"+i,participantsDTO);
         }
         return matchInfo;
@@ -209,6 +215,7 @@ public class MatchServiceImpl implements MatchService {
         for (int i = 0; i < 10; i++) {
             ParticipantsDTO participant = (ParticipantsDTO) matchInfo.get("participants" + i);
 
+            // 인게임 정보 matchInfo에 담기
             if(i<5){
                 matchInfoDTO.setBlueGold(matchInfoDTO.getBlueGold()+participant.getGoldEarned());
                 matchInfoDTO.setBlueTotalDamageDealtToChampions(matchInfoDTO.getBlueTotalDamageDealtToChampions()+participant.getTotalDamageDealtToChampions());
@@ -247,4 +254,5 @@ public class MatchServiceImpl implements MatchService {
                 return "알 수 없음";
         }
     }
+
 }

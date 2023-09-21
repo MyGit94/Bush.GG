@@ -21,13 +21,13 @@
          level_no,
          order_no)
         VALUES (article_id_seq.NEXTVAL,
-                '테스트',
+                #{writer},
                 #{boardId},
                 #{subject},
                 #{content},
                 SYSDATE,
                 '0',
-                '1111',
+                #{passwd},
                 article_id_seq.CURRVAL,
                 0,
                 0)
@@ -51,7 +51,7 @@
     </select>
 
 
-<!--   제목으로 게시글 조회 -->
+    <!--   제목으로 게시글 조회 -->
     <select id="findSubject" resultType="ArticleDTO" parameterType="String">
         SELECT articleid,
                writer,
@@ -94,7 +94,7 @@
                writer,
                subject,
                content,
-               TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss') regdate,
+               regdate,
                group_no,
                order_no,
                hitcount
@@ -104,19 +104,28 @@
 
     <!--댓글 상세보기 -->
     <select id="readComment" resultType="ArticleDTO" parameterType="int">
-        SELECT subject,
-               writer,
-               content,
-               passwd,
-               TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss') as "regdate",
-               group_no,
-               level_no,
-               order_no
+        SELECT
+            writer,
+            content,
+            passwd,
+            regdate,
+            group_no,
+            level_no,
+            order_no
         FROM article
-        WHERE level_no >= 1 AND group_no = #{groupNo}
+        WHERE level_no = 1
+          AND group_no = #{groupNo}
         ORDER BY order_no ASC
     </select>
 
+<!--    댓글 갯수 계산-->
+    <select id="cellComments" resultType="int" parameterType="int">
+        SELECT NVL(COUNT(articleid), 0) AS commentCount
+        FROM article
+        WHERE group_no = #{groupNo}
+          AND level_no >= 1
+
+    </select>
 
     <select id="getCountAll" resultType="int">
         SELECT COUNT(articleid)
@@ -128,26 +137,29 @@
     <insert parameterType="ArticleDTO" id="createComment">
         INSERT INTO article
         (articleid,
+         subject,
          writer,
          content,
          passwd,
+         boardid,
          group_no,
-         level_no
+         regdate,
+         level_no,
          order_no)
         VALUES (article_id_seq.NEXTVAL,
+                #{subject},
                 #{writer},
                 #{content},
                 #{passwd},
+                #{boardId},
                 #{groupNo},
+                SYSDATE,
                 1,
                 (SELECT MAX(order_no) + 1
                  FROM article
-                 WHERE board_id = #{boardId}
+                 WHERE boardid = #{boardId}
                    AND group_no = #{groupNo}))
     </insert>
-
-
-
 
     <!--    페이징 -->
     <select id="findByAll" resultType="ArticleDTO" parameterType="PageParams">
@@ -156,21 +168,25 @@
                writer,
                regdate,
                hitcount,
-               boardId
+               boardId ,
+               level_no
         FROM (SELECT CEIL(rownum / #{pageParams.elementSize}) request_page,
                      articleid,
                      subject,
                      writer,
                      TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss')  regdate,
                      hitcount,
-                     boardId
+                     boardId ,
+                     level_no
               FROM (SELECT articleid,
                            subject,
                            writer,
                            regdate,
                            hitcount,
-                           boardId
+                           boardId ,
+                           level_no
                     FROM article
+                    WHERE order_no = 0
                     ORDER BY group_no DESC, order_no ASC, level_no ASC))
         WHERE request_page = #{pageParams.requestPage}
     </select>
@@ -199,7 +215,4 @@
         WHERE article_id = #{articleId}
           AND passwd = #{passwd}
     </delete>
-
-
-
 </mapper>

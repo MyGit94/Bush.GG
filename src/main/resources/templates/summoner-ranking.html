@@ -76,11 +76,11 @@
           <thead>
           <tr>
             <!-- 5 -->
-            <td class="rank_table_header_number">Number</td>
+            <td class="rank_table_header_number">#</td>
             <!-- 25 -->
-            <td class="rank_table_header_name">Summoner_Name</td>
+            <td class="rank_table_header_name">소환사명</td>
             <!-- 15 -->
-            <td class="rank_table_header_tier">Tier</td>
+            <td class="rank_table_header_tier">티어</td>
             <!-- 15 -->
             <td class="rank_table_header_lp">LP</td>
             <!-- 10 -->
@@ -98,7 +98,7 @@
             <td class="rank_table_number" th:text="${(page - 1) * 100 + iterStat.count}">1</td>
 
             <!-- 소환사명 -->
-            <td class="rank_table_name" th:text="${ranking.getSummonerName()}">사각</td>
+            <td class="rank_table_name"><a th:href="@{/summoner(summonerName=${ranking.getSummonerName()})}" th:text="${ranking.getSummonerName()}">사각</a></td>
             <!-- 티어 -->
             <td class="rank_table_tier" >
               <!-- 티어 이미지 -->
@@ -114,8 +114,6 @@
             <td class="rank_table_win" th:text="${ranking.getWins()}">80</td>
             <!-- 패 -->
             <td class="rank_table_lose" th:text="${ranking.getLosses()}">20</td>
-            <!-- 레벨 -->
-            <td class="rank_table_level">9999</td>
           </tr>
           </tbody>
           <!-- 테이블 내용 (1행) 끝 -->
@@ -133,47 +131,47 @@
           <!-- 1 -->
           <!-- 현재 페이지를 나타내는 페이지에
           on 클래스가 붙으면서 현재페이지임을 스타일로 지정 -->
-          <a href="/ranking?page=1" class="summoner_rank_page on">
+          <a href="/ranking?page=1" th:class="${page == 1 ? 'on' : ''}" class="summoner_rank_page on">
             1
           </a>
 
           <!-- 2 -->
-          <a href="/ranking?page=2" class="summoner_rank_page">
+          <a href="/ranking?page=2" th:class="${page == 2 ? 'on' : ''}" class="summoner_rank_page">
             2
           </a>
 
           <!-- 3 -->
-          <a href="/ranking?page=3" class="summoner_rank_page">
+          <a href="/ranking?page=3" th:class="${page == 3 ? 'on' : ''}" class="summoner_rank_page">
             3
           </a>
 
           <!-- 4 -->
-          <a href="/ranking?page=4" class="summoner_rank_page">
+          <a href="/ranking?page=4" th:class="${page == 4 ? 'on' : ''}" class="summoner_rank_page">
             4
           </a>
 
           <!-- 5 -->
-          <a href="/ranking?page=5" class="summoner_rank_page">
+          <a href="/ranking?page=5" th:class="${page == 5 ? 'on' : ''}" class="summoner_rank_page">
             5
           </a>
 
-          <a href="/ranking?page=6" class="summoner_rank_page">
+          <a href="/ranking?page=6" th:class="${page == 6 ? 'on' : ''}" class="summoner_rank_page">
             6
           </a>
 
-          <a href="/ranking?page=7" class="summoner_rank_page">
+          <a href="/ranking?page=7" th:class="${page == 7 ? 'on' : ''}" class="summoner_rank_page">
             7
           </a>
 
-          <a href="/ranking?page=8" class="summoner_rank_page">
+          <a href="/ranking?page=8" th:class="${page == 8 ? 'on' : ''}" class="summoner_rank_page">
             8
           </a>
 
-          <a href="/ranking?page=9" class="summoner_rank_page">
+          <a href="/ranking?page=9" th:class="${page == 9 ? 'on' : ''}" class="summoner_rank_page">
             9
           </a>
 
-          <a href="/ranking?page=10" class="summoner_rank_page">
+          <a href="/ranking?page=10" th:class="${page == 10 ? 'on' : ''}" class="summoner_rank_page">
             10
           </a>
 
@@ -190,5 +188,6 @@
   </div>
   <!--  메인 컨텐츠 끝 -->
 <th:block th:replace="common/fragments/script :: scriptFragment"/>
+</div>
 </body>
 </html>

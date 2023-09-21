@@ -11,8 +11,11 @@ import com.pinkward.bushgg.domain.match.dto.MatchInfoDTO;
 import com.pinkward.bushgg.domain.match.dto.ParticipantsDTO;
 import com.pinkward.bushgg.domain.match.dto.RecentDTO;
 import com.pinkward.bushgg.domain.match.service.MatchService;
+import com.pinkward.bushgg.domain.ranking.service.RankingAPIServiceImpl;
+import com.pinkward.bushgg.domain.ranking.mapper.TierMapper;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerTierDTO;
+import com.pinkward.bushgg.domain.summoner.mapper.SummonerMapper;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,9 +29,7 @@ import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.*;
 
-/**
- * Summoner 관련 요청을 처리하는 세부 컨트롤러 구현 클래스
- */
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -39,16 +40,24 @@ public class SummonerController {
     private final APIServiceAsia apiServiceAsia;
     private final MatchService matchService;
     private final ChampionService championService;
+    private final TierMapper challengerMapper;
+    private final SummonerMapper summonerMapper;
+    private final RankingAPIServiceImpl rankingAPIService;
+
+
 
     @GetMapping(value = "/summoner")
     public String searchSummonerInfo(@RequestParam("summonerName") String summonerName, Model model){
-
+        // 두 글자인 경우 글자 사이에 띄어쓰기 추가
         if (summonerName.length() == 2) {
             summonerName = summonerName.charAt(0) + " " + summonerName.substring(1);
         }
         String esummonerName = null;
         esummonerName = URLEncoder.encode(summonerName, StandardCharsets.UTF_8);
+
         summonerName = summonerName.replaceAll(" ","").toLowerCase();
+
+        // 이름으로 소환사 정보 가져옴
         SummonerDTO summoner = apiServiceKo.getSummonerInfo(esummonerName);
         if(summoner == null) {
             return "/404";
@@ -62,6 +71,7 @@ public class SummonerController {
             String tierImageUrl = "img/tier/" + summonerTierDTO.getTier() + ".png";
             model.addAttribute("tierImageUrl", tierImageUrl);
         } else {
+            // summonerTier가 null인 경우 디폴트 이미지 URL을 설정
             model.addAttribute("tierImageUrl", "img/tier/Provisional.png");
         }
 
@@ -112,6 +122,7 @@ public class SummonerController {
                     matchList.put("flex",flex);
                     matchList.put("defense",defense);
 
+
                     recentDTO.setKills(recentDTO.getKills()+participant.getKills());
                     recentDTO.setAssists(recentDTO.getAssists()+participant.getAssists());
                     recentDTO.setDeaths(recentDTO.getDeaths()+participant.getDeaths());
@@ -125,30 +136,42 @@ public class SummonerController {
                     double winRate = ((double)recentDTO.getWin() / (recentDTO.getWin() + recentDTO.getLose())) * 100;
                     recentDTO.setWinRate((int)Math.round(winRate));
 
+                    // KDA 계산
                     double kda = ((double) recentDTO.getKills() + recentDTO.getAssists()) / recentDTO.getDeaths();
+
+                    // DecimalFormat을 사용하여 소수점 두 자리까지 포맷 지정
                     DecimalFormat decimalFormat = new DecimalFormat("0.00");
                     String formattedKda = decimalFormat.format(kda);
 
                     recentDTO.setKda(formattedKda);
                     championCounts = championService.getChampionCounts(championCounts,participant);
+
+
                 }
+                matchInfoDTO =matchService.getMatchInfoDTO(matchInfoDTO, matchInfo);
+
                 participantsList.add(participant);
+
             }
             summonerWithCounts =  summonerService.getSummonerWith(matchInfo,teamId,name, summonerWithCounts);
             matchInfoDTO =  matchService.getMatchInfoDTO(matchInfoDTO,matchInfo);
             matchList.put("matchInfo",matchInfoDTO);
             matchList.put("participantsList", participantsList);
+
             matchInfoList.add(matchList);
+
         }
 
         model.addAttribute("matchInfoList",matchInfoList);
 
         List<SummonerWithCount> filteredList = summonerService.sortSummonerWith(summonerWithCounts);
         List<ChampionCount> filteredChampionCounts = championService.sortChampionCounts(championCounts);
+
         recentDTO.setSummonerWithCounts(filteredList);
         recentDTO.setChampionCounts(filteredChampionCounts);
 
         model.addAttribute("recentDTO",recentDTO);
+
         return "record";
     }
 

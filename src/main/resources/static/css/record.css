@@ -329,7 +329,26 @@ div들을 정렬하기 위한 옵션 */
   text-align: right;
 }
 
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
 
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #000000;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+
+  /* 원하는 스타일링 추가 */
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 
 
 

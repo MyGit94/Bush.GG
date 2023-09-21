@@ -34,11 +34,8 @@ public interface ArticleMapper {
     //	/** 댓글 등록*/
     void createComment(ArticleDTO articleDTO);
 
-    //	/** 대댓글 등록*/
-    void commentByComment(ArticleDTO articleDTO);
-
+//   게시글 상세보기에서 댓글보기
     List<ArticleDTO> readComment(int groupNo);
-
 
     //	/** 댓글 삭제*/
     void removeComment(int articleId, String passwd);
@@ -51,6 +48,9 @@ public interface ArticleMapper {
 
     //	게시글 상세보기 조회수 업
     public void updateHitcount(ArticleDTO articleDTO);
+
+//    댓글 갯수 계산
+    public int cellComments(int groupNo);
 
     public List<ArticleDTO> findSubject(String subject);
 }

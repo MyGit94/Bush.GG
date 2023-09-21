@@ -103,3 +103,8 @@ margin-bottom: 1rem;
   background-color: #708090cc;
 
 }
+
+/*답글 */
+.CommentItemReply {
+  margin-top:20px;
+}

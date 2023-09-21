@@ -17,9 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
-/**
- * Board 페이지 요청을 처리하는 세부 컨트롤러 구현 클래스
- */
 @Controller
 @RequestMapping("/board")
 @Slf4j
@@ -31,99 +28,167 @@ public class BoardController {
     private final int ELEMENT_SIZE = 8;
     private final int PAGE_SIZE = 5;
 
+    //    게시판 입장
     @GetMapping
     public String article(
             Model model,
             HttpSession session,
-            @RequestParam(defaultValue = "1") int requestPage,
-            @RequestParam(defaultValue = "0" , required = false) int status,
-            @RequestParam(name = "searchSubject", required = false) String subject
+            @RequestParam(defaultValue = "1") int requestPage
     ) {
+
+
+        MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
         int selectPage = requestPage;
         int rowCount = articleService.countAll();
         PageParams pageParams = new PageParams(ELEMENT_SIZE, PAGE_SIZE, selectPage, rowCount);
         Pagination pagination = new Pagination(pageParams);
-        List<ArticleDTO> list;
+
         if (requestPage != 0) {
-            if (status == 0) {
-                list = articleService.findByAll2(pageParams);
-                model.addAttribute("list", list);
-            } else if (status == 1) {
-                list = articleMapper.findAllByHitcount();
-                model.addAttribute("list", list);
-            } else if (status == 2) {
-                list = articleMapper.findSubject(subject);
-                model.addAttribute("list", list);
+            List<ArticleDTO> list;
+            int status = (int) session.getAttribute("status");
+            switch (status) {
+                case 0: // 페이징
+                    list = articleService.findByAll2(pageParams);
+                    model.addAttribute("list", list);
+                    break;
+                case 1: // 추천글보기
+                    list = articleMapper.findAllByHitcount();
+                    model.addAttribute("list", list);
+                    break;
+                case 2: // 검색
+                    String subject = (String)session.getAttribute("subjectContent");
+                    model.addAttribute("searchSubject" , subject);
+                    list = articleMapper.findSubject(subject);
+                    model.addAttribute("list", list);
+                    break;
+                default:
+                    break;
             }
         }
-            model.addAttribute("pagination", pagination);
-            model.addAttribute("requestPage", requestPage);
-            return "article/board";
+        session.setAttribute("loginMember", member);
+        model.addAttribute("pageParams" , pageParams);
+        model.addAttribute("pagination", pagination);
+        model.addAttribute("requestPage", requestPage);
+
+        return "article/board";
+    }
+
+
+    //   게시판메인 :: 인기글 버튼 눌렀을시
+    @PostMapping("")
+    public String Article2 (HttpSession session ,RedirectAttributes redirectAttributes){
+        // status 값을 변경
+        session.setAttribute("status", 1);
+        return "redirect:/board";
+    }
+
+    //    게시판메인 : 검색창 사용시
+    @PostMapping("/search")
+    public String Article3 (HttpSession session,@RequestParam("searchSubject") String subject , RedirectAttributes redirectAttributes){
+        // status 값을 변경
+        session.setAttribute("status", 2);
+        session.setAttribute("subjectContent" , subject);
+        return "redirect:/board";
+    }
+
+    //    글쓰기 페이지 입장
+    @GetMapping("/register")
+    public String register (Model model , HttpSession session){
+        MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
+        ArticleDTO articleDTO = ArticleDTO.builder().build();
+        model.addAttribute("articleDTO", articleDTO);
+
+        return "article/board-register";
+    }
+
+    //    글쓰기 페이지 서버 작업
+    @PostMapping("/register")
+    public @ResponseBody String register2 (RedirectAttributes redirectAttributes,
+                             @RequestParam("subject") String subject,
+                             @RequestParam("content") String content,
+                             @ModelAttribute("articleDTO") ArticleDTO articleDTO ,
+                             @RequestParam("category") int category ,
+                             HttpSession session){
+
+        MemberDTO memberDTO=(MemberDTO) session.getAttribute("loginMember");
+
+        // member.role이 admin인 member만 공지사항 작성 가능
+        if (!"admin".equals(memberDTO.getRole())) {
+            if (category == 30) {
+                return "error";
+            }
         }
 
-        @PostMapping("")
-        public String Article2 (RedirectAttributes redirectAttributes){
-            redirectAttributes.addAttribute("status", 1);
-            return "redirect:/board";
-        }
 
-        @PostMapping("/search")
-        public String Article3 (@RequestParam("searchSubject") String subject , RedirectAttributes redirectAttributes){
-            redirectAttributes.addFlashAttribute("status", 2);
-            redirectAttributes.addFlashAttribute("subject", subject);
-            return "redirect:/board";
-        }
+        articleDTO.setWriter(memberDTO.getNickName());
+        articleDTO.setPasswd(memberDTO.getPasswd());
+        articleDTO.setBoardId(category);
+        articleDTO.setSubject(subject);
+        articleDTO.setContent(content);
 
-        @GetMapping("/register")
-        public String register (Model model){
-            ArticleDTO articleDTO = ArticleDTO.builder().build();
+        redirectAttributes.addFlashAttribute("registeredArticle", articleDTO);
 
-            model.addAttribute("articleDTO", articleDTO);
-            return "article/board-register";
-        }
+        articleMapper.create(articleDTO);
 
-        @PostMapping("/register")
-        public String register2 (RedirectAttributes redirectAttributes,
-                @RequestParam("subject") String subject,
-                @RequestParam("content") String content,
-                @ModelAttribute("articleDTO") ArticleDTO articleDTO ,
-        @RequestParam("category") int category){
+        return "success";
+    }
 
-            articleDTO.setBoardId(category);
-            articleDTO.setSubject(subject);
-            articleDTO.setContent(content);
-            redirectAttributes.addFlashAttribute("registeredArticle", articleDTO);
-            articleMapper.create(articleDTO);
-            return "redirect:/board";
-        }
 
-        @GetMapping("/detail/{articleId}")
-        public String detail ( @PathVariable int articleId, Model model){
-            ArticleDTO articleDTO = articleService.detail(articleId);
-            articleMapper.updateHitcount(articleDTO);
-            int groupNo = articleDTO.getGroupNo();
-            List<ArticleDTO> comments = articleService.read(groupNo);
+//    게시글 상세보기
 
-            model.addAttribute("comments", comments);
-            model.addAttribute("articleDTO", articleDTO);
-            return "article/board-detail";
-        }
+    @GetMapping("/detail/{articleId}")
+    public String detail ( @PathVariable int articleId, Model model , HttpSession session){
+//       회원 정보 불러오기
+        MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
+//       게시글 상세정보
+        ArticleDTO articleDTO = articleService.detail(articleId);
+//        조회수 증가
+        articleMapper.updateHitcount(articleDTO);
 
-        @PostMapping("/detail")
-        public String comment (
-                RedirectAttributes redirectAttributes,
-                Model model,
-                HttpSession session,
-                @Valid @RequestParam("comment") String comment
+        int groupNo = articleDTO.getGroupNo();
+        List<ArticleDTO> comments = articleService.read(groupNo);
+
+        int countComments  = articleMapper.cellComments(groupNo);
+
+//        댓글수 계산
+        model.addAttribute("countComments" , countComments);
+//            댓글 읽기
+        model.addAttribute("comments", comments);
+//            게시글 정보
+        model.addAttribute("articleDTO", articleDTO);
+//        게시글 정보 세션 저장
+        session.setAttribute("articleDTO", articleDTO);
+        return "article/board-detail";
+    }
+
+
+    //    댓글쓰기
+    @PostMapping("/detail/comment")
+    public String comment (
+            RedirectAttributes redirectAttributes,
+            Model model,
+            HttpSession session,
+            @Valid @RequestParam("comment") String comment
     ){
-            MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
-            ArticleDTO articleDTO = (ArticleDTO) model.getAttribute("comments");
-
-            articleDTO.setWriter(member.getLoginId());
+        MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
+//        게시글 디테일 정보 받기
+        ArticleDTO articleDTO = (ArticleDTO) session.getAttribute("articleDTO");
+        if(member != null){
+            articleDTO.setSubject(articleDTO.getSubject());
+            articleDTO.setWriter(member.getNickName());
             articleDTO.setContent(comment);
             articleDTO.setPasswd(member.getPasswd());
             articleDTO.setGroupNo(articleDTO.getGroupNo());
-            return "redirect:/board/detail";
+            articleDTO.setBoardId(articleDTO.getBoardId());
+
+        } else {
         }
 
+        articleMapper.createComment(articleDTO);
+        redirectAttributes.addFlashAttribute("writeComment" , articleDTO);
+
+
+        return "redirect:/board/detail/"+articleDTO.getArticleId();
     }
+
+}

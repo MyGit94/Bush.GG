@@ -12,7 +12,6 @@ public interface ArticleService {
     public void write(ArticleDTO articleDTO);
     public List<ArticleDTO> findByAll();
     public void createComment(ArticleDTO articleDTO);
-    public void commentByComment(ArticleDTO articleDTO);
     public void removeComment(int articleId, String passwd);
     public void updateComment(ArticleDTO articleDTO);
     public ArticleDTO detail(int articleId);

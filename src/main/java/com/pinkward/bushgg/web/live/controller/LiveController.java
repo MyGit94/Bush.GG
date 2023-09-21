@@ -22,50 +22,50 @@ import java.util.Map;
 @Slf4j
 @RequiredArgsConstructor
 public class LiveController {
-	private final CurrentGameService currentGameService;
-	private final TierMapper tierMapper;
-	private final APIServiceKo apiServiceKo;
+    private final CurrentGameService currentGameService;
+    private final TierMapper tierMapper;
+    private final APIServiceKo apiServiceKo;
 
-	@GetMapping("")
-	public String live(Model model){
+    @GetMapping("")
+    public String live(Model model){
 
-		List<Map<String, Object>> currentGames = new ArrayList<>();
-		int count = 1;
-		int index = 1;
-		List<String> challengerIds = tierMapper.getChallengerInfo();
+        List<Map<String, Object>> currentGames = new ArrayList<>();
+        int count = 1;
+        int index = 1;
+        List<String> challengerIds = tierMapper.getChallengerInfo();
 
-		for (String participantId : challengerIds) {
-			index++;
-			if (count > 3 || index >200) {
-				break;
-			}
-			Map<String, Object> currentGame = apiServiceKo.getCurrentGame(participantId);
-			
-			if (currentGame != null) {
-				boolean isDuplicate = false;
-				int queueId = (int)currentGame.get("gameQueueConfigId");
-				if(queueId==0){
-					break;
-				}
-				for (Map<String, Object> existingGame : currentGames) {
-					long existingGameId = (long) existingGame.get("gameId");
-					long currentGameId = (long) currentGame.get("gameId");
+        for (String participantId : challengerIds) {
+            index++;
+            if (count > 3 || index >200) {
+                break;
+            }
+            Map<String, Object> currentGame = apiServiceKo.getCurrentGame(participantId);
 
-					if (currentGameId==(existingGameId)) {
-						isDuplicate = true;
-						break;
-					}
-				}
-				if (!isDuplicate) {
-					currentGames.add(currentGame);
-					count++;
-				}
-			}
-		}
-		List<Map<String, Object>> currentGameInfo = currentGameService.getCurrentGameInfo(currentGames);
-		model.addAttribute("currentGameInfo", currentGameInfo);
-		return "live";
-	}
+            if (currentGame != null) {
+                boolean isDuplicate = false;
+                int queueId = (int)currentGame.get("gameQueueConfigId");
+                if(queueId==0){
+                    break;
+                }
+                for (Map<String, Object> existingGame : currentGames) {
+                    long existingGameId = (long) existingGame.get("gameId");
+                    long currentGameId = (long) currentGame.get("gameId");
+
+                    if (currentGameId==(existingGameId)) {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+                if (!isDuplicate) {
+                    currentGames.add(currentGame);
+                    count++;
+                }
+            }
+        }
+        List<Map<String, Object>> currentGameInfo = currentGameService.getCurrentGameInfo(currentGames);
+        model.addAttribute("currentGameInfo", currentGameInfo);
+        return "live";
+    }
 
 
 }

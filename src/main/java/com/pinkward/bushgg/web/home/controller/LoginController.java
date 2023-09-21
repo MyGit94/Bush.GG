@@ -18,17 +18,19 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
-/**
- * 구글 로그인 페이지 요청을 처리하는 세부 컨트롤러 구현 클래스
- */
 @RestController
 @Slf4j
 public class LoginController {
+
     private final GoogleLoginService googleLogin;
     private final MemberMapper memberMapper;
+    private final APIServiceKo apiServiceKo;
+    private final SummonerService summonerService;
 
     public LoginController(MemberMapper memberMapper, APIServiceKo apiServiceKo, SummonerService summonerService) {
         this.memberMapper = memberMapper;
+        this.apiServiceKo = apiServiceKo;
+        this.summonerService = summonerService;
         this.googleLogin = new GoogleLoginService();
     }
 
@@ -51,9 +53,11 @@ public class LoginController {
         List<EmailAddress> emailAddresses = profile.getEmailAddresses();
         String userEmail = null;
 
+        // 첫 번째 이메일 주소 가져오기
         if (emailAddresses != null && !emailAddresses.isEmpty()) {
             userEmail = emailAddresses.get(0).getValue();
         }
+
 
         RedirectView redirectView = new RedirectView();
         if(memberMapper.getUserById(userId)== null){
@@ -67,4 +71,5 @@ public class LoginController {
         }
         return redirectView;
     }
+
 }

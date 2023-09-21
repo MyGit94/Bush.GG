@@ -56,8 +56,10 @@
 
                                 <!-- 소환사 닉네임 -->
                                 <div class="live_summoner_name">
-                                    <p class="live_summoner_name_text" th:text="${summoner['summonerName']}">
+                                    <p class="live_summoner_name_text">
+                                        <a th:href="@{/summoner(summonerName=${summoner['summonerName']})}" th:text="${summoner['summonerName']}">
                                         T1 란브로대머리
+                                        </a>
                                     </p>
                                 </div>
 
@@ -112,8 +114,10 @@
 
                                 <!-- 소환사 닉네임 -->
                                 <div class="live_summoner_name">
-                                    <p class="live_summoner_name_text" th:text="${summoner['summonerName']}">
+                                    <p class="live_summoner_name_text">
+                                        <a th:href="@{/summoner(summonerName=${summoner['summonerName']})}" th:text="${summoner['summonerName']}">
                                         T1 란브로대머리
+                                        </a>
                                     </p>
                                 </div>
 

@@ -34,12 +34,6 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     @Transactional
-    public void commentByComment(ArticleDTO articleDTO) {
-        articleMapper.commentByComment(articleDTO);
-    }
-
-    @Override
-    @Transactional
     public void removeComment(int articleId, String passwd) {
         articleMapper.removeComment(articleId, passwd);
     }
