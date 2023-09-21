@@ -5,6 +5,9 @@ import com.pinkward.bushgg.domain.common.web.PageParams;
 
 import java.util.List;
 
+/**
+ * Article 관련 비즈니스 로직 처리 및 트랜잭션 관리
+ */
 public interface ArticleService {
     public void write(ArticleDTO articleDTO);
     public List<ArticleDTO> findByAll();

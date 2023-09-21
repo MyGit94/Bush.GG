@@ -1,4 +1,4 @@
-package com.pinkward.bushgg.domain;
+package com.pinkward.bushgg.domain.member.service;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
@@ -15,6 +15,7 @@ import com.google.api.services.people.v1.model.Person;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -24,7 +25,8 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @Slf4j
-public class GoogleLoginExample {
+@Service
+public class GoogleLoginService {
 
     private static final String CALLBACK_URI = "http://localhost/member/callback";
     private static final Collection<String> SCOPES = Arrays.asList("profile", "email");
@@ -32,19 +34,15 @@ public class GoogleLoginExample {
     private static HttpTransport httpTransport;
 
     public void login(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        log.info("실행됨");
 
-        // Only create a new transport if one doesn't already exist
         if (httpTransport == null) {
             httpTransport = GoogleNetHttpTransport.newTrustedTransport();
         }
 
-        // Load client secrets
         InputStream in = new FileInputStream("src/main/resources/client_secret.json");
         GoogleClientSecrets clientSecrets =
                 GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 
-        // Build flow and trigger user authorization request
         GoogleAuthorizationCodeFlow flow =
                 new GoogleAuthorizationCodeFlow.Builder(httpTransport, JSON_FACTORY,
                         clientSecrets, SCOPES).build();
@@ -56,12 +54,11 @@ public class GoogleLoginExample {
     }
 
     public GoogleTokenResponse getToken(String code) throws Exception {
-        // Load client secrets
+
         InputStream in = new FileInputStream("src/main/resources/client_secret.json");
         GoogleClientSecrets clientSecrets =
                 GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 
-        // Build flow and trigger user authorization request
         GoogleAuthorizationCodeFlow flow =
                 new GoogleAuthorizationCodeFlow.Builder(httpTransport, JSON_FACTORY,
                         clientSecrets, SCOPES).build();
@@ -76,7 +73,6 @@ public class GoogleLoginExample {
                         .setApplicationName("bushgg")
                         .build();
 
-        // Request the user's profile information
         Person profile = peopleService.people().get("people/me")
                 .setPersonFields("names,emailAddresses,phoneNumbers")
                 .execute();

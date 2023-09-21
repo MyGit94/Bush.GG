@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Tier 정보를 DB에 넣기 위한 SQL Mapper
+ */
 @Mapper
 public interface SummonerMapper {
 

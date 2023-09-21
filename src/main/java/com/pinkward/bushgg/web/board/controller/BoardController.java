@@ -17,6 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+/**
+ * Board 페이지 요청을 처리하는 세부 컨트롤러 구현 클래스
+ */
 @Controller
 @RequestMapping("/board")
 @Slf4j
@@ -28,8 +31,6 @@ public class BoardController {
     private final int ELEMENT_SIZE = 8;
     private final int PAGE_SIZE = 5;
 
-
-    //    게시판 입장
     @GetMapping
     public String article(
             Model model,
@@ -44,40 +45,28 @@ public class BoardController {
         Pagination pagination = new Pagination(pageParams);
         List<ArticleDTO> list;
         if (requestPage != 0) {
-//            페이징
             if (status == 0) {
                 list = articleService.findByAll2(pageParams);
                 model.addAttribute("list", list);
-                log.info("페이징이 포함된 list 실행됨 {} ", list);
-//                추천글보기
             } else if (status == 1) {
                 list = articleMapper.findAllByHitcount();
                 model.addAttribute("list", list);
-                log.info("추천글 list 활성화됨 {} ", list);
-//                검색
             } else if (status == 2) {
                 list = articleMapper.findSubject(subject);
                 model.addAttribute("list", list);
-                log.info("입력하신 키워드에 해당하는 제목의 리스트를 불러왔습니다 {}", list);
             }
-
         }
-
             model.addAttribute("pagination", pagination);
             model.addAttribute("requestPage", requestPage);
-
             return "article/board";
         }
 
-
-//   게시판메인 :: 인기글 버튼 눌렀을시
         @PostMapping("")
         public String Article2 (RedirectAttributes redirectAttributes){
             redirectAttributes.addAttribute("status", 1);
             return "redirect:/board";
         }
 
-//    게시판메인 : 검색창 사용시
         @PostMapping("/search")
         public String Article3 (@RequestParam("searchSubject") String subject , RedirectAttributes redirectAttributes){
             redirectAttributes.addFlashAttribute("status", 2);
@@ -85,18 +74,14 @@ public class BoardController {
             return "redirect:/board";
         }
 
-//    글쓰기 페이지 입장
         @GetMapping("/register")
         public String register (Model model){
-            log.info("글쓰기 페이지 실행됨");
             ArticleDTO articleDTO = ArticleDTO.builder().build();
-            model.addAttribute("articleDTO", articleDTO);
-            log.info("articleDTO : {}", articleDTO);
 
+            model.addAttribute("articleDTO", articleDTO);
             return "article/board-register";
         }
 
-//    글쓰기 페이지 서버 작업
         @PostMapping("/register")
         public String register2 (RedirectAttributes redirectAttributes,
                 @RequestParam("subject") String subject,
@@ -104,18 +89,13 @@ public class BoardController {
                 @ModelAttribute("articleDTO") ArticleDTO articleDTO ,
         @RequestParam("category") int category){
 
-            log.info("글쓰기 페이지 서버작업 실행됨");
             articleDTO.setBoardId(category);
             articleDTO.setSubject(subject);
             articleDTO.setContent(content);
             redirectAttributes.addFlashAttribute("registeredArticle", articleDTO);
             articleMapper.create(articleDTO);
-            log.info("db에 보낸 articleDTO 정보 : {}", articleDTO);
             return "redirect:/board";
         }
-
-
-//    게시글 상세보기
 
         @GetMapping("/detail/{articleId}")
         public String detail ( @PathVariable int articleId, Model model){
@@ -123,15 +103,12 @@ public class BoardController {
             articleMapper.updateHitcount(articleDTO);
             int groupNo = articleDTO.getGroupNo();
             List<ArticleDTO> comments = articleService.read(groupNo);
-            log.info("{}", articleDTO);
 
             model.addAttribute("comments", comments);
             model.addAttribute("articleDTO", articleDTO);
             return "article/board-detail";
         }
 
-
-//    댓글쓰기
         @PostMapping("/detail")
         public String comment (
                 RedirectAttributes redirectAttributes,
@@ -146,14 +123,7 @@ public class BoardController {
             articleDTO.setContent(comment);
             articleDTO.setPasswd(member.getPasswd());
             articleDTO.setGroupNo(articleDTO.getGroupNo());
-//      articleDTO.setWriter("멤버로바꿀예정");
             return "redirect:/board/detail";
         }
 
     }
-
-
-
-
-
-

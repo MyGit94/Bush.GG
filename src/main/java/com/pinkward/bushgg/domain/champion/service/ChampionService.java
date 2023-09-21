@@ -5,6 +5,9 @@ import com.pinkward.bushgg.domain.match.dto.ParticipantsDTO;
 
 import java.util.List;
 
+/**
+ *  Champion 관련 비즈니스 로직 처리
+ */
 public interface ChampionService {
 
     public List<Integer> championLotation();

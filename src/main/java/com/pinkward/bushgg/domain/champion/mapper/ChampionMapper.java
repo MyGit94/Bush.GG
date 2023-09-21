@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
+/**
+ * Champion 이름 가져오는 Mapper
+ */
 @Mapper
 public interface ChampionMapper {
 

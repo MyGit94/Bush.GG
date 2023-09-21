@@ -2,7 +2,6 @@ package com.pinkward.bushgg.domain.common.web;
 
 /**
  * 페이징 처리 계산
- * @author 김기정
  */
 public class Pagination {
 

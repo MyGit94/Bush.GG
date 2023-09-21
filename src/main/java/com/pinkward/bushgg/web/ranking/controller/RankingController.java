@@ -3,10 +3,7 @@ package com.pinkward.bushgg.web.ranking.controller;
 import com.pinkward.bushgg.domain.api.service.APIRankingService;
 import com.pinkward.bushgg.domain.api.service.APIServiceKo;
 import com.pinkward.bushgg.domain.ranking.dto.RankingDTO;
-import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
-import com.pinkward.bushgg.domain.ranking.service.RankingAPIService;
 import com.pinkward.bushgg.domain.ranking.service.RankingService;
-import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * 랭킹 페이지 요청을 처리하는 세부 컨트롤러 구현 클래스
+ */
 @Slf4j
 @Controller
 @RequiredArgsConstructor
 public class RankingController {
     private final RankingService rankingService;
-    private final SummonerService summonerService;
-    private final APIServiceKo apiServiceKo;
     private final APIRankingService apiRankingService;
 
     @GetMapping(value="/ranking")
@@ -36,7 +33,6 @@ public class RankingController {
         int start = 0;
         int end = 100;
         List<RankingDTO> challengerRanking = null;
-        log.info("{}",page);
         if(page==1 || page==4){
             start =0;
             end = 100;

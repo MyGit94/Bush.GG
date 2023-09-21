@@ -8,9 +8,11 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-
+/**
+ * Tier 관련 SQL Mapper
+ */
 @Mapper
-public interface ChallengerMapper {
+public interface TierMapper {
     @Insert("INSERT INTO CHALLENGER (SUMMONERID, SUMMONERNAME) VALUES (#{summonerId}, #{summonerName})")
     void insertChallenger(ChallengerRankingDTO challengerRankingDTO);
 
@@ -19,9 +21,6 @@ public interface ChallengerMapper {
 
     @Select("SELECT summonerId FROM TIER WHERE TIER = 'CHALLENGER'")
     public List<String> getChallengerInfo();
-
-    @Select("SELECT tier FROM TIER WHERE SUMMONERNAME = #{summonerName}")
-    public String getTierByName(String summonerName);
 
     @Select("SELECT tier FROM TIER WHERE SUMMONERID = #{summonerId}")
     public String getTierById(String summonerId);
