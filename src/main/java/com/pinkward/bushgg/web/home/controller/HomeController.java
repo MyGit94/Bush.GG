@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -64,11 +67,33 @@ public class HomeController {
 
 
 		// 09/18 추가 -송우성- 커뮤니티
-		List<ArticleDTO> articleDTO= articleMapper.findAllByHitcount();
+		List<ArticleDTO> articleDTO = articleMapper.findAllByHitcount();
 		List<ArticleDTO> limitedList = articleDTO.subList(0, 10); // 최대 요소 개수 제한
 
+
+
+//        09 21 추가 - 커뮤니티 시간계산
+		for (ArticleDTO article : limitedList) {
+			String articleTime = article.getRegdate();
+			// 문자열을 LocalDateTime으로 파싱
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+			LocalDateTime regDateTime = LocalDateTime.parse(articleTime, formatter);
+			LocalDateTime currentDateTime = LocalDateTime.now();
+
+			long times = ChronoUnit.HOURS.between(regDateTime, currentDateTime);
+			if (times <= 24) {
+				String changeHours = String.valueOf(times);
+				article.setRegdate(changeHours);
+			} else {
+				long days = times / 24 ;
+				String changeDays = String.valueOf(days);
+				article.setRegdate(changeDays);
+			}
+		}
+
 		model.addAttribute("community", limitedList);
-		httpSession.setAttribute("status" , 0);
+
+		httpSession.setAttribute("status", 0);
 		return "index";
 	}
 }
