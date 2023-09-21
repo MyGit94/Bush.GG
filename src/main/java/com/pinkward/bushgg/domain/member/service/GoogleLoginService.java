@@ -1,4 +1,4 @@
-package com.pinkward.bushgg.domain;
+package com.pinkward.bushgg.domain.member.service;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;

@@ -3,7 +3,7 @@ package com.pinkward.bushgg.web.home.controller;
 import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
 import com.google.api.services.people.v1.model.EmailAddress;
 import com.google.api.services.people.v1.model.Person;
-import com.pinkward.bushgg.domain.GoogleLoginService;
+import com.pinkward.bushgg.domain.member.service.GoogleLoginService;
 import com.pinkward.bushgg.domain.api.service.APIServiceKo;
 import com.pinkward.bushgg.domain.member.mapper.MemberMapper;
 import com.pinkward.bushgg.domain.summoner.service.SummonerService;

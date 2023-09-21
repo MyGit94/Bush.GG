@@ -8,6 +8,7 @@ import com.pinkward.bushgg.domain.champion.service.ChampionService;
 import com.pinkward.bushgg.domain.currentgame.service.CurrentGameService;
 import com.pinkward.bushgg.domain.member.dto.MemberDTO;
 import com.pinkward.bushgg.domain.ranking.mapper.TierMapper;
+import com.pinkward.bushgg.domain.ranking.service.RankingAPIService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,7 @@ public class HomeController {
 	private final CurrentGameService currentGameService;
 	private final TierMapper challengerMapper;
 	private final APIServiceKo apiServiceKo;
+	private final RankingAPIService rankingAPIService;
 
 
 	@GetMapping("/")
@@ -69,47 +71,4 @@ public class HomeController {
 		httpSession.setAttribute("status" , 0);
 		return "index";
 	}
-
-
-	@GetMapping("/live")
-	public String live(Model model){
-
-		List<Map<String, Object>> currentGames = new ArrayList<>();
-		int count = 1;
-		int index = 1;
-		List<String> challengerIds = challengerMapper.getChallengerInfo();
-
-
-		for (String participantId : challengerIds) {
-			index++;
-			if (count > 3 || index >100) {
-				break;
-			}
-			Map<String, Object> currentGame = apiServiceKo.getCurrentGame(participantId);
-
-			// 중복된 currentGame 패스
-			if (currentGame != null) {
-				boolean isDuplicate = false;
-
-				for (Map<String, Object> existingGame : currentGames) {
-					long existingGameId = (long) existingGame.get("gameId");
-					long currentGameId = (long) currentGame.get("gameId");
-
-					if (currentGameId==(existingGameId)) {
-						isDuplicate = true;
-						break;
-					}
-				}
-				if (!isDuplicate) {
-					currentGames.add(currentGame);
-					count++;
-				}
-			}
-		}
-		List<Map<String, Object>> currentGameInfo = currentGameService.getCurrentGameInfo(currentGames);
-		model.addAttribute("currentGameInfo", currentGameInfo);
-		return "live";
-	}
-
-
 }
