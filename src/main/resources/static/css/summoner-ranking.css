@@ -9,7 +9,7 @@ h5 {
 
 a.on {
   font-weight: bold;
-  color: mediumvioletred;
+  color: red;
 }
 
 /* 소환사 랭크 header 전체영역 */
@@ -17,7 +17,7 @@ a.on {
   width: 80%;
   margin: 0 auto;
   height: 200px;
-  background-image:url(/img/ranking.png);
+  background-image:url(/img/4.jpg);
   padding: 10px;
   display: flex;
   flex-direction: column;
