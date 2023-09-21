@@ -32,6 +32,16 @@
 .article{
   padding: 0rem 1.25rem;
 }
+
+/*카테고리 */
+.category{
+  margin-bottom: 10px;
+}
+
+.category a{
+  color:#3d735f;
+}
+
 .content{
   height: 500px;
   background-color: #fff;

@@ -87,6 +87,7 @@ a:hover {
     width: 100%;
     height: 500px;
     background-image: url("/img/searchbg.png");
+    border-radius: 10px;
 }
 
 /*인풋 태그창 */
@@ -94,8 +95,14 @@ a:hover {
     width:800px;
     height:50px;
     margin:0 auto;
+    border-radius: 50px;
+    background-color:#00000080;
+    color: rgba(255, 255, 255, 0.71);
 }
 
+.input-group input::placeholder{
+    color: rgba(255, 255, 255, 0.71);
+}
 
 #top_content_wrap{
     width: 800px;
@@ -120,6 +127,7 @@ a:hover {
 #top_search_bt{
     width:100%;
     height: 100%;
+    border-radius: 50px;
 }
 
 
@@ -133,6 +141,10 @@ a:hover {
     width: 100%;
     height: 100%;
     /* background-color: #03c75a; */
+    /*background-image: url("/img/illust/img1.jpg");*/
+    /*background-size:cover;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
 }
 
 /* 두번째 라인 컨텐츠 전체영역 */
@@ -196,6 +208,7 @@ a:hover {
 
 
 .community_header {
+    font-weight: bold;
     background-color: rgb(240, 240, 240);
     border-radius: 5px 5px 0 0;
 }
@@ -238,14 +251,15 @@ a:hover {
 .community_title_wrap {
     display: flex;
     width: 50%;
+    align-items: center;
 }
 
 /* 게시글 텍스트 전체영역  */
 .community_text_wrap {
     width: 30%;
-    justify-content: flex-end;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 
@@ -314,3 +328,4 @@ a:hover {
 .rotation_champion_name {
     text-align: center;
 }
+

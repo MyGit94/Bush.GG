@@ -237,6 +237,7 @@
                     WHERE order_no = 0
                     ORDER BY group_no DESC, order_no ASC, level_no ASC))
         WHERE request_page = #{pageParams.requestPage}
+        ORDER BY boardId DESC
     </select>
 
 

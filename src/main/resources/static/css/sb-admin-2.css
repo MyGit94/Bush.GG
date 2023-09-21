@@ -6452,9 +6452,6 @@ button.bg-danger:focus {
   background-color: #d52a1a !important;
 }
 
-.bg-light {
-  background-color: #f8f9fc !important;
-}
 
 a.bg-light:hover, a.bg-light:focus,
 button.bg-light:hover,
@@ -9780,7 +9777,6 @@ a:focus {
 }
 
 #wrapper #content-wrapper {
-   background-color: #fff;
   position: relative;
   width: 100%;
   overflow-x: hidden;

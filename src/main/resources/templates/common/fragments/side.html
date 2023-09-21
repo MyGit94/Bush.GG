@@ -29,11 +29,12 @@
         <!-- 사이드메뉴 :: 상단 메뉴 - 사용자 -->
         <li class="nav-item">
             <!-- 로그인 -->
-            <a th:if="${loginMember == null}"th:href="@{/member/login}"
+            <a th:if="${loginMember == null}" th:href="@{/member/login}"
                class="nav-link collapsed">
                 <i class="fas fa-fw fa-user"></i>
                 <span>로그인</span>
             </a>
+<!--            로그인시 출력되는 닉네임-->
             <strong th:if="${loginMember != null}" class="nav-link" id="nickname" th:text="${loginMember.nickName}">
             </strong>
 
