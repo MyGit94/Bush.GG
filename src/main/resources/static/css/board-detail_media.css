@@ -1,0 +1,19 @@
+@media screen and (max-width:850px){
+    .mt-5{
+        margin-bottom: 3rem;
+    }
+
+    .fa{
+        color:#000;
+    }
+
+}
+
+
+@media screen and (max-width:700px){
+    body{
+        min-width: 700px;
+    }
+
+
+}
