@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.lang.reflect.Member;
 import java.util.List;
 
 @Controller
@@ -29,10 +28,14 @@ public class BoardController {
     private final int ELEMENT_SIZE = 8;
     private final int PAGE_SIZE = 5;
 
-
     //    게시판 입장
-    @GetMapping("")
-    public String article(Model model, HttpSession session, @RequestParam(defaultValue = "1") int requestPage) {
+    @GetMapping
+    public String article(
+            Model model,
+            HttpSession session,
+            @RequestParam(defaultValue = "1") int requestPage
+    ) {
+
 
         MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
         int selectPage = requestPage;
@@ -43,7 +46,6 @@ public class BoardController {
         if (requestPage != 0) {
             List<ArticleDTO> list;
             int status = (int) session.getAttribute("status");
-//           log.info("if 문에서 실행된 status 값 : {}" , status);
             switch (status) {
                 case 0: // 페이징
                     list = articleService.findByAll2(pageParams);
@@ -105,9 +107,11 @@ public class BoardController {
                              @RequestParam("subject") String subject,
                              @RequestParam("content") String content,
                              @ModelAttribute("articleDTO") ArticleDTO articleDTO ,
-                             @RequestParam("category") int category,
+                             @RequestParam("category") int category ,
                              HttpSession session){
-        MemberDTO memberDTO = (MemberDTO) session.getAttribute("loginMember");
+
+
+        MemberDTO memberDTO=(MemberDTO) session.getAttribute("loginMember");
         articleDTO.setWriter(memberDTO.getNickName());
         articleDTO.setPasswd(memberDTO.getPasswd());
         articleDTO.setBoardId(category);
@@ -134,6 +138,13 @@ public class BoardController {
         List<ArticleDTO> comments = articleService.read(groupNo);
 
         int countComments  = articleMapper.cellComments(groupNo);
+
+
+        for (ArticleDTO comment : comments) {
+            List<ArticleDTO> replys = articleMapper.readCommentReply(comment.getGroupNo());
+            comment.setReplies(replys);
+        }
+
 
 //        댓글수 계산
         model.addAttribute("countComments" , countComments);
@@ -172,6 +183,37 @@ public class BoardController {
 
         articleMapper.createComment(articleDTO);
         redirectAttributes.addFlashAttribute("writeComment" , articleDTO);
+
+
+        return "redirect:/board/detail/"+articleDTO.getArticleId();
+    }
+
+
+    //    대댓글 쓰기
+    @PostMapping("/detail/reply")
+    public String commentReply (
+            RedirectAttributes redirectAttributes,
+            Model model,
+            HttpSession session,
+            @Valid @RequestParam("comment") String comment
+    ){
+        MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
+//        게시글 디테일 정보 받기
+        ArticleDTO articleDTO = (ArticleDTO) session.getAttribute("articleDTO");
+        if(member != null){
+            articleDTO.setHitcount(articleDTO.getHitcount());
+            articleDTO.setSubject(articleDTO.getSubject());
+            articleDTO.setWriter(member.getNickName());
+            articleDTO.setContent(comment);
+            articleDTO.setPasswd(member.getPasswd());
+            articleDTO.setGroupNo(articleDTO.getGroupNo());
+            articleDTO.setBoardId(articleDTO.getBoardId());
+
+        } else {
+        }
+
+        articleMapper.commentByComment(articleDTO);
+        redirectAttributes.addFlashAttribute("writeCommentReply" , articleDTO);
 
 
         return "redirect:/board/detail/"+articleDTO.getArticleId();

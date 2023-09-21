@@ -34,8 +34,11 @@ public interface ArticleMapper {
     //	/** 대댓글 등록*/
     void commentByComment(ArticleDTO articleDTO);
 
+//   게시글 상세보기에서 댓글보기
     List<ArticleDTO> readComment(int groupNo);
 
+    //   게시글 상세보기에서 댓글보기
+    List<ArticleDTO> readCommentReply(int groupNo);
 
     //	/** 댓글 삭제*/
     void removeComment(int articleId, String passwd);
