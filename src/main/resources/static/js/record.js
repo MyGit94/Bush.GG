@@ -257,8 +257,14 @@ ingameInfoWrapElements.forEach(function (ingameInfoWrap) {
 
      let leftChartValue = parseFloat(leftChartText);
      let rightChartValue = parseFloat(rightChartText);
-     console.log(leftChartValue);
-     console.log(rightChartValue);
+
+     if (leftChartValue === 0){
+         leftChart.style.display = "none";
+     }
+
+     if (rightChartValue === 0){
+        rightChart.style.display = "none";
+     }
 
      leftChart.style.width= leftChartValue + "%";
      rightChart.style.width= rightChartValue + "%";

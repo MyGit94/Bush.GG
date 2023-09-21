@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="common/fragments/config :: configFragment"></th:block>
 <!--link css-->
+<th:block th:replace="common/fragments/config :: configFragment"></th:block>
 <link rel="stylesheet" href="/css/live.css">
+<link rel="stylesheet" href="/css/live_media.css">
+
+
 <body>
 <div id="wrapper">
 <th:block th:replace="common/fragments/side :: sideFragment"></th:block>
@@ -30,9 +33,9 @@
                         <p class="live_info_match_type_text" th:text="${gameInfo['gameQueueName']}">솔로 랭크</p>
 
                         <!-- VS 텍스트 -->
-                        <h1 class="live_info_vs_text">
-                            VS
-                        </h1>
+                        <div class="live_info_vs_text">
+                            <img src="/img/vs.png" class="vs">
+                        </div>
                         <!-- 게임 진행시간 -->
                         <p class="live_info_match_time" th:text="${gameInfo['gameLength']}">
                             12:01

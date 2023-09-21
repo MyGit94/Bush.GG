@@ -1,0 +1,267 @@
+@media screen and (max-width: 1520px){
+    /*전적 리스트 */
+    .record_list{
+        width:90%;
+    }
+
+    /* 전적 상세보기 */
+    .record_detail_wrap{
+        width:90%;
+    }
+}
+
+
+@media screen and (max-width: 1350px){
+    /*전적 전체영역 패딩제거*/
+    .record_wrap{
+        padding:0;
+    }
+
+    /*전적 리스트 */
+    .record_list{
+        width:95%;
+    }
+
+    /* 전적 상세보기 */
+    .record_detail_wrap{
+        width:95%;
+    }
+
+}
+
+
+
+@media screen and (max-width: 1220px){
+    /*소환사 정보 텍스트 */
+    .summoner_wrap{
+        height:100px;
+        justify-content: space-around;
+        text-align: center;
+    }
+
+    /* 소환사명*/
+    .info_summoner_name{
+        font-size:25px;
+    }
+
+    .rank_wrap{
+        margin-top:0;
+    }
+
+    /*승패 / 승률*/
+    .summoner_rate{
+        font-size:14px;
+    }
+
+
+    /*최근 플레이 정보 */
+    .recent_friend_table tbody td{
+        padding:5px;
+    }
+
+    /* 최근 플레이 챔피언*/
+    .champion_face img{
+        width:30px;
+    }
+
+    /*막대 차트*/
+    .champion_rate_chartbar{
+        width:50%;
+    }
+
+    /*승률 차트 */
+    .game_rate_title , .game_rate_count , .game_rate_score{
+        font-size:14px;
+    }
+
+    /* 승률 kda */
+    .game_rate_score{
+        width:150px;
+        justify-content: space-around;
+    }
+
+    /*전적 리스트 */
+    .record_list{
+        width:99.9%;
+    }
+
+    /* 전적 상세보기 */
+    .record_detail_wrap{
+        width:99.9%;
+    }
+}
+
+
+
+@media screen and (max-width: 1000px){
+
+    /* 20게임 같이한 친구 승률 */
+    .recent_friend_table tbody td{
+        font-size:13px;
+        font-weight: bold;
+    }
+
+    /* 승패 폰트 */
+    .champion_name_text{
+        font-size:12px;
+    }
+
+    /* 승률 차트 폰트*/
+    .left_rate_text, .right_rate_text{
+        font-size:12px;
+    }
+
+    .info_summoner>div, .info_recent>div{
+        width:33%;
+    }
+
+
+
+    /* 전적*/
+    /*######################################*/
+
+    /*전적 리스트 */
+    .record_list{
+        width:99.9%;
+    }
+
+    /*게임정보*/
+    .match_type{
+        font-size:13px;
+    }
+
+    /*챔피언 , 룬정보*/
+    .match_champion_profile img{
+        width:40px;
+        height: 40px;
+    }
+
+    /*스펠 */
+    .match_spell img{
+        width:20px;
+        height: 20px;
+    }
+
+
+    /*룬 */
+    .match_rune , .match_spell{
+        justify-content: space-evenly;
+     width:20px;
+    }
+
+    /*승 패*/
+    .match_result{
+        font-size:13px;
+    }
+
+    /*게임 진행 시간*/
+    .match_time{
+        font-size:12px;
+    }
+
+    /*kda */
+    .match_kda , .match_kda_avg , .match_cs p{
+        font-size:12px;
+    }
+
+
+
+    /*아이템 이미지 사이즈*/
+    .item_img_wrap img{
+        width:30px;
+        height:30px;
+    }
+
+    /*같이한 유저 폰트*/
+    .record_user a{
+        font-size:12px;
+    }
+
+
+/*    전적 상세보기 영역 */
+/****************************/
+
+
+
+
+    /*데미지 차트*/
+    .dmg_chartbar{
+        height:10px;
+    }
+
+    /*kda , 평균*/
+    .summoner_kda , .summoner_kda_avg{
+        font-size:12px;
+    }
+
+    /*아이템 사이즈*/
+    .detail_summoner_item img{
+        width:25px;
+        height:25px;
+    }
+
+
+}
+
+
+@media screen and (max-width: 850px) {
+
+    /* 소환사 정보 첫째줄 라인 타이틀*/
+    .info_summoner_name{
+        font-size:20px;
+    }
+
+    /* 최근 20게임 */
+    .recent_friend_table tbody td{
+        font-size:11px;
+    }
+
+    /*아이템 이미지 */
+    .item_img_wrap img{
+        width:25px;
+        height:25px;
+    }
+
+    /*전적 :: 같이한 친구 */
+    .record_user a{
+        font-size:10px;
+    }
+
+    /* 인게임 분석 :: */
+    .champion_kill_chart_text{
+        font-size:14px;
+    }
+
+    /*리스트 정렬 조정*/
+    .detail_list{
+        justify-content: space-between;
+    }
+
+    /* kda */
+    .summoner_kda, .summoner_kda_avg{
+        font-size:10px;
+    }
+
+
+    /*다중킬 이미지 */
+    .summoner_penta{
+        transform: scale(0.7);
+    }
+
+
+    /*데미지 막대 차트*/
+        .detail_summoner_dmg{
+            width:15%;
+        }
+
+
+}
+
+
+@media screen and (max-width: 700px) {
+    body{
+        min-width: 700px;
+    }
+}
+
+

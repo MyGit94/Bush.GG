@@ -1,0 +1,18 @@
+@media screen and (max-width:850px){
+    .writeBody{
+        margin:5px;
+    }
+
+    .fa{
+        color:#000;
+    }
+
+}
+
+
+@media screen and (max-width:700px){
+    body{
+        min-width: 700px;
+    }
+
+}

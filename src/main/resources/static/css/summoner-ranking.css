@@ -103,6 +103,7 @@ a.on {
 }
 
 .summoner_rank_table thead td {
+  padding:10px;
   background-color: #b1e5cb;
   color: #000;
   font-weight: bold;
@@ -116,6 +117,7 @@ a.on {
 .rank_table_header_number,
 .rank_table_number {
   width: 10%;
+
 }
 
 /* 소환사 이름 */
@@ -124,6 +126,9 @@ a.on {
   width: 25%;
 }
 
+.rank_table_name{
+  font-weight: bold;
+}
 
 /* 소환사 아이콘 */
 .rank_table_name img{

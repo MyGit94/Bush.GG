@@ -1,19 +1,6 @@
-* {
-  margin: 0;
-  padding: 0;
-}
 
-p {
-  margin: 0;
-}
 
-ul {
-  padding: 0;
-}
 
-ul>li {
-  list-style-type: none;
-}
 
 
 #content-wrapper {
@@ -1053,6 +1040,7 @@ div들을 정렬하기 위한 옵션 */
   width:7%;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 /* 다중킬 이미지 사이즈 지정 */

@@ -6,7 +6,7 @@
 <!--    보드 css -->
     <link rel="stylesheet" href="/css/board-detail.css">
 <!--    반응형 -->
-    <link rel="stylesheet" href="/css/board_media.css">
+    <link rel="stylesheet" href="/css/board-detail_media.css">
 </head>
 
 
@@ -49,7 +49,7 @@
                     </div>
                     <div class="commentCount">
                     <span class="titleText">💬</span>
-                    <span class="titleText">댓글 ?개 </span>
+                    <span class="titleText" th:text=" '댓글:'+${countComments} + '개'">댓글 ?개 </span>
                 </div>
             </div>
          </div>

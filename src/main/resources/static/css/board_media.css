@@ -1,7 +1,38 @@
-@media screen and (max-width: 1010px){
-    /*테이블 내용 폰트 사이즈*/
-    .trs td{
-        font-size:16px;
+@media screen and (max-width: 1020px){
+
+    /*글쓰기 버튼 패팅 */
+    .tableHederBtn{
+        padding-top:1.25rem;
     }
 
+    .writeBtn{
+        margin-right:10px;
+    }
+    /*테이블 전체영역 조정 */
+    .table{
+        width:99%;
+        margin:0 auto;
+    }
+
+    /* 테이블 중간정렬 */
+    .table thead th , .table tbody td{
+        vertical-align: middle;
+    }
+
+    .card-body{
+        padding:0;
+    }
+
+    /*테이블 내용 폰트 사이즈*/
+    .table-bordered th, .table-bordered td{
+        font-size:14px;
+        text-align: center;
+    }
+
+}
+
+@media screen and (max-width: 700px){
+    body{
+        min-width: 700px;
+    }
 }

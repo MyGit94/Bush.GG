@@ -1,0 +1,61 @@
+@media screen and  (max-width:1300px) {
+    /*전체영역 조정*/
+    .summoner_rank_profile_wrap , .summoner_rank_list_wrap{
+        width:90%;
+    }
+
+    /* 테이블 전체 폰트 사이즈 */
+    .summoner_rank_table{
+        font-size:14px;
+    }
+
+}
+
+
+@media screen and  (max-width:1000px) {
+    /*전체영역 조정*/
+    .summoner_rank_profile_wrap , .summoner_rank_list_wrap{
+        width:99%;
+    }
+
+    /* 테이블 전체 폰트 사이즈 */
+    .summoner_rank_table{
+        font-size:14px;
+    }
+
+    /*랭크 컷 */
+    .summoner_rank_cut{
+        width:35%;
+    }
+
+    .rank_table_tier img{
+        width:50px;
+    }
+
+}
+
+
+@media screen and  (max-width:800px) {
+
+    /* 테이블 전체 폰트 사이즈 */
+    .summoner_rank_table{
+        font-size:12px;
+    }
+
+    /*메뉴아이콘*/
+    .fa{
+        color:#000;
+    }
+
+
+}
+
+
+@media screen and  (max-width:700px) {
+
+    body{
+        min-width: 700px;
+    }
+
+
+}

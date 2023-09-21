@@ -1,9 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  padding: 0;
+}
+
+ul>li {
+  list-style-type: none;
+}
+
+
 a {
   color: #000000;
   text-decoration: none;
   background-color: transparent;
 }
 
+p{
+  margin:0 !important;
+}
 a:hover {
   color: #000000;
   text-decoration: none;

@@ -1,0 +1,32 @@
+@media screen and (max-width: 1600px){
+    /* 정렬 1줄에 1칸씩 */
+    .live_info_wrap{
+        flex-direction: column;
+        justify-content: normal;
+    }
+
+    /*전체영역 */
+    .live_info_contents{
+        margin:10px auto 0 auto;
+        width:90%;
+        height:500px;
+    }
+
+
+}
+
+
+@media screen and (max-width: 800px){
+
+    /* 컨텐츠 전체영역 */
+    .main_contents_wrap{
+        padding:0;
+    }
+
+
+    /*전체영역 */
+    .live_info_contents{
+        width:99%;
+    }
+
+}
