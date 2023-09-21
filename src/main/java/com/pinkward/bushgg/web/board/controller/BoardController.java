@@ -8,11 +8,11 @@ import com.pinkward.bushgg.domain.common.web.Pagination;
 import com.pinkward.bushgg.domain.member.dto.MemberDTO;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -138,11 +138,8 @@ public class BoardController {
 
     @GetMapping("/detail/{articleId}")
     public String detail ( @PathVariable int articleId, Model model , HttpSession session){
-//       회원 정보 불러오기
         MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
-//       게시글 상세정보
         ArticleDTO articleDTO = articleService.detail(articleId);
-//        조회수 증가
         articleMapper.updateHitcount(articleDTO);
 
         int groupNo = articleDTO.getGroupNo();
@@ -150,13 +147,9 @@ public class BoardController {
 
         int countComments  = articleMapper.cellComments(groupNo);
 
-//        댓글수 계산
         model.addAttribute("countComments" , countComments);
-//            댓글 읽기
         model.addAttribute("comments", comments);
-//            게시글 정보
         model.addAttribute("articleDTO", articleDTO);
-//        게시글 정보 세션 저장
         session.setAttribute("articleDTO", articleDTO);
         return "article/board-detail";
     }

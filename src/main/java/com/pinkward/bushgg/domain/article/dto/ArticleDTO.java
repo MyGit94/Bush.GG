@@ -3,8 +3,6 @@ package com.pinkward.bushgg.domain.article.dto;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-import java.util.List;
-
 @Getter
 @Setter
 @ToString
@@ -18,6 +16,8 @@ public class ArticleDTO {
     String writer;
 //    게시판번호
     int boardId;
+//    관리자번호
+    String adminNo;
 //    제목
     String subject;
 //    내용
@@ -32,6 +32,5 @@ public class ArticleDTO {
     int groupNo;
     int levelNo;
     int orderNo;
-
 
 }

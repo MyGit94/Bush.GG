@@ -41,12 +41,10 @@ public class LoginController {
 
     @GetMapping("/member/callback")
     public RedirectView handleCallback(@RequestParam("code") String code, HttpSession session) throws Exception {
-        // Exchange authorization code for access token
         GoogleTokenResponse tokenResponse = googleLogin.getToken(code);
 
         String accessToken = tokenResponse.getAccessToken();
 
-        // Use the access token to get user info
         Person profile = googleLogin.getUserInfo(accessToken);
 
         String userId = profile.getResourceName();
