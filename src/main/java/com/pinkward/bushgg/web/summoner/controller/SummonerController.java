@@ -148,7 +148,6 @@ public class SummonerController {
 
 
                 }
-                matchInfoDTO =matchService.getMatchInfoDTO(matchInfoDTO, matchInfo);
 
                 participantsList.add(participant);
 
