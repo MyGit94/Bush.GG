@@ -24,7 +24,7 @@
             </div>
             <!-- 실시간 정보 전체영역 -->
             <div class="live_info_wrap">
-                <!--                        <p th:if="${currentGameInfo.isEmpty()}">진행중인 게임이 없습니다.</p>-->
+                                        <p th:if="${currentGameInfo.isEmpty()}">진행중인 게임이 없습니다.</p>
 
                 <!-- 실시간 정보 1칸 전체영역 -->
                 <div class="live_info_contents" th:each="gameInfo : ${currentGameInfo}" th:with="summonersList=${gameInfo['summoners']}">

@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Ko API에서 json 가져오는 Service
+ * Riot Ko API에서 json 가져오는 Service
  */
 public interface APIServiceKo {
     // 소환사정보

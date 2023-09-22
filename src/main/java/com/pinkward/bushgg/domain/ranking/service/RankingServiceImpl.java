@@ -1,22 +1,11 @@
 package com.pinkward.bushgg.domain.ranking.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pinkward.bushgg.domain.api.service.APIRankingService;
 import com.pinkward.bushgg.domain.ranking.dto.RankingDTO;
-import com.pinkward.bushgg.domain.summoner.mapper.SummonerMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +44,6 @@ public class RankingServiceImpl implements RankingService{
 
                 challengerRanking.add(rankingDTO);
             }
-
         return challengerRanking;
     }
 
@@ -86,7 +74,6 @@ public class RankingServiceImpl implements RankingService{
 
             challengerRanking.add(rankingDTO);
         }
-
         return challengerRanking;
     }
 

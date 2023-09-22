@@ -12,10 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * 세부 컨트롤러에서 발생하는 예외 처리를 위한 공통 구현
- *
- * @author 에너자이조 김기정
- * @since 2023. 9. 5.
- * @version 1.0
  */
 @RestControllerAdvice
 @Slf4j

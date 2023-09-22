@@ -4,7 +4,6 @@
 <head>
    <!-- css -->
     <th:block th:replace="common/fragments/config :: configFragment" />
-    <th:block th:replace="~{common/fragments/config :: configFragment}" />
     <link rel="stylesheet" href="/css/login.css">
 
 </head>
@@ -43,14 +42,20 @@
 									    <p th:each="objectError : ${#fields.globalErrors()}"
 									    th:text="${objectError}">글로벌 오류 메시지</p>
 									</div>
-
+                                        <script th:inline="javascript">
+                                            /*<![CDATA[*/
+                                            var userId = /*[[${userId}]]*/ 'default';
+                                            document.addEventListener("DOMContentLoaded", function() {
+                                                document.getElementById('s').value = (userId != null) ? userId : '';
+                                            });
+                                            /*]]>*/
+                                        </script>
                                         <!-- 아이디 -->
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                               placeholder="아이디를 입력하세요."
-                                               th:field="*{loginId}">
+                                            <input type="text" id="s" class="form-control form-control-user"
+                                               placeholder="아이디를 입력하세요." th:field="*{loginId}">
                                             <div class="errors">
-                                            	<div>
+                                            	<div >
 										            <p class="error" th:errors="*{loginId}">입력 오류메시지</p>
 										        </div>
                                             </div>
@@ -74,7 +79,7 @@
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <!-- 아이디 저장 체크박스 -->
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck"  name="saveId" th:checked="${userId != null}">
                                                 <label class="custom-control-label" for="customCheck">
                                                     아이디 저장
                                                 </label>

@@ -24,6 +24,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * 도전과제 페이지 요청을 처리하는 세부 컨트롤러 구현 클래스
+ */
 @Slf4j
 @Controller
 @RequiredArgsConstructor
