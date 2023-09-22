@@ -72,7 +72,6 @@ public class HomeController {
 
 
 
-//        09 21 추가 - 커뮤니티 시간계산
 		for (ArticleDTO article : limitedList) {
 			String articleTime = article.getRegdate();
 			// 문자열을 LocalDateTime으로 파싱
@@ -83,11 +82,11 @@ public class HomeController {
 			long times = ChronoUnit.HOURS.between(regDateTime, currentDateTime);
 			if (times <= 24) {
 				String changeHours = String.valueOf(times);
-				article.setRegdate(changeHours);
+				article.setRegdate(changeHours + "시간 전");
 			} else {
-				long days = times / 24 ;
+				long days = times / 24;
 				String changeDays = String.valueOf(days);
-				article.setRegdate(changeDays);
+				article.setRegdate(changeDays + "일 전");
 			}
 		}
 

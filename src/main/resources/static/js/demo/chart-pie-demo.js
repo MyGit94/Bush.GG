@@ -22,7 +22,7 @@ let myPieChart = new Chart(ctx, {
         labels: ["Win", "Lose"], // 도넛 차트 섹션 레이블
         datasets: [{
             data: [winCount, loseCount], // 섹션별 데이터 값
-            backgroundColor: ['#3d735f', 'red'], // 도넛 차트 섹션 배경색
+            backgroundColor: ['#707efd', 'red'], // 도넛 차트 섹션 배경색
         }],
     },
 
@@ -66,7 +66,7 @@ ingameWraps.forEach((wrap, index)=>{
             labels: ["Win", "Lose"], // 도넛 차트 섹션 레이블
             datasets: [{
                 data: [graphCountValues[0], graphCountValues[1]], // 섹션별 데이터 값
-                backgroundColor: ['#3d735f', 'red'], // 도넛 차트 섹션 배경색
+                backgroundColor: ['#707efd', 'red'], // 도넛 차트 섹션 배경색
             }],
         },
 

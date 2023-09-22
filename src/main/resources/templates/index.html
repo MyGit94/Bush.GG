@@ -116,8 +116,7 @@
                                     <!-- 텍스트 구간 전체영역-->
                                     <div class="community_text_wrap">
 
-                                        <!-- 몇시간전 -->
-                                        <p class="community_time" th:text="${#strings.contains(article.regdate, '시간') ? article.regdate : article.regdate + '일전'}">
+                                        <p class="community_time" th:text="${#strings.contains(article.regdate, '시간') ? article.regdate : article.regdate}">
                                             24시간전
                                         </p>
 
