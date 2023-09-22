@@ -12,4 +12,10 @@ public interface MemberService {
 	public MemberDTO isMember(String loginId, String passwd);
 	public List<MemberDTO> getMemberList();
 	public MemberDTO getMember(String nickName);
+
+	// 중복 체크
+	boolean checkLoginId(String loginId);
+	boolean checkNickName(String nickName);
+	boolean checkEmail(String email);
+
 }

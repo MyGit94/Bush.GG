@@ -58,7 +58,7 @@
                     <!-- 커뮤니티 -->
                     <div class="summoner_coummuity_wrap">
                         <h2 class="community_main_title">
-                            BUSH.GG 최근 인기글
+                            BUSH.GG 최근 인기글 <small>(조회수 순)</small>
                         </h2>
                         <!-- 스타일이 다른 커뮤니티 리스트 2행을 묶기위한
                         전체 영역 -->
@@ -107,8 +107,10 @@
                                         </div>
 
                                         <!-- 게시글 제목 -->
-                                        <h1 class="community_title" th:text="${article.subject}">
+                                        <h1 class="community_title">
+                                            <a th:href="@{/board/detail/{articleId}(articleId=${article.articleId})}" th:text="${article.subject}">
                                             오늘 보쌈 기?
+                                            </a>
                                         </h1>
                                     </div>
                                     <!-- 텍스트 구간 전체영역-->

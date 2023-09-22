@@ -10843,6 +10843,7 @@ a:focus {
 
 form.user .custom-checkbox.small label {
   line-height: 1.5rem;
+  color:black;
 }
 
 form.user .form-control-user {

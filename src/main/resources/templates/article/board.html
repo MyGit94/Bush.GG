@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
     <th:block th:replace="common/fragments/config :: configFragment"/>
@@ -42,7 +42,11 @@
             <div class="boardBody">
                 <div class="card-body">
                     <div class="tableHederBtn">
-                        <button onclick="location.href='/board/register';" class="btn writeBtn">✔ 글쓰기</button>
+                        <a th:href="${session.loginMember != null ? '/board/register' : '/member/login'}"
+                           th:data-loggedin="${session.loginMember != null}"
+                           class="btn writeBtn">
+                            ✔ 글쓰기
+                        </a>
                     </div>
                     <div class="table">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

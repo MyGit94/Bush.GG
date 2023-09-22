@@ -29,16 +29,10 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">닉네임 등록</h1>
                             </div>
-                            <div th:if="${successMessage2}" class="alert alert-success">
-    							<span th:text="${successMessage2}"></span>
-							</div>
 
                             <!-- 개인정보 입력 전체영역 -->
 						    <!-- 아이디&닉네임 끝 -->
-                           <form class="user" method="post">
-                            
-
-
+                           <form class="user" method="post" action="/member/nickname">
 
                                 <!-- 닉네임 -->
                                 <div class="col-sm-6">

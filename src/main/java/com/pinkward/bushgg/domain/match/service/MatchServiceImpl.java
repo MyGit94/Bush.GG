@@ -1,17 +1,10 @@
 package com.pinkward.bushgg.domain.match.service;
 
-import com.pinkward.bushgg.domain.api.service.APIServiceKo;
 import com.pinkward.bushgg.domain.champion.mapper.ChampionMapper;
-import com.pinkward.bushgg.domain.match.common.ChampionCount;
-import com.pinkward.bushgg.domain.match.common.RuneList;
-import com.pinkward.bushgg.domain.match.common.SummonerWithCount;
 import com.pinkward.bushgg.domain.match.common.TimeTranslator;
 import com.pinkward.bushgg.domain.match.dto.MatchInfoDTO;
 import com.pinkward.bushgg.domain.match.dto.ParticipantsDTO;
-import com.pinkward.bushgg.domain.match.dto.RecentDTO;
-import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
-import com.pinkward.bushgg.domain.summoner.dto.SummonerTierDTO;
-import com.pinkward.bushgg.domain.summoner.service.SummonerService;
+import com.pinkward.bushgg.domain.ranking.mapper.TierMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,7 +17,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class MatchServiceImpl implements MatchService {
 
-    private final ChallengerMapper challengerMapper;
+    private final TierMapper challengerMapper;
     private final ChampionMapper championMapper;
 
     @Override

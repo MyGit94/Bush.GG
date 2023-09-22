@@ -12,7 +12,7 @@ import com.pinkward.bushgg.domain.match.dto.ParticipantsDTO;
 import com.pinkward.bushgg.domain.match.dto.RecentDTO;
 import com.pinkward.bushgg.domain.match.service.MatchService;
 import com.pinkward.bushgg.domain.ranking.service.RankingAPIServiceImpl;
-import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
+import com.pinkward.bushgg.domain.ranking.mapper.TierMapper;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerTierDTO;
 import com.pinkward.bushgg.domain.summoner.mapper.SummonerMapper;
@@ -24,7 +24,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
@@ -41,7 +40,7 @@ public class SummonerController {
     private final APIServiceAsia apiServiceAsia;
     private final MatchService matchService;
     private final ChampionService championService;
-    private final ChallengerMapper challengerMapper;
+    private final TierMapper challengerMapper;
     private final SummonerMapper summonerMapper;
     private final RankingAPIServiceImpl rankingAPIService;
 
@@ -60,7 +59,6 @@ public class SummonerController {
 
         // 이름으로 소환사 정보 가져옴
         SummonerDTO summoner = apiServiceKo.getSummonerInfo(esummonerName);
-        log.info("{}",summoner);
         if(summoner == null) {
             return "/404";
         }
@@ -157,8 +155,6 @@ public class SummonerController {
             }
             summonerWithCounts =  summonerService.getSummonerWith(matchInfo,teamId,name, summonerWithCounts);
             matchInfoDTO =  matchService.getMatchInfoDTO(matchInfoDTO,matchInfo);
-            log.info("{}",matchInfoDTO);
-            log.info("{}",participantsList);
             matchList.put("matchInfo",matchInfoDTO);
             matchList.put("participantsList", participantsList);
 

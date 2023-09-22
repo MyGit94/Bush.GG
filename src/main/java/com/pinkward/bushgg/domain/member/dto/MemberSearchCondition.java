@@ -14,7 +14,7 @@ import lombok.ToString;
 @ToString
 @Builder
 public class MemberSearchCondition {
-	private String loginId; //memberId
+	private String loginId;
 	private String name;
 	private String email;
 }

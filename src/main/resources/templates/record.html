@@ -144,7 +144,7 @@
 
                         <!-- 1행 -->
                         <tr th:each="row :${recentDTO.getSummonerWithCounts()}">
-                            <td th:text="${row.summonerName}">란브로대머리</td>
+                            <td><a th:href="@{/summoner(summonerName=${row.getSummonerName()})}" th:text="${row.summonerName}">란브로대머리</a></td>
                             <td th:text="${row.count}">15</td>
                             <td th:text="${row.win + '-' + row.lose}">15-2</td>
                             <!-- 승률 계산 -->
@@ -487,8 +487,10 @@
 
                                 <!-- 소환사 닉네임 , 티어정보 -->
                                 <div class="detail_summoner_name">
-                                    <p class="summoner_name" th:text="${participants.getSummonerName()}">
+                                    <p class="summoner_name" >
+                                        <a th:href="@{/summoner(summonerName=${participants.getSummonerName()})}" th:text="${participants.getSummonerName()}">
                                         란브로대머리
+                                        </a>
                                     </p>
 
 <!--                                    <p class="summoner_tier" th:text="${participants.getTier()}">-->
@@ -708,8 +710,10 @@
 
                                 <!-- 소환사 닉네임 , 티어정보 -->
                                 <div class="detail_summoner_name">
-                                    <p class="summoner_name" th:text="${participants.getSummonerName()}">
+                                    <p class="summoner_name">
+                                        <a th:href="@{/summoner(summonerName=${participants.getSummonerName()})}" th:text="${participants.getSummonerName()}">
                                         란브로대머리
+                                        </a>
                                     </p>
 
                                     <p class="summoner_tier" th:text="${participants.getTier()}">

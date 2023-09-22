@@ -76,10 +76,10 @@ public class MemberMapperTest {
 	void createTest() {
 		MemberDTO member = MemberDTO
 				.builder()
-				.loginId("userTest5")
-				.nickName("유저테스트5")
+				.loginId("nonono")
+				.nickName("노노노")
 				.passwd("1234")
-				.email("user5@test.com")
+				.email("nonono@test.com")
 				.role("유저")
 				.build();
 		memberMapper.create(member);

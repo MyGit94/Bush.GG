@@ -94,7 +94,7 @@
                writer,
                subject,
                content,
-               TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss') regdate,
+               regdate,
                group_no,
                order_no,
                hitcount
@@ -102,7 +102,7 @@
         WHERE articleid = #{articleId}
     </select>
 
-    <!--게시글 상세보기에 댓글출력 -->
+    <!--댓글 상세보기 -->
     <select id="readComment" resultType="ArticleDTO" parameterType="int">
         SELECT
             writer,
@@ -117,23 +117,6 @@
           AND group_no = #{groupNo}
         ORDER BY order_no ASC
     </select>
-
-    <!--게시글 상세보기에 답글출력 -->
-    <select id="readCommentReply" resultType="ArticleDTO" parameterType="int">
-        SELECT
-            writer,
-            content,
-            passwd,
-            regdate,
-            group_no,
-            level_no,
-            order_no
-        FROM article
-        WHERE level_no = 2
-        AND group_no = #{groupNo}
-        ORDER BY order_no ASC
-    </select>
-
 
 <!--    댓글 갯수 계산-->
     <select id="cellComments" resultType="int" parameterType="int">
@@ -154,7 +137,6 @@
     <insert parameterType="ArticleDTO" id="createComment">
         INSERT INTO article
         (articleid,
-         hitcount,
          subject,
          writer,
          content,
@@ -165,7 +147,6 @@
          level_no,
          order_no)
         VALUES (article_id_seq.NEXTVAL,
-                #{hitcount},
                 #{subject},
                 #{writer},
                 #{content},
@@ -179,35 +160,6 @@
                  WHERE boardid = #{boardId}
                    AND group_no = #{groupNo}))
     </insert>
-
-<!--    답글쓰기 -->
-   <insert id="commentByComment" parameterType="ArticleDTO">
-    INSERT INTO article
-    (articleid,
-     hitcount,
-    boardid,
-    writer,
-    subject,
-    content,
-    passwd,
-    group_no,
-    level_no,
-    order_no)
-    VALUES      (
-    article_id_seq.NEXTVAL,
-    #{hitcount},
-    #{boardId},
-    #{writer},
-    #{subject},
-    #{content},
-    #{passwd},
-    #{groupNo},
-    2,
-    (SELECT MAX(order_no) + 1
-     FROM article
-     WHERE boardid = #{boardId}
-       AND group_no = #{groupNo}))
-   </insert>
 
     <!--    페이징 -->
     <select id="findByAll" resultType="ArticleDTO" parameterType="PageParams">
@@ -264,7 +216,4 @@
         WHERE article_id = #{articleId}
           AND passwd = #{passwd}
     </delete>
-
-
-
 </mapper>

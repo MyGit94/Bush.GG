@@ -7,9 +7,8 @@ import com.pinkward.bushgg.domain.champion.mapper.ChampionMapper;
 import com.pinkward.bushgg.domain.champion.service.ChampionService;
 import com.pinkward.bushgg.domain.currentgame.service.CurrentGameService;
 import com.pinkward.bushgg.domain.member.dto.MemberDTO;
-import com.pinkward.bushgg.domain.ranking.mapper.ChallengerMapper;
+import com.pinkward.bushgg.domain.ranking.mapper.TierMapper;
 import com.pinkward.bushgg.domain.ranking.service.RankingAPIService;
-import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,118 +28,72 @@ import java.util.Map;
 /**
  * 홈페이지 요청을 처리하는 세부 컨트롤러 구현 클래스
  *
- * @author 에너자이조 김기정
+ * @author  에너자이조 김기정
+ * @since   2023. 9. 4.
  * @version 1.0
- * @since 2023. 9. 4.
  */
 @Controller
 @RequestMapping("/")
 @Slf4j
 @RequiredArgsConstructor
 public class HomeController {
-    private final ArticleMapper articleMapper;
-    private final ChampionService championService;
-    private final ChampionMapper championMapper;
-    private final CurrentGameService currentGameService;
-    private final ChallengerMapper challengerMapper;
-    private final APIServiceKo apiServiceKo;
+	private	final ArticleMapper articleMapper;
+	private final ChampionService championService;
+	private final ChampionMapper championMapper;
+	private final CurrentGameService currentGameService;
+	private final TierMapper challengerMapper;
+	private final APIServiceKo apiServiceKo;
+	private final RankingAPIService rankingAPIService;
 
 
-    @GetMapping("/")
-    public String home(@SessionAttribute(name = "loginMember", required = false) MemberDTO loginMember, Model model, HttpSession httpSession) {
+	@GetMapping("/")
+	public String home(@SessionAttribute(name="loginMember", required = false) MemberDTO loginMember, Model model , HttpSession httpSession) {
 
-        if (loginMember != null) {
-            model.addAttribute("loginMember", loginMember);
-        }
+		if (loginMember != null) {
+			model.addAttribute("loginMember", loginMember);
+		}
 
-        List<Integer> championIds = championService.championLotation();
-        List<String> championNamesEn = new ArrayList<>();
-        List<String> championNamesKo = new ArrayList<>();
+		List<Integer> championIds = championService.championLotation();
+		List<String> championNamesEn = new ArrayList<>();
+		List<String> championNamesKo = new ArrayList<>();
 
-        for (Integer championId : championIds) {
-            championNamesEn.add(championMapper.getChampionEnName(championId));
-            championNamesKo.add(championMapper.getChampionKoName(championId));
-        }
+		for (Integer championId : championIds) {
+			championNamesEn.add(championMapper.getChampionEnName(championId));
+			championNamesKo.add(championMapper.getChampionKoName(championId));
+		}
 
-        model.addAttribute("championNamesEn", championNamesEn);
-        model.addAttribute("championNamesKo", championNamesKo);
+		model.addAttribute("championNamesEn",championNamesEn);
+		model.addAttribute("championNamesKo",championNamesKo);
 
 
-        // 09/18 추가 -송우성- 커뮤니티
-        List<ArticleDTO> articleDTO = articleMapper.findAllByHitcount();
-        log.info("조회수순으로 정렬한 리스트 {} ", articleDTO);
-        List<ArticleDTO> limitedList = articleDTO.subList(0, 10); // 최대 요소 개수 제한
+		// 09/18 추가 -송우성- 커뮤니티
+		List<ArticleDTO> articleDTO = articleMapper.findAllByHitcount();
+		List<ArticleDTO> limitedList = articleDTO.subList(0, 10); // 최대 요소 개수 제한
 
 
 
 //        09 21 추가 - 커뮤니티 시간계산
-        for (ArticleDTO article : limitedList) {
-            String articleTime = article.getRegdate();
-            // 문자열을 LocalDateTime으로 파싱
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            LocalDateTime regDateTime = LocalDateTime.parse(articleTime, formatter);
-            LocalDateTime currentDateTime = LocalDateTime.now();
+		for (ArticleDTO article : limitedList) {
+			String articleTime = article.getRegdate();
+			// 문자열을 LocalDateTime으로 파싱
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+			LocalDateTime regDateTime = LocalDateTime.parse(articleTime, formatter);
+			LocalDateTime currentDateTime = LocalDateTime.now();
 
-            long times = ChronoUnit.HOURS.between(regDateTime, currentDateTime);
-            log.info("times 계산결과값 {}" , times);
-            if (times <= 24) {
-                String changeHours = String.valueOf(times);
-                article.setRegdate(changeHours);
-            } else {
-                long days = times / 24 ;
-                String changeDays = String.valueOf(days);
-                article.setRegdate(changeDays);
-            }
-        }
+			long times = ChronoUnit.HOURS.between(regDateTime, currentDateTime);
+			if (times <= 24) {
+				String changeHours = String.valueOf(times);
+				article.setRegdate(changeHours);
+			} else {
+				long days = times / 24 ;
+				String changeDays = String.valueOf(days);
+				article.setRegdate(changeDays);
+			}
+		}
 
-        model.addAttribute("community", limitedList);
+		model.addAttribute("community", limitedList);
 
-        httpSession.setAttribute("status", 0);
-        return "index";
-    }
-
-
-    @GetMapping("/live")
-    public String live(Model model) {
-
-        List<Map<String, Object>> currentGames = new ArrayList<>();
-        int count = 1;
-        int index = 1;
-        List<String> challengerIds = challengerMapper.getChallengerInfo();
-
-
-        for (String participantId : challengerIds) {
-            log.info("{}", index);
-            index++;
-            if (count > 3 || index > 100) {
-                break;
-            }
-            Map<String, Object> currentGame = apiServiceKo.getCurrentGame(participantId);
-
-            // 중복된 currentGame 패스
-            if (currentGame != null) {
-                boolean isDuplicate = false;
-
-                for (Map<String, Object> existingGame : currentGames) {
-                    long existingGameId = (long) existingGame.get("gameId");
-                    long currentGameId = (long) currentGame.get("gameId");
-
-                    if (currentGameId == (existingGameId)) {
-                        isDuplicate = true;
-                        break;
-                    }
-                }
-                if (!isDuplicate) {
-                    currentGames.add(currentGame);
-                    count++;
-                }
-            }
-        }
-        List<Map<String, Object>> currentGameInfo = currentGameService.getCurrentGameInfo(currentGames);
-        log.info("{}", currentGameInfo);
-        model.addAttribute("currentGameInfo", currentGameInfo);
-        return "live";
-    }
-
-
+		httpSession.setAttribute("status", 0);
+		return "index";
+	}
 }
