@@ -35,9 +35,8 @@
                                     <form class="user" method="post" action="/member/login">
                                         <!-- 아이디 -->
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="loginId" name="loginId" aria-describedby="loginIdHelp"
-                                                placeholder="아이디를 입력하세요.">
+                                            <input type="text" class="form-control form-control-user" id="loginId" name="loginId" aria-describedby="loginIdHelp"
+                                                   placeholder="아이디를 입력하세요." th:value="${userId != null ? userId : ''}">
                                         </div>
                                         <!-- 아이디 끝 -->
 
@@ -52,7 +51,7 @@
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <!-- 아이디 저장 체크박스 -->
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck"  name="saveId" th:checked="${userId != null}">
                                                 <label class="custom-control-label" for="customCheck">
                                                     아이디 저장
                                                 </label>

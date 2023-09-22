@@ -1,20 +1,20 @@
 package com.pinkward.bushgg.web.member.controller;
 
+import com.pinkward.bushgg.domain.member.dto.MemberDTO;
+import com.pinkward.bushgg.domain.member.service.MemberService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.pinkward.bushgg.domain.member.dto.MemberDTO;
-import com.pinkward.bushgg.domain.member.service.MemberService;
-
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequiredArgsConstructor
@@ -53,17 +53,31 @@ public class MemberController {
 
 	
 	@GetMapping("/login")
-	public String login(Model model) {
+	public String login(Model model, @CookieValue(name = "userId", required = false) String userId) {
 	    MemberDTO memberDTO = MemberDTO.builder().build();
 	    model.addAttribute("memberDTO", memberDTO);
+		model.addAttribute("userId",userId);
+		log.info("{}",userId);
 	    return "member/login";
 	}
 	
 	@PostMapping("/login") 
-	public String login(@Valid @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult, HttpServletRequest request) {
-
+	public String login(@RequestParam(name = "saveId", required = false) boolean saveId, @Valid @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult, HttpServletRequest request, HttpServletResponse response) {
+		log.info("{}",saveId);
 		MemberDTO loginMember = memberService.isMember(memberDTO.getLoginId(), memberDTO.getPasswd());
-		
+		if (saveId) {
+			// 아이디를 쿠키에 저장
+			Cookie cookie = new Cookie("userId", memberDTO.getLoginId());
+			cookie.setMaxAge(30 * 24 * 60 * 60);
+			response.addCookie(cookie);
+			log.info("Saved userId cookie with value: " + memberDTO.getLoginId());
+		} else {
+			// 쿠키 삭제
+			Cookie cookie = new Cookie("userId", null);
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+			log.info("Removed userId cookie");
+		}
 		// 회원이 아닌 경우
 		if (loginMember == null) {
 			bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
