@@ -6,9 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-/**
- * Article 관련 SQL Mapper
- */
 @Mapper
 public interface ArticleMapper {
 
