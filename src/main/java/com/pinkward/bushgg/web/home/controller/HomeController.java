@@ -83,11 +83,11 @@ public class HomeController {
 			long times = ChronoUnit.HOURS.between(regDateTime, currentDateTime);
 			if (times <= 24) {
 				String changeHours = String.valueOf(times);
-				article.setRegdate(changeHours);
+				article.setRegdate(changeHours + "시간 전");
 			} else {
-				long days = times / 24 ;
+				long days = times / 24;
 				String changeDays = String.valueOf(days);
-				article.setRegdate(changeDays);
+				article.setRegdate(changeDays + "일 전");
 			}
 		}
 
