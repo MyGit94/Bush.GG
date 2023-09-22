@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface ArticleMapper {
 
-    //   /** 신규 게시글 등록 */
+    //   /** 신규 게시글 등록! */
     void create(ArticleDTO articleDTO);
 
     //   /** 전체 게시글 목록 반환 */
