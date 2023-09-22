@@ -1023,7 +1023,7 @@ div들을 정렬하기 위한 옵션 */
 .summoner_name {
   font-weight: bold;
   color: #000;
-  font-size: 11px;
+  font-size: 15px;
 }
 
 /* 소환사 kda 전체영역 */
@@ -1122,32 +1122,17 @@ div들을 정렬하기 위한 옵션 */
   content: "";
   position: absolute;
   top: 15px;
-  right: 10px;
+  left:10px;
 }
-
-/* 받은 데미지 마우스 hover 시 나오는 설명 */
-.get_chart_info {
-  top: 20px;
-}
-
-.get_chart_info:after {
-  border-top: 0px solid transparent;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 10px solid #000000;
-  content: "";
-  position: absolute;
-  top: -5px;
-  right: 10px;
-}
-
 
 
 /* 받은 데미지 막대 차트 */
 .get_chartbar {
   width: 33%;
   background-color: #868686;
+  z-index:3;
 }
+
 
 /* 가한 데미지 , 받은 데미지 수치 텍스트 */
 .dmg {
