@@ -28,118 +28,134 @@
 
   <div id="wrapper">
 
-    <!-- 좌측 사이드바 전체 영역 -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+    <div class="loading_wrap">
+      <img src="/img/nunu.gif" class="nunu">
+      <!--        로딩 -->
+      <div class="loading-container">
+          <div id="loading-text">로딩중...</div>
+      </div>
+  </div>
+  <!-- 좌측 사이드바 전체 영역 -->
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <!-- 왼쪽 사이드바 로고 영역 -->
       <li class="nav-item active">
-        <a class="nav-link nav-link2" href="index.html">
-          <!-- <p class="nav-item-text">BUSH.GG</p> -->
-          <img src="img/logo.png" alt="" class="nav-item-img">
-        </a>
+          <a class="nav-link nav-link2" href="/">
+              <!-- <p class="nav-item-text">BUSH.GG</p> -->
+              <img src="/img/logo.png" alt="" class="nav-item-img">
+          </a>
       </li>
-
       <!-- 구분선1 -->
       <hr class="sidebar-divider">
-
       <!-- 사이드바 카테고리1 : 사용자 -->
-      <div class="sidebar-heading">
-        사용자
+      <div class="sidebar-heading" th:if="${loginMember == null}">
+          사용자
       </div>
-
+      <div class="user" th:if="${loginMember != null}">
+          😀 환영합니다!
+      </div>
       <!-- 사이드메뉴 :: 상단 메뉴 - 사용자 -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-          aria-expanded="true" aria-controls="collapseUtilities">
-          <!-- 상단 메뉴 아이콘 -->
-          <i class="fas fa-fw fa-wrench"></i>
-          <!-- 상단 메뉴 텍스트 -->
-          <span>뭘 적어둘지 몰라서 비워뒀음</span>
-        </a>
-      </li>
+          <!-- 로그인 -->
+          <a th:if="${loginMember == null}" th:href="@{/member/login}"
+             class="nav-link collapsed">
+              <i class="fas fa-fw fa-user"></i>
+              <span>로그인</span>
+          </a>
+<!--            로그인시 출력되는 닉네임-->
+          <strong th:if="${loginMember != null}" class="nav-link" id="nickname" th:text="${loginMember.nickName}">
+          </strong>
 
+          <!-- 회원가입-->
+          <a th:if="${loginMember == null}" th:href="@{/member/register}"
+             class="nav-link collapsed">
+              <i class="fas fa-fw fa-user"></i>
+              <span>회원가입</span>
+          </a>
+          <a th:if="${loginMember != null}" th:href="@{/member/logout}"
+             class="nav-link collapsed">
+              <i class="fas fa-fw fa-user"></i>
+              <span>로그아웃</span>
+          </a>
+      </li>
       <!-- 구분선2 -->
       <hr class="sidebar-divider">
-
       <!-- 사이드바 카테고리2 : 컨텐츠 -->
       <div class="sidebar-heading">
-        Contents
+          Contents
       </div>
-
       <!-- 패치노트 -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-          aria-controls="collapsePages">
-          <!-- 패치노트 아이콘-->
-          <i class="fas fa-fw fa-folder"></i>
-          <span>패치노트</span>
-        </a>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+             aria-expanded="true" aria-controls="collapsePages">
+              <!-- 패치노트 아이콘-->
+              <i class="fas fa-fw fa-folder"></i>
+              <span>패치노트</span>
+          </a>
       </li>
-
       <!-- 랭킹 -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <!-- 랭킹 아이콘-->
-          <i class="fas fa-fw fa-chart-area"></i>
-          <!-- 랭킹 텍스트 -->
-          <span>랭킹</span></a>
+          <a class="nav-link" href="/ranking">
+              <!-- 랭킹 아이콘-->
+              <i class="fas fa-fw fa-chart-area"></i>
+              <!-- 랭킹 텍스트 -->
+              <span>랭킹</span></a>
       </li>
-
       <!-- 커뮤니티 -->
       <li class="nav-item">
-        <a class="nav-link" href="board.html">
-          <!-- 커뮤니티 아이콘 -->
-          <i class="fas fa-fw fa-table"></i>
-          <!-- 커뮤니티 텍스트 -->
-          <span>커뮤니티</span></a>
+          <a class="nav-link" href="/board">
+              <!-- 커뮤니티 아이콘 -->
+              <i class="fas fa-fw fa-table"></i>
+              <!-- 커뮤니티 텍스트 -->
+              <span>커뮤니티</span></a>
       </li>
-
+      <!-- 실시간 -->
+      <li class="nav-item">
+          <a class="nav-link" href="/live">
+              <!-- 커뮤니티 아이콘 -->
+              <i class="fas fa-fw fa-table"></i>
+              <!-- 커뮤니티 텍스트 -->
+              <span>실시간 게임</span></a>
+      </li>
       <!-- 구분선3 -->
       <hr class="sidebar-divider d-none d-md-block">
-
       <!-- 사이드바 열기/닫기 버튼 전체영역 -->
       <div class="text-center d-none d-md-inline">
-        <!-- 사이드바 버튼 -->
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+          <!-- 사이드바 버튼 -->
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
-
-
-
-    </ul>
-    <!-- 사이드바 끝 -->
+  </ul>
+  <!-- 사이드바 끝 -->
 
 
     <!-- 메인 컨텐츠 전체영역 -->
     <div id="content-wrapper" class="d-flex flex-column">
 
-      <!-- 상단 헤더 -->
-      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-        <!-- (모바일) 사이드 메뉴 여닫이 버튼 -->
-        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+       <!-- 상단 헤더 -->
+    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+      <!-- (모바일) 사이드 메뉴 여닫이 버튼 -->
+      <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
           <i class="fa fa-bars"></i>
-        </button>
-
-        <!-- 전적 검색창 -->
-        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+      </button>
+      <!-- 전적 검색창 -->
+      <form action="/summoner" method="get"
+            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
           <div class="input-group">
-            <!-- 전적 검색 : 입력 텍스트칸 -->
-            <input type="text" class="form-control bg-light border-0 small" placeholder="소환사명을 입력해주세요"
-              aria-label="Search" aria-describedby="basic-addon2">
-            <!-- 검색 아이콘 전체영역 -->
-            <div class="input-group-append">
-              <!-- 검색 버튼 네모박스 -->
-              <button class="btn btn-primary" type="button">
-                <!-- 검색 버튼 돋보기 아이콘 -->
-                <i class="fas fa-search fa-sm"></i>
-              </button>
-            </div>
+              <!-- 전적 검색 : 입력 텍스트칸 -->
+              <input type="text" class="form-control bg-light border-0 small" placeholder="소환사명을 입력해주세요"
+                     aria-label="Search" aria-describedby="basic-addon2" name="summonerName" id="top_search_input">
+              <!-- 검색 아이콘 전체영역 -->
+              <div class="input-group-append">
+                  <!-- 검색 버튼 네모박스 -->
+                  <button class="btn btn-primary" type="submit">
+                      <!-- 검색 버튼 돋보기 아이콘 -->
+                      <i class="fas fa-search fa-sm"></i>
+                  </button>
+              </div>
           </div>
-        </form>
-        <!-- 전적 검색창 끝 -->
+      </form>
 
-      </nav>
-      <!-- 상단헤더 끝 -->
+  </nav>
+  <!-- 상단헤더 끝 -->
 
       <!-- 유저 프로필 전체영역 -->
       <div class="challenge_profile">

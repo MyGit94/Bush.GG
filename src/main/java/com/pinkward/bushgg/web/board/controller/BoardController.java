@@ -23,15 +23,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardController {
 
+//     Mapper 클래스 의존성주입
     private final ArticleMapper articleMapper;
+//    Service 클래스 의존성주입
     private final ArticleService articleService;
+//    페이징 :: 한페이지에 출력되는 게시글수
     private final int ELEMENT_SIZE = 8;
+//    페이징 :: 총 페이지수
     private final int PAGE_SIZE = 5;
 
 
 
 
-    //    게시판 입장
+    //    게시판 목록
     @GetMapping
     public String article(
             Model model,
@@ -39,7 +43,7 @@ public class BoardController {
             @RequestParam(defaultValue = "1") int requestPage
     ) {
 
-
+//        로그인한 회원 정보를
         MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
         int selectPage = requestPage;
         int rowCount = articleService.countAll();
