@@ -2,6 +2,8 @@ package com.pinkward.bushgg.domain.member.service;
 
 import com.pinkward.bushgg.domain.member.dto.MemberDTO;
 
+import java.util.List;
+
 /**
  * 회원 관련 비즈니스 로직 처리 및 트랜잭션 관리
  */

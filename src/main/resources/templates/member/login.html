@@ -42,14 +42,20 @@
 									    <p th:each="objectError : ${#fields.globalErrors()}"
 									    th:text="${objectError}">글로벌 오류 메시지</p>
 									</div>
-
+                                        <script th:inline="javascript">
+                                            /*<![CDATA[*/
+                                            var userId = /*[[${userId}]]*/ 'default';
+                                            document.addEventListener("DOMContentLoaded", function() {
+                                                document.getElementById('s').value = (userId != null) ? userId : '';
+                                            });
+                                            /*]]>*/
+                                        </script>
                                         <!-- 아이디 -->
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                               placeholder="아이디를 입력하세요." th:value="${userId != null ? userId : ''}"
-                                               th:field="*{loginId}">
+                                            <input type="text" id="s" class="form-control form-control-user"
+                                               placeholder="아이디를 입력하세요." th:field="*{loginId}">
                                             <div class="errors">
-                                            	<div>
+                                            	<div >
 										            <p class="error" th:errors="*{loginId}">입력 오류메시지</p>
 										        </div>
                                             </div>

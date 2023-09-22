@@ -3,11 +3,23 @@ package com.pinkward.bushgg.web.member.controller;
 import com.pinkward.bushgg.domain.member.dto.LoginForm;
 import com.pinkward.bushgg.domain.member.dto.MemberDTO;
 import com.pinkward.bushgg.domain.member.service.MemberService;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,7 +39,7 @@ public class MemberController {
     // 회원 데이터 검증 - #3. Bean Validation 사용
     @PostMapping("/register")
     public String register(@Validated @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult,
-            RedirectAttributes redirectAttributes,HttpServletRequest request, Model model) {
+                           RedirectAttributes redirectAttributes, HttpServletRequest request, Model model) {
 
         // 데이터 검증 실패 시 회원가입 화면으로 Forward
         if (bindingResult.hasErrors()) {
@@ -103,13 +115,13 @@ public class MemberController {
 	public String login(Model model, @CookieValue(name = "userId", required = false) String userId) {
         LoginForm loginForm = LoginForm.builder().build();
         model.addAttribute("loginForm", loginForm);
-		model.addAttribute("userId",userId);
-		log.info("{}",userId);
+		model.addAttribute("userId", userId);
+		log.info("확인용:{}",userId);
 	    return "member/login";
 	}
 	
 	@PostMapping("/login") 
-	public String login(@RequestParam(name = "saveId", required = false) boolean saveId, @Valid @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult, HttpServletRequest request, HttpServletResponse response) {
+	public String login(@RequestParam(name = "saveId", required = false) boolean saveId, @Valid @ModelAttribute LoginForm loginForm, BindingResult bindingResult, HttpServletRequest request, HttpServletResponse response) {
 		log.info("{}",saveId);
         if (bindingResult.hasErrors()) {
             return "member/login";
@@ -119,10 +131,10 @@ public class MemberController {
 
 		if (saveId) {
 			// 아이디를 쿠키에 저장
-			Cookie cookie = new Cookie("userId", memberDTO.getLoginId());
+			Cookie cookie = new Cookie("userId", loginForm.getLoginId());
 			cookie.setMaxAge(30 * 24 * 60 * 60);
 			response.addCookie(cookie);
-			log.info("Saved userId cookie with value: " + memberDTO.getLoginId());
+			log.info("Saved userId cookie with value: " + loginForm.getLoginId());
 		} else {
 			// 쿠키 삭제
 			Cookie cookie = new Cookie("userId", null);
