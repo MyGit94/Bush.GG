@@ -34,17 +34,14 @@ public class GoogleLoginService {
     public void login(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         log.info("실행됨");
 
-        // Only create a new transport if one doesn't already exist
         if (httpTransport == null) {
             httpTransport = GoogleNetHttpTransport.newTrustedTransport();
         }
 
-        // Load client secrets
         InputStream in = new FileInputStream("src/main/resources/client_secret.json");
         GoogleClientSecrets clientSecrets =
                 GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 
-        // Build flow and trigger user authorization request
         GoogleAuthorizationCodeFlow flow =
                 new GoogleAuthorizationCodeFlow.Builder(httpTransport, JSON_FACTORY,
                         clientSecrets, SCOPES).build();
@@ -56,12 +53,10 @@ public class GoogleLoginService {
     }
 
     public GoogleTokenResponse getToken(String code) throws Exception {
-        // Load client secrets
         InputStream in = new FileInputStream("src/main/resources/client_secret.json");
         GoogleClientSecrets clientSecrets =
                 GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 
-        // Build flow and trigger user authorization request
         GoogleAuthorizationCodeFlow flow =
                 new GoogleAuthorizationCodeFlow.Builder(httpTransport, JSON_FACTORY,
                         clientSecrets, SCOPES).build();
@@ -76,7 +71,6 @@ public class GoogleLoginService {
                         .setApplicationName("bushgg")
                         .build();
 
-        // Request the user's profile information
         Person profile = peopleService.people().get("people/me")
                 .setPersonFields("names,emailAddresses,phoneNumbers")
                 .execute();

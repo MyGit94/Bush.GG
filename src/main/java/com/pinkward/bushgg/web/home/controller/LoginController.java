@@ -24,13 +24,9 @@ public class LoginController {
 
     private final GoogleLoginService googleLogin;
     private final MemberMapper memberMapper;
-    private final APIServiceKo apiServiceKo;
-    private final SummonerService summonerService;
 
-    public LoginController(MemberMapper memberMapper, APIServiceKo apiServiceKo, SummonerService summonerService) {
+    public LoginController(MemberMapper memberMapper) {
         this.memberMapper = memberMapper;
-        this.apiServiceKo = apiServiceKo;
-        this.summonerService = summonerService;
         this.googleLogin = new GoogleLoginService();
     }
 
