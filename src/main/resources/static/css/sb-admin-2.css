@@ -87,21 +87,6 @@ body {
   outline: 0 !important;
 }
 
-hr {
-  box-sizing: content-box;
-  height: 0;
-  overflow: visible;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
-p {
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
 
 abbr[title],
 abbr[data-original-title] {
@@ -2372,8 +2357,8 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #3d735f;
-  border-color: #3d735f;
+  background-color: #312a32;
+  border-color:#312a32;
 }
 
 
@@ -9880,7 +9865,7 @@ a:focus {
 }
 
 .bg-gradient-primary {
-  background-color: #3d735f;
+  background-color:#312a32;
   /* background-image: linear-gradient(180deg,#494949 10%,#a4a4a4 100%); */
   background-size: cover;
 }

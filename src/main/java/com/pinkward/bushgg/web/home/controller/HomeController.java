@@ -72,7 +72,6 @@ public class HomeController {
 
 
 
-//        09 21 추가 - 커뮤니티 시간계산
 		for (ArticleDTO article : limitedList) {
 			String articleTime = article.getRegdate();
 			// 문자열을 LocalDateTime으로 파싱

@@ -110,7 +110,7 @@ div들을 정렬하기 위한 옵션 */
   border-radius: 5px;
   padding: 5px;
   border: none;
-  background-color: #3d735f;
+  background-color: #312a32;
   color: #fff;
 }
 
@@ -177,7 +177,7 @@ div들을 정렬하기 위한 옵션 */
 /* 같이 플레이 한 소환사 타이틀 */
 .recent_friend_title {
   font-size: 14px;
-  color: #3d735f;
+  color: #312a32;
   font-weight: bold;
 }
 
@@ -185,7 +185,7 @@ div들을 정렬하기 위한 옵션 */
 /* 표 타이틀 밑에 구분선 추가 */
 .recent_friend_table thead tr {
   /* border-bottom: 1px solid #000; */
-  background-color: #3d735f;
+  background-color: #312a32;
   font-weight: bold;
   color: #fff;
   height: 40px;
@@ -215,7 +215,7 @@ div들을 정렬하기 위한 옵션 */
 
 /* 챔피언 승률 차트 헤더 */
 .recent_champion_table_header {
-  background-color: #3d735f;
+  background-color: #312a32;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -291,7 +291,7 @@ div들을 정렬하기 위한 옵션 */
 .left_rate_chart,
 .right_rate_chart {
   padding: 5px;
-  background-color: #3d735f;
+  background-color: #707efd;
   position: relative;
   width: 67%;
   height: 30px;
@@ -371,7 +371,7 @@ div들을 정렬하기 위한 옵션 */
   width: 50px;
   height: 20px;
   z-index: 0;
-  color: #3d735f;
+  color: #312a32;
   font-size: 20px;
   position: absolute;
 }
@@ -380,7 +380,7 @@ div들을 정렬하기 위한 옵션 */
 /* 최근 20게임 승률 타이틀 */
 .game_rate_title {
   font-size: 14px;
-  color: #3d735f;
+  color: #312a32;
   font-weight: bold;
 }
 
@@ -889,7 +889,7 @@ div들을 정렬하기 위한 옵션 */
 
 /* 종합정보 전체영역 */
 .detail_info_wrap {
-  border: 1px solid #3d735f;
+  border: 1px solid #312a32;
   height: 100%;
   display: none;
 }
@@ -1267,7 +1267,7 @@ div들을 정렬하기 위한 옵션 */
   height: 650px;
   background-color: #ffffff;
   display: none;
-  border: 1px solid #3d735f;
+  border: 1px solid #312a32;
 }
 
 /* active 클래스가 붙으면 화면이 출력되게 설정 */
@@ -1294,7 +1294,7 @@ div들을 정렬하기 위한 옵션 */
 .win_team_circle {
   width: 20px;
   height: 20px;
-  background-color: #3d735f;
+  background-color: #312a32;
   border-radius: 50%;
   margin-right: 10px;
 }
@@ -1371,7 +1371,7 @@ div들을 정렬하기 위한 옵션 */
 .kill_bar_graph {
   width: 100%;
   height: 20px;
-  background-color: rgba(58, 59, 69, 0.29);
+  background-color: #d1d5ff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1386,7 +1386,7 @@ div들을 정렬하기 위한 옵션 */
 /* 실질적인 킬 수 그래프 */
 .kill_bar {
   height: 100%;
-  background-color: #3d735f;
+  background-color: #707efd;
 }
 
 /* 패배팀 빨간색 막대그래프 */
@@ -1438,7 +1438,7 @@ div들을 정렬하기 위한 옵션 */
 
 /* 승리팀 킬수 텍스트 */
 .champion_kill_win_team_text {
-  color: #3d735f;
+  color: #312a32;
 }
 
 /* 승리팀 킬수 텍스트 */
@@ -1452,7 +1452,7 @@ div들을 정렬하기 위한 옵션 */
   height: 300px;
   position: relative;
   display: none;
-  border: 1px solid #3d735f;
+  border: 1px solid #312a32;
 }
 
 /* active 클래스가 붙으면 화면이 출력되게 설정 */

@@ -1,181 +1,224 @@
-h1 , h3 , p{
-  margin:0;
+h1, h3, p {
+    margin: 0;
 }
 
 
 /* 유저 프로필 전체영역 */
 .challenge_profile {
-  width: 100%;
-  background-color: #e1e1e1c5;
-  height: 200px;
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  /* background-image: url(../img/timo.jpg); */
-  /* background-size:100% 200px;
-  background-position: center;
-  background-repeat: no-repeat; */
+    border-radius: 20px;
+    margin: 0 auto;
+    width: 90%;
+    background-color: #312a32;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.challenge_profile_img {
+    width: 100px;
+    height: 100px;
 }
 
 /* 유저 프로필 이미지 사이즈 */
-.challenge_profile_img img{
-  width:200px;
+.challenge_profile_img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
 }
 
 /* 소환사명 , 랭킹등급 */
 .challenge_prifile_text_wrap {
-  margin-left: 20px;
+    margin-left: 20px;
+}
+
+/*소환사명 텍스트*/
+.challenge_profile_text {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* 랭킹 등급명 텍스트 */
+.challenge_profile_rank {
+    color: rgba(255, 255, 255, 0.59);
 }
 
 /* 챌린지 컨텐츠 전체영역 */
 .challenge_wrap {
-  display:flex;
-  margin:10px auto 0 auto;
-  width: 80%;
-  /* background-color: aquamarine; */
+    display: flex;
+    margin: 10px auto 0 auto;
+    width: 80%;
+    /* background-color: aquamarine; */
 }
 
 /* 좌측 카테고리 전체영역 */
-.challenge_category_wrap{
-  height:500px;
-  padding:20px;
-  display:flex;
-  flex-direction: column;
+.challenge_category_wrap {
+    height: 500px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* 좌측만 따로 */
-.left_category{
-  background-color: rgb(218, 218, 218);
-  margin-right:10px;
+.left_category {
+    background-color: rgb(218, 218, 218);
+    margin-right: 10px;
 }
 
 /* 카테고리 타이틀 전체영역 */
-.category_title_wrap{
-  height:15%;
-  display: flex;
+.category_title_wrap {
+    height: 15%;
+    display: flex;
     justify-content: center;
 }
 
 /* 카테고리 타이틀 텍스트 */
-.category_title{
-  font-size: 30px;
+.category_title {
+    font-size: 30px;
 }
 
 /* 카테고리 메뉴 */
-.category_menu_wrap{
-  height:13%;
-  display:flex;
-  align-items: center;
+.category_menu_wrap {
+    height: 13%;
+    display: flex;
+    align-items: center;
 }
 
 /* 카테고리 이미지 */
-.category_menu_wrap img{
-  width:50px;
+.category_menu_wrap img {
+    width: 50px;
 }
 
 
-.category_menu_text{
-  margin-left:20px;
-  /* font-weight: bold; */
+.category_menu_text {
+    margin-left: 20px;
+    /* font-weight: bold; */
 }
 
 /* 챌린지 리스트 전체영역 */
-.challenge_list_wrap{
-  width:100%;
+.challenge_list_wrap {
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid #312a32;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px
 }
 
 /* 챌린지 리스트 1개 전체영역 */
 .challenge_list {
-  width:100%;
-  height: 80px;
-  background-color: #1565492b;
-  margin-bottom:5px;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  border-radius:60px 0 60px 0;
-  margin-top: 10px;
+    margin: 5px auto 5px auto;
+    width: 100%;
+    height: 80px;
+    background-color: #b3b3b32b;
+    /* margin-bottom: 5px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    border-radius: 10px;
+}
+
+.challenge_header_list {
+    background-color: transparent;
+}
+
+.challenge_list_header_wrap {
+    width: 100%;
+    padding: 0;
+    margin: 10px auto;
+    background-color: #312a32;
+    border-radius: 20px 20px 0 0;
 }
 
 /* 도전과제 리스트  영역 전체 div */
-.challenge_flex{
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  /* background-color: rgb(11, 186, 255); */
+.challenge_flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgb(11, 186, 255); */
 }
 
 
 /* 도전과제 전체영역 */
-.challenge_img{
-  width:10%;
-  
+.challenge_img {
+    width: 10%;
+    text-align: center;
 }
-
 
 
 /* 도전과제 이미지 사이즈 */
 .challenge_img img {
-  width: 50px;
-  border-radius:50%;
-  border:2px solid #000;
+    width: 60px;
+    border-radius: 50%;
+    border: 2px solid #000;
 }
 
 /* 도전과제 제목 */
-.challenge_title{
-  width:30%;
-  flex-direction: column;
+.challenge_title {
+    width: 30%;
+    flex-direction: column;
 }
 
 
 /* 도전과제 이름 , 챌린지 점수 */
-.challenge_name , .challenge_score{
-  margin:0;
-  text-align:center;
+.challenge_name, .challenge_score {
+    margin: 0;
+    text-align: center;
+}
+
+/*챌린저 헤더부분 텍스트 칼라 설정 */
+.challenge_list_header_wrap h1 ,
+.challenge_list_header_wrap p,
+.challenge_list_header_wrap div,
+.challenge_list_header_wrap h3,
+.challenge_list_header_wrap a {
+    color: #fff;
+    font-size: 21px;
 }
 
 /* 도전과제 이름 */
-.challenge_name{
-  font-size:25px;
-  font-weight: bold;
+.challenge_name {
+    font-size: 25px;
+    font-weight: bold;
 }
 
 /* 도전과제 점수 */
-.challenge_score{
-  font-size:15px;
+.challenge_score {
+    color: #0000008a;
+    font-weight: 300;
+    font-size: 14px;
 }
 
 
 /* 도전과제 설명 전체영역 */
-.challenge_info{
-  width:30%;
+.challenge_info {
+    width: 30%;
 }
 
 
 /* 도전과제 설명글 */
-.challenge_info_text{
-  font-size:20px;
-  color:#000000a4;
+.challenge_info_text {
+    font-size: 14px;
+    color: #000000a4;
 }
 
 /* 달성 티어 전체영역 */
-.challenge_tier{
-  width:10%;
+.challenge_tier {
+    font-weight: bold;
+    font-size: 14px;
+    width: 10%;
 }
 
 /* 랭킹리스트 버튼 전체영역 */
-.challenge_rank_wrap{
-  width:20%;
-  height:100%;
-  background-image:url(/img/ranking_bt.png);
-  background-size:159px 47px;
-  background-repeat: no-repeat;
-  background-position: center;
+.challenge_rank_wrap {
+    width: 15%;
+    font-size: 25px;
 }
 
 /* 랭킹리스트 버튼 */
-.rank_bt_text{
-  font-size: 22px;
-  color: #fff;
-  font-style: italic;
+.rank_bt_text {
+    font-size: 22px;
+    color: #fff;
+    font-style: italic;
 }

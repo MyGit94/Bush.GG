@@ -173,7 +173,6 @@ public class BoardController {
             articleDTO.setPasswd(member.getPasswd());
             articleDTO.setGroupNo(articleDTO.getGroupNo());
             articleDTO.setBoardId(articleDTO.getBoardId());
-
         } else {
         }
 

@@ -1,0 +1,45 @@
+@media screen and (max-width: 1150px){
+
+    .fa{
+        color:#000;
+    }
+
+    /*상단 도전과제명 프로필*/
+    .rank_profile{
+        width:95%;
+    }
+
+    /* 도전과제 랭크 리스트 전체영역*/
+    .rank_wrap{
+        width:95%;
+    }
+
+    /*소환사 네임*/
+    .rank_name{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 850px){
+
+    /*상단 도전과제명 프로필*/
+    .rank_profile{
+        width:99%;
+    }
+
+    /* 도전과제 랭크 리스트 전체영역*/
+    .rank_wrap{
+        width:99%;
+    }
+
+    /*소환사 네임*/
+    .rank_name{
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 700px){
+        body{
+            min-width: 700px;
+        }
+}

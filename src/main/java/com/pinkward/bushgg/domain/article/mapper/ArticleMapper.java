@@ -6,13 +6,10 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-/**
- * Article 관련 SQL Mapper
- */
 @Mapper
 public interface ArticleMapper {
 
-    //   /** 신규 게시글 등록 */
+    //   /** 신규 게시글 등록! */
     void create(ArticleDTO articleDTO);
 
     //   /** 전체 게시글 목록 반환 */
