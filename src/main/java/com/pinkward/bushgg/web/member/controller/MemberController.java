@@ -8,16 +8,6 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -110,27 +100,40 @@ public class MemberController {
 
     // 로그인
 	@GetMapping("/login")
-	public String loginForm(Model model) {
-		LoginForm loginForm = LoginForm.builder().build();
-		model.addAttribute("loginForm", loginForm);
-		return "member/login";
+	public String login(Model model, @CookieValue(name = "userId", required = false) String userId) {
+        LoginForm loginForm = LoginForm.builder().build();
+        model.addAttribute("loginForm", loginForm);
+		model.addAttribute("userId",userId);
+		log.info("{}",userId);
+	    return "member/login";
 	}
+	
+	@PostMapping("/login") 
+	public String login(@RequestParam(name = "saveId", required = false) boolean saveId, @Valid @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult, HttpServletRequest request, HttpServletResponse response) {
+		log.info("{}",saveId);
+        if (bindingResult.hasErrors()) {
+            return "member/login";
+        }
 
-	@PostMapping("/login")
-	public String login(@Valid @ModelAttribute LoginForm loginForm, BindingResult bindingResult, HttpServletRequest request) {
+        MemberDTO loginMember = memberService.isMember(loginForm.getLoginId(), loginForm.getPasswd());
 
-//		log.info("{}",10/0);
-
-		if (bindingResult.hasErrors()) {
-		    return "member/login";
+		if (saveId) {
+			// 아이디를 쿠키에 저장
+			Cookie cookie = new Cookie("userId", memberDTO.getLoginId());
+			cookie.setMaxAge(30 * 24 * 60 * 60);
+			response.addCookie(cookie);
+			log.info("Saved userId cookie with value: " + memberDTO.getLoginId());
+		} else {
+			// 쿠키 삭제
+			Cookie cookie = new Cookie("userId", null);
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+			log.info("Removed userId cookie");
 		}
-
-		MemberDTO loginMember = memberService.isMember(loginForm.getLoginId(), loginForm.getPasswd());
-
 		// 회원이 아닌 경우
 		if (loginMember == null) {
-			bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
-			return "member/login";
+                bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
+                return "member/login";
 		}
 		// 회원인 경우
 		HttpSession session =  request.getSession();
@@ -138,9 +141,8 @@ public class MemberController {
 
 		return "redirect:/";
 	}
-
-	// 로그아웃
-	@GetMapping("/logout")
+	
+	@GetMapping("/logout")  
 	public String logout(HttpServletRequest request) {
 		// 세션이 있으면 기존 세션 반환, 없으면 생성하지 않고 null 반환
 		HttpSession session =  request.getSession(false);
@@ -178,5 +180,6 @@ public class MemberController {
         session.setAttribute("loginMember", member);
         return "redirect:/";
     }
+
 
 }

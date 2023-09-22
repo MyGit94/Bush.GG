@@ -2,7 +2,6 @@ package com.pinkward.bushgg.domain.api.service;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pinkward.bushgg.domain.ranking.dto.RankingDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -47,7 +46,6 @@ public class APIRankingServiceImpl implements APIRankingService{
             Map<String, Object> ranking = objectMapper.readValue(entity.getContent(), Map.class);
             entries = (List<Map<String, Object>>) ranking.get("entries");
 
-
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -57,6 +55,7 @@ public class APIRankingServiceImpl implements APIRankingService{
 
     @Override
     public List<Map<String, Object>> grandMasterRanking() {
+
         List<Map<String, Object>> entries = new ArrayList<>();
 
         try {

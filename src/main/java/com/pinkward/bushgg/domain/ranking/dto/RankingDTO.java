@@ -1,6 +1,5 @@
 package com.pinkward.bushgg.domain.ranking.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data

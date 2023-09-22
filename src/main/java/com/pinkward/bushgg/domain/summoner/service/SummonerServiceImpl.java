@@ -20,9 +20,8 @@ public class SummonerServiceImpl implements SummonerService{
             String tier = "CHALLENGER";
             String tier1 = "GRANDMASTER";
             String tier2 ="MASTER";
-            String queueType ="RANKED_SOLO_5x5";
             for (Map<String, Object> metadata : summonerTier) {
-                log.info(" 메타데이터 :{}",metadata);
+
                 if ("RANKED_SOLO_5x5".equals(metadata.get("queueType"))) {
                     if(tier.equals((String)metadata.get("tier")) || tier1.equals((String)metadata.get("tier")) ||tier2.equals((String)metadata.get("tier"))){
                         summonerTierDTO.setTier((String) metadata.get("tier"));
@@ -56,7 +55,6 @@ public class SummonerServiceImpl implements SummonerService{
 
                 for (SummonerWithCount summonerWithCount : summonerWithCounts) {
                     if (summonerWithCount.getSummonerName().equals(participant.getSummonerName())) {
-                        // 존재하면 count와 win을 증가시킴
                         summonerWithCount.setCount(summonerWithCount.getCount() + 1);
                         if(participant.isWin()){
                             summonerWithCount.setWin(summonerWithCount.getWin() + 1);
@@ -69,7 +67,6 @@ public class SummonerServiceImpl implements SummonerService{
                 }
 
                 if (!found) {
-                    // 소환사 이름이 리스트에 없으면 새 객체 생성하여 리스트에 추가
                     SummonerWithCount newSummonerWithCount = new SummonerWithCount();
                     newSummonerWithCount.setSummonerName(participant.getSummonerName());
                     newSummonerWithCount.setCount(1);
@@ -77,8 +74,8 @@ public class SummonerServiceImpl implements SummonerService{
                         newSummonerWithCount.setWin(1);
                         newSummonerWithCount.setLose(0);
                     } else {
-                        newSummonerWithCount.setWin(0); // 이긴 횟수를 초기화
-                        newSummonerWithCount.setLose(1); // 진 횟수를 초기화
+                        newSummonerWithCount.setWin(0);
+                        newSummonerWithCount.setLose(1);
                     }
                     summonerWithCounts.add(newSummonerWithCount);
                 }

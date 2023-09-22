@@ -51,14 +51,12 @@ public class RankingAPIServiceImpl implements RankingAPIService {
 
             List<Map<String, Object>> entries = (List<Map<String, Object>>) ranking.get("entries");
 
-            // leaguePoints를 기준으로 내림차순 정렬
             entries.sort((entry1, entry2) -> {
                 Integer lp1 = (Integer) entry1.get("leaguePoints");
                 Integer lp2 = (Integer) entry2.get("leaguePoints");
                 return lp2.compareTo(lp1);
             });
 
-            // 상위 50개 데이터 가져오기
             for (int i = start; i < Math.min(end, entries.size()); i++) {
                 Map<String, Object> entry = entries.get(i);
                 RankingDTO rankingDTO = new RankingDTO();
@@ -70,10 +68,8 @@ public class RankingAPIServiceImpl implements RankingAPIService {
                 rankingDTO.setLosses((Integer) entry.get("losses"));
 
                 summonerMapper.insertChallenger(rankingDTO);
-
                 challengerRanking.add(rankingDTO);
             }
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -103,14 +99,12 @@ public class RankingAPIServiceImpl implements RankingAPIService {
 
             List<Map<String, Object>> entries = (List<Map<String, Object>>) ranking.get("entries");
 
-            // leaguePoints를 기준으로 내림차순 정렬
             entries.sort((entry1, entry2) -> {
                 Integer lp1 = (Integer) entry1.get("leaguePoints");
                 Integer lp2 = (Integer) entry2.get("leaguePoints");
                 return lp2.compareTo(lp1);
             });
 
-            // 상위 50개 데이터 가져오기
             for (int i = start; i < Math.min(end, entries.size()); i++) {
                 Map<String, Object> entry = entries.get(i);
                 RankingDTO rankingDTO = new RankingDTO();
@@ -122,7 +116,6 @@ public class RankingAPIServiceImpl implements RankingAPIService {
                 rankingDTO.setLosses((Integer) entry.get("losses"));
 
                 summonerMapper.insertGrandmaster(rankingDTO);
-
                 grandMasterRanking.add(rankingDTO);
             }
         } catch (IOException e) {
@@ -153,14 +146,12 @@ public class RankingAPIServiceImpl implements RankingAPIService {
 
             List<Map<String, Object>> entries = (List<Map<String, Object>>) ranking.get("entries");
 
-            // leaguePoints를 기준으로 내림차순 정렬
             entries.sort((entry1, entry2) -> {
                 Integer lp1 = (Integer) entry1.get("leaguePoints");
                 Integer lp2 = (Integer) entry2.get("leaguePoints");
                 return lp2.compareTo(lp1);
             });
 
-            // 상위 50개 데이터 가져오기
             for (int i = start; i < Math.min(end, entries.size()); i++) {
                 Map<String, Object> entry = entries.get(i);
                 RankingDTO rankingDTO = new RankingDTO();
@@ -172,7 +163,6 @@ public class RankingAPIServiceImpl implements RankingAPIService {
                 rankingDTO.setLosses((Integer) entry.get("losses"));
 
                 summonerMapper.insertMaster(rankingDTO);
-
                 masterRanking.add(rankingDTO);
             }
         } catch (IOException e) {
@@ -206,26 +196,22 @@ public class RankingAPIServiceImpl implements RankingAPIService {
             }
 
             HttpEntity entity = response.getEntity();
-
             Set<Map<String, Object>> currentPageRanking;
 
             try {
                 currentPageRanking = objectMapper.readValue(entity.getContent(), Set.class);
 
-                // 현재 페이지의 데이터 처리
                 for (Map<String, Object> metadata : currentPageRanking) {
                     RankingDTO rankingDTO = new RankingDTO();
-                    // 데이터 설정
+
                     rankingDTO.setSummonerId((String) metadata.get("summonerId"));
                     rankingDTO.setSummonerName((String) metadata.get("summonerName"));
                     rankingDTO.setLeaguePoints((Integer) metadata.get("leaguePoints"));
                     rankingDTO.setWins((Integer) metadata.get("wins"));
                     rankingDTO.setLosses((Integer) metadata.get("losses"));
 
-                    // DB에 저장
                     summonerMapper.insertDiamond1(rankingDTO);
-
-                    diamondRanking.add(rankingDTO); // 결과 목록에 추가
+                    diamondRanking.add(rankingDTO);
                 }
 
                 try {
@@ -235,9 +221,9 @@ public class RankingAPIServiceImpl implements RankingAPIService {
                 }
 
                 if (currentPageRanking.isEmpty()) {
-                    hasMoreData = false; // 현재 페이지에 더 이상 데이터가 없으면 종료
+                    hasMoreData = false;
                 } else {
-                    page++; // 다음 페이지로 이동
+                    page++;
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -270,32 +256,28 @@ public class RankingAPIServiceImpl implements RankingAPIService {
             }
 
             HttpEntity entity = response.getEntity();
-
             Set<Map<String, Object>> currentPageRanking;
 
             try {
                 currentPageRanking = objectMapper.readValue(entity.getContent(), Set.class);
 
-                // 현재 페이지의 데이터 처리
                 for (Map<String, Object> metadata : currentPageRanking) {
                     RankingDTO rankingDTO = new RankingDTO();
-                    // 데이터 설정
+
                     rankingDTO.setSummonerId((String) metadata.get("summonerId"));
                     rankingDTO.setSummonerName((String) metadata.get("summonerName"));
                     rankingDTO.setLeaguePoints((Integer) metadata.get("leaguePoints"));
                     rankingDTO.setWins((Integer) metadata.get("wins"));
                     rankingDTO.setLosses((Integer) metadata.get("losses"));
 
-                    // DB에 저장
                     summonerMapper.insertDiamond2(rankingDTO);
-
-                    diamondRanking.add(rankingDTO); // 결과 목록에 추가
+                    diamondRanking.add(rankingDTO);
                 }
 
                 if (currentPageRanking.isEmpty()) {
-                    hasMoreData = false; // 현재 페이지에 더 이상 데이터가 없으면 종료
+                    hasMoreData = false;
                 } else {
-                    page++; // 다음 페이지로 이동
+                    page++;
                 }
 
                 try {
@@ -335,32 +317,28 @@ public class RankingAPIServiceImpl implements RankingAPIService {
             }
 
             HttpEntity entity = response.getEntity();
-
             Set<Map<String, Object>> currentPageRanking;
 
             try {
                 currentPageRanking = objectMapper.readValue(entity.getContent(), Set.class);
 
-                // 현재 페이지의 데이터 처리
                 for (Map<String, Object> metadata : currentPageRanking) {
                     RankingDTO rankingDTO = new RankingDTO();
-                    // 데이터 설정
+
                     rankingDTO.setSummonerId((String) metadata.get("summonerId"));
                     rankingDTO.setSummonerName((String) metadata.get("summonerName"));
                     rankingDTO.setLeaguePoints((Integer) metadata.get("leaguePoints"));
                     rankingDTO.setWins((Integer) metadata.get("wins"));
                     rankingDTO.setLosses((Integer) metadata.get("losses"));
 
-                    // DB에 저장
                     summonerMapper.insertDiamond3(rankingDTO);
-
-                    diamondRanking.add(rankingDTO); // 결과 목록에 추가
+                    diamondRanking.add(rankingDTO);
                 }
 
                 if (currentPageRanking.isEmpty()) {
-                    hasMoreData = false; // 현재 페이지에 더 이상 데이터가 없으면 종료
+                    hasMoreData = false;
                 } else {
-                    page++; // 다음 페이지로 이동
+                    page++;
                 }
 
                 try {
@@ -400,32 +378,28 @@ public class RankingAPIServiceImpl implements RankingAPIService {
             }
 
             HttpEntity entity = response.getEntity();
-
             Set<Map<String, Object>> currentPageRanking;
 
             try {
                 currentPageRanking = objectMapper.readValue(entity.getContent(), Set.class);
 
-                // 현재 페이지의 데이터 처리
                 for (Map<String, Object> metadata : currentPageRanking) {
                     RankingDTO rankingDTO = new RankingDTO();
-                    // 데이터 설정
+
                     rankingDTO.setSummonerId((String) metadata.get("summonerId"));
                     rankingDTO.setSummonerName((String) metadata.get("summonerName"));
                     rankingDTO.setLeaguePoints((Integer) metadata.get("leaguePoints"));
                     rankingDTO.setWins((Integer) metadata.get("wins"));
                     rankingDTO.setLosses((Integer) metadata.get("losses"));
 
-                    // DB에 저장
                     summonerMapper.insertDiamond4(rankingDTO);
-
-                    diamondRanking.add(rankingDTO); // 결과 목록에 추가
+                    diamondRanking.add(rankingDTO);
                 }
 
                 if (currentPageRanking.isEmpty()) {
-                    hasMoreData = false; // 현재 페이지에 더 이상 데이터가 없으면 종료
+                    hasMoreData = false;
                 } else {
-                    page++; // 다음 페이지로 이동
+                    page++;
                 }
 
                 try {

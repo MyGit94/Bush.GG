@@ -1,7 +1,6 @@
 package com.pinkward.bushgg.domain.ranking.dto;
 
 import lombok.Data;
-
 import java.util.List;
 
 @Data

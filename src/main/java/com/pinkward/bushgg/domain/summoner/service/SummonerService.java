@@ -1,18 +1,16 @@
 package com.pinkward.bushgg.domain.summoner.service;
 
-import com.pinkward.bushgg.domain.challenges.dto.PlayerChallengesInfoDTO;
-import com.pinkward.bushgg.domain.match.common.ChampionCount;
 import com.pinkward.bushgg.domain.match.common.SummonerWithCount;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerTierDTO;
-import com.pinkward.bushgg.domain.ranking.dto.RankingDTO;
-import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
 import org.springframework.context.annotation.PropertySource;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
+/**
+ * Summoner 관련 비즈니스 로직 처리
+ */
 @PropertySource(ignoreResourceNotFound = false, value = "classpath:application.yml")
 public interface SummonerService {
 

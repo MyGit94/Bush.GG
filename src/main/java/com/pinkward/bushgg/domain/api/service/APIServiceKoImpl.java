@@ -35,6 +35,7 @@ public class APIServiceKoImpl implements APIServiceKo {
 
     @Override
     public SummonerDTO getSummonerInfo(String summonerName) {
+
         SummonerDTO summoner = null;
 
         try {
@@ -59,6 +60,7 @@ public class APIServiceKoImpl implements APIServiceKo {
 
     @Override
     public SummonerDTO getSummonerInfoByPuuid(String puuid) {
+
         SummonerDTO summoner = null;
 
         try {
@@ -85,7 +87,7 @@ public class APIServiceKoImpl implements APIServiceKo {
     @Override
     public PlayerChallengesInfoDTO getPlayerChallengesInfo(String puuid) {
 
-        PlayerChallengesInfoDTO playerChallengesInfo;
+        PlayerChallengesInfoDTO playerChallengesInfo = null;
         try {
             HttpClient client = HttpClientBuilder.create().build();
             HttpGet request = new HttpGet(serverUrl + "challenges/v1/player-data/" + puuid + "?api_key="+ mykey2);
@@ -107,7 +109,7 @@ public class APIServiceKoImpl implements APIServiceKo {
 
     @Override
     public Set<Map<String,Object>> getTierInfo(String summonerId) {
-        Set<Map<String,Object>> summonerTier;
+        Set<Map<String,Object>> summonerTier = null;
         SummonerTierDTO summonerTierDTO = new SummonerTierDTO();
 
         try {
@@ -124,7 +126,6 @@ public class APIServiceKoImpl implements APIServiceKo {
             summonerTier = objectMapper.readValue(entity.getContent(), Set.class);
 
             if (summonerTier.isEmpty()) {
-                // JSON 데이터가 비어있으면 저장하지 않음
                 return null;
             }
 
@@ -140,8 +141,7 @@ public class APIServiceKoImpl implements APIServiceKo {
     @Override
     public Map<String, Object> getCurrentGame(String summonerId) {
 
-
-        Map<String, Object> currentGame;
+        Map<String, Object> currentGame = null;
         try {
             HttpClient client = HttpClientBuilder.create().build();
             HttpGet request = new HttpGet(serverUrl + "spectator/v4/active-games/by-summoner/" + summonerId + "?api_key=" + mykey);

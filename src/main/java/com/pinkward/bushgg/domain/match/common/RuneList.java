@@ -1,10 +1,5 @@
 package com.pinkward.bushgg.domain.match.common;
 
-import lombok.Getter;
-
-import java.util.List;
-
-
 public class RuneList {
     private static final int[] precisionRune = {8000, 8005, 8008, 8021, 8010, 9101, 9111, 8009, 9104, 9105, 9103, 8014, 8017, 8299};
     private static final int[] dominationRune = {8100, 8112, 8124, 8128, 9923, 8126, 8139, 8143, 8136, 8120, 8138, 8135, 8134, 8105, 8106};
@@ -27,7 +22,6 @@ public class RuneList {
         return statPerksOffense;
     }
 
-    // 서브룬 만들기
     public static int[] getSubRuneArray(int[] inputArray) {
         int length = inputArray.length;
 
@@ -43,7 +37,6 @@ public class RuneList {
         return subArray;
     }
 
-    // 메인룬 가져오기
     public static int[] getRuneListByValue(int value) {
         int[] selectedRune;
 
@@ -68,7 +61,6 @@ public class RuneList {
                 selectedRune = null;
                 break;
         }
-
         return selectedRune;
     }
 

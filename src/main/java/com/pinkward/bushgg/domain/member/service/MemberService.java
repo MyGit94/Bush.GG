@@ -1,7 +1,5 @@
 package com.pinkward.bushgg.domain.member.service;
 
-import java.util.List;
-
 import com.pinkward.bushgg.domain.member.dto.MemberDTO;
 
 /**
