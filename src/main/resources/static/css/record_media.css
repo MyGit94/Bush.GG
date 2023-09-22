@@ -224,7 +224,7 @@
 
     /*전적 :: 같이한 친구 */
     .record_user a{
-        font-size:10px;
+        font-size:11px;
     }
 
     /* 인게임 분석 :: */
@@ -253,6 +253,10 @@
         .detail_summoner_dmg{
             width:15%;
         }
+
+    .summoner_name{
+        font-size:12px;
+    }
 
 
 }
