@@ -45,7 +45,6 @@ public class SummonerController {
     private final RankingAPIServiceImpl rankingAPIService;
 
 
-
     @GetMapping(value = "/summoner")
     public String searchSummonerInfo(@RequestParam("summonerName") String summonerName, Model model){
         // 두 글자인 경우 글자 사이에 띄어쓰기 추가

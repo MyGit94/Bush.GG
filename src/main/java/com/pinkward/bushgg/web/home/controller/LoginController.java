@@ -31,8 +31,8 @@ public class LoginController {
     }
 
     @GetMapping("/login2")
-    public void login(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        googleLogin.login(req, resp);
+    public void login(HttpServletResponse resp) throws Exception {
+        googleLogin.login(resp);
     }
 
     @GetMapping("/member/callback")

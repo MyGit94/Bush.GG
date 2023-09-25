@@ -26,12 +26,12 @@ import java.util.Collection;
 @Slf4j
 public class GoogleLoginService {
 
-    private static final String CALLBACK_URI = "http://localhost/member/callback";
+    private static final String CALLBACK_URI = "http://www.bushgg.r-e.kr/member/callback";
     private static final Collection<String> SCOPES = Arrays.asList("profile", "email");
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static HttpTransport httpTransport;
 
-    public void login(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    public void login(HttpServletResponse resp) throws Exception {
         log.info("실행됨");
 
         if (httpTransport == null) {
