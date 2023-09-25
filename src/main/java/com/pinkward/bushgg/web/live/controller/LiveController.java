@@ -40,7 +40,7 @@ public class LiveController {
 
         for (String participantId : challengerIds) {
             index++;
-            if (count > 3 || index >200) {
+            if (count > 3 || index >100) {
                 break;
             }
             Map<String, Object> currentGame = apiServiceKo.getCurrentGame(participantId);

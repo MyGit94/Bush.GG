@@ -8,15 +8,15 @@
 </head>
 
 <body>
-    <div id="wrapper">
-        <th:block th:replace="common/fragments/side :: sideFragment"></th:block>
+<div id="wrapper">
+    <th:block th:replace="common/fragments/side :: sideFragment"></th:block>
 
-        <div id="content-wrapper" class="d-flex flex-column">
-            <th:block th:replace="common/fragments/header :: headerFragment"></th:block>
-            <!-- 중앙 컨텐츠 전체영역 -->
-            <div class="main_contents_wrap">
-                <!-- 실시간 정보 -->
-                <div class="summoner_live_wrap">
+    <div id="content-wrapper" class="d-flex flex-column">
+        <th:block th:replace="common/fragments/header :: headerFragment"></th:block>
+        <!-- 중앙 컨텐츠 전체영역 -->
+        <div class="main_contents_wrap">
+            <!-- 실시간 정보 -->
+            <div class="summoner_live_wrap">
                 <div class="summoner_live_title">
                     <h1 class="summoner_live_title_text">
                         실시간 상위게임 정보
@@ -26,7 +26,8 @@
                 <div class="live_info_wrap">
                     <p th:if="${currentGameInfo.isEmpty()}">진행중인 게임이 없습니다.</p>
 
-                    <div class="live_info_contents" th:each="gameInfo : ${currentGameInfo}" th:with="summonersList=${gameInfo['summoners']}">
+                    <div class="live_info_contents" th:each="gameInfo : ${currentGameInfo}"
+                         th:with="summonersList=${gameInfo['summoners']}">
 
                         <div class="live_info_vs">
                             <p class="live_info_match_type_text" th:text="${gameInfo['gameQueueName']}">솔로 랭크</p>
@@ -39,63 +40,77 @@
                         </div>
 
                         <div class="live_flex_wrap">
-                            <div class="live_info_list" th:each="summoner,ds : ${summonersList}" th:if="${ds.index}<5">
-                                <div class="live_summoner_tier">
+                            <div class="live_left_wrap">
+                                <div class="live_info_list" th:each="summoner,ds : ${summonersList}"
+                                     th:if="${ds.index}<5">
+                                    <div class="live_summoner_tier">
                                         <p class="live_summoner_tier_text" th:text="${summoner['summonerTier']}">
                                             C
                                         </p>
                                     </div>
-                                <div class="live_summoner_name">
+                                    <div class="live_summoner_name">
                                         <p class="live_summoner_name_text">
-                                            <a th:href="@{/summoner(summonerName=${summoner['summonerName']})}" th:text="${summoner['summonerName']}">
-                                            T1 란브로대머리
+                                            <a th:href="@{/summoner(summonerName=${summoner['summonerName']})}"
+                                               th:text="${summoner['summonerName']}">
+                                                T1 란브로대머리
                                             </a>
                                         </p>
                                     </div>
-                                <div class="live_summoner_img_wrap">
-                                        <div class="live_summoner_spell_wrap">
-                                            <img src="img/spell/14.png" th:src="@{'img/spell/'+${summoner['spell1Id']}+'.png'}" alt="">
-                                            <img src="img/spell/1.png" th:src="@{'img/spell/'+${summoner['spell2Id']}+'.png'}" alt="">
-                                        </div>
-                                        <div class="live_champion_face_wrap">
-                                            <img src="img/illust/1.jpg" th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${summoner['championName']}+'.png'}" alt="">
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
 
-                        <div class="live_left_wrap live_right_wrap">
-                            <div class="live_info_list" th:each="summoner,ds : ${summonersList}" th:if="${ds.index}> 4">
-                                <div class ="live_summoner_img_wrap">
-                                        <div class="live_champion_face_wrap">
-                                            <img src="img/illust/1.jpg" th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${summoner['championName']}+'.png'}" alt="">
-                                        </div>
+                                    <div class="live_summoner_img_wrap">
                                         <div class="live_summoner_spell_wrap">
-                                            <img src="img/spell/14.png" th:src="@{'img/spell/'+${summoner['spell1Id']}+'.png'}" alt="">
-                                            <img src="img/spell/1.png" th:src="@{'img/spell/'+${summoner['spell2Id']}+'.png'}" alt="">
+                                            <img src="img/spell/14.png"
+                                                 th:src="@{'img/spell/'+${summoner['spell1Id']}+'.png'}" alt="">
+                                            <img src="img/spell/1.png"
+                                                 th:src="@{'img/spell/'+${summoner['spell2Id']}+'.png'}" alt="">
+                                        </div>
+                                        <div class="live_champion_face_wrap">
+                                            <img src="img/illust/1.jpg"
+                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${summoner['championName']}+'.png'}"
+                                                 alt="">
                                         </div>
                                     </div>
-                                <div class="live_summoner_name">
+                                </div>
+                            </div>
+                            <div class="live_left_wrap live_right_wrap">
+                                <div class="live_info_list" th:each="summoner,ds : ${summonersList}"
+                                     th:if="${ds.index}> 4">
+                                    <div class="live_summoner_img_wrap">
+                                        <div class="live_champion_face_wrap">
+                                            <img src="img/illust/1.jpg"
+                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${summoner['championName']}+'.png'}"
+                                                 alt="">
+                                        </div>
+                                        <div class="live_summoner_spell_wrap">
+                                            <img src="img/spell/14.png"
+                                                 th:src="@{'img/spell/'+${summoner['spell1Id']}+'.png'}" alt="">
+                                            <img src="img/spell/1.png"
+                                                 th:src="@{'img/spell/'+${summoner['spell2Id']}+'.png'}" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="live_summoner_name">
                                         <p class="live_summoner_name_text">
-                                            <a th:href="@{/summoner(summonerName=${summoner['summonerName']})}" th:text="${summoner['summonerName']}">
-                                            T1 란브로대머리
+                                            <a th:href="@{/summoner(summonerName=${summoner['summonerName']})}"
+                                               th:text="${summoner['summonerName']}">
+                                                T1 란브로대머리
                                             </a>
                                         </p>
                                     </div>
-                                <div class="live_summoner_tier">
-                                        <p class="live_summoner_tier_text"  th:text="${summoner['summonerTier']}">
+
+                                    <div class="live_summoner_tier">
+                                        <p class="live_summoner_tier_text" th:text="${summoner['summonerTier']}">
                                             C
                                         </p>
                                     </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-            </div>
         </div>
-        <th:block th:replace="common/fragments/script :: scriptFragment"></th:block>
     </div>
+    <th:block th:replace="common/fragments/script :: scriptFragment"></th:block>
+</div>
 </body>
 </html>

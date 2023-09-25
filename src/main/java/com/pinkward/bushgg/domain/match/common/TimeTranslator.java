@@ -64,10 +64,10 @@ public class TimeTranslator {
      * @param unixTimestamp 유닉스 시간
      * @return 변환된 시간
      */
-    public static String unixMinAndSec(int unixTimestamp) {
+    public static String unixMinAndSec(long unixTimestamp) {
         String minAndSec;
-        int minutes = unixTimestamp / 60;
-        int seconds = unixTimestamp % 60;
+        long minutes = unixTimestamp / 60;
+        long seconds = unixTimestamp % 60;
         minAndSec = minutes+"분 "+seconds+"초";
         return minAndSec;
     }
@@ -82,7 +82,7 @@ public class TimeTranslator {
         long unixTimestampNow = Instant.now().toEpochMilli();
         long endTimestamp = unixTimestampNow - unixTimestamp;
         endTimestamp = endTimestamp/ 1000;
-        String formattedTimeDifference = unixMinAndSec((int)endTimestamp);
+        String formattedTimeDifference = unixMinAndSec(endTimestamp);
 
         return formattedTimeDifference;
     }

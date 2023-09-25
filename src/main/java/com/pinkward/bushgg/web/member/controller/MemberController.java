@@ -182,7 +182,6 @@ public class MemberController {
      */
     @GetMapping("/nickname")
     public String nickname(Model model) {
-        model.addAttribute("successMessage2", "닉네임 등록이 성공적으로 완료되었습니다.");
         return "member/nickname";
     }
 
@@ -191,11 +190,15 @@ public class MemberController {
      * @return index 페이지
      */
     @PostMapping("/nickname")
-    public String nicknameFinish(@RequestParam String nickName, HttpSession session) {
+    public String nicknameFinish(@RequestParam String nickName, HttpSession session, Model model) {
         String userId = (String) session.getAttribute("userId");
         String userEmail = (String) session.getAttribute("userEmail");
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setNickName(nickName);
+        if (memberService.checkNickName(memberDTO.getNickName())) {
+            model.addAttribute("duplicateWarning", "중복된 닉네임으로는 회원가입이 불가능합니다.");
+            return "member/nickname";
+        }
         memberDTO.setPasswd("1111");
         memberDTO.setLoginId(userId);
         memberDTO.setEmail(userEmail);

@@ -26,8 +26,16 @@
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control form-control-user" id="nickName" name="nickName" placeholder="닉네임">
                                 </div>
+                                <div class=errorBox style="margin-bottom: 1rem !important;">
+                                    <p id="nickNameError" th:class="error"></p>
+                                </div>
                                 <!-- 닉네임 등록 버튼 -->
                                 <input type="submit" value="등록" class="btn reigserBtn">
+                                <div class="errors">
+                                    <div class="errorBox">
+                                        <p th:if="${duplicateWarning}" th:class="error" th:text="${duplicateWarning}">회원 가입 중복 경고</p>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
