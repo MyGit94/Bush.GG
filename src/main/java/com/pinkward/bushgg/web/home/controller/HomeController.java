@@ -5,6 +5,9 @@ import com.pinkward.bushgg.domain.article.mapper.ArticleMapper;
 import com.pinkward.bushgg.domain.champion.mapper.ChampionMapper;
 import com.pinkward.bushgg.domain.champion.service.ChampionService;
 import com.pinkward.bushgg.domain.member.dto.MemberDTO;
+import com.pinkward.bushgg.domain.ranking.service.RankingAPIService;
+import com.pinkward.bushgg.domain.ranking.service.RankingService;
+import com.pinkward.bushgg.domain.summoner.mapper.SummonerMapper;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +34,7 @@ public class HomeController {
 	private	final ArticleMapper articleMapper;
 	private final ChampionService championService;
 	private final ChampionMapper championMapper;
+	private final RankingAPIService rankingAPIService;
 
 	/**
 	 * index 페이지 실행시 실행되는 메소드
@@ -79,5 +83,17 @@ public class HomeController {
 		model.addAttribute("community", limitedList);
 		httpSession.setAttribute("status", 0);
 		return "index";
+	}
+
+
+	@GetMapping("/test")
+	void test(){
+		rankingAPIService.challengerRanking(0,999);
+		rankingAPIService.grandMasterRanking(0,999);
+		rankingAPIService.masterRanking(0,9999);
+		rankingAPIService.diamond1Ranking(0,999);
+		rankingAPIService.diamond2Ranking(0,999);
+		rankingAPIService.diamond3Ranking(0,999);
+		rankingAPIService.diamond4Ranking(0,999);
 	}
 }
