@@ -9,6 +9,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
+/**
+ * 회원 로그인 정보 DTO
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter 
@@ -26,9 +30,7 @@ public class LoginForm {
 	private String passwd;
 	
 	private String nickName;
-	
-	private Boolean remember;
-	
+
 }
 
 

@@ -1,7 +1,6 @@
 package com.pinkward.bushgg.web.board.controller;
 
 import com.pinkward.bushgg.domain.article.dto.ArticleDTO;
-import com.pinkward.bushgg.domain.article.mapper.ArticleMapper;
 import com.pinkward.bushgg.domain.article.service.ArticleService;
 import com.pinkward.bushgg.domain.common.web.PageParams;
 import com.pinkward.bushgg.domain.common.web.Pagination;
@@ -17,25 +16,25 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+/**
+ * Article 페이지 요청을 처리하는 세부 컨트롤러 구현 클래스
+ */
 @Controller
 @RequestMapping("/board")
 @Slf4j
 @RequiredArgsConstructor
 public class BoardController {
 
-    private final ArticleMapper articleMapper;
     private final ArticleService articleService;
     private final int ELEMENT_SIZE = 8;
     private final int PAGE_SIZE = 5;
 
-    //    게시판 입장
+    /**
+     * Article 페이지 요청시 실행되는 메소드
+     * @return 게시글 페이지
+     */
     @GetMapping
-    public String article(
-            Model model,
-            HttpSession session,
-            @RequestParam(defaultValue = "1") int requestPage
-    ) {
-
+    public String article(Model model, HttpSession session, @RequestParam(defaultValue = "1") int requestPage) {
 
         MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
         int selectPage = requestPage;
@@ -47,18 +46,18 @@ public class BoardController {
             List<ArticleDTO> list;
             int status = (int) session.getAttribute("status");
             switch (status) {
-                case 0: // 페이징
+                case 0:
                     list = articleService.findByAll2(pageParams);
                     model.addAttribute("list", list);
                     break;
-                case 1: // 추천글보기
-                    list = articleMapper.findAllByHitcount();
+                case 1:
+                    list = articleService.findAllByHitcount();
                     model.addAttribute("list", list);
                     break;
-                case 2: // 검색
+                case 2:
                     String subject = (String)session.getAttribute("subjectContent");
                     model.addAttribute("searchSubject" , subject);
-                    list = articleMapper.findSubject(subject);
+                    list = articleService.findSubject(subject);
                     model.addAttribute("list", list);
                     break;
                 default:
@@ -73,8 +72,10 @@ public class BoardController {
         return "article/board";
     }
 
-
-    //   게시판메인 :: 인기글 버튼 눌렀을시
+    /**
+     * 인기글 버튼 클릭시 status 값을 바꾸고 redirect 하는 메소드
+     * @return 인기글  페이지
+     */
     @PostMapping("")
     public String Article2 (HttpSession session ,RedirectAttributes redirectAttributes){
         // status 값을 변경
@@ -82,16 +83,21 @@ public class BoardController {
         return "redirect:/board";
     }
 
-    //    게시판메인 : 검색창 사용시
+    /**
+     * 게시글을 검색하면 status 값을 바꾸고 redirect 하는 메소드
+     * @return 검색한 게시글 페이지
+     */
     @PostMapping("/search")
     public String Article3 (HttpSession session,@RequestParam("searchSubject") String subject , RedirectAttributes redirectAttributes){
-        // status 값을 변경
         session.setAttribute("status", 2);
         session.setAttribute("subjectContent" , subject);
         return "redirect:/board";
     }
 
-    //    글쓰기 페이지 입장
+    /**
+     * 게시글 작성하는 페이지로 이동하는 메소드
+     * @return 게시글 작성 페이지
+     */
     @GetMapping("/register")
     public String register (Model model , HttpSession session){
         MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
@@ -101,7 +107,10 @@ public class BoardController {
         return "article/board-register";
     }
 
-    //    글쓰기 페이지 서버 작업
+    /**
+     * 작성한 게시글을 DB에 저장하고 전체 게시글 페이지로 이동하는 메소드
+     * @return 전체 게시글 페이지
+     */
     @PostMapping("/register")
     public @ResponseBody String register2 (RedirectAttributes redirectAttributes,
                              @RequestParam("subject") String subject,
@@ -112,13 +121,11 @@ public class BoardController {
 
         MemberDTO memberDTO=(MemberDTO) session.getAttribute("loginMember");
 
-        // member.role이 admin인 member만 공지사항 작성 가능
         if (!"admin".equals(memberDTO.getRole())) {
             if (category == 30) {
                 return "error";
             }
         }
-
 
         articleDTO.setWriter(memberDTO.getNickName());
         articleDTO.setPasswd(memberDTO.getPasswd());
@@ -127,25 +134,25 @@ public class BoardController {
         articleDTO.setContent(content);
 
         redirectAttributes.addFlashAttribute("registeredArticle", articleDTO);
-
-        articleMapper.create(articleDTO);
+        articleService.write(articleDTO);
 
         return "success";
     }
 
-
-//    게시글 상세보기
-
+    /**
+     * 게시글 클릭 시 해당 게시글 상세 페이지로 이동하는 메소드
+     * @return 게시글 상세 페이지
+     */
     @GetMapping("/detail/{articleId}")
     public String detail ( @PathVariable int articleId, Model model , HttpSession session){
         MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
         ArticleDTO articleDTO = articleService.detail(articleId);
-        articleMapper.updateHitcount(articleDTO);
+        articleService.updateHitcount(articleDTO);
 
         int groupNo = articleDTO.getGroupNo();
         List<ArticleDTO> comments = articleService.read(groupNo);
 
-        int countComments  = articleMapper.cellComments(groupNo);
+        int countComments  = articleService.cellComments(groupNo);
 
         model.addAttribute("countComments" , countComments);
         model.addAttribute("comments", comments);
@@ -155,16 +162,17 @@ public class BoardController {
     }
 
 
-    //    댓글쓰기
+    /**
+     * 해당 게시글에 댓글을 등록하고 해당 게시글로 redirect 하는 메소드
+     * @return 해당 게시글 상세 페이지
+     */
     @PostMapping("/detail/comment")
     public String comment (
             RedirectAttributes redirectAttributes,
-            Model model,
             HttpSession session,
             @Valid @RequestParam("comment") String comment
     ){
         MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
-//        게시글 디테일 정보 받기
         ArticleDTO articleDTO = (ArticleDTO) session.getAttribute("articleDTO");
         if(member != null){
             articleDTO.setSubject(articleDTO.getSubject());
@@ -173,14 +181,20 @@ public class BoardController {
             articleDTO.setPasswd(member.getPasswd());
             articleDTO.setGroupNo(articleDTO.getGroupNo());
             articleDTO.setBoardId(articleDTO.getBoardId());
-        } else {
         }
 
-        articleMapper.createComment(articleDTO);
+        articleService.createComment(articleDTO);
         redirectAttributes.addFlashAttribute("writeComment" , articleDTO);
-
-
         return "redirect:/board/detail/"+articleDTO.getArticleId();
     }
 
+    /**
+     * 사이드 바에서 커뮤니티 클릭 시 status를 변경하고 redirect 하는 메소드
+     * @return 전체 게시글 페이지
+     */
+    @GetMapping("/change-session-status")
+    public String changeSessionStatus(HttpSession session) {
+        session.setAttribute("status", 0);
+        return "redirect:/board";
+    }
 }

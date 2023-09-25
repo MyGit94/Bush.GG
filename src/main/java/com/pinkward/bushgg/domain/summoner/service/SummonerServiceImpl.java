@@ -12,6 +12,11 @@ import java.util.*;
 @Slf4j
 public class SummonerServiceImpl implements SummonerService{
 
+    /**
+     * 유저 티어 정보에서 필요한 데이터를 추출해서 유저 티어 정보 객체에 저장하는 메소드
+     * @param summonerTier 유저 티어 정보
+     * @return 유저 티어 정보 객체
+     */
     public SummonerTierDTO getTierInfo(Set<Map<String,Object>> summonerTier) {
         SummonerTierDTO summonerTierDTO = new SummonerTierDTO();
         if(summonerTier == null) {
@@ -44,6 +49,15 @@ public class SummonerServiceImpl implements SummonerService{
         return summonerTierDTO;
 
     }
+
+    /**
+     * 팀으로 함께 플레이한 유저의 승률을 저장하는 메소드
+     * @param matchInfo 게임 경기 정보 Map
+     * @param teamId 팀 id
+     * @param name 유저 닉네임
+     * @param summonerWithCounts 함께 플레이한 유저 List
+     * @return 함께 플레이한 유저와의 승률 List
+     */
     public List<SummonerWithCount> getSummonerWith(Map<String, Object> matchInfo, int teamId, String name, List<SummonerWithCount> summonerWithCounts){
 
         for (int i = 0; i < 10; i++) {
@@ -84,6 +98,11 @@ public class SummonerServiceImpl implements SummonerService{
       return summonerWithCounts;
     }
 
+    /**
+     * 함께 플레이한 유저와의 승률 List를 함께한 경기 수 내림차순으로 정렬하는 메소드
+     * @param summonerWithCounts 함께 플레이한 유저와의 승률 List
+     * @return 함께한 경기 수 내림차순으로 정렬한 함께 플레이한 유저와의 승률 List
+     */
     public List<SummonerWithCount> sortSummonerWith(List<SummonerWithCount> summonerWithCounts) {
 
         Iterator<SummonerWithCount> iterator1 = summonerWithCounts.iterator();
@@ -104,6 +123,11 @@ public class SummonerServiceImpl implements SummonerService{
         return filteredList;
     }
 
+    /**
+     * 유저 티어를 간단한 문자열로 변환하는 메소드
+     * @param tier 유저 티어
+     * @return 간단하게 변환한 유저 티어 
+     */
     @Override
     public String changeTierName(String tier) {
         if (tier == null) {
@@ -176,6 +200,12 @@ public class SummonerServiceImpl implements SummonerService{
                 return "알 수 없음";
         }
     }
+
+    /**
+     * 로마 숫자로 된 티어 랭크를 아라비아 숫자로 바꾸는 메소드
+     * @param rank 티어 랭크
+     * @return
+     */
     @Override
     public String changeRank(String rank) {
         if (rank == null) {

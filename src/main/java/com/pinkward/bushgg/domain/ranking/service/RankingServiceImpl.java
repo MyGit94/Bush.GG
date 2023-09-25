@@ -17,6 +17,11 @@ import java.util.Map;
 @PropertySource(ignoreResourceNotFound = false, value = "classpath:application.yml")
 public class RankingServiceImpl implements RankingService{
 
+    /**
+     * 챌린저 티어 랭킹 정보를 포인트 오름차순으로 정렬하는 메소드
+     * @param entries 챌린저 티어 랭킹 정보
+     * @return 랭킹 정보 List
+     */
     @Override
     public List<RankingDTO> challengerRanking(int start, int end, List<Map<String, Object>> entries) {
 
@@ -47,6 +52,11 @@ public class RankingServiceImpl implements RankingService{
         return challengerRanking;
     }
 
+    /**
+     * 그랜드마스터 티어 랭킹 정보를 포인트 오름차순으로 정렬하는 메소드
+     * @param entries 그랜드마스터 티어 랭킹 정보
+     * @return 랭킹 정보 List
+     */
     @Override
     public List<RankingDTO> grandMasterRanking(int start, int end, List<Map<String, Object>> entries) {
 
@@ -77,6 +87,11 @@ public class RankingServiceImpl implements RankingService{
         return challengerRanking;
     }
 
+    /**
+     * 챌린저 티어 랭킹 정보 List 중 가장 낮은 포인트를 반환하는 메소드
+     * @param entries 포인트 오름차순으로 정렬한 챌린저 티어 랭킹 정보
+     * @return 챌린저 티어 가장 낮은 포인트
+     */
     @Override
     public int challengerPoint(List<Map<String, Object>> entries) {
         int challengerPoint = 0;
@@ -90,6 +105,11 @@ public class RankingServiceImpl implements RankingService{
         return challengerPoint;
     }
 
+    /**
+     * 그랜드마스터 랭킹 정보 List 중 가장 낮은 포인트를 반환하는 메소드
+     * @param entries 포인트 오름차순으로 정렬한 챌린저 티어 랭킹 정보
+     * @return 그랜드마스터 가장 낮은 포인트
+     */
     @Override
     public int grandmasterPoint(List<Map<String, Object>> entries) {
         int grandmasterPoint = 0;

@@ -1130,7 +1130,6 @@ div들을 정렬하기 위한 옵션 */
 .get_chartbar {
   width: 33%;
   background-color: #868686;
-  z-index:3;
 }
 
 

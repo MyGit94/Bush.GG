@@ -20,6 +20,11 @@ public class MatchServiceImpl implements MatchService {
     private final TierMapper challengerMapper;
     private final ChampionMapper championMapper;
 
+    /**
+     * 가져온 게임 경기 정보에서 필요한 데이터를 추출하는 메소드
+     * @param match 게임 경기 정보
+     * @return 게임 경기 정보 객체
+     */
     @Override
     public MatchInfoDTO matchInfoDTO(Map<String, Object> match) {
         MatchInfoDTO matchInfoDTO = new MatchInfoDTO();
@@ -30,7 +35,6 @@ public class MatchServiceImpl implements MatchService {
 
         Map<String, Object> info = (Map<String, Object>) match.get("info");
 
-        // DTO 만들었다 넣자..
         matchInfoDTO.setGameDuration((Integer) info.get("gameDuration"));
         matchInfoDTO.setGameEndTimestamp((Long) info.get("gameEndTimestamp"));
         matchInfoDTO.setQueueId((int) info.get("queueId"));
@@ -40,7 +44,6 @@ public class MatchServiceImpl implements MatchService {
         Map<String, Object> blueTeam = teams.get(0);
         Map<String, Object> redTeam = teams.get(1);
 
-        // blueTeam
         Map<String, Object> blueTeamObjectives = (Map<String, Object>) blueTeam.get("objectives");
 
         Map<String, Object> baron = (Map<String, Object>) blueTeamObjectives.get("baron");
@@ -58,7 +61,6 @@ public class MatchServiceImpl implements MatchService {
 
         matchInfoDTO.setBlueWin((boolean) blueTeam.get("win"));
 
-        // redTeam
         Map<String, Object> redTeamObjectives = (Map<String, Object>) redTeam.get("objectives");
 
         baron = (Map<String, Object>) redTeamObjectives.get("baron");
@@ -81,6 +83,11 @@ public class MatchServiceImpl implements MatchService {
         return matchInfoDTO;
     }
 
+    /**
+     * 가져온 게임 경기 정보에서 참가자 관련 데이터를 추출하는 메소드
+     * @param match 게임 경기 정보
+     * @return 참가자 관련 데이터 Map
+     */
     @Override
     public Map<String, Object> matchInfo(Map<String, Object> match) {
 
@@ -210,12 +217,17 @@ public class MatchServiceImpl implements MatchService {
         return matchInfo;
     }
 
+    /**
+     * 참가자들의 정보를 팀별로 합산하여 matchInfoDTO에 담는 메소드
+     * @param matchInfoDTO 게임 경기 정보 객체
+     * @param matchInfo 참가자 관련 데이터 Map
+     * @return 게임 경기 정보 객체
+     */
     public MatchInfoDTO getMatchInfoDTO(MatchInfoDTO matchInfoDTO, Map<String, Object> matchInfo){
 
         for (int i = 0; i < 10; i++) {
             ParticipantsDTO participant = (ParticipantsDTO) matchInfo.get("participants" + i);
 
-            // 인게임 정보 matchInfo에 담기
             if(i<5){
                 matchInfoDTO.setBlueGold(matchInfoDTO.getBlueGold()+participant.getGoldEarned());
                 matchInfoDTO.setBlueTotalDamageDealtToChampions(matchInfoDTO.getBlueTotalDamageDealtToChampions()+participant.getTotalDamageDealtToChampions());
@@ -234,6 +246,11 @@ public class MatchServiceImpl implements MatchService {
         return matchInfoDTO;
     }
 
+    /**
+     * 게임 식별 id로 게임 모드 분류하는 메소드
+     * @param queueId 게임 식별 id
+     * @return 게임 모드 이름
+     */
     public String matchQueueName(int queueId) {
         switch (queueId) {
             case 420:
@@ -254,5 +271,4 @@ public class MatchServiceImpl implements MatchService {
                 return "알 수 없음";
         }
     }
-
 }

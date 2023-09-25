@@ -3,141 +3,99 @@
 <head>
     <!-- css -->
     <th:block th:replace="common/fragments/config :: configFragment" />
-<!--    보드 css -->
     <link rel="stylesheet" href="/css/board-detail.css">
-<!--    반응형 -->
     <link rel="stylesheet" href="/css/board-detail_media.css">
 </head>
 
-
 <body id="page-top">
-
     <div id="wrapper">
 
-        <!--   왼쪽 사이드바  -->
+        <!-- 왼쪽 사이드바  -->
         <th:block th:replace="common/fragments/side :: sideFragment" />
-
 
         <!-- 메인 컨텐츠 전체영역 -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- 검색창 -->
             <th:block th:replace="common/fragments/header :: headerFragment"/>
 
-        <!-- 게시판 헤더 -->
-        <!-- 제목 라인 -->
-        <section class="article">
-
-
-        <div class="articleHeder">
-                <div class="category">
-                    <a href="../../static/index.html" class="linkBoard">
+            <!-- 게시판 헤더 -->
+            <section class="article">
+                <div class="articleHeder">
+                    <div class="category">
                         <strong th:text="${articleDTO.boardId == 20 ? '자유게시판' : (articleDTO.boardId == 30 ? '공지사항' : '')}">카테고리</strong>
-
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </div>
-                <div class="titleArea">
-                    <h3 class="titleText" th:text="${articleDTO.subject}">제목 내용입니다?제목 내용입니다?제목 내용입니다?</h3>
-                </div>
-                <div class="nickBox">
-                    <button id="" class="nickname" th:text="${articleDTO.writer}"> 홍길동 </button>
-                </div>
-                <div class="articleInfoBox">
-                    <div class="articleInfo">
-                        <span class="date" th:text="${articleDTO.regdate}">2023-09-04</span>
-                        <span class="count" th:text="'조회:'+ ${articleDTO.hitcount}">조회 15</span>
                     </div>
-                    <div class="commentCount">
-                    <span class="titleText">💬</span>
-                    <span class="titleText" th:text=" '댓글:'+${countComments} + '개'">댓글 ?개 </span>
-                </div>
-            </div>
-         </div>
-         <!-- 제목 라인 끝-->
-        <!-- 게시판 헤더 끝 -->
-
-            <!-- 게시판 -->
-            <div class="card shadow">
-
-                <div class="card-body">
-                    <div class="content" rows="10">
-                       <p th:text="${articleDTO.content}">댓글내용</p>
+                    <div class="titleArea">
+                        <h3 class="titleText" th:text="${articleDTO.subject}">제목 내용입니다?제목 내용입니다?제목 내용입니다?</h3>
                     </div>
-                </div>
-             </div>
-             <!-- 게시판 끝-->
-             <!-- 댓글 목록 -->
-                <div class="commentCountBox">
-<!--                    댓글 갯수 -->
-                    <h5 class="titleText">💬</h5><h5 class="titleText" th:text=" '댓글:'+${countComments} + '개'"></h5>
-                </div>
-
-
-<!--            댓글 -->
-            <div class="commentBox">
-                <ul class="list-group commentList">
-<!--                    li 기준으로 EACH -->
-                    <li class="list-group-item CommentItem" th:each="comment : ${comments}">
-<!--                        닉네임 -->
-                        <span th:text="${comment.writer}"></span>
-                        <div class="commentTextBox">
-                            <p>
-<!--                                내용 -->
-                                <span th:text="${comment.content}">Lorem</span>
-                            </p>
-                            <div class="commentInfoBox">
-<!--                                날짜 -->
-                                <span class="comment_info_date" th:text="${comment.regdate}"></span>
-<!--                                답글쓰기 버튼-->
-                            </div>
+                    <div class="nickBox">
+                        <button id="" class="nickname" th:text="${articleDTO.writer}"> 홍길동 </button>
+                    </div>
+                    <div class="articleInfoBox">
+                        <div class="articleInfo">
+                            <span class="date" th:text="${articleDTO.regdate}">2023-09-04</span>
+                            <span class="count" th:text="'조회:'+ ${articleDTO.hitcount}">조회 15</span>
                         </div>
-                    </li>
-
-
-
-
-<!--                    댓글쓰기-->
-                <form class="commentWriter" action="/board/detail/comment" method="post">
-                    <div class="commentInBox">
-                        <textarea class="form-control" placeholder="댓글을 남겨보세요" rows="5" name="comment"></textarea>
-                        <p th:error="*{comments}" style="color: red;"></p>
+                        <div class="commentCount">
+                            <span class="titleText">💬</span>
+                            <span class="titleText" th:text=" '댓글:'+${countComments} + '개'">댓글 ?개 </span>
+                        </div>
                     </div>
-                    <div class="register d-flex justify-content-end mt-2">
-                        <button type="submit" class="regiserBtn">등록</button>
+                </div>
+
+                <!-- 게시판 -->
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="content" rows="10">
+                           <p th:text="${articleDTO.content}">댓글내용</p>
+                        </div>
                     </div>
-               </form>
-            </div>
+                 </div>
+                    <div class="commentCountBox">
+                        <h5 class="titleText">💬</h5><h5 class="titleText" th:text=" '댓글:'+${countComments} + '개'"></h5>
+                    </div>
 
-             <!-- 댓글 목록 끝-->
-
-
-
-            <!-- 게시판 하단 & 페이지 -->
-
-            <div class="aritcleBottom">
-                <div class="leftArea">
-                    <a href="javascript:window.history.back();" class="btn bottomBtn" type="button"><i class="fas fa-list"></i></a>
-                    <a href="#" class="btn bottomBtn" type="button">답글</a>
+                <div class="commentBox">
+                    <ul class="list-group commentList">
+                        <li class="list-group-item CommentItem" th:each="comment : ${comments}">
+                            <span th:text="${comment.writer}"></span>
+                            <div class="commentTextBox">
+                                <p>
+                                    <span th:text="${comment.content}">Lorem</span>
+                                </p>
+                                <div class="commentInfoBox">
+                                    <span class="comment_info_date" th:text="${comment.regdate}"></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="commentWriter" action="/board/detail/comment" method="post">
+                        <div class="commentInBox">
+                            <textarea class="form-control" placeholder="댓글을 남겨보세요" rows="5" name="comment"></textarea>
+                            <p th:error="*{comments}" style="color: red;"></p>
+                        </div>
+                        <div class="register d-flex justify-content-end mt-2">
+                            <button type="submit" class="regiserBtn">등록</button>
+                        </div>
+                   </form>
                 </div>
-                <div class="rightArea">
-                    <a href="../../static/board-register.html" class="btn bottomBtn" type="button">글쓰기</a>
-                    <a href="#" class="btn bottomBtn" type="button">TOP</a>
-                </div>
-            </div>
 
-            <!-- 게시판 하단 & 페이지 끝-->
-        </section>
+                <!-- 게시판 하단 & 페이지 -->
+                <div class="aritcleBottom">
+                    <div class="leftArea">
+                        <a href="javascript:window.history.back();" class="btn bottomBtn" type="button"><i class="fas fa-list"></i></a>
+
+                    </div>
+                    <div class="rightArea">
+                        <a href="/article/register" th:href="${session.loginMember != null ? '/board/register' : '/member/login'}" class="btn bottomBtn" type="button">글쓰기</a>
+                        <a href="#" class="btn bottomBtn" type="button">TOP</a>
+                    </div>
+                </div>
+            </section>
         </div>
-        <!-- 메인 컨텐츠 전체영역 끝 -->
     </div>
-    <!--  메인 컨텐츠 끝 -->
 
-
-
-
-    <!--   자바 스크립트 -->
+    <!-- 자바 스크립트 -->
     <th:block th:replace="common/fragments/script :: scriptFragment"/>
 
 </body>
-
 </html>

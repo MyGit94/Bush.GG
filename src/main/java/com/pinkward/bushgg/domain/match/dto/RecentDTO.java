@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * 최근 20게임 승률 및 킬데스 관련 DTO
+ */
 @Data
 public class RecentDTO {
     private int win;

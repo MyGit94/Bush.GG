@@ -30,6 +30,10 @@ public class RankingAPIServiceImpl implements RankingAPIService {
     private String mykey;
     String serverUrl = "https://kr.api.riotgames.com/lol/";
 
+    /**
+     * 챌린저 티어 랭킹 정보를 DB에 저장하는 메소드
+     * @return 랭킹 정보 List
+     */
     @Override
     public List<RankingDTO> challengerRanking(int start, int end) {
 
@@ -78,6 +82,10 @@ public class RankingAPIServiceImpl implements RankingAPIService {
         return challengerRanking;
     }
 
+    /**
+     * 그랜드마스터 티어 랭킹 정보를 DB에 저장하는 메소드
+     * @return 랭킹 정보 List
+     */
     @Override
     public List<RankingDTO> grandMasterRanking(int start, int end) {
 
@@ -125,6 +133,10 @@ public class RankingAPIServiceImpl implements RankingAPIService {
         return grandMasterRanking;
     }
 
+    /**
+     * 마스터 티어 랭킹 정보를 DB에 저장하는 메소드
+     * @return 랭킹 정보 List
+     */
     @Override
     public List<RankingDTO> masterRanking(int start, int end) {
 
@@ -172,6 +184,10 @@ public class RankingAPIServiceImpl implements RankingAPIService {
         return masterRanking;
     }
 
+    /**
+     * 다이아 1티어 랭킹 정보를 DB에 저장하는 메소드
+     * @return 랭킹 정보 List
+     */
     @Override
     public List<RankingDTO> diamond1Ranking(int start, int end) {
 
@@ -232,6 +248,10 @@ public class RankingAPIServiceImpl implements RankingAPIService {
         return diamondRanking;
     }
 
+    /**
+     * 다이아 2티어 랭킹 정보를 DB에 저장하는 메소드
+     * @return 랭킹 정보 List
+     */
     @Override
     public List<RankingDTO> diamond2Ranking(int start, int end) {
 
@@ -293,6 +313,10 @@ public class RankingAPIServiceImpl implements RankingAPIService {
         return diamondRanking;
     }
 
+    /**
+     * 다이아 3티어 랭킹 정보를 DB에 저장하는 메소드
+     * @return 랭킹 정보 List
+     */
     @Override
     public List<RankingDTO> diamond3Ranking(int start, int end) {
 
@@ -354,6 +378,10 @@ public class RankingAPIServiceImpl implements RankingAPIService {
         return diamondRanking;
     }
 
+    /**
+     * 다이아 4티어 랭킹 정보를 DB에 저장하는 메소드
+     * @return 랭킹 정보 List
+     */
     @Override
     public List<RankingDTO> diamond4Ranking(int start, int end) {
 

@@ -11,8 +11,6 @@ import java.util.List;
  */
 @Mapper
 public interface ChampionMapper {
-
-
     @Select("SELECT championNameKo FROM CHAMPION WHERE CHAMPIONID = #{championId}")
     public String getChampionKoName(int championId);
 

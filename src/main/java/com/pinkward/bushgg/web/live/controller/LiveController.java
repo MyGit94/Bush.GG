@@ -26,6 +26,10 @@ public class LiveController {
     private final TierMapper tierMapper;
     private final APIServiceKo apiServiceKo;
 
+    /**
+     * 실시간 게임 페이지 실행시 실행되는 메소드
+     * @return 실시간 게임 페이지
+     */
     @GetMapping("")
     public String live(Model model){
 

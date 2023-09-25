@@ -174,7 +174,7 @@
                      articleid,
                      subject,
                      writer,
-                     TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss')  regdate,
+                     regdate,
                      hitcount,
                      boardId ,
                      level_no
@@ -189,7 +189,7 @@
                     WHERE order_no = 0
                     ORDER BY group_no DESC, order_no ASC, level_no ASC))
         WHERE request_page = #{pageParams.requestPage}
-        ORDER BY boardId DESC
+        ORDER BY boardId DESC ,regdate DESC
     </select>
 
 

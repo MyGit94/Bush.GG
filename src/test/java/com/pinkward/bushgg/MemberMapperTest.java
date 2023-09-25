@@ -22,53 +22,53 @@ public class MemberMapperTest {
 	private MemberMapper memberMapper;
 	
 	// 멤버 전체 조회
-	@Test
-	@Disabled
-	public void findByAllTest() {
-		List<MemberDTO> list = memberMapper.findByAll();
-		for (MemberDTO member : list) {
-			log.info(member.toString());
-		}
-	}
+//	@Test
+//	@Disabled
+//	public void findByAllTest() {
+//		List<MemberDTO> list = memberMapper.findByAll();
+//		for (MemberDTO member : list) {
+//			log.info(member.toString());
+//		}
+//	}
 	
 	// loginId, nickName, email 이용해 사용자 정보조회
-	@Test
-	@Disabled
-	public void findByPasswdTest() {
-		// given
-		String loginId = "userTest3";
-		String nickName = "유저테스트3";
-		String email = "user3@test.com";
-		// when
-		MemberDTO memberDTO = memberMapper.findByPasswd(loginId, nickName, email);
-		// then
-		assertThat(memberDTO)
-			.isNotNull();
-		log.info("회원정보 : {}", memberDTO.toString());
-	}
+//	@Test
+//	@Disabled
+//	public void findByPasswdTest() {
+//		// given
+//		String loginId = "userTest3";
+//		String nickName = "유저테스트3";
+//		String email = "user3@test.com";
+//		// when
+//		MemberDTO memberDTO = memberMapper.findByPasswd(loginId, nickName, email);
+//		// then
+//		assertThat(memberDTO)
+//			.isNotNull();
+//		log.info("회원정보 : {}", memberDTO.toString());
+//	}
 	
 	
 	// value값이 포함된 닉네임 조회
-	@Test
-	@Disabled
-	void findBySearchNickTest() {
-		//List<Member> list = memberMapper.findBySearchType("id", "bangry");
-		List<MemberDTO> list = memberMapper.findBySearchNick("nickName", "유");
-		log.info("검색 타입별 검색 회원 전체목록 : {}", list);
-	}
+//	@Test
+//	@Disabled
+//	void findBySearchNickTest() {
+//		//List<Member> list = memberMapper.findBySearchType("id", "bangry");
+//		List<MemberDTO> list = memberMapper.findBySearchNick("nickName", "유");
+//		log.info("검색 타입별 검색 회원 전체목록 : {}", list);
+//	}
 	
 	// 로그인 아이디로 닉네임 수정
-	@Test
-	@Disabled
-	void updateNickNameTest() {
-		MemberDTO updateMember = MemberDTO
-				.builder()
-				.loginId("userTest3")
-				.nickName("테스트")
-				.build();
-		memberMapper.updateNickName(updateMember);
-		log.info("회원 수정 완료 : {}", updateMember);
-	}
+//	@Test
+//	@Disabled
+//	void updateNickNameTest() {
+//		MemberDTO updateMember = MemberDTO
+//				.builder()
+//				.loginId("userTest3")
+//				.nickName("테스트")
+//				.build();
+//		memberMapper.updateNickName(updateMember);
+//		log.info("회원 수정 완료 : {}", updateMember);
+//	}
 	
 	// 회원 가입
 	@Test

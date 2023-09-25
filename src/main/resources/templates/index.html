@@ -2,27 +2,20 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
     <th:block th:replace="common/fragments/config :: configFragment" />
-    <!-- 내 Stylce CSS 8/29일 추가됨  -->
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/index_media.css">
-
 </head>
 
 
 <body id="page-top">
-
     <div id="wrapper">
 
-        <!--   왼쪽 사이드바  -->
+        <!-- 왼쪽 사이드바  -->
         <th:block th:replace="common/fragments/side :: sideFragment" />
-
 
         <!-- 메인 컨텐츠 전체영역 -->
         <div id="content-wrapper" class="d-flex flex-column">
-
-
 
             <!-- 중앙 컨텐츠 전체영역 -->
             <div class="main_contents_wrap">
@@ -37,14 +30,10 @@
                     <form action="/summoner" method="get" id="top_all_search"
                           class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group" id="top_content_wrap">
-                            <!-- 전적 검색 : 입력 텍스트칸 -->
                             <input type="text" class="form-control bg-light border-0 small" placeholder="소환사명을 입력해주세요"
                                    aria-label="Search" aria-describedby="basic-addon2" name="summonerName" id="top_search_input">
-                            <!-- 검색 아이콘 전체영역 -->
                             <div class="input-group-append">
-                                <!-- 검색 버튼 네모박스 -->
                                 <button class="btn btn-primary" type="submit" id="top_search_bt">
-                                    <!-- 검색 버튼 돋보기 아이콘 -->
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -60,168 +49,90 @@
                         <h2 class="community_main_title">
                             BUSH.GG 최근 인기글 <small>(조회수 순)</small>
                         </h2>
-                        <!-- 스타일이 다른 커뮤니티 리스트 2행을 묶기위한
-                        전체 영역 -->
-                        <!-- forEach -->
                         <div class="content_line2_flex">
                             <div class="community_list2_wrap">
-                                <!-- 커뮤니티 리스트 헤더 전체영역 -->
                                 <div class="community_list_wrap community_header">
-
-                                    <!-- 타이틀 구간 전체영역 -->
                                     <div class="community_title_wrap">
-                                        <!-- 게시글 번호 -->
                                         <div class="community_index">
                                             번호
                                         </div>
-
-                                        <!-- 게시글 제목 -->
                                         <h1 class="community_title">
                                             제목
                                         </h1>
                                     </div>
-                                    <!-- 텍스트 구간 전체영역-->
                                     <div class="community_text_wrap">
-
-                                        <!-- 몇시간전 -->
                                         <p class="community_time">
                                             시간
                                         </p>
-                                        <!-- 게시글 작성자 네임 -->
                                         <p class="community_summoner_name">
                                             닉네임
                                         </p>
                                     </div>
-                                    <!-- 텍스트 구간 끝 -->
                                 </div>
-                                <!-- 커뮤니티 리스트 헤더 끝 -->
 
                                 <!-- 커뮤니티 리스트 전체영역 -->
                                 <div class="community_list_wrap" th:each="article : ${community}">
-
-                                    <!-- 타이틀 구간 전체영역 -->
                                     <div class="community_title_wrap">
-                                        <!-- 게시글 번호 -->
-                                        <div class="community_index" th:text="${article.articleId}">
-
-                                        </div>
-
-                                        <!-- 게시글 제목 -->
+                                        <div class="community_index" th:text="${article.articleId}"></div>
                                         <h1 class="community_title">
                                             <a th:href="@{/board/detail/{articleId}(articleId=${article.articleId})}" th:text="${article.subject}">
                                             오늘 보쌈 기?
                                             </a>
                                         </h1>
                                     </div>
-                                    <!-- 텍스트 구간 전체영역-->
                                     <div class="community_text_wrap">
-
                                         <p class="community_time" th:text="${#strings.contains(article.regdate, '시간') ? article.regdate : article.regdate}">
                                             24시간전
                                         </p>
-
-
                                         <p class="community_summoner_name" th:text="${article.writer}">
                                             란브로대머리
                                         </p>
                                     </div>
-                                    <!-- 텍스트 구간 끝 -->
                                 </div>
-                                <!-- 커뮤니티 리스트 끝 -->
                             </div>
-                          
                         </div>
-                     <!-- 커뮤니티 리스트2개 전체영역 끝  -->
                     </div>
-                    <!-- 커뮤니티 끝  -->
 
                     <!-- 로테이션 챔피언 -->
                     <div class="rotation_champion_wrap">
-                        <!-- 로테이션 타이틀 -->
                        <div class="rotation_champion_title">
-                        <!-- 로테이션 타이틀 텍스트 -->
-                        <h1 class="rotation_champion_title_text">
-                            금주의 로테이션 챔피언
-                        </h1>
+                           <h1 class="rotation_champion_title_text">
+                               금주의 로테이션 챔피언
+                           </h1>
                        </div>
-                       <!-- 로테이션 타이틀 끝 -->
-
-                       <!-- 로테이션 챔피언 목록 1줄 -->
-                       <div class="rotation_champion_list">
-
-                            <!-- 챔피언 사진 , 이름 -->
+                        <div class="rotation_champion_list">
                            <div class="rotation_champion_face_list" th:each="championNameEn, iterStat : ${championNamesEn}" th:if="${iterStat.index < 5}" th:with="count=${iterStat.index}">
-                               <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
                                <img src="img/tier/Challenger.png" th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/' + ${championNameEn} + '.png'}" alt="">
-                               <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
                                <p class="rotation_champion_name" th:text="${championNamesKo[count]}">Faker</p>
                            </div>
-                            <!-- 챔피언 사진 , 이름 끝 -->
                         </div>
-                       <!-- 로테이션 챔피언 목록 (1줄) 끝 -->
-
-                        <!-- 로테이션 챔피언 목록 1줄 -->
                         <div class="rotation_champion_list">
-
-                            <!-- 챔피언 사진 , 이름 -->
                             <div class="rotation_champion_face_list" th:each="championNameEn, iterStat : ${championNamesEn}" th:if="${iterStat.index > 4 && iterStat.index < 10}" th:with="count=${iterStat.index}">
-                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
                                 <img src="img/tier/Challenger.png" th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/' + ${championNameEn} + '.png'}" alt="">
-                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
                                 <p class="rotation_champion_name" th:text="${championNamesKo[count]}">Faker</p>
                             </div>
-                            <!-- 챔피언 사진 , 이름 끝 -->
                        </div>
-                       <!-- 로테이션 챔피언 목록 (1줄) 끝 -->
-
-                        <!-- 로테이션 챔피언 목록 1줄 -->
                         <div class="rotation_champion_list">
-
-                            <!-- 챔피언 사진 , 이름 -->
                             <div class="rotation_champion_face_list" th:each="championNameEn, iterStat : ${championNamesEn}" th:if="${iterStat.index > 9 && iterStat.index < 15}" th:with="count=${iterStat.index}">
-                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
                                 <img src="img/tier/Challenger.png" th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/' + ${championNameEn} + '.png'}" alt="">
-                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
                                 <p class="rotation_champion_name" th:text="${championNamesKo[count]}">Faker</p>
                             </div>
-                            <!-- 챔피언 사진 , 이름 끝 -->
-                       </div>
-                       <!-- 로테이션 챔피언 목록 (1줄) 끝 -->
-
-                        <!-- 로테이션 챔피언 목록 1줄 -->
-                        <div class="rotation_champion_list">
-
-                            <!-- 챔피언 사진 , 이름 -->
-                            <div class="rotation_champion_face_list" th:each="championNameEn, iterStat : ${championNamesEn}" th:if="${iterStat.index > 14}" th:with="count=${iterStat.index}">
-                                <!-- 챔피언 이미지 대신 티어사진으로 대체함 -->
-                                <img src="img/tier/Challenger.png" th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/' + ${championNameEn} + '.png'}" alt="">
-                                <!-- 챔피언 이름 :: 영어이름이라도 넣어주세요 -->
-                                <p class="rotation_champion_name" th:text="${championNamesKo[count]}">Faker</p>
-                            </div>
-                            <!-- 챔피언 사진 , 이름 끝 -->
                         </div>
-                        <!-- 로테이션 챔피언 목록 (1줄) 끝 -->
-
+                        <div class="rotation_champion_list">
+                            <div class="rotation_champion_face_list" th:each="championNameEn, iterStat : ${championNamesEn}" th:if="${iterStat.index > 14}" th:with="count=${iterStat.index}">
+                                <img src="img/tier/Challenger.png" th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/champion/' + ${championNameEn} + '.png'}" alt="">
+                                <p class="rotation_champion_name" th:text="${championNamesKo[count]}">Faker</p>
+                            </div>
+                        </div>
                     </div>
-                    <!-- 로테이션 끝 -->
                 </div>
-                <!-- 두번째 라인 컨텐츠 전체영역 끝 -->
             </div>
-            <!-- 중앙 컨텐츠 전체영역 끝 -->
-
 
         </div>
     </div>
-    <!--  메인 컨텐츠 끝 -->
 
-
-</div>
-
-
-<!--   자바 스크립트 -->
-<th:block th:replace="common/fragments/script :: scriptFragment"/>
+    <!-- 자바 스크립트 -->
+    <th:block th:replace="common/fragments/script :: scriptFragment"/>
 
 </body>
-
-
 </html>

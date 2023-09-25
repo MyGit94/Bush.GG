@@ -3,6 +3,9 @@ package com.pinkward.bushgg.domain.match.common;
 import lombok.Data;
 import java.util.Objects;
 
+/**
+ * 함께 플레이한 유저와의 승률 클래스
+ */
 @Data
 public class SummonerWithCount {
     private String summonerName;

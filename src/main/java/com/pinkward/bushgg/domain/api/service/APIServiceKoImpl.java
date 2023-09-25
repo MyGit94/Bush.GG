@@ -33,6 +33,11 @@ public class APIServiceKoImpl implements APIServiceKo {
 
     String serverUrl = "https://kr.api.riotgames.com/lol/";
 
+    /**
+     * 유저의 닉네임으로 유저 정보를 가져오는 메소드
+     * @param summonerName 유저의 닉네임
+     * @return 유저 정보를 담은 객체, 서버 응답을 받지 못하면 null
+     */
     @Override
     public SummonerDTO getSummonerInfo(String summonerName) {
 
@@ -58,11 +63,15 @@ public class APIServiceKoImpl implements APIServiceKo {
         return summoner;
     }
 
+    /**
+     * 유저의 puuid로 유저 정보를 가져오는 메소드
+     * @param puuid Riot API에서 제공하는 유저의 puuid
+     * @return 유저 정보를 담은 객체, 서버 응답을 받지 못하면 null
+     */
     @Override
     public SummonerDTO getSummonerInfoByPuuid(String puuid) {
 
         SummonerDTO summoner = null;
-
         try {
             HttpClient client = HttpClientBuilder.create().build();
             HttpGet request = new HttpGet(serverUrl + "summoner/v4/summoners/by-puuid/" + puuid + "?api_key=" + challengeKey);
@@ -83,7 +92,11 @@ public class APIServiceKoImpl implements APIServiceKo {
         return summoner;
     }
 
-
+    /**
+     * 유저의 puuid로 유저의 도전과제 정보를 가져오는 메소드
+     * @param puuid Riot API에서 제공하는 유저의 puuid
+     * @return 도전과제 정보를 담은 객체, 서버 응답을 받지 못하면 null
+     */
     @Override
     public PlayerChallengesInfoDTO getPlayerChallengesInfo(String puuid) {
 
@@ -107,10 +120,14 @@ public class APIServiceKoImpl implements APIServiceKo {
         return playerChallengesInfo;
     }
 
+    /**
+     * 유저의 summonerId로 유저의 티어정보를 가져오는 메소드
+     * @param summonerId 유저의 암호화된 id
+     * @return 유저의 티어정보를 담고 있는 Map의 Set, 서버 응답을 받지 못하면 null
+     */
     @Override
     public Set<Map<String,Object>> getTierInfo(String summonerId) {
         Set<Map<String,Object>> summonerTier = null;
-        SummonerTierDTO summonerTierDTO = new SummonerTierDTO();
 
         try {
             HttpClient client = HttpClientBuilder.create().build();
@@ -133,11 +150,14 @@ public class APIServiceKoImpl implements APIServiceKo {
             e.printStackTrace();
             return null;
         }
-
         return summonerTier;
-
     }
 
+    /**
+     * 유저의 summonerId로 유저의 진행중인 게임 정보을 가져오는 메소드
+     * @param summonerId 유저의 암호화된 id
+     * @return 유저의 진행중인 게임 정보를 담은 Map, 서버 응답을 받지 못하면 null
+     */
     @Override
     public Map<String, Object> getCurrentGame(String summonerId) {
 

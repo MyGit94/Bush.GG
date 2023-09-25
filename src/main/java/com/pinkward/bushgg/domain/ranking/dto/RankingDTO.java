@@ -2,6 +2,9 @@ package com.pinkward.bushgg.domain.ranking.dto;
 
 import lombok.Data;
 
+/**
+ * 유저 랭킹 관련 DTO
+ */
 @Data
 public class RankingDTO {
     private String summonerId;

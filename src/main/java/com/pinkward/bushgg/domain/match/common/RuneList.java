@@ -1,5 +1,8 @@
 package com.pinkward.bushgg.domain.match.common;
 
+/**
+ * 룬 종류별 코드 분류 클래스
+ */
 public class RuneList {
     private static final int[] precisionRune = {8000, 8005, 8008, 8021, 8010, 9101, 9111, 8009, 9104, 9105, 9103, 8014, 8017, 8299};
     private static final int[] dominationRune = {8100, 8112, 8124, 8128, 9923, 8126, 8139, 8143, 8136, 8120, 8138, 8135, 8134, 8105, 8106};
@@ -22,13 +25,17 @@ public class RuneList {
         return statPerksOffense;
     }
 
+
+    /**
+     * 룬 종류에 따라 서브룬 개수 반환하는 메소드
+     * @param inputArray 룬 종류
+     * @return 서브룬 개수
+     */
     public static int[] getSubRuneArray(int[] inputArray) {
         int length = inputArray.length;
 
-        // 배열의 길이에 따라 시작 인덱스 선택
         int startIndex = (length == 13) ? 4 : 5;
 
-        // 시작 인덱스부터 끝까지 새로운 배열로 복사
         int subArrayLength = length - startIndex;
         int[] subArray = new int[subArrayLength];
 
@@ -37,6 +44,11 @@ public class RuneList {
         return subArray;
     }
 
+    /**
+     * 룬 코드로 해당 룬 배열을 반환하는 메소드 
+     * @param value Riot API에서 제공하는 룬 코드
+     * @return 해당 룬 배열
+     */
     public static int[] getRuneListByValue(int value) {
         int[] selectedRune;
 
@@ -57,11 +69,9 @@ public class RuneList {
                 selectedRune = resolveRune;
                 break;
             default:
-                // 다른 값에 대한 처리
                 selectedRune = null;
                 break;
         }
         return selectedRune;
     }
-
 }

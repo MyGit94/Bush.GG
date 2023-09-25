@@ -15,12 +15,12 @@ import org.apache.ibatis.type.Alias;
 @Alias("PageParams")
 public class PageParams {
 	
-	private int elementSize;    /** 페이지에 보여지는 목록 갯수 */
-	private int pageSize;       /** 페이지에 보여지는 페이지 갯수 */
-	private int requestPage;    /** 사용자 요청 페이지 */
-	private int rowCount;       /** 테이블 목록 갯수 */
-	private String keyword;       // 검색 키워드
-	private String searchType;    // 검색 유형
+	private int elementSize;
+	private int pageSize;
+	private int requestPage;
+	private int rowCount;
+	private String keyword;
+	private String searchType;
 
 	public PageParams() {
 		this.elementSize =10;
@@ -36,7 +36,7 @@ public class PageParams {
 	}
 
 	public PageParams getPageParams() {
-		return this; // 현재 인스턴스를 반환하도록 게터 메서드 정의
+		return this;
 	}
 
 	public int getOffset() {

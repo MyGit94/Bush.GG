@@ -2,6 +2,9 @@ package com.pinkward.bushgg.domain.summoner.dto;
 
 import lombok.Data;
 
+/**
+ * 유저 티어 관련 DTO
+ */
 @Data
 public class SummonerTierDTO {
     private String tier;

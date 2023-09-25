@@ -1,61 +1,53 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="sideFragment">
-
-
-        <a href="#accordionSidebar" class="goTop">
-            <i class="fa-solid fa-circle-chevron-up" style="color: #312a32;"></i>
-        </a>
-
+    <a href="#accordionSidebar" class="goTop">
+        <i class="fa-solid fa-circle-chevron-up" style="color: #312a32;"></i>
+    </a>
 
     <div class="loading_wrap">
         <img src="/img/nunu.gif" class="nunu">
-        <!--        로딩 -->
         <div class="loading-container">
             <div id="loading-text">로딩중...</div>
         </div>
     </div>
+
     <!-- 좌측 사이드바 전체 영역 -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <!-- 왼쪽 사이드바 로고 영역 -->
         <li class="nav-item active">
             <a class="nav-link nav-link2" href="/">
-                <!-- <p class="nav-item-text">BUSH.GG</p> -->
                 <img src="/img/logo.png" alt="" class="nav-item-img">
             </a>
         </li>
         <!-- 구분선1 -->
         <hr class="sidebar-divider">
-        <!-- 사이드바 카테고리1 : 사용자 -->
+
         <div class="sidebar-heading" th:if="${session.loginMember == null}">
             사용자
         </div>
         <div class="user" th:if="${session.loginMember != null}">
             😀 환영합니다!
         </div>
-        <!-- 사이드메뉴 :: 상단 메뉴 - 사용자 -->
         <li class="nav-item">
             <!-- 로그인 -->
-            <a th:if="${session.loginMember == null}"th:href="@{/member/login}"
-               class="nav-link collapsed">
+            <a th:if="${session.loginMember == null}"th:href="@{/member/login}" class="nav-link collapsed">
                 <i class="fas fa-fw fa-user"></i>
                 <span>로그인</span>
             </a>
             <strong th:if="${session.loginMember != null}" class="nav-link" id="nickname" th:text="${session.loginMember.nickName}">
             </strong>
 
-            <!-- 회원가입-->
-            <a th:if="${session.loginMember == null}" th:href="@{/member/register}"
-               class="nav-link collapsed">
+            <!-- 회원가입 -->
+            <a th:if="${session.loginMember == null}" th:href="@{/member/register}" class="nav-link collapsed">
                 <i class="fas fa-fw fa-user"></i>
                 <span>회원가입</span>
             </a>
-            <a th:if="${session.loginMember != null}" th:href="@{/member/logout}"
-               class="nav-link collapsed">
+            <a th:if="${session.loginMember != null}" th:href="@{/member/logout}" class="nav-link collapsed">
                 <i class="fas fa-fw fa-user"></i>
                 <span>로그아웃</span>
             </a>
         </li>
+
         <!-- 구분선2 -->
         <hr class="sidebar-divider">
         <!-- 사이드바 카테고리2 : 컨텐츠 -->
@@ -65,7 +57,6 @@
         <!-- 패치노트 -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="modal" data-target="#videoModal">
-                <!-- 패치노트 아이콘-->
                 <i class="fas fa-fw fa-folder"></i>
                 <span>패치노트</span>
             </a>
@@ -76,9 +67,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <!-- YouTube video embed -->
-                        <iframe id='video' width='100%' height='500px' src='https://www.youtube.com/embed/s5zorbzlRtE' frameborder='0'
-                                allowfullscreen></iframe>
+                        <iframe id='video' width='100%' height='500px' src='https://www.youtube.com/embed/s5zorbzlRtE' frameborder='0' allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -86,35 +75,28 @@
         <!-- 랭킹 -->
         <li class="nav-item">
             <a class="nav-link" href="/ranking">
-                <!-- 랭킹 아이콘-->
                 <i class="fas fa-fw fa-chart-area"></i>
-                <!-- 랭킹 텍스트 -->
                 <span>랭킹</span></a>
         </li>
         <!-- 커뮤니티 -->
         <li class="nav-item">
-            <a class="nav-link" href="/board">
-                <!-- 커뮤니티 아이콘 -->
+            <a class="nav-link" href="/board/change-session-status">
                 <i class="fas fa-fw fa-table"></i>
-                <!-- 커뮤니티 텍스트 -->
                 <span>커뮤니티</span></a>
         </li>
         <!-- 실시간 -->
         <li class="nav-item">
             <a class="nav-link" href="/live">
-                <!-- 커뮤니티 아이콘 -->
                 <i class="fas fa-fw fa-table"></i>
-                <!-- 커뮤니티 텍스트 -->
                 <span>실시간 게임</span></a>
         </li>
+
         <!-- 구분선3 -->
         <hr class="sidebar-divider d-none d-md-block">
-        <!-- 사이드바 열기/닫기 버튼 전체영역 -->
         <div class="text-center d-none d-md-inline">
-            <!-- 사이드바 버튼 -->
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
     </ul>
-    <!-- 사이드바 끝 -->
+
 </th:block>
 </html>

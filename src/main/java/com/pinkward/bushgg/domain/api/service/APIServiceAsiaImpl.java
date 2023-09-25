@@ -26,6 +26,11 @@ public class APIServiceAsiaImpl implements APIServiceAsia{
 
     String serverUrl = "https://asia.api.riotgames.com/lol/";
 
+    /**
+     * 유저의 최근 플레이 게임 id의 List를 가져오는 메소드
+     * @param puuid Riot API에서 제공하는 유저의 puuid
+     * @return 유저의 최근 플레이 게임 id의 List, 서버 응답을 받지 못하면 null
+     */
     @Override
     public List<String> getMatchId(String puuid) {
         List<String> matchId = null;
@@ -53,6 +58,12 @@ public class APIServiceAsiaImpl implements APIServiceAsia{
         return matchId;
     }
 
+
+    /**
+     * 유저의 최근 플레이 게임 id로 게임 상세 정보를 가져오는 메소드
+     * @param matchId 유저의 최근 플레이 게임 id
+     * @return matchId의 게임 상세 정보, 서버 응답을 받지 못하면 null
+     */
     @Override
     public Map<String, Object> getMatch(String matchId) {
 

@@ -10,12 +10,23 @@ import java.util.List;
  */
 public interface ArticleService {
     public void write(ArticleDTO articleDTO);
-    public List<ArticleDTO> findByAll();
+
     public void createComment(ArticleDTO articleDTO);
-    public void removeComment(int articleId, String passwd);
-    public void updateComment(ArticleDTO articleDTO);
+
+    public void updateHitcount(ArticleDTO articleDTO);
+
+    public int cellComments(int groupNo);
+
+    public List<ArticleDTO> findSubject(String subject);
+
+    public List<ArticleDTO> findAllByHitcount();
+
     public ArticleDTO detail(int articleId);
+
     public List<ArticleDTO> read (int groupNo);
+
     public int countAll ();
+
     public List<ArticleDTO> findByAll2(PageParams pageParams);
+
 }

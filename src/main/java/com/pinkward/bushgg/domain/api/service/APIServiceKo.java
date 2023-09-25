@@ -11,7 +11,6 @@ import java.util.Set;
  * Riot Ko API에서 json 가져오는 Service
  */
 public interface APIServiceKo {
-    // 소환사정보
     public SummonerDTO getSummonerInfo(String summonerName);
     public SummonerDTO getSummonerInfoByPuuid(String puuid);
     public PlayerChallengesInfoDTO getPlayerChallengesInfo(String puuid);

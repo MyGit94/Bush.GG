@@ -32,6 +32,11 @@ public class ChampionServiceImpl implements ChampionService{
     @Value("${riot.api.key}")
     private String mykey;
     String serverUrl = "https://kr.api.riotgames.com";
+
+    /**
+     * 챔피언 로테이션 가져오는 메소드
+     * @return 챔피언 로테이션
+     */
     @Override
     public List<Integer> championLotation() {
         List<Integer> championLotation = null;
@@ -57,6 +62,12 @@ public class ChampionServiceImpl implements ChampionService{
         return championLotation;
     }
 
+    /**
+     * 최근 20게임 플레이한 챔피언 카운트 증가 메소드
+     * @param championCounts 챔피언 승률 객체
+     * @param participant 게임 참가자 정보 객체
+     * @return 최근 20게임 플레이한 챔피언 별 승률 List
+     */
     public List<ChampionCount> getChampionCounts (List<ChampionCount> championCounts, ParticipantsDTO participant){
 
         boolean found = false;
@@ -73,20 +84,25 @@ public class ChampionServiceImpl implements ChampionService{
         }
 
         if (!found) {
-            // 챔피언 이름이 리스트에 없으면 새 객체 생성하여 리스트에 추가
+
             ChampionCount newChampionCount = new ChampionCount();
             newChampionCount.setChampionName(participant.getChampionName());
             newChampionCount.setCount(1);
             if (participant.isWin()) {
                 newChampionCount.setWin(1);
             } else {
-                newChampionCount.setWin(0); // 이긴 횟수를 초기화
+                newChampionCount.setWin(0);
             }
             championCounts.add(newChampionCount);
         }
         return championCounts;
     }
 
+    /**
+     * 플레이한 챔피언별 승률 List를 플레이한 횟수의 내림차순으로 정렬하는 메소드
+     * @param championCounts 플레이한 챔피언별 승률 List
+     * @return 정렬한 최근 20게임 플레이한 챔피언 별 승률 List
+     */
     public List<ChampionCount> sortChampionCounts(List<ChampionCount> championCounts){
         Iterator<ChampionCount> iterator = championCounts.iterator();
         while (iterator.hasNext()) {
@@ -99,7 +115,6 @@ public class ChampionServiceImpl implements ChampionService{
         Collections.sort(championCounts, Comparator.comparing(ChampionCount::getCount).reversed());
         List<ChampionCount> filteredChampionCounts = championCounts.subList(0, Math.min(5, championCounts.size()));
 
-        // 이후에 winRate를 계산하고 설정
         for (ChampionCount championCount: filteredChampionCounts) {
             double winRate = ((double)championCount.getWin() / championCount.getCount()) * 100;
             championCount.setWinRate((int)Math.round(winRate));

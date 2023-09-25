@@ -14,6 +14,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * 회원 가입 정보 DTO
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

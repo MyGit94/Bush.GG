@@ -3,8 +3,17 @@ package com.pinkward.bushgg.domain.match.common;
 import lombok.extern.slf4j.Slf4j;
 import java.time.Instant;
 
+/**
+ * 유닉스 시간을 로컬 시간으로 변환 하는 클래스
+ */
 @Slf4j
 public class TimeTranslator {
+
+    /**
+     * 받아온 유닉스 시간이 로컬 시간으로부터 얼마나 지났는지 변환하는 메소드
+     * @param unixTimestamp 유닉스 시간
+     * @return 변환된 시간
+     */
     public static String unixToLocal(long unixTimestamp) {
 
         long unixTimestampNow = Instant.now().toEpochMilli();
@@ -14,6 +23,11 @@ public class TimeTranslator {
         return formattedTimeDifference;
     }
 
+    /**
+     * 유닉스 시간을 로컬 시간으로부터 얼마나 지났는지 변환하는 메소드
+     * @param milliseconds
+     * @return 변환된 시간
+     */
     public static String formatTimeDifference(long milliseconds) {
         long seconds = milliseconds / 1000;
         if (seconds < 60) {
@@ -45,11 +59,31 @@ public class TimeTranslator {
         }
     }
 
+    /**
+     * 유닉스 시간을 로컬 시간으로 변환하는 메소드
+     * @param unixTimestamp 유닉스 시간
+     * @return 변환된 시간
+     */
     public static String unixMinAndSec(int unixTimestamp) {
         String minAndSec;
         int minutes = unixTimestamp / 60;
         int seconds = unixTimestamp % 60;
         minAndSec = minutes+"분 "+seconds+"초";
         return minAndSec;
+    }
+
+    /**
+     * 진행중인 실시간 게임 시간을 로컬 시간으로 변경하는 메소드
+     * @param unixTimestamp 진행중인 실시간 게임의 유닉스 시간
+     * @return
+     */
+    public static String currentGameTime(long unixTimestamp) {
+
+        long unixTimestampNow = Instant.now().toEpochMilli();
+        long endTimestamp = unixTimestampNow - unixTimestamp;
+        endTimestamp = endTimestamp/ 1000;
+        String formattedTimeDifference = unixMinAndSec((int)endTimestamp);
+
+        return formattedTimeDifference;
     }
 }

@@ -18,6 +18,9 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
+/**
+ * 구글 로그인 API 요청을 처리하는 세부 컨트롤러 구현 클래스
+ */
 @RestController
 @Slf4j
 public class LoginController {
@@ -30,11 +33,17 @@ public class LoginController {
         this.googleLogin = new GoogleLoginService();
     }
 
+    /**
+     * 구글 로그인 페이지로 이동하는 메소드
+     */
     @GetMapping("/login2")
-    public void login(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        googleLogin.login(req, resp);
+    public void login( HttpServletResponse resp) throws Exception {
+        googleLogin.login( resp);
     }
 
+    /**
+     * 구글 로그인 성공시 회원가입 유무에 따라 페이지 요청하는 메소드
+     */
     @GetMapping("/member/callback")
     public RedirectView handleCallback(@RequestParam("code") String code, HttpSession session) throws Exception {
         GoogleTokenResponse tokenResponse = googleLogin.getToken(code);

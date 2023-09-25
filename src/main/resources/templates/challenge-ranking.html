@@ -4,7 +4,6 @@
 <head>
   <!-- css -->
   <th:block th:replace="common/fragments/config :: configFragment"/>
-  <!-- 도전과제 랭크 css -->
   <link rel="stylesheet" href="/css/challenge-ranking.css ">
   <link rel="stylesheet" href="/css/challenge-ranking_media.css">
 </head>
@@ -13,10 +12,8 @@
 <body id="page-top">
 
   <div id="wrapper">
-
-    <!--   왼쪽 사이드바  -->
+    <!-- 왼쪽 사이드바  -->
     <th:block th:replace="common/fragments/side :: sideFragment"/>
-
 
     <!-- 메인 컨텐츠 전체영역 -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -26,51 +23,30 @@
 
       <!-- 도전과제 프로필 전체영역 -->
       <div class="rank_profile">
-        <!-- 도전과제 이미지 -->
         <div class="rank_profile_img">
-          <!-- 도전과제 이미지 -->
           <img th:src="@{'/img/challenges-images/'+ ${challengeId}+'-CHALLENGER.png'}">
         </div>
-        <!-- 도전과제명 -->
         <div class="rank_prifile_text_wrap">
-          <!-- 도전과제명 텍스트 -->
           <h1 class="rank_profile_text" th:text="${@challengesMapper.getChallengeInfoById(challengeId).getName()}"></h1>
-          <!-- 도전과제 설명 -->
           <p class="rank_profile_rank" th:text="${@challengesMapper.getChallengeInfoById(challengeId).getDescription()}"></p>
         </div>
-        <!-- 도전과제 텍스트 영역 끝 -->
       </div>
-      <!-- 도전과제 프로필 전체영역 끝 -->
 
-      
       <!-- 랭크 리스트 전체영역 -->
       <div class="rank_wrap">
-
-        <!-- rank 전체영역 -->
         <div class="rank_list_wrap">
-
-              <!-- 랭킹 리스트 Header -->
-              <!-- forEach 돌리는곳 아님 -->
-              <div class="rank_list rank_list_header">
-            
-                <!-- 랭킹 등수 header -->
-                <div class="rank_number rank_flex">
-                  <!--  -->
-                  <p class="rank_number_text">
-                    랭킹
-                  </p>
-                </div>
-                <!-- 소환사명 -->
+          <div class="rank_list rank_list_header">
+            <div class="rank_number rank_flex">
+              <p class="rank_number_text">
+                랭킹
+              </p>
+            </div>
                 <div class="rank_flex rank_title">
-                  <!-- 소환사 이름 -->
                   <h1 class="rank_name">
                     소환사 이름
                   </h1>
                 </div>
-    
-                <!-- 달성티어 -->
                 <div class="rank_flex rank_tier">
-                  <!-- 달성티어 텍스트 -->
                   <p class="rank_tier_text">
                     티어
                   </p>
@@ -78,37 +54,27 @@
     
                 <!-- 랭킹 포인트 전체영역 -->
                 <div class="rank_flex rank_points">
-                  <!-- 랭킹 포인트 텍스트 -->
                   <p class="rank_points_text">점수</p>
                 </div>
               </div>
-              <!-- 랭크 리스트 1개 끝 -->
 
-
-          <!-- 랭크 리스트 (1개) ForEach-->
+          <!-- 랭크 리스트 -->
           <div class="rank_list" th:each="rank : ${ranking}">
-
-            <!-- 랭킹 등수 -->
             <div class="rank_number rank_flex">
-              <!-- 랭킹숫자 텍스트 -->
               <p class="rank_number_text" th:text="${rank.position}">
                 1
               </p>
             </div>
-            <!-- 소환사명 -->
             <div class="rank_flex rank_title">
-              <!-- 소환사 아이콘 -->
               <div class="rank_img rank_flex">
                 <img th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/profileicon/' + ${rank.getProfileIcon()}+'.png'}">
               </div>
-              <!-- 소환사 이름 -->
               <h1 class="rank_name"><a th:href="@{/summoner(summonerName=${rank.getName()})}" th:text="${rank.getName()}">>
-                사각</a></h1>
+                사각</a>
+              </h1>
             </div>
 
-            <!-- 달성티어 -->
             <div class="rank_flex rank_tier">
-              <!-- 달성티어 텍스트 -->
               <p class="rank_tier_text">
                 Challenger
               </p>
@@ -126,30 +92,10 @@
       </div>
       <!-- 컨텐츠 전체영역 끝 -->
     </div>
-    <!--  메인 컨텐츠 끝 -->
-
-
-    <!-- 로그아웃 모달 (아직 사용할지 미정)-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
-  <!-- 로그아웃 모달 끝-->
+
+  <!-- 자바 스크립트 -->
   <th:block th:replace="common/fragments/script :: scriptFragment"/>
+
 </body>
 </html>

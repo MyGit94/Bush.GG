@@ -9,6 +9,9 @@ import lombok.Setter;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 유저의 달성 도전과제 점수 DTO
+ */
 @Data
 @NoArgsConstructor
 @Getter

@@ -1,11 +1,12 @@
 package com.pinkward.bushgg.web.summoner.controller;
 
 import com.pinkward.bushgg.domain.api.service.APIServiceKo;
-import com.pinkward.bushgg.domain.challenges.dto.*;
+import com.pinkward.bushgg.domain.challenges.dto.ChallengeRankingPlayerDTO;
+import com.pinkward.bushgg.domain.challenges.dto.ChallengesInfoDTO;
+import com.pinkward.bushgg.domain.challenges.dto.PlayerChallengesInfoDTO;
 import com.pinkward.bushgg.domain.challenges.mapper.ChallengesMapper;
 import com.pinkward.bushgg.domain.challenges.service.ChallengesService;
 import com.pinkward.bushgg.domain.summoner.dto.SummonerDTO;
-import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Comparator;
@@ -32,13 +32,16 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PlayerChallengesController {
 
-    private final SummonerService summonerService;
     private final APIServiceKo apiServiceKo;
     private final ChallengesService challengesService;
 
     @Autowired
     ChallengesMapper challengesMapper;
 
+    /**
+     * 해당 유저의 달성 도전과제 정보를 처리하는 메소드
+     * @return 유저의 달성 도전과제 정보 페이지
+     */
     @GetMapping(value="/challenge")
     public String playerChallenges (@RequestParam("summonerName") String summonerName, Model model){
         if (summonerName.length() == 2) {
@@ -47,7 +50,6 @@ public class PlayerChallengesController {
         String esummonerName = null;
         esummonerName = URLEncoder.encode(summonerName, StandardCharsets.UTF_8);
 
-        // 등급순으로 정렬해주기 위한 작업
         Map<String, Integer> levelOrder = new HashMap<>();
         levelOrder.put("CHALLENGER", 1);
         levelOrder.put("GRANDMASTER", 2);
@@ -60,7 +62,7 @@ public class PlayerChallengesController {
         levelOrder.put("IRON", 9);
         SummonerDTO summoner = apiServiceKo.getSummonerInfo(esummonerName);
         PlayerChallengesInfoDTO playerChallengesInfo = apiServiceKo.getPlayerChallengesInfo(summoner.getPuuid());
-        // 가져온 challenges 정보중 challengeId가 101000 이상인 값만 가져옴
+
         List<ChallengesInfoDTO> filter = playerChallengesInfo.getChallenges().stream()
                 .filter(challenge -> challenge.getChallengeId() >= 101000)
                 .sorted(Comparator.comparingInt(challenge -> levelOrder.getOrDefault(challenge.getLevel(), Integer.MAX_VALUE)))
@@ -78,6 +80,10 @@ public class PlayerChallengesController {
         return "challenge";
     }
 
+    /**
+     * 도전과제 종류별 랭킹 정보를 처리하는 메소드
+     * @return 해당 도전과제 랭킹 정보
+     */
     @GetMapping(value="/challenge/rank/{challengeId}")
     public String challengeRankPage(@PathVariable("challengeId") int challengeId, Model model){
         model.addAttribute("challengeId", challengeId);

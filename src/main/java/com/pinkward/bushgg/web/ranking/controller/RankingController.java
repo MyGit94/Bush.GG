@@ -1,10 +1,8 @@
 package com.pinkward.bushgg.web.ranking.controller;
 
 import com.pinkward.bushgg.domain.api.service.APIRankingService;
-import com.pinkward.bushgg.domain.api.service.APIServiceKo;
 import com.pinkward.bushgg.domain.ranking.dto.RankingDTO;
 import com.pinkward.bushgg.domain.ranking.service.RankingService;
-import com.pinkward.bushgg.domain.summoner.service.SummonerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -25,6 +23,10 @@ public class RankingController {
     private final RankingService rankingService;
     private final APIRankingService apiRankingService;
 
+    /**
+     * 페이지 번호를 받아 해당 랭킹 페이지를 출력하는 메소드
+     * @return 해당 랭킹 페이지
+     */
     @GetMapping(value="/ranking")
     public String raking(@RequestParam(name = "page", defaultValue = "1") int page, Model model) {
         List<Map<String, Object>> entries1 = apiRankingService.challengerRanking();

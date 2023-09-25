@@ -2,6 +2,9 @@ package com.pinkward.bushgg.domain.currentgame.dto;
 
 import lombok.Data;
 
+/**
+ * 실시간 게임의 참가자 정보 DTO
+ */
 @Data
 public class CurrentGameDTO {
     private int teamId;

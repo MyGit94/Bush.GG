@@ -21,6 +21,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 회원 관련 요청을 처리하는 세부 컨트롤러 구현 클래스
+ */
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/member")
@@ -29,6 +32,10 @@ public class MemberController {
 
 	private final MemberService memberService;
 
+    /**
+     * 회원 가입 페이지로 이동하는 메소드
+     * @return 회원 가입 페이지
+     */
     @GetMapping("/register")
     public String register(Model model) {
         MemberDTO memberDTO = MemberDTO.builder().build();
@@ -36,56 +43,49 @@ public class MemberController {
         return "member/register";
     }
 
-    // 회원 데이터 검증 - #3. Bean Validation 사용
+    /**
+     * 회원 가입 정보를 받아 유효성 검증을 하고 DB에 저장하는 메소드
+     * @return 로그인 페이지, 유효성 검증 실패시 회원가입 페이지
+     */
     @PostMapping("/register")
     public String register(@Validated @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult,
                            RedirectAttributes redirectAttributes, HttpServletRequest request, Model model) {
 
-        // 데이터 검증 실패 시 회원가입 화면으로 Forward
         if (bindingResult.hasErrors()) {
             return "member/register";
         }
-     // 중복 체크
 
         if (
         	memberService.checkLoginId(memberDTO.getLoginId())) {
             model.addAttribute("duplicateWarning", "중복된 값으로는 회원가입이 불가능합니다.");
-            log.info("중복된 아이디{}",memberDTO.getLoginId());
-
             return "member/register";
         }
 
         if (memberService.checkNickName(memberDTO.getNickName())) {
             model.addAttribute("duplicateWarning", "중복된 닉네임으로는 회원가입이 불가능합니다.");
-            log.info("중복된 닉네임: {}", memberDTO.getNickName());
             return "member/register";
         }
 
         if (memberService.checkEmail(memberDTO.getEmail())) {
             model.addAttribute("duplicateWarning", "중복된 이메일 주소로는 회원가입이 불가능합니다.");
-            log.info("중복된 이메일: {}", memberDTO.getEmail());
             return "member/register";
         }
 
-
-
-        // 데이터 검증 성공 시 비밀번호 확인
         if (!memberDTO.getPasswd().equals(memberDTO.getCheckpasswd())) {
             model.addAttribute("checkPasswordError", "비밀번호가 일치하지 않습니다.");
             return "member/register";
         }
 
-        // 데이터 검증 성공 시 DB 저장 후 성공 메시지와 함께 홈페이지로 리다이렉트
         memberService.register(memberDTO);
 
-        log.info("DB 저장 완료 : {}", memberDTO.getLoginId());
-
-        // 리다이렉트 시 메시지 전달
         redirectAttributes.addFlashAttribute("successMessage", "회원 가입이 성공적으로 완료되었습니다.");
         return "redirect:/member/login";
     }
 
-	// 회원가입 실시간 중복체크
+    /**
+     * ajax 실시간 중복체크 하는 메소드
+     * @return 통과
+     */
     @GetMapping("/api/check-duplicate-loginid/{loginId}")
     public ResponseEntity<Map<String, Boolean>> checkLoginId(@PathVariable String loginId) {
         boolean loginIdCheck = memberService.checkLoginId(loginId);
@@ -94,6 +94,10 @@ public class MemberController {
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * ajax 실시간 중복체크 하는 메소드
+     * @return 통과
+     */
     @GetMapping("/api/check-duplicate-nickname/{nickName}")
     public ResponseEntity<Map<String, Boolean>> checkNickName(@PathVariable String nickName) {
         boolean nickNameCheck = memberService.checkNickName(nickName);
@@ -102,6 +106,10 @@ public class MemberController {
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * ajax 실시간 중복체크 하는 메소드
+     * @return 통과
+     */
     @GetMapping("/api/check-duplicate-email/{email}")
     public ResponseEntity<Map<String, Boolean>> checkEmail(@PathVariable String email) {
         boolean EmailCheck = memberService.checkEmail(email);
@@ -110,19 +118,24 @@ public class MemberController {
         return ResponseEntity.ok(response);
     }
 
-    // 로그인
+    /**
+     * 쿠키에 userId가 저장되어 있으면 모델에 담고 로그인 페이지로 이동하는 메소드
+     * @return 로그인 페이지
+     */
 	@GetMapping("/login")
 	public String login(Model model, @CookieValue(name = "userId", required = false) String userId) {
         LoginForm loginForm = LoginForm.builder().build();
         model.addAttribute("loginForm", loginForm);
 		model.addAttribute("userId", userId);
-		log.info("확인용:{}",userId);
 	    return "member/login";
 	}
-	
+
+    /**
+     * 로그인 정보로 로그인 처리하는 메소드
+     * @return index 페이지
+     */
 	@PostMapping("/login") 
 	public String login(@RequestParam(name = "saveId", required = false) boolean saveId, @Valid @ModelAttribute LoginForm loginForm, BindingResult bindingResult, HttpServletRequest request, HttpServletResponse response) {
-		log.info("{}",saveId);
         if (bindingResult.hasErrors()) {
             return "member/login";
         }
@@ -130,33 +143,31 @@ public class MemberController {
         MemberDTO loginMember = memberService.isMember(loginForm.getLoginId(), loginForm.getPasswd());
 
 		if (saveId) {
-			// 아이디를 쿠키에 저장
 			Cookie cookie = new Cookie("userId", loginForm.getLoginId());
 			cookie.setMaxAge(30 * 24 * 60 * 60);
 			response.addCookie(cookie);
-			log.info("Saved userId cookie with value: " + loginForm.getLoginId());
 		} else {
-			// 쿠키 삭제
 			Cookie cookie = new Cookie("userId", null);
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
-			log.info("Removed userId cookie");
 		}
-		// 회원이 아닌 경우
+
 		if (loginMember == null) {
                 bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
                 return "member/login";
 		}
-		// 회원인 경우
+
 		HttpSession session =  request.getSession();
 		session.setAttribute("loginMember", loginMember);
-
 		return "redirect:/";
 	}
-	
+
+    /**
+     * 로그아웃 처리 메소드
+     * @return index 페이지
+     */
 	@GetMapping("/logout")  
 	public String logout(HttpServletRequest request) {
-		// 세션이 있으면 기존 세션 반환, 없으면 생성하지 않고 null 반환
 		HttpSession session =  request.getSession(false);
 		if(session != null) {
 			session.invalidate();
@@ -164,28 +175,41 @@ public class MemberController {
 		return "redirect:/";
 	}
 
+
+    /**
+     * 구글 로그인 후 DB에 회원 정보가 없으면 닉네임 생성 페이지로 이동하는 메소드
+     * @return 닉네임 생성 페이지
+     */
     @GetMapping("/nickname")
     public String nickname(Model model) {
         model.addAttribute("successMessage2", "닉네임 등록이 성공적으로 완료되었습니다.");
         return "member/nickname";
     }
 
+    /**
+     * 닉네임 정보를 받아 회원 정보를 DB에 저장하는 메소드
+     * @return index 페이지
+     */
     @PostMapping("/nickname")
     public String nicknameFinish(@RequestParam String nickName, HttpSession session) {
         String userId = (String) session.getAttribute("userId");
         String userEmail = (String) session.getAttribute("userEmail");
-        log.info("닉네임 : {}",nickName);
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setNickName(nickName);
         memberDTO.setPasswd("1111");
         memberDTO.setLoginId(userId);
         memberDTO.setEmail(userEmail);
+        
         memberService.register(memberDTO);
         MemberDTO loginMember = memberService.isMember(memberDTO.getLoginId(), memberDTO.getPasswd());
         session.setAttribute("loginMember", loginMember);
         return "redirect:/";
     }
 
+    /**
+     * 구글 로그인 처리 메소드
+     * @return index 페이지
+     */
     @GetMapping("/googleLogin")
     public String gooleLogin(HttpSession session){
         MemberDTO member = (MemberDTO) session.getAttribute("Member");

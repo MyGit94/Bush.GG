@@ -26,6 +26,11 @@ public class CurrentGameServiceImpl implements CurrentGameService {
     private final APIServiceKo apiServiceKo;
 
 
+    /**
+     * 실시간 게임의 상세 정보를 반환하는 메소드
+     * @param currentGames 실시간 게임 리스트
+     * @return 실시간 게임의 상세정보 List
+     */
     @Override
     public List<Map<String,Object>> getCurrentGameInfo(List<Map<String, Object>> currentGames) {
         List<Map<String,Object>> currentGameDTOS = new ArrayList<>();
@@ -34,9 +39,10 @@ public class CurrentGameServiceImpl implements CurrentGameService {
             Map<String, Object> currentGameInfo = new HashMap<>();
             List<CurrentGameDTO> currentSummoner = new ArrayList<>();
 
-            currentGameInfo.put("gameQueueName",matchService.matchQueueName((int) currentGame.get("gameQueueConfigId")) ); //큐 타입 420
+            currentGameInfo.put("gameQueueName",matchService.matchQueueName((int) currentGame.get("gameQueueConfigId")) );
+            currentGameInfo.put("summoners",currentSummoner);
+            currentGameInfo.put("gameLength", TimeTranslator.currentGameTime((long) currentGame.get("gameStartTime")));
 
-            // for문
             List<Map<String, Object>> participants = (List<Map<String, Object>>) currentGame.get("participants");
             for (int i = 0; i < participants.size(); i++) {
                 CurrentGameDTO currentGameDTO = new CurrentGameDTO();
@@ -48,28 +54,18 @@ public class CurrentGameServiceImpl implements CurrentGameService {
                 currentGameDTO.setChampionName(championMapper.getChampionEnName((int)participant.get("championId")));
                 currentGameDTO.setSummonerName((String) participant.get("summonerName"));
                 currentGameDTO.setSummonerId((String) participant.get("summonerId"));
-                log.info("{}",challengerMapper.getTierById(currentGameDTO.getSummonerId()));
+
                 if(challengerMapper.getTierById(currentGameDTO.getSummonerId())!= null){
                     currentGameDTO.setSummonerTier(summonerService.changeTierName(challengerMapper.getTierById(currentGameDTO.getSummonerId())));
                 } else {
                     SummonerTierDTO summonerTierDTO = summonerService.getTierInfo(apiServiceKo.getTierInfo(currentGameDTO.getSummonerId()));
-                    log.info("{}",summonerTierDTO.getTier());
                     currentGameDTO.setSummonerTier(summonerService.changeTierName(summonerTierDTO.getTierName()));
                 }
 
-                log.info("{}",currentGameDTO.getSummonerTier());
-
                 currentSummoner.add(currentGameDTO);
             }
-
-            currentGameInfo.put("summoners",currentSummoner);
-            currentGameInfo.put("gameStartTime",currentGame.get("gameStartTime"));  //게임 시작시간
-            currentGameInfo.put("gameLength", TimeTranslator.unixMinAndSec((int)currentGame.get("gameLength"))); // 게임 진행시간
             currentGameDTOS.add(currentGameInfo);
         }
-
         return currentGameDTOS;
     }
-
-
 }

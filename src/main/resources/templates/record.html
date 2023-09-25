@@ -1,68 +1,49 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!--record css-->
-    <link rel="stylesheet" href="/css/record.css">
     <!-- css -->
     <th:block th:replace="common/fragments/config :: configFragment"/>
-
-    <!--반응형-->
+    <link rel="stylesheet" href="/css/record.css">
     <link rel="stylesheet" href="/css/record_media.css">
-
 </head>
+
 <body id="page-top">
-<div id="wrapper">
-    <!--   왼쪽 사이드바  -->
-    <th:block th:replace="common/fragments/side :: sideFragment"/>
-    <!-- 메인 컨텐츠 전체영역 -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div id="wrapper">
+        <!--   왼쪽 사이드바  -->
+        <th:block th:replace="common/fragments/side :: sideFragment"/>
 
-        <!-- 검색창 -->
-        <th:block th:replace="common/fragments/header :: headerFragment"/>
+        <!-- 메인 컨텐츠 전체영역 -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- 검색창 -->
+            <th:block th:replace="common/fragments/header :: headerFragment"/>
 
-        <!-- #############소환사 정보 전체영역############# -->
-        <!-- 같이 플레이 한 유저 -->
-        <!-- 최근 20게임 승률 kda 정보 -->
-        <!-- 최근 20게임 플레이 한 챔피언 승/패 승률 -->
-
-        <div class="user_info_wrap">
-
-            <!-- 첫째줄 전체 영역 -->
-            <div class="info_summoner">
-
-                <!-- 검색한 소환사 정보 -->
-                <div class="info_summoner_profile">
-                    <!-- 소환사 아이콘 -->
-                    <div class="summoner_icon">
-                        <!-- 소환사 아이콘 이미지 패치버전 꼭 확인하기 -->
-                        <img src="/img/champion/Aatrox.png"
+            <!-- #############소환사 정보 전체영역############# -->
+            <div class="user_info_wrap">
+                <!-- 첫째줄 전체 영역 -->
+                <div class="info_summoner">
+                    <!-- 검색한 소환사 정보 -->
+                    <div class="info_summoner_profile">
+                        <div class="summoner_icon">
+                            <img src="/img/champion/Aatrox.png"
                              th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/profileicon/' + ${summoner.getProfileIconId()}+'.png'}"
                              alt="">
+                        </div>
+                        <div class="summoner_wrap">
+                            <p class="info_summoner_name" th:text="${summoner.getName()}">
+                                란브로대머리
+                            </p>
+                            <form th:action="@{/summoner}" method="get">
+                                <input type="hidden" name="summonerName" th:value="${summoner.getName()}"/>
+                                <button type="submit" class="summoner_refresh">
+                                    전적 갱신
+                                </button>
+                            </form>
+                        </div>
                     </div>
 
-                    <!-- 소환사 정보 텍스트만을 정렬하기 위한 영역 지정 -->
-                    <div class="summoner_wrap">
-                        <!-- 검색된 소환사 이름 -->
-                        <p class="info_summoner_name" th:text="${summoner.getName()}">
-                            란브로대머리
-                        </p>
-
-                        <!-- 전적 갱신 버튼 -->
-                        <!-- 버튼을 누를때마다 서버에서 최신정보 갱신 -->
-                        <form th:action="@{/summoner}" method="get">
-                            <input type="hidden" name="summonerName" th:value="${summoner.getName()}"/>
-                            <button type="submit" class="summoner_refresh">
-                                전적 갱신
-                            </button>
-                        </form>
-                    </div>
-                </div>
-
-                <!-- 검색한 소환사 랭킹 정보 -->
-                <div class="info_summoner_rank">
-                    <!-- 랭킹 아이콘 -->
-                    <div class="summoner_icon rank_icon">
-                        <!-- 랭크 아이콘 이미지 -->
+                    <!-- 검색한 소환사 랭킹 정보 -->
+                    <div class="info_summoner_rank">
+                        <div class="summoner_icon rank_icon">
                         <img th:src="${tierImageUrl}" alt="">
                     </div>
 
@@ -84,16 +65,13 @@
 
                 </div>
 
-                <!-- 검색한 소환사 도전과제 정보 -->
-                <div class="info_summoner_challenge">
-
-                    <!-- 도전과제 아이콘 -->
-                    <div class="summoner_icon">
-                        <!-- 도전과제 아이콘 이미지 -->
-                        <img src="/img/champion/Diana.png"
-                             th:src="@{'/img/tier/Challenge_Crystal_'+ ${playerChallengesInfo.getTotalPoints().getLevel()} + '.png'}"
-                             alt="">
-                    </div>
+                    <!-- 검색한 소환사 도전과제 정보 -->
+                    <div class="info_summoner_challenge">
+                        <div class="summoner_icon">
+                            <img src="/img/champion/Diana.png"
+                                 th:src="@{'/img/tier/Challenge_Crystal_'+ ${playerChallengesInfo.getTotalPoints().getLevel()} + '.png'}"
+                                 alt="">
+                        </div>
 
                     <!--  도전과제 텍스트만을 정렬하기 위한 영역 지정 -->
                     <div class="summoner_wrap challenge_wrap">
@@ -111,1450 +89,945 @@
                         </button>
                     </form>
                 </div>
-            </div>
+                </div>
 
-            <!-- 첫째줄 라인 끝 -->
+                <!-- 최근 플레이 정보 (둘째줄) 전체영역 -->
+                <div class="info_recent">
 
-
-            <!-- 최근 플레이 정보 (둘째줄) 전체영역 -->
-            <div class="info_recent">
-
-                <!-- 같이 플레이 한 유저 전체영역 -->
-                <div class="info_recent_friend">
-                    <!-- 타이틀 -->
-                    <h2 class="recent_friend_title">
-                        같이 플레이 한 소환사 (최근 20게임)
-                    </h2>
-
-                    <!-- 플레이한 소환사 차트 -->
-                    <table class="recent_friend_table">
-                        <thead>
-                        <!-- 표 타이틀 -->
-                        <tr>
-                            <th>소환사</th>
-                            <th>게임</th>
-                            <th>승-패</th>
-                            <th>승률</th>
-                        </tr>
-                        </thead>
+                    <!-- 같이 플레이 한 유저 전체영역 -->
+                    <div class="info_recent_friend">
+                        <h2 class="recent_friend_title">
+                            같이 플레이 한 소환사 (최근 20게임)
+                        </h2>
+                        <table class="recent_friend_table">
+                            <thead>
+                            <tr>
+                                <th>소환사</th>
+                                <th>게임</th>
+                                <th>승-패</th>
+                                <th>승률</th>
+                            </tr>
+                            </thead>
                         <tbody>
-                        <!-- 표 내용 -->
-                        <!-- 타임리프 반복시 tr 태그를 반복해야함 -->
-                        <!-- 5행까지만 출력하는걸 기준으로 디자인했음 -->
-
-                        <!-- 1행 -->
                         <tr th:each="row :${recentDTO.getSummonerWithCounts()}">
                             <td><a th:href="@{/summoner(summonerName=${row.getSummonerName()})}" th:text="${row.summonerName}">란브로대머리</a></td>
                             <td th:text="${row.count}">15</td>
                             <td th:text="${row.win + '-' + row.lose}">15-2</td>
-                            <!-- 승률 계산 -->
                             <td th:text="${row.getWinRate()}+'%'">90%</td>
                         </tr>
-
                         </tbody>
                     </table>
+                    </div>
 
-                </div>
-                <!-- 최근 플레이 정보 끝 -->
+                    <!-- 최근 20게임 플레이 챔피언 승률 -->
+                    <div class="info_recent_champion_rate">
+                        <h1 class="recent_friend_title champion_rate_title">
+                            선호하는 챔피언 (최근 20 게임)
+                        </h1>
 
+                        <div class="recent_friend_table recent_champion_table">
 
-                <!-- 최근 20게임 플레이 챔피언 승률 -->
-                <div class="info_recent_champion_rate">
-                    <!-- 최근 20게임 챔피언 승률 타이틀  -->
-                    <h1 class="recent_friend_title champion_rate_title">
-                        선호하는 챔피언 (최근 20 게임)
-                    </h1>
-
-                    <!-- 챔피언 승률 전체영역 -->
-                    <div class="recent_friend_table recent_champion_table">
-
-                        <!-- 챔피언  -->
-                        <div class="recent_champion_table_header">
-                            <h1 class="champion_table_header_text1">챔피언</h1>
+                            <div class="recent_champion_table_header">
+                                <h1 class="champion_table_header_text1">챔피언</h1>
                                 <h1 class="champion_table_header_text2">이름</h1>
                                 <h1 class="champion_table_header_text3">승률</h1>
-                        </div>
-
-
-                        <!-- 챔피언 승률 리스트 (1행) -->
-                        <div class="recent_champion_list_wrap" th:each="row :${recentDTO.getChampionCounts()}">
-                            <!-- 챔피언 이미지 -->
-                            <div class="champion_face">
-                                <img src="/img/champion/Leblanc.png"
-                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/' + ${row.getChampionName()}+'.png'}"
-                                     alt="">
                             </div>
 
-                            <!-- 챔피언 이름 -->
-                            <div class="champion_name">
-                                <h1 class="champion_name_text"
-                                    th:text="${row.getWin()}+'-'+${row.getCount() - row.getWin()}">
-                                    아칼리
-                                </h1>
-                            </div>
+                            <div class="recent_champion_list_wrap" th:each="row :${recentDTO.getChampionCounts()}">
 
-
-                            <!-- 승리 패배 막대차트 -->
-                            <div class="champion_rate_chartbar">
-                                <!-- 승리 막대 차트 -->
-                                <div class="left_rate_chart">
-                                    <!-- 승률(승리) 텍스트 -->
-                                    <div class="left_rate_text" th:text="${row.getWinRate()}+'%'">67%</div>
+                                <div class="champion_face">
+                                    <img src="/img/champion/Leblanc.png"
+                                         th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/' + ${row.getChampionName()}+'.png'}"
+                                         alt="">
                                 </div>
 
-                                <!-- 패배 막대 차트 -->
-                                <div class="right_rate_chart">
-                                    <!-- 승률(패배) 텍스트 -->
-                                    <div class="right_rate_text" th:text="${100 - row.getWinRate()}+'%'">33%</div>
+                                <div class="champion_name">
+                                    <h1 class="champion_name_text"
+                                        th:text="${row.getWin()}+'-'+${row.getCount() - row.getWin()}">
+                                        아칼리
+                                    </h1>
                                 </div>
 
+                                <div class="champion_rate_chartbar">
+                                    <div class="left_rate_chart">
+                                        <div class="left_rate_text" th:text="${row.getWinRate()}+'%'">67%</div>
+                                    </div>
+                                    <div class="right_rate_chart">
+                                        <div class="right_rate_text" th:text="${100 - row.getWinRate()}+'%'">33%</div>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- 승리 패배 막대차트 끝 -->
                         </div>
-                        <!-- 챔피언 승률 리스트 1행 끝 -->
                     </div>
-                    <!-- 챔피언 승률 테이블 전체영역끝 -->
-                </div>
-                <!-- 최근 20게임 플레이 승률 끝 -->
 
-
-                <!-- 최근 20게임 승률 전체영역 -->
-                <div class="info_recent_game_rate">
-                    <!-- 승률 차트 -->
-                    <div class="game_rate_chart">
-                        <!-- 차트 -->
-                        <canvas class="myPieChart">
-                            <!-- 현재 승률 지수 -->
-
-                        </canvas>
-                        <strong class="chart_text" th:text="${recentDTO.getWinRate()}+'%'">55%</strong>
-                        <!-- 승률 퍼센트 -->
-
-                    </div>
-                    <!-- 타이틀 -->
-                    <h1 class="game_rate_title">
-                        매치 승률 (최근 20 게임)
-                    </h1>
-
-                    <!-- 승/패 -->
-                    <p class="game_rate_count" th:text="${recentDTO.getWin()}+'승 '+${recentDTO.getLose()}+'패'">18승
-                        2패</p>
-
-                    <!-- 승률 / kda 전체영역 -->
-                    <div class="game_rate_score">
-                        <!-- 승률 -->
-                        <p class="game_rate_probability" th:text="${recentDTO.getWinRate()}+'%'">90%</p>
-                        <!-- kda -->
-                        <p class="game_rate_kda" th:text="${recentDTO.getKda()} +' KDA'">3.14</p>
+                    <!-- 최근 20게임 승률 전체영역 -->
+                    <div class="info_recent_game_rate">
+                        <div class="game_rate_chart">
+                            <canvas class="myPieChart">
+                            </canvas>
+                            <strong class="chart_text" th:text="${recentDTO.getWinRate()}+'%'">55%</strong>
+                        </div>
+                        <h1 class="game_rate_title">
+                            매치 승률 (최근 20 게임)
+                        </h1>
+                        <p class="game_rate_count" th:text="${recentDTO.getWin()}+'승 '+${recentDTO.getLose()}+'패'">18승
+                            2패</p>
+                        <div class="game_rate_score">
+                            <p class="game_rate_probability" th:text="${recentDTO.getWinRate()}+'%'">90%</p>
+                            <p class="game_rate_kda" th:text="${recentDTO.getKda()} +' KDA'">3.14</p>
+                        </div>
                     </div>
                 </div>
-                <!-- 최근 20게임 승률 끝 -->
-
-
             </div>
-            <!-- 최근 플레이 정보 둘째줄 라인 끝  -->
-        </div>
-        <!-- 소환사 정보 전체영역 끝 -->
 
+            <!-- 전적 리스트 전체영역-->
+            <div class="record_wrap">
+                <div class="record_list_wrap" th:each="matchInfoList : ${matchInfoList}"
+                     th:with="matchInfo=${matchInfoList['matchInfo']}, participant=${matchInfoList['participant']}, mainRune=${matchInfoList['mainRune']}, subRune=${matchInfoList['subRune']}">
 
-        <!-- 전적 리스트 전체영역-->
-        <div class="record_wrap">
-
-            <!--         전적 상세보기와 전적 리스트를 한곳에 묶기위한 wrap-->
-            <div class="record_list_wrap" th:each="matchInfoList : ${matchInfoList}"
-                 th:with="matchInfo=${matchInfoList['matchInfo']}, participant=${matchInfoList['participant']}, mainRune=${matchInfoList['mainRune']}, subRune=${matchInfoList['subRune']}">
-
-                <!-- 전적 : 게임정보 (1 게임) 전체영역  -->
-                <!--@@@@@@@@@@@@@@@@@@@@@@@@ ForEach 여기서부터 시작 @@@@@@@@@@@@@@@@@@@@@@@@ -->
-                <!-- 구조를 이해하기 쉽게 일단은 정적인 값을 등록해두었음-->
-                <div class="record_list" th:classappend="${!participant.isWin()? 'lose_list' : ''}">
-                    <!-- 좌측 승패를 구분하기위한 색을 주기위해 빈공백 설정 -->
-                    <div class="record_blank"></div>
-                    <!-- 게임정보를 기록하는 전체영역 -->
-                    <div class="record_info">
-                        <!-- 게임종류 :: 칼바람 ,협곡 , 랭크등등  if문으로바꾸기-->
-                        <h2 class="match_type" th:text="${matchInfo.getQueueName()}">솔로 랭크</h2>
-
-                        <!-- 지난시간정보 :: 12시간전 , 1일전 등등 -->
-                        <p class="match_past" th:text="${matchInfo.getEndGame()}">3일전</p>
-                        <!-- 게임 결과 : 승리 , 패배 // 진행한 게임시간 -->
-                        <!-- th:if 조건문으로 승리시 폰트색상을 파란색 , 패배시 빨간색으로 표기예정 -->
-                        <p class="match_result" th:if="${participant.isWin()}">승리</p>
-                        <p class="match_result" th:if="${!participant.isWin()}">패배</p>
-                        <p class="match_time" th:text="${matchInfo.getChangeGameDuration()}">15:00</p>
-                    </div>
-                    <!-- 게임 정보 끝 -->
-
-
-                    <!-- 챔피언 , 룬 , 스펠정보 전체영역 -->
-                    <div class="record_champion" th:with="participant=${matchInfoList['participant']}">
-                        <!-- 챔피언 이미지 전체영역 -->
-                        <div class="match_champion_profile">
-                            <!-- 챔피언 이미지 경로 --> <p></p>
-                            <img src="/img/champion/Teemo.png"
-                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/' + ${participant.getChampionName()}+'.png'}"
-                                 alt="">
-                            <!-- 챔피언 레벨 -->
-                            <div class="match_champion_level" th:text="${participant.getChampLevel()}"></div>
+                    <!-- 전적 : 게임정보 (1 게임) 전체영역  -->
+                    <div class="record_list" th:classappend="${!participant.isWin()? 'lose_list' : ''}">
+                        <div class="record_blank"></div>
+                        <div class="record_info">
+                            <h2 class="match_type" th:text="${matchInfo.getQueueName()}">솔로 랭크</h2>
+                            <p class="match_past" th:text="${matchInfo.getEndGame()}">3일전</p>
+                            <p class="match_result" th:if="${participant.isWin()}">승리</p>
+                            <p class="match_result" th:if="${!participant.isWin()}">패배</p>
+                            <p class="match_time" th:text="${matchInfo.getChangeGameDuration()}">15:00</p>
                         </div>
 
-
-                        <!-- 챔피언 스펠 전체영역 -->
-                        <div class="match_spell">
-                            <!-- 챔피언 스펠1 -->
-                            <img src="/img/champion/Lulu.png"
-                                 th:src="@{'/img/spell/' + ${participant.getSummoner1Id()}+'.png'}" alt="">
-                            <!-- 챔피언 스펠2 -->
-                            <img src="/img/champion/Lulu.png"
-                                 th:src="@{'/img/spell/' + ${participant.getSummoner2Id()}+'.png'}" alt="">
-                        </div>
-
-                        <!-- 챔피언 대표룬 전체영역 -->
-                        <div class="match_rune">
-                            <!-- 챔피언 룬 대표룬 -->
-                            <img src="/img/champion/Lulu.png"
-                                 th:src="@{'/img/rune/' + ${participant.getMainRune1()}+'.png'}"
-                                 alt="">
-                            <!-- 챔피언 룬 보조룬 -->
-                            <img src="/img/champion/Lulu.png"
-                                 th:src="@{'/img/rune/' + ${participant.getSubRune()}+'.png'}"
-                                 alt="">
-                        </div>
-                    </div>
-                    <!-- 챔피언 , 룬 , 스펠 끝 -->
-
-
-                    <!-- 킬 / 데스 / 어시스트 전체영역 -->
-                    <div class="record_kda" th:with="participant=${matchInfoList['participant']}">
-                        <!-- 킬 / 데스 / 어시 -->
-                        <div class="match_kda_wrap">
-                            <h5 class="match_kda"
-                                th:text="${participant.getKills()}+' / '+${participant.getDeaths()}+' / '+${participant.getAssists()}">
-                                8 / 7 / 9</h5>
-                        </div>
-                        <img th:if="${participant.getLargestMultiKill() != 1 && participant.getLargestMultiKill() != 0}"
-                             th:src="@{'/img/kill/' + ${participant.getLargestMultiKill()}+'.png'}" alt="">
-                        <!-- 킬 / 데스 / 어시 - 평균 -->
-                        <p class="match_kda_avg"
-                           th:text="${participant.getDeaths() == 0 ? 'PERFECT' : participant.getKda() +' KDA'}">2.43
-                            KDA</p>
-                        <!-- cs 전체 영역 -->
-                        <div class="match_cs">
-                            <!-- 전체 cs량 -->
-                            <p class="match_all_cs" th:text="${participant.getTotalMinionsKilled()+' CS'}">96 CS</p>
-
-                            <!-- 분당 cs량 -->
-                            <p class="match_min_cs" th:text="'('+${participant.getMinionsKilledMin()} + '/분)'">
-                                (5.3/분)</p>
-                        </div>
-                    </div>
-                    <!-- 킬 / 데스 / 어시 끝 -->
-
-                    <!-- 아이템 정보 :: 시작 버전 꼭 확인하기 -->
-                    <div class="record_item" th:with="participant=${matchInfoList['participant']}">
-                        <!-- 아이템 리스트 : 윗라인 -->
-                        <div class="match_item_line1">
-                            <!-- 아이템1~3 -->
-                            <div class="item_img_wrap" th:each="itemNum, item : ${#numbers.sequence(0, 2)}"
-                                 th:with="getItem=${participant['getItem' + itemNum]}">
-                                <img th:if="${getItem != 0}"
-                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/item/' +__${getItem}__+ '.png'}"
+                        <!-- 챔피언 , 룬 , 스펠정보 전체영역 -->
+                        <div class="record_champion" th:with="participant=${matchInfoList['participant']}">
+                            <div class="match_champion_profile">
+                                <img src="/img/champion/Teemo.png"
+                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/' + ${participant.getChampionName()}+'.png'}"
                                      alt="">
-                                <img th:unless="${getItem != 0}" th:src="@{'/img/item/0.png'}" alt="">
+                                <div class="match_champion_level" th:text="${participant.getChampLevel()}"></div>
+                            </div>
+
+                            <div class="match_spell">
+                                <img src="/img/champion/Lulu.png"
+                                     th:src="@{'/img/spell/' + ${participant.getSummoner1Id()}+'.png'}" alt="">
+                                <img src="/img/champion/Lulu.png"
+                                     th:src="@{'/img/spell/' + ${participant.getSummoner2Id()}+'.png'}" alt="">
+                            </div>
+
+                            <div class="match_rune">
+                                <img src="/img/champion/Lulu.png"
+                                     th:src="@{'/img/rune/' + ${participant.getMainRune1()}+'.png'}"
+                                     alt="">
+                                <img src="/img/champion/Lulu.png"
+                                     th:src="@{'/img/rune/' + ${participant.getSubRune()}+'.png'}"
+                                     alt="">
                             </div>
                         </div>
 
-                        <!-- 아이템 리스트 : 아래라인 -->
-                        <div class="match_item_line2">
-                            <!-- 아이템4~7 -->
-                            <div class="item_img_wrap" th:each="itemNum, item : ${#numbers.sequence(3, 6)}"
-                                 th:with="getItem=${participant['getItem' + itemNum]}">
-                                <img th:if="${getItem != 0}"
-                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/item/' +__${getItem}__+ '.png'}"
-                                     alt="">
-                                <img th:unless="${getItem != 0}" th:src="@{'/img/item/0.png'}" alt="">
+                        <!-- 킬 / 데스 / 어시스트 전체영역 -->
+                        <div class="record_kda" th:with="participant=${matchInfoList['participant']}">
+                            <div class="match_kda_wrap">
+                                <h5 class="match_kda"
+                                    th:text="${participant.getKills()}+' / '+${participant.getDeaths()}+' / '+${participant.getAssists()}">
+                                    8 / 7 / 9</h5>
                             </div>
-
+                            <img th:if="${participant.getLargestMultiKill() != 1 && participant.getLargestMultiKill() != 0}"
+                                 th:src="@{'/img/kill/' + ${participant.getLargestMultiKill()}+'.png'}" alt="">
+                            <p class="match_kda_avg"
+                               th:text="${participant.getDeaths() == 0 ? 'PERFECT' : participant.getKda() +' KDA'}">2.43
+                                KDA</p>
+                            <div class="match_cs">
+                                <p class="match_all_cs" th:text="${participant.getTotalMinionsKilled()+' CS'}">96 CS</p>
+                                <p class="match_min_cs" th:text="'('+${participant.getMinionsKilledMin()} + '/분)'">
+                                    (5.3/분)</p>
+                            </div>
                         </div>
-                    </div>
 
+                        <!-- 아이템 정보 :: 시작 버전 꼭 확인하기 -->
+                        <div class="record_item" th:with="participant=${matchInfoList['participant']}">
+                            <div class="match_item_line1">
+                                <div class="item_img_wrap" th:each="itemNum, item : ${#numbers.sequence(0, 2)}"
+                                     th:with="getItem=${participant['getItem' + itemNum]}">
+                                    <img th:if="${getItem != 0}"
+                                         th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/item/' +__${getItem}__+ '.png'}"
+                                         alt="">
+                                    <img th:unless="${getItem != 0}" th:src="@{'/img/item/0.png'}" alt="">
+                                </div>
+                            </div>
+                            <div class="match_item_line2">
+                                <div class="item_img_wrap" th:each="itemNum, item : ${#numbers.sequence(3, 6)}"
+                                     th:with="getItem=${participant['getItem' + itemNum]}">
+                                    <img th:if="${getItem != 0}"
+                                         th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/item/' +__${getItem}__+ '.png'}"
+                                         alt="">
+                                    <img th:unless="${getItem != 0}" th:src="@{'/img/item/0.png'}" alt="">
+                                </div>
+                            </div>
+                        </div>
 
-                    <!-- 같이 게임한 유저목록 -->
-                    <div class="record_user" th:with="participantsList=${matchInfoList['participantsList']}">
-
-                        <!-- 블루팀 -->
-                        <ul class="match_user_blueteam">
-                            <li th:each="participants, status: ${participantsList}" th:if="${status.index < 5}">
-                                <!-- 챔피언 이미지 -->
-                                <img src="/img/champion/Aatrox.png"
-                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
-                                     alt="">
-                                <!-- 유저 닉네임 -->
-                                <a href="" class="user_name_text"
-                                   th:href="@{/summoner(summonerName=${participants.getSummonerName()})}"
-                                   th:text="${participants.getSummonerName()}"
-                                   th:style="${participants.getSummonerName() == summoner.getName() ? 'font-weight: bold; font-style: italic; color: navy'  : ''}">
-                                    란브로대머리</a>
-                            </li>
-                        </ul>
-
-
-                        <!-- 레드팀 -->
-                        <ul class="match_user_redteam">
-                            <li th:each="participants, status: ${participantsList}" th:if="${status.index > 4}">
-                                <!-- 챔피언 이미지 -->
-                                <img src="/img/champion/Aatrox.png"
-                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/' + ${participants.getChampionName()}+'.png'}"
-                                     alt="">
-                                <!-- 유저 닉네임 -->
-                                <a href="" class="user_name_text"
-                                   th:href="@{/summoner(summonerName=${participants.getSummonerName()})}"
-                                   th:text="${participants.getSummonerName()}"
-                                   th:style="${participants.getSummonerName() == summoner.getName() ? 'font-weight: bold; font-style: italic; color: navy'  : ''}">란브로대머리</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- 같이 게임한 유저 목록 끝 -->
-
-                    <!-- 전적 상세보기 열기 -->
-                    <div class="record_detail_bt">
-                        <img src="/img/arrow.png" alt="">
-                    </div>
-
-                </div>
-                <!-- 전적 리스트 (1개) 끝 -->
-                <!-- ############### 전적 상세보기 ############## -->
-                <!-- JavaScript InnerHtml 로 상세보기 열고 닫는 기능 제어함 -->
-
-                <!-- 상세보기 전체영역 -->
-                <div class="record_detail_wrap">
-
-                    <!-- 상세보기 -- 종합정보 전체영역 -->
-                    <div class="detail_info_wrap active"
-                         th:with="participantsList=${matchInfoList['participantsList']}">
-
-                        <!-- 블루팀 전체영역 -->
-                        <div class="detail_win_team detail_team">
-
-                            <h1 class="we_are_winner" th:text="${matchInfo.isBlueWin()} ? '승리팀(블루팀)': '패배팀(블루팀)'">
-                                승리팀(블루팀)
-                            </h1>
-                            <!-- 상세보기 리스트 (1줄) -->
-                            <!-- 타임리프 반복 -->
-
-                            <div class="detail_list" th:each="participants, status: ${participantsList}"
-                                 th:if="${status.index < 5}">
-                                <!-- 챔피언 이미지 -->
-                                <div class="detail_champion_face">
-                                    <!-- 챔피언 이미지 파일 -->
-                                    <img src="img/champion/Annie.png"
+                        <!-- 같이 게임한 유저목록 -->
+                        <div class="record_user" th:with="participantsList=${matchInfoList['participantsList']}">
+                            <ul class="match_user_blueteam">
+                                <li th:each="participants, status: ${participantsList}" th:if="${status.index < 5}">
+                                    <img src="/img/champion/Aatrox.png"
                                          th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
                                          alt="">
-                                </div>
-
-
-                                <!-- 챔피언 룬 스펠 전체영역 -->
-                                <div class="champion_rune">
-
-                                    <!-- 상세보기 :: 소환사 스펠  -->
-                                    <div class="detail_spell">
-                                        <!-- 챔피언 스펠1 -->
-                                        <img src="img/spell/4.png"
-                                             th:src="@{'/img/spell/' + ${participants.getSummoner1Id()}+'.png'}" alt="">
-
-                                        <!-- 챔피언 스펠2 -->
-                                        <img src="img/spell/14.png"
-                                             th:src="@{'/img/spell/' + ${participants.getSummoner2Id()}+'.png'}" alt="">
-                                    </div>
-
-                                    <!-- 상세보기 :: 소환사 룬 -->
-                                    <div class="detail_rune">
-                                        <!-- 챔피언 룬 대표룬 -->
-                                        <div class="rune_wrap detail_wrap">
-                                            <img src="img/rune/8345.png"
-                                                 th:src="@{'/img/rune/' + ${participants.getMainRune1()}+'.png'}"
-                                                 alt="">
-                                        </div>
-                                        <!-- 챔피언 룬 보조룬 -->
-                                        <div class="rune_wrap detail_wrap">
-                                            <img src="img/rune/8009.png"
-                                                 th:src="@{'/img/rune/' + ${participants.getSubRune()}+'.png'}" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 챔피언 룬/스펠 끝  -->
-
-
-                                <!-- 소환사 닉네임 , 티어정보 -->
-                                <div class="detail_summoner_name">
-                                    <p class="summoner_name" >
-                                        <a th:href="@{/summoner(summonerName=${participants.getSummonerName()})}" th:text="${participants.getSummonerName()}">
-                                        란브로대머리
-                                        </a>
-                                    </p>
-
-<!--                                    <p class="summoner_tier" th:text="${participants.getTier()}">-->
-<!--                                        challenger-->
-<!--                                    </p>-->
-                                </div>
-                                <!-- 소환사 닉네임 , 티어정보 끝 -->
-
-                                <!-- 소환사 KDA 전체영역  -->
-                                <div class="detail_summoner_kda">
-
-                                    <!-- 멀티킬 , kda를 감싸는 wrap -->
-                                    <div class="summoner_kda_wrap">
-                                        <!-- kda  -->
-                                        <p class="summoner_kda"
-                                           th:text="${participants.getKills()}+' / '+${participants.getDeaths()}+' / '+${participants.getAssists()}">
-                                            31 / 1 / 14
-                                        </p>
-
-
-                                    </div>
-
-
-                                    <!-- kda  평균 -->
-                                    <p class="summoner_kda_avg"
-                                       th:text="${participants.getDeaths() == 0 ? 'PERFECT' : participants.getKda() +' KDA'}">
-                                        10:1
-                                    </p>
-                                </div>
-                                <!-- 소환사 kda 전체영역 -->
-
-                                <!-- 멀티킬 이미지 -->
-                                <div class="detail_summoner_multikill">
-                                    <!-- 다중킬 여부 이미지 -->
-                                    <img class="summoner_penta"
-                                         th:if="${participants.getLargestMultiKill() != 1 && participants.getLargestMultiKill() != 0}"
-                                         th:src="@{'/img/kill/' + ${participants.getLargestMultiKill()}+'.png'}"
+                                    <a href="" class="user_name_text"
+                                       th:href="@{/summoner(summonerName=${participants.getSummonerName()})}"
+                                       th:text="${participants.getSummonerName()}"
+                                       th:style="${participants.getSummonerName() == summoner.getName() ? 'font-weight: bold; font-style: italic; color: navy'  : ''}">
+                                        란브로대머리</a>
+                                </li>
+                            </ul>
+                            <ul class="match_user_redteam">
+                                <li th:each="participants, status: ${participantsList}" th:if="${status.index > 4}">
+                                    <img src="/img/champion/Aatrox.png"
+                                         th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/' + ${participants.getChampionName()}+'.png'}"
                                          alt="">
-                                </div>
-                                <!-- 멀티킬 영역 끝 -->
-
-
-                                <!-- 소환사 입힌데미지 , 받은 데미지 전체영역 -->
-                                <div class="detail_summoner_dmg">
-                                    <!-- 가한 데미지 -->
-                                    <div class="attack_dmg">
-
-                                        <!-- 데미지 막대차트 -->
-                                        <div class="dmg_chartbar push_chartbar">
-                                            <!-- 마우스 hover 시 나오는 설명 -->
-                                            <div class="hover_dmg put_dmg"
-                                                 th:text="'가한 데미지 : '+${participants.getTotalDamageDealtToChampions}">
-                                                가한 데미지 : 236502
-                                            </div>
-                                        </div>
-
-                                        <!-- 데미지 수치 텍스트 -->
-                                        <p class="dmg push" th:text="${participants.getTotalDamageDealtToChampions}">
-                                            236502</p>
-                                    </div>
-
-                                    <!-- 입은 데미지 -->
-                                    <div class="attack_dmg get_dmg">
-                                        <!-- 받은 데미지 막대차트 -->
-                                        <div class="dmg_chartbar get_chartbar">
-                                            <!-- 마우스 hover 시 나오는 설명 -->
-                                            <div class="hover_dmg get_chart_info"
-                                                 th:text="'받은 데미지 : '+${participants.getTotalDamageTaken}">
-                                                받은 데미지 : 3500
-                                            </div>
-                                        </div>
-                                        <!-- 받은 데미지 수치 텍스트 -->
-                                        <p class="dmg get" th:text="${participants.getTotalDamageTaken}">3500</p>
-                                    </div>
-
-
-                                </div>
-                                <!-- 소환사 입힌 데미지 , 받은 데미지 전체영역 -->
-
-                                <!-- 소환사 와드 , cs 량 전체영역 -->
-                                <div class="detail_summoner_ward">
-                                    <!-- 와드 -->
-                                    <p class="detail_ward" th:text="'와드 점수 '+${participants.getVisionScore()}">와드점수 :
-                                        105</p>
-                                    <div class="detail_cs_wrap">
-                                        <!-- 총합 cs -->
-                                        <p class="detail_cs" th:text="${participants.getTotalMinionsKilled()+' CS'}">526
-                                            CS</p>
-                                        <!-- 분당 cs -->
-                                        <p class="detail_cs_min"
-                                           th:text="'('+${participant.getMinionsKilledMin()} + '/분)'">(분당 20.1)</p>
-
-                                    </div>
-                                </div>
-                                <!-- 소환사 와드 , cs 량 끝 -->
-
-
-                                <!-- 소환사 item 정보 전체영역 -->
-                                <div class="detail_summoner_item">
-                                    <div th:each="itemNum, item : ${#numbers.sequence(0, 6)}"
-                                         th:with="getItem=${participants['getItem' + itemNum]}">
-                                        <img th:if="${getItem != 0}"
-                                             th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/item/' +__${getItem}__+ '.png'}"
-                                             alt="">
-                                        <img th:unless="${getItem != 0}" th:src="@{'/img/item/0.png'}" alt="">
-                                    </div>
-                                </div>
-                                <!-- 소환사 item 정보 끝 -->
-
-
-                            </div>
-                            <!-- 상세보기 리스트 (한줄) 끝 -->
-
+                                    <a href="" class="user_name_text"
+                                       th:href="@{/summoner(summonerName=${participants.getSummonerName()})}"
+                                       th:text="${participants.getSummonerName()}"
+                                       th:style="${participants.getSummonerName() == summoner.getName() ? 'font-weight: bold; font-style: italic; color: navy'  : ''}">란브로대머리</a>
+                                </li>
+                            </ul>
                         </div>
-                        <!-- 승리팀 전체영역 끝 -->
 
-
-                        <!-- 중간 바론 타워 전령 정보 -->
-                        <div class="detail_middle_info">
-                            <!-- 블루팀 정보 -->
-                            <div class="win_team_info">
-                                <!-- 바론 -->
-                                <div class="middle_baron">
-                                    <img src="img/icon-baron.svg" alt="">
-                                    <p class="middle_text" th:text="${matchInfo.getBlueBaron()}">1</p>
-                                </div>
-                                <!-- 드래곤 -->
-                                <div class="middle_dragon">
-                                    <img src="img/icon-dragon.svg" alt="">
-                                    <p class="middle_text" th:text="${matchInfo.getBlueDragon()}">0</p>
-                                </div>
-                                <!-- 타워 -->
-                                <div class="middle_tower">
-                                    <img src="img/icon-tower.svg" alt="">
-                                    <p class="middle_text" th:text="${matchInfo.getBlueTowerKills()}">0</p>
-                                </div>
-                            </div>
-
-                            <!-- 패배팀 정보 -->
-                            <div class="win_team_info lose_team_info">
-                                <!-- 타워 -->
-                                <div class="middle_tower">
-                                    <p class="middle_text lose_team_text" th:text="${matchInfo.getRedTowerKills()}">
-                                        0</p>
-                                    <img src="img/icon-tower.svg" alt="">
-                                </div>
-
-                                <!-- 드래곤 -->
-                                <div class="middle_dragon">
-                                    <p class="middle_text lose_team_text" th:text="${matchInfo.getRedDragon()}">0</p>
-                                    <img src="img/icon-dragon.svg" alt="">
-                                </div>
-
-                                <!-- 바론 -->
-                                <div class="middle_baron">
-                                    <p class="middle_text lose_team_text" th:text="${matchInfo.getRedBaron()}">1</p>
-                                    <img src="img/icon-baron.svg" alt="">
-                                </div>
-
-
-                            </div>
+                        <!-- 전적 상세보기 열기 -->
+                        <div class="record_detail_bt">
+                            <img src="/img/arrow.png" alt="">
                         </div>
-                        <!-- 중간 바론 타워 전령 정보 끝 -->
-
-
-                        <!-- 패배팀 전체영역 -->
-                        <div class="detail_lose_team detail_team">
-
-                            <h1 class="we_are_winner" th:text="${matchInfo.isRedWin()} ? '승리팀(레드팀)': '패배팀(레드팀)'">
-                                패배팀(레드팀)
-                            </h1>
-                            <!-- 상세보기 리스트 (1줄) -->
-                            <!-- 타임리프 반복 -->
-
-                            <div class="detail_list" th:each="participants, status: ${participantsList}"
-                                 th:if="${status.index > 4}">
-                                <!-- 챔피언 이미지 -->
-                                <div class="detail_champion_face">
-                                    <!-- 챔피언 이미지 파일 -->
-                                    <img src="img/champion/Annie.png"
-                                         th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
-                                         alt="">
-                                </div>
-
-
-                                <!-- 챔피언 룬 스펠 전체영역 -->
-                                <div class="champion_rune">
-
-                                    <!-- 상세보기 :: 소환사 스펠  -->
-                                    <div class="detail_spell">
-                                        <!-- 챔피언 스펠1 -->
-                                        <img src="img/spell/4.png"
-                                             th:src="@{'/img/spell/' + ${participants.getSummoner1Id()}+'.png'}" alt="">
-
-                                        <!-- 챔피언 스펠2 -->
-                                        <img src="img/spell/14.png"
-                                             th:src="@{'/img/spell/' + ${participants.getSummoner2Id()}+'.png'}" alt="">
-                                    </div>
-
-                                    <!-- 상세보기 :: 소환사 룬 -->
-                                    <div class="detail_rune">
-                                        <!-- 챔피언 룬 대표룬 -->
-                                        <div class="rune_wrap detail_wrap">
-                                            <img src="img/rune/8345.png"
-                                                 th:src="@{'/img/rune/' + ${participants.getMainRune1()}+'.png'}"
-                                                 alt="">
-                                        </div>
-                                        <!-- 챔피언 룬 보조룬 -->
-                                        <div class="rune_wrap detail_wrap">
-                                            <img src="img/rune/8009.png"
-                                                 th:src="@{'/img/rune/' + ${participants.getSubRune()}+'.png'}" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 챔피언 룬/스펠 끝  -->
-
-
-                                <!-- 소환사 닉네임 , 티어정보 -->
-                                <div class="detail_summoner_name">
-                                    <p class="summoner_name">
-                                        <a th:href="@{/summoner(summonerName=${participants.getSummonerName()})}" th:text="${participants.getSummonerName()}">
-                                        란브로대머리
-                                        </a>
-                                    </p>
-
-                                    <p class="summoner_tier" th:text="${participants.getTier()}">
-                                        challenger
-                                    </p>
-                                </div>
-                                <!-- 소환사 닉네임 , 티어정보 끝 -->
-
-                                <!-- 소환사 KDA 전체영역  -->
-                                <div class="detail_summoner_kda">
-
-                                    <!-- 멀티킬 , kda를 감싸는 wrap -->
-                                    <div class="summoner_kda_wrap">
-                                        <!-- kda  -->
-                                        <p class="summoner_kda"
-                                           th:text="${participants.getKills()}+' / '+${participants.getDeaths()}+' / '+${participants.getAssists()}">
-                                            31 / 1 / 14
-                                        </p>
-                                    </div>
-
-                                    <!-- kda  평균 -->
-                                    <p class="summoner_kda_avg"
-                                       th:text="${participants.getDeaths() == 0 ? 'PERFECT' : participants.getKda() +' KDA'}">
-                                        10:1
-                                    </p>
-                                </div>
-                                <!-- 소환사 kda 전체영역 -->
-
-                                <!-- 멀티킬 이미지 -->
-                                <div class="detail_summoner_multikill">
-                                    <!-- 다중킬 여부 이미지 -->
-                                    <img class="summoner_penta"
-                                         th:if="${participants.getLargestMultiKill() != 1 && participants.getLargestMultiKill() != 0}"
-                                         th:src="@{'/img/kill/' + ${participants.getLargestMultiKill()}+'.png'}"
-                                         alt="">
-                                </div>
-                                <!-- 멀티킬 영역 끝 -->
-
-
-                                <!-- 소환사 입힌데미지 , 받은 데미지 전체영역 -->
-                                <div class="detail_summoner_dmg">
-                                    <!-- 가한 데미지 -->
-                                    <div class="attack_dmg">
-
-                                        <!-- 데미지 막대차트 -->
-                                        <div class="dmg_chartbar push_chartbar">
-                                            <!-- 마우스 hover 시 나오는 설명 -->
-                                            <div class="hover_dmg put_dmg"
-                                                 th:text="'가한 데미지 : '+${participants.getTotalDamageDealtToChampions}">
-                                                가한 데미지 : 236502
-                                            </div>
-                                        </div>
-
-                                        <!-- 데미지 수치 텍스트 -->
-                                        <p class="dmg push" th:text="${participants.getTotalDamageDealtToChampions}">
-                                            236502</p>
-                                    </div>
-
-                                    <!-- 입은 데미지 -->
-                                    <div class="attack_dmg get_dmg">
-                                        <!-- 받은 데미지 막대차트 -->
-                                        <div class="dmg_chartbar get_chartbar">
-                                            <!-- 마우스 hover 시 나오는 설명 -->
-                                            <div class="hover_dmg get_chart_info"
-                                                 th:text="'받은 데미지 : '+${participants.getTotalDamageTaken}">
-                                                받은 데미지 : 3500
-                                            </div>
-                                        </div>
-                                        <!-- 받은 데미지 수치 텍스트 -->
-                                        <p class="dmg get" th:text="${participants.getTotalDamageTaken}">3500</p>
-                                    </div>
-
-
-                                </div>
-                                <!-- 소환사 입힌 데미지 , 받은 데미지 전체영역 -->
-
-                                <!-- 소환사 와드 , cs 량 전체영역 -->
-                                <div class="detail_summoner_ward">
-                                    <!-- 와드 -->
-                                    <p class="detail_ward" th:text="'와드 점수 '+${participants.getVisionScore()}">와드점수 :
-                                        105</p>
-                                    <div class="detail_cs_wrap">
-                                        <!-- 총합 cs -->
-                                        <p class="detail_cs" th:text="${participants.getTotalMinionsKilled()+' CS'}">526
-                                            CS</p>
-                                        <!-- 분당 cs -->
-                                        <p class="detail_cs_min"
-                                           th:text="'('+${participant.getMinionsKilledMin()} + '/분)'">(분당 20.1)</p>
-
-                                    </div>
-                                </div>
-                                <!-- 소환사 와드 , cs 량 끝 -->
-
-
-                                <!-- 소환사 item 정보 전체영역 -->
-                                <div class="detail_summoner_item">
-                                    <div th:each="itemNum, item : ${#numbers.sequence(0, 6)}"
-                                         th:with="getItem=${participants['getItem' + itemNum]}">
-                                        <img th:if="${getItem != 0}"
-                                             th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/item/' +__${getItem}__+ '.png'}"
-                                             alt="">
-                                        <img th:unless="${getItem != 0}" th:src="@{'/img/item/0.png'}" alt="">
-                                    </div>
-                                </div>
-                                <!-- 소환사 item 정보 끝 -->
-
-
-                            </div>
-                            <!-- 상세보기 리스트 (한줄) 끝 -->
-
-                        </div>
-                        <!-- 패배팀 전체영역 끝 -->
-
                     </div>
-                    <!-- 종합정보 끝 -->
 
-                    <!-- 인게임분석 전체영역 -->
-                    <!-- 상세보기의 인게임분석 버튼을 눌러야 출력되는 영역 -->
-                    <div class="detail_ingame_info_wrap">
-                        <!-- 블루팀 패배팀 설명 텍스트 전체영역 -->
-                        <div class="ingame_info">
-                            <!-- 블루팀 원 -->
-                            <div class="win_team_circle"></div>
-                            <!-- 블루팀 텍스트 -->
-                            <p class="win_team_text">블루팀</p>
+                    <!-- ############### 전적 상세보기 ############## -->
 
-                            <!-- 레드팀 원 -->
-                            <div class="win_team_circle lose_team_circle"></div>
-                            <!-- 레드팀 텍스트 -->
-                            <p class="lose_team_text">레드팀</p>
-                        </div>
-                        <!-- 블루팀 패배팀 설명 텍스트 끝 -->
+                    <!-- 상세보기 전체영역 -->
+                    <div class="record_detail_wrap">
 
-                        <!-- flex 속성으로 자리를 잡기 위한 전체영역 -->
-                        <div class="ingame_info_content_wrap"
+                        <!-- 상세보기 -- 종합정보 전체영역 -->
+                        <div class="detail_info_wrap active"
                              th:with="participantsList=${matchInfoList['participantsList']}">
-                            <!-- 챔피언 처치 그래프 전체영역 -->
-                            <div class="ingame_info_champion_kill">
-                                <!-- 챔피언 처치 타이틀 -->
-                                <h1 class="champion_kill_title">챔피언 처치</h1>
-                                <!-- 챔피언 그래프 전체영역 -->
-                                <div class="champion_kill_graph_wrap">
+                            <div class="detail_win_team detail_team">
+                                <h1 class="we_are_winner" th:text="${matchInfo.isBlueWin()} ? '승리팀(블루팀)': '패배팀(블루팀)'">
+                                    승리팀(블루팀)
+                                </h1>
+                                <div class="detail_list" th:each="participants, status: ${participantsList}"
+                                     th:if="${status.index < 5}">
+                                    <div class="detail_champion_face">
+                                        <img src="img/champion/Annie.png"
+                                             th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                             alt="">
+                                    </div>
 
-                                    <!-- 블루팀 킬수 막대 그래프 전체영역 -->
-                                    <ul class="champion_kill_graph">
-                                        <!-- 1행 -->
-                                        <li th:each="participants, status: ${participantsList}"
-                                            th:if="${status.index < 5}">
-                                            <!-- 챔피언 이미지 -->
-                                            <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
-                                                 alt="">
-                                            <!-- 그래프 전체영역 -->
-                                            <div class="kill_bar_graph">
-                                                <!-- 마우스 hover 시 나오는 설명 -->
-                                                <div class="hover_dmg kill_bar_graph_hover dmg_chart_info"
-                                                     th:text="'챔피언 킬량 : '+${participants.getKills()}">
-                                                    챔피언 킬량 : 2
-                                                </div>
-                                                <!-- 실질적인 킬 수 그래프 -->
-                                                <div class="kill_bar"></div>
-                                                <!-- 킬 수치 텍스트 -->
-                                                <p class="kill_bar_text" th:text="${participants.getKills()}">2</p>
+                                    <!-- 챔피언 룬 스펠 전체영역 -->
+                                    <div class="champion_rune">
+                                        <div class="detail_spell">
+                                            <img src="img/spell/4.png"
+                                                 th:src="@{'/img/spell/' + ${participants.getSummoner1Id()}+'.png'}" alt="">
+                                            <img src="img/spell/14.png"
+                                                 th:src="@{'/img/spell/' + ${participants.getSummoner2Id()}+'.png'}" alt="">
+                                        </div>
+                                        <div class="detail_rune">
+                                            <div class="rune_wrap detail_wrap">
+                                                <img src="img/rune/8345.png"
+                                                     th:src="@{'/img/rune/' + ${participants.getMainRune1()}+'.png'}"
+                                                     alt="">
                                             </div>
-                                        </li>
-                                    </ul>
-
-
-                                    <!-- 중앙 도넛 그래프 -->
-                                    <div class="champion_kill_circle_graph">
-                                        <!-- 차트 -->
-                                        <canvas class="myPieChart" id="champion_kill_donut_chart">
-                                            <!-- 현재 승률 지수 -->
-
-                                        </canvas>
-                                        <!-- 승률 퍼센트 -->
-                                        <div class="chart_text champion_kill_chart_text">
-                                            <!-- 블루팀 킬수 텍스트 -->
-                                            <p class="champion_kill_win_team_text"
-                                               th:text="${matchInfo.getBlueKills()}">321321</p>
-                                            <!-- 레드팀 킬수 텍스트 -->
-                                            <p class="champion_kill_lose_team_text"
-                                               th:text="${matchInfo.getRedKills()}">11</p>
+                                            <div class="rune_wrap detail_wrap">
+                                                <img src="img/rune/8009.png"
+                                                     th:src="@{'/img/rune/' + ${participants.getSubRune()}+'.png'}" alt="">
+                                            </div>
                                         </div>
                                     </div>
-                                    <!-- 중앙 도넛 그래프 끝 -->
 
+                                    <!-- 소환사 닉네임 , 티어정보 -->
+                                    <div class="detail_summoner_name">
+                                        <p class="summoner_name" >
+                                            <a th:href="@{/summoner(summonerName=${participants.getSummonerName()})}" th:text="${participants.getSummonerName()}">
+                                                란브로대머리
+                                            </a>
+                                        </p>
 
-                                    <!-- 레드팀 킬수 막대 그래프 전체영역 -->
-                                    <ul class="champion_kill_graph">
-                                        <!-- 1행 -->
-                                        <li th:each="participants, status: ${participantsList}"
-                                            th:if="${status.index > 4}">
-                                            <!-- 챔피언 이미지 -->
-                                            <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
-                                                 alt="">
-                                            <!-- 그래프 전체영역 -->
-                                            <div class="kill_bar_graph lose_kill_bar_graph">
-                                                <!-- 마우스 hover 시 나오는 설명 -->
-                                                <div class="hover_dmg kill_bar_graph_hover dmg_chart_info"
-                                                     th:text="'챔피언 킬량 : '+${participants.getKills()}">
-                                                    챔피언 킬량 : 2
+<!--                                        <p class="summoner_tier" th:text="${participants.getTier()}">-->
+<!--                                            challenger-->
+<!--                                        </p>-->
+                                    </div>
+
+                                    <!-- 소환사 KDA 전체영역  -->
+                                    <div class="detail_summoner_kda">
+                                        <div class="summoner_kda_wrap">
+                                            <p class="summoner_kda"
+                                               th:text="${participants.getKills()}+' / '+${participants.getDeaths()}+' / '+${participants.getAssists()}">
+                                                31 / 1 / 14
+                                            </p>
+                                        </div>
+                                        <p class="summoner_kda_avg"
+                                           th:text="${participants.getDeaths() == 0 ? 'PERFECT' : participants.getKda() +' KDA'}">
+                                            10:1
+                                        </p>
+                                    </div>
+
+                                    <!-- 멀티킬 이미지 -->
+                                    <div class="detail_summoner_multikill">
+                                        <img class="summoner_penta"
+                                             th:if="${participants.getLargestMultiKill() != 1 && participants.getLargestMultiKill() != 0}"
+                                             th:src="@{'/img/kill/' + ${participants.getLargestMultiKill()}+'.png'}"
+                                             alt="">
+                                    </div>
+
+                                    <!-- 소환사 입힌데미지 , 받은 데미지 전체영역 -->
+                                    <div class="detail_summoner_dmg">
+                                        <div class="attack_dmg">
+                                            <div class="dmg_chartbar push_chartbar">
+                                                <div class="hover_dmg put_dmg"
+                                                     th:text="'가한 데미지 : '+${participants.getTotalDamageDealtToChampions}">
+                                                    가한 데미지 : 236502
                                                 </div>
-                                                <!-- 실질적인 킬 수 그래프 -->
-                                                <div class="kill_bar lose_kill_bar"></div>
-                                                <!-- 킬 수치 텍스트 -->
-                                                <p class="kill_bar_text" th:text="${participants.getKills()}">2</p>
                                             </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- 챔피언 그래프 전체영역 끝 -->
-
-
-                            </div>
-                            <!-- 챔피언 처치 그래프 전체영역 끝 -->
-
-                            <!-- 골드 휙득량 그래프 전체영역 -->
-                            <div class="ingame_info_champion_kill">
-                                <!--  블루팀 타이틀 -->
-                                <h1 class="champion_kill_title">골드 휙득량</h1>
-                                <!-- 블루팀 전체영역 -->
-                                <div class="champion_kill_graph_wrap">
-
-                                    <!-- 블루팀 막대 그래프 전체영역 -->
-                                    <ul class="champion_kill_graph">
-                                        <!-- 1행 -->
-                                        <li th:each="participants, status: ${participantsList}"
-                                            th:if="${status.index < 5}">
-                                            <!-- 블루팀 챔피언 이미지 -->
-                                            <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
-                                                 alt="">
-                                            <!-- 블루팀 그래프 전체영역 -->
-                                            <div class="kill_bar_graph">
-                                                <!-- 마우스 hover 시 나오는 설명 -->
-                                                <div class="hover_dmg kill_bar_graph_hover lose_team_kill_bar dmg_chart_info"
-                                                     th:text="'골드 획득량 : '+${participants.getGoldEarned()}">
-                                                    골드 휙득량 : 8908901
+                                            <p class="dmg push" th:text="${participants.getTotalDamageDealtToChampions}">
+                                                236502</p>
+                                        </div>
+                                        <div class="attack_dmg get_dmg">
+                                            <div class="dmg_chartbar get_chartbar">
+                                                <div class="hover_dmg get_chart_info"
+                                                     th:text="'받은 데미지 : '+${participants.getTotalDamageTaken}">
+                                                    받은 데미지 : 3500
                                                 </div>
-                                                <!-- 실질적인 수치 그래프 -->
-                                                <div class="kill_bar"></div>
-                                                <!-- 그래프 안의 텍스트 -->
-                                                <p class="kill_bar_text" th:text="${participants.getGoldEarned()}">
-                                                    8908901</p>
                                             </div>
-                                        </li>
-                                    </ul>
-
-
-                                    <!-- 중앙 도넛 그래프 -->
-                                    <div class="champion_kill_circle_graph">
-                                        <!-- 차트 -->
-                                        <canvas class="myPieChart" id="champion_gold_donut_chart">
-                                            <!-- 현재 승률 지수 -->
-
-                                        </canvas>
-                                        <!-- 승률 퍼센트 -->
-                                        <div class="chart_text champion_kill_chart_text">
-                                            <!-- 블루팀 텍스트 -->
-                                            <p class="champion_kill_win_team_text" th:text="${matchInfo.getBlueGold()}">
-                                                321321</p>
-                                            <!-- 레드팀 텍스트 -->
-                                            <p class="champion_kill_lose_team_text" th:text="${matchInfo.getRedGold()}">
-                                                111232</p>
+                                            <p class="dmg get" th:text="${participants.getTotalDamageTaken}">3500</p>
                                         </div>
                                     </div>
-                                    <!-- 중앙 도넛 그래프 끝 -->
 
-
-                                    <!-- 레드팀 킬수 막대 그래프 전체영역 -->
-                                    <ul class="champion_kill_graph">
-                                        <!-- 1행 -->
-                                        <li th:each="participants, status: ${participantsList}"
-                                            th:if="${status.index > 4}">
-                                            <!-- 레드팀 챔피언 이미지 -->
-                                            <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
-                                                 alt="">
-                                            <!-- 레드팀 그래프 전체영역 -->
-                                            <div class="kill_bar_graph lose_kill_bar_graph">
-                                                <!-- 마우스 hover 시 나오는 설명 -->
-                                                <div class="hover_dmg kill_bar_graph_hover lose_team_kill_bar dmg_chart_info"
-                                                     th:text="'골드 획득량 : '+${participants.getGoldEarned()}">
-                                                    골드 휙득량 : 525343
-                                                </div>
-                                                <!-- 실질적인 수치 그래프 -->
-                                                <div class="kill_bar lose_kill_bar"></div>
-                                                <!-- 그래프 안에 들어가는 텍스트 -->
-                                                <p class="kill_bar_text" th:text="${participants.getGoldEarned()}">
-                                                    2123123</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- 챔피언 그래프 전체영역 끝 -->
-
-
-                            </div>
-                            <!-- 골드 휙득량 전체영역 끝 -->
-
-
-                            <!-- 챔피언에게 가한 피해량 그래프 전체영역 -->
-                            <div class="ingame_info_champion_kill">
-                                <!--  승리팀 타이틀 -->
-                                <h1 class="champion_kill_title">챔피언에게 가한 피해량</h1>
-                                <!-- 승리팀 전체영역 -->
-                                <div class="champion_kill_graph_wrap">
-
-                                    <!-- 승리팀 막대 그래프 전체영역 -->
-                                    <ul class="champion_kill_graph">
-                                        <!-- 1행 -->
-                                        <li th:each="participants, status: ${participantsList}"
-                                            th:if="${status.index < 5}">
-                                            <!-- 승리팀 챔피언 이미지 -->
-                                            <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
-                                                 alt="">
-                                            <!-- 승리팀 그래프 전체영역 -->
-                                            <div class="kill_bar_graph">
-                                                <!-- 마우스 hover 시 나오는 설명 -->
-                                                <div class="hover_dmg kill_bar_graph_hover dmg_chart_info"
-                                                     th:text="'가한 피해량 : '+${participants.getTotalDamageDealtToChampions()}">
-                                                    가한 피해량 : 1232131
-                                                </div>
-                                                <!-- 실질적인 수치 그래프 -->
-                                                <div class="kill_bar"></div>
-                                                <!-- 그래프 안의 텍스트 -->
-                                                <p class="kill_bar_text"
-                                                   th:text="${participants.getTotalDamageDealtToChampions()}">313131</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-
-
-                                    <!-- 중앙 도넛 그래프 -->
-                                    <div class="champion_kill_circle_graph">
-                                        <!-- 차트 -->
-                                        <canvas class="myPieChart" id="champion_dmg_donut_chart">
-                                            <!-- 현재 승률 지수 -->
-
-                                        </canvas>
-                                        <!-- 승률 퍼센트 -->
-                                        <div class="chart_text champion_kill_chart_text">
-                                            <!-- 승리팀 텍스트 -->
-                                            <p class="champion_kill_win_team_text"
-                                               th:text="${matchInfo.getBlueTotalDamageDealtToChampions()}">321321</p>
-                                            <!-- 패배팀 텍스트 -->
-                                            <p class="champion_kill_lose_team_text"
-                                               th:text="${matchInfo.getRedTotalDamageDealtToChampions()}">111232</p>
+                                    <!-- 소환사 와드 , cs 량 전체영역 -->
+                                    <div class="detail_summoner_ward">
+                                        <p class="detail_ward" th:text="'와드 점수 '+${participants.getVisionScore()}">와드점수 :
+                                            105</p>
+                                        <div class="detail_cs_wrap">
+                                            <p class="detail_cs" th:text="${participants.getTotalMinionsKilled()+' CS'}">526
+                                                CS</p>
+                                            <p class="detail_cs_min"
+                                               th:text="'('+${participant.getMinionsKilledMin()} + '/분)'">(분당 20.1)</p>
                                         </div>
                                     </div>
-                                    <!-- 중앙 도넛 그래프 끝 -->
 
-
-                                    <!-- 패배팀 킬수 막대 그래프 전체영역 -->
-                                    <ul class="champion_kill_graph">
-                                        <!-- 1행 -->
-                                        <li th:each="participants, status: ${participantsList}"
-                                            th:if="${status.index > 4}">
-                                            <!-- 패배팀 챔피언 이미지 -->
-                                            <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                    <!-- 소환사 item 정보 전체영역 -->
+                                    <div class="detail_summoner_item">
+                                        <div th:each="itemNum, item : ${#numbers.sequence(0, 6)}"
+                                             th:with="getItem=${participants['getItem' + itemNum]}">
+                                            <img th:if="${getItem != 0}"
+                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/item/' +__${getItem}__+ '.png'}"
                                                  alt="">
-                                            <!-- 패배팀 그래프 전체영역 -->
-                                            <div class="kill_bar_graph lose_kill_bar_graph">
-                                                <!-- 마우스 hover 시 나오는 설명 -->
-                                                <div class="hover_dmg kill_bar_graph_hover dmg_chart_info"
-                                                     th:text="'가한 피해량 : '+${participants.getTotalDamageDealtToChampions()}">
-                                                    가한 피해량 : 1232131
-                                                </div>
-                                                <!-- 실질적인 수치 그래프 -->
-                                                <div class="kill_bar lose_kill_bar"></div>
-                                                <!-- 그래프 안에 들어가는 텍스트 -->
-                                                <p class="kill_bar_text"
-                                                   th:text="${participants.getTotalDamageDealtToChampions()}">
-                                                    2123123</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- 챔피언 그래프 전체영역 끝 -->
-                            </div>
-                            <!-- 챔피언에게 가한 피해량 끝 -->
-
-
-                            <!-- 와드 설치 그래프 전체영역 -->
-                            <div class="ingame_info_champion_kill">
-                                <!--  승리팀 타이틀 -->
-                                <h1 class="champion_kill_title">와드 설치</h1>
-                                <!-- 승리팀 전체영역 -->
-                                <div class="champion_kill_graph_wrap">
-
-                                    <!-- 승리팀 막대 그래프 전체영역 -->
-                                    <ul class="champion_kill_graph">
-                                        <!-- 1행 -->
-                                        <li th:each="participants, status: ${participantsList}"
-                                            th:if="${status.index < 5}">
-                                            <!-- 승리팀 챔피언 이미지 -->
-                                            <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
-                                                 alt="">
-                                            <!-- 승리팀 그래프 전체영역 -->
-                                            <div class="kill_bar_graph">
-                                                <!-- 마우스 hover 시 나오는 설명 -->
-                                                <div class="hover_dmg kill_bar_graph_hover dmg_chart_info"
-                                                     th:text="'와드 설치 : '+${participants.getWardsPlaced}">
-                                                    와드 설치 : 100
-                                                </div>
-                                                <!-- 실질적인 수치 그래프 -->
-                                                <div class="kill_bar"></div>
-                                                <!-- 그래프 안의 텍스트 -->
-                                                <p class="kill_bar_text" th:text="${participants.getWardsPlaced()}">
-                                                    5</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-
-
-                                    <!-- 중앙 도넛 그래프 -->
-                                    <div class="champion_kill_circle_graph">
-                                        <!-- 차트 -->
-                                        <canvas class="myPieChart" id="champion_ward_donut_chart">
-                                            <!-- 현재 승률 지수 -->
-
-                                        </canvas>
-                                        <!-- 승률 퍼센트 -->
-                                        <div class="chart_text champion_kill_chart_text">
-                                            <!-- 승리팀 텍스트 -->
-                                            <p class="champion_kill_win_team_text"
-                                               th:text="${matchInfo.getBlueWardsPlaced()}">200</p>
-                                            <!-- 패배팀 텍스트 -->
-                                            <p class="champion_kill_lose_team_text"
-                                               th:text="${matchInfo.getRedWardsPlaced()}">100</p>
+                                            <img th:unless="${getItem != 0}" th:src="@{'/img/item/0.png'}" alt="">
                                         </div>
                                     </div>
-                                    <!-- 중앙 도넛 그래프 끝 -->
-
-
-                                    <!-- 패배팀 킬수 막대 그래프 전체영역 -->
-                                    <ul class="champion_kill_graph">
-                                        <!-- 1행 -->
-                                        <li th:each="participants, status: ${participantsList}"
-                                            th:if="${status.index > 4}">
-                                            <!-- 패배팀 챔피언 이미지 -->
-                                            <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
-                                                 alt="">
-                                            <!-- 패배팀 그래프 전체영역 -->
-                                            <div class="kill_bar_graph lose_kill_bar_graph">
-                                                <!-- 마우스 hover 시 나오는 설명 -->
-                                                <div class="hover_dmg kill_bar_graph_hover lose_team_kill_bar dmg_chart_info"
-                                                     th:text="'와드 설치 : '+${participants.getWardsPlaced}">
-                                                    와드 설치 : 100
-                                                </div>
-                                                <!-- 실질적인 수치 그래프 -->
-                                                <div class="kill_bar lose_kill_bar"></div>
-                                                <!-- 그래프 안에 들어가는 텍스트 -->
-                                                <p class="kill_bar_text" th:text="${participants.getWardsPlaced}">5</p>
-                                            </div>
-                                        </li>
-                                    </ul>
                                 </div>
-                                <!-- 챔피언 그래프 전체영역 끝 -->
-
-
                             </div>
-                            <!-- 와드 설치 끝 -->
 
+                            <!-- 중간 바론 타워 전령 정보 -->
+                            <div class="detail_middle_info">
+                                <div class="win_team_info">
+                                    <div class="middle_baron">
+                                        <img src="img/icon-baron.svg" alt="">
+                                        <p class="middle_text" th:text="${matchInfo.getBlueBaron()}">1</p>
+                                    </div>
+                                    <div class="middle_dragon">
+                                        <img src="img/icon-dragon.svg" alt="">
+                                        <p class="middle_text" th:text="${matchInfo.getBlueDragon()}">0</p>
+                                    </div>
+                                    <div class="middle_tower">
+                                        <img src="img/icon-tower.svg" alt="">
+                                        <p class="middle_text" th:text="${matchInfo.getBlueTowerKills()}">0</p>
+                                    </div>
+                                </div>
 
-                            <!-- 받은 피해량 그래프 전체영역 -->
-                            <div class="ingame_info_champion_kill">
-                                <!--  승리팀 타이틀 -->
-                                <h1 class="champion_kill_title">받은 피해량</h1>
-                                <!-- 승리팀 전체영역 -->
-                                <div class="champion_kill_graph_wrap">
+                                <div class="win_team_info lose_team_info">
+                                    <div class="middle_tower">
+                                        <p class="middle_text lose_team_text" th:text="${matchInfo.getRedTowerKills()}">
+                                            0</p>
+                                        <img src="img/icon-tower.svg" alt="">
+                                    </div>
+                                    <div class="middle_dragon">
+                                        <p class="middle_text lose_team_text" th:text="${matchInfo.getRedDragon()}">0</p>
+                                        <img src="img/icon-dragon.svg" alt="">
+                                    </div>
+                                    <div class="middle_baron">
+                                        <p class="middle_text lose_team_text" th:text="${matchInfo.getRedBaron()}">1</p>
+                                        <img src="img/icon-baron.svg" alt="">
+                                    </div>
+                                </div>
+                            </div>
 
-                                    <!-- 승리팀 막대 그래프 전체영역 -->
-                                    <ul class="champion_kill_graph">
-                                        <!-- 1행 -->
-                                        <li th:each="participants, status: ${participantsList}"
-                                            th:if="${status.index < 5}">
-                                            <!-- 승리팀 챔피언 이미지 -->
-                                            <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
-                                                 alt="">
-                                            <!-- 승리팀 그래프 전체영역 -->
-                                            <div class="kill_bar_graph">
-                                                <!-- 마우스 hover 시 나오는 설명 -->
-                                                <div class="hover_dmg kill_bar_graph_hover dmg_chart_info"
-                                                     th:text="'받은 피해량 : '+${participants.getTotalDamageTaken}">
-                                                    받은 피해량 : 50000
-                                                </div>
-                                                <!-- 실질적인 수치 그래프 -->
-                                                <div class="kill_bar"></div>
-                                                <!-- 그래프 안의 텍스트 -->
-                                                <p class="kill_bar_text" th:text="${participants.getTotalDamageTaken}">
-                                                    50000</p>
+                            <div class="detail_lose_team detail_team">
+                                <h1 class="we_are_winner" th:text="${matchInfo.isRedWin()} ? '승리팀(레드팀)': '패배팀(레드팀)'">
+                                    패배팀(레드팀)
+                                </h1>
+                                <div class="detail_list" th:each="participants, status: ${participantsList}"
+                                     th:if="${status.index > 4}">
+                                    <div class="detail_champion_face">
+                                        <img src="img/champion/Annie.png"
+                                             th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                             alt="">
+                                    </div>
+                                    <!-- 챔피언 룬 스펠 전체영역 -->
+                                    <div class="champion_rune">
+                                        <div class="detail_spell">
+                                            <img src="img/spell/4.png"
+                                                 th:src="@{'/img/spell/' + ${participants.getSummoner1Id()}+'.png'}" alt="">
+                                            <img src="img/spell/14.png"
+                                                 th:src="@{'/img/spell/' + ${participants.getSummoner2Id()}+'.png'}" alt="">
+                                        </div>
+                                        <div class="detail_rune">
+                                            <div class="rune_wrap detail_wrap">
+                                                <img src="img/rune/8345.png"
+                                                     th:src="@{'/img/rune/' + ${participants.getMainRune1()}+'.png'}"
+                                                     alt="">
                                             </div>
-                                        </li>
-                                    </ul>
-
-
-                                    <!-- 중앙 도넛 그래프 -->
-                                    <div class="champion_kill_circle_graph">
-                                        <!-- 차트 -->
-                                        <canvas class="myPieChart" id="champion_getdmg_donut_chart">
-                                            <!-- 현재 승률 지수 -->
-
-                                        </canvas>
-                                        <!-- 승률 퍼센트 -->
-                                        <div class="chart_text champion_kill_chart_text">
-                                            <!-- 승리팀 텍스트 -->
-                                            <p class="champion_kill_win_team_text"
-                                               th:text="${matchInfo.getBlueTotalDamageTaken}">200</p>
-                                            <!-- 패배팀 텍스트 -->
-                                            <p class="champion_kill_lose_team_text"
-                                               th:text="${matchInfo.getRedTotalDamageTaken}">100</p>
+                                            <div class="rune_wrap detail_wrap">
+                                                <img src="img/rune/8009.png"
+                                                     th:src="@{'/img/rune/' + ${participants.getSubRune()}+'.png'}" alt="">
+                                            </div>
                                         </div>
                                     </div>
-                                    <!-- 중앙 도넛 그래프 끝 -->
 
+                                    <!-- 소환사 닉네임 , 티어정보 -->
+                                    <div class="detail_summoner_name">
+                                        <p class="summoner_name">
+                                            <a th:href="@{/summoner(summonerName=${participants.getSummonerName()})}" th:text="${participants.getSummonerName()}">
+                                                란브로대머리
+                                            </a>
+                                        </p>
+<!--                                        <p class="summoner_tier" th:text="${participants.getTier()}">-->
+<!--                                            challenger-->
+<!--                                        </p>-->
+                                    </div>
 
-                                    <!-- 패배팀 킬수 막대 그래프 전체영역 -->
-                                    <ul class="champion_kill_graph">
-                                        <!-- 1행 -->
-                                        <li th:each="participants, status: ${participantsList}"
-                                            th:if="${status.index > 4}">
-                                            <!-- 패배팀 챔피언 이미지 -->
-                                            <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
-                                                 alt="">
-                                            <!-- 패배팀 그래프 전체영역 -->
-                                            <div class="kill_bar_graph lose_kill_bar_graph">
-                                                <!-- 마우스 hover 시 나오는 설명 -->
-                                                <div class="hover_dmg kill_bar_graph_hover lose_team_kill_bar dmg_chart_info"
-                                                     th:text="'받은 피해량 : '+${participants.getTotalDamageTaken}">
-                                                    받은 피해량 : 50000
+                                    <!-- 소환사 KDA 전체영역  -->
+                                    <div class="detail_summoner_kda">
+                                        <div class="summoner_kda_wrap">
+                                            <p class="summoner_kda"
+                                               th:text="${participants.getKills()}+' / '+${participants.getDeaths()}+' / '+${participants.getAssists()}">
+                                                31 / 1 / 14
+                                            </p>
+                                        </div>
+                                        <p class="summoner_kda_avg"
+                                           th:text="${participants.getDeaths() == 0 ? 'PERFECT' : participants.getKda() +' KDA'}">
+                                            10:1
+                                        </p>
+                                    </div>
+
+                                    <!-- 멀티킬 이미지 -->
+                                    <div class="detail_summoner_multikill">
+                                        <img class="summoner_penta"
+                                             th:if="${participants.getLargestMultiKill() != 1 && participants.getLargestMultiKill() != 0}"
+                                             th:src="@{'/img/kill/' + ${participants.getLargestMultiKill()}+'.png'}"
+                                             alt="">
+                                    </div>
+
+                                    <!-- 소환사 입힌데미지 , 받은 데미지 전체영역 -->
+                                    <div class="detail_summoner_dmg">
+                                        <div class="attack_dmg">
+                                            <div class="dmg_chartbar push_chartbar">
+                                                <div class="hover_dmg put_dmg"
+                                                     th:text="'가한 데미지 : '+${participants.getTotalDamageDealtToChampions}">
+                                                    가한 데미지 : 236502
                                                 </div>
-                                                <!-- 실질적인 수치 그래프 -->
-                                                <div class="kill_bar lose_kill_bar"></div>
-                                                <!-- 그래프 안에 들어가는 텍스트 -->
-                                                <p class="kill_bar_text" th:text="${participants.getTotalDamageTaken}">
-                                                    50000</p>
                                             </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- 챔피언 그래프 전체영역 끝 -->
-                            </div>
-                            <!--  받은 피해량 끝 -->
-
-                            <!-- CS 그래프 전체영역 -->
-                            <div class="ingame_info_champion_kill">
-                                <!--  승리팀 타이틀 -->
-                                <h1 class="champion_kill_title">CS</h1>
-                                <!-- 승리팀 전체영역 -->
-                                <div class="champion_kill_graph_wrap">
-
-                                    <!-- 승리팀 막대 그래프 전체영역 -->
-                                    <ul class="champion_kill_graph">
-                                        <!-- 1행 -->
-                                        <li th:each="participants, status: ${participantsList}"
-                                            th:if="${status.index < 5}">
-                                            <!-- 승리팀 챔피언 이미지 -->
-                                            <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
-                                                 alt="">
-                                            <!-- 승리팀 그래프 전체영역 -->
-                                            <div class="kill_bar_graph">
-                                                <!-- 마우스 hover 시 나오는 설명 -->
-                                                <div class="hover_dmg kill_bar_graph_hover dmg_chart_info"
-                                                     th:text="'CS : '+${participants.getTotalMinionsKilled}">
-                                                    받은 피해량 : 50000
-                                                </div>
-                                                <!-- 실질적인 수치 그래프 -->
-                                                <div class="kill_bar"></div>
-                                                <!-- 그래프 안의 텍스트 -->
-                                                <p class="kill_bar_text"
-                                                   th:text="${participants.getTotalMinionsKilled}">50000</p>
+                                            <p class="dmg push" th:text="${participants.getTotalDamageDealtToChampions}">
+                                                236502</p>
+                                        </div>
+                                        <div class="attack_dmg get_dmg">
+                                            <div class="dmg_chartbar get_chartbar"><div class="hover_dmg get_chart_info"
+                                                                                        th:text="'받은 데미지 : '+${participants.getTotalDamageTaken}">
+                                                받은 데미지 : 3500
                                             </div>
-                                        </li>
-                                    </ul>
-
-
-                                    <!-- 중앙 도넛 그래프 -->
-                                    <div class="champion_kill_circle_graph">
-                                        <!-- 차트 -->
-                                        <canvas class="myPieChart" id="champion_cs_donut_chart">
-                                            <!-- 현재 승률 지수 -->
-
-                                        </canvas>
-                                        <!-- 승률 퍼센트 -->
-                                        <div class="chart_text champion_kill_chart_text">
-                                            <!-- 승리팀 텍스트 -->
-                                            <p class="champion_kill_win_team_text"
-                                               th:text="${matchInfo.getBlueTotalMinionsKilled}">200</p>
-                                            <!-- 패배팀 텍스트 -->
-                                            <p class="champion_kill_lose_team_text"
-                                               th:text="${matchInfo.getRedTotalMinionsKilled}">100</p>
+                                        </div>
+                                            <p class="dmg get" th:text="${participants.getTotalDamageTaken}">3500</p>
                                         </div>
                                     </div>
-                                    <!-- 중앙 도넛 그래프 끝 -->
 
+                                    <!-- 소환사 와드 , cs 량 전체영역 -->
+                                    <div class="detail_summoner_ward">
+                                        <p class="detail_ward" th:text="'와드 점수 '+${participants.getVisionScore()}">와드점수 :
+                                            105</p>
+                                        <div class="detail_cs_wrap">
+                                            <p class="detail_cs" th:text="${participants.getTotalMinionsKilled()+' CS'}">526
+                                                CS</p>
+                                            <p class="detail_cs_min"
+                                               th:text="'('+${participant.getMinionsKilledMin()} + '/분)'">(분당 20.1)</p>
+                                        </div>
+                                    </div>
 
-                                    <!-- 패배팀 킬수 막대 그래프 전체영역 -->
-                                    <ul class="champion_kill_graph">
-                                        <!-- 1행 -->
-                                        <li th:each="participants, status: ${participantsList}"
-                                            th:if="${status.index > 4}">
-                                            <!-- 패배팀 챔피언 이미지 -->
-                                            <img src="img/champion/Gragas.png"
-                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                    <!-- 소환사 item 정보 전체영역 -->
+                                    <div class="detail_summoner_item">
+                                        <div th:each="itemNum, item : ${#numbers.sequence(0, 6)}"
+                                             th:with="getItem=${participants['getItem' + itemNum]}">
+                                            <img th:if="${getItem != 0}"
+                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/item/' +__${getItem}__+ '.png'}"
                                                  alt="">
-                                            <!-- 패배팀 그래프 전체영역 -->
-                                            <div class="kill_bar_graph lose_kill_bar_graph">
-                                                <!-- 마우스 hover 시 나오는 설명 -->
-                                                <div class="hover_dmg kill_bar_graph_hover lose_team_kill_bar dmg_chart_info"
-                                                     th:text="'CS : '+${participants.getTotalMinionsKilled}">
-
-                                                    받은 피해량 : 50000
-                                                </div>
-                                                <!-- 실질적인 수치 그래프 -->
-                                                <div class="kill_bar lose_kill_bar"></div>
-                                                <!-- 그래프 안에 들어가는 텍스트 -->
-                                                <p class="kill_bar_text"
-                                                   th:text="${participants.getTotalMinionsKilled}">50000</p>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                            <img th:unless="${getItem != 0}" th:src="@{'/img/item/0.png'}" alt="">
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- 챔피언 그래프 전체영역 끝 -->
-
                             </div>
-                            <!--  CS 끝 -->
-
                         </div>
-                        <!-- flex 전체영역 끝 -->
 
-                    </div>
-                    <!-- 인게임 분석 전체영역 끝 -->
+                        <!-- 인게임분석 전체영역 -->
+                        <div class="detail_ingame_info_wrap">
+                            <div class="ingame_info">
+                                <div class="win_team_circle"></div>
+                                <p class="win_team_text">블루팀</p>
+                                <div class="win_team_circle lose_team_circle"></div>
+                                <p class="lose_team_text">레드팀</p>
+                            </div>
+                            <div class="ingame_info_content_wrap"
+                                 th:with="participantsList=${matchInfoList['participantsList']}">
 
+                                <!-- 챔피언 처치 그래프 전체영역 -->
+                                <div class="ingame_info_champion_kill">
+                                    <h1 class="champion_kill_title">챔피언 처치</h1>
+                                    <div class="champion_kill_graph_wrap">
+                                        <ul class="champion_kill_graph">
+                                            <li th:each="participants, status: ${participantsList}"
+                                                th:if="${status.index < 5}">
+                                                <img src="img/champion/Gragas.png"
+                                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                     alt="">
+                                                <div class="kill_bar_graph">
+                                                    <div class="hover_dmg kill_bar_graph_hover dmg_chart_info"
+                                                         th:text="'챔피언 킬량 : '+${participants.getKills()}">
+                                                        챔피언 킬량 : 2
+                                                    </div>
+                                                    <div class="kill_bar"></div>
+                                                    <p class="kill_bar_text" th:text="${participants.getKills()}">2</p>
+                                                </div>
+                                            </li>
+                                        </ul>
 
-                    <!-- 룬 정보 전체영역 -->
-                    <div class="detail_rune_info_wrap">
+                                        <div class="champion_kill_circle_graph">
+                                            <canvas class="myPieChart" id="champion_kill_donut_chart">
+                                            </canvas>
+                                            <div class="chart_text champion_kill_chart_text">
+                                                <p class="champion_kill_win_team_text"
+                                                   th:text="${matchInfo.getBlueKills()}">321321</p>
+                                                <p class="champion_kill_lose_team_text"
+                                                   th:text="${matchInfo.getRedKills()}">11</p>
+                                            </div>
+                                        </div>
 
-
-                        <!-- 컨텐츠 전체영역 -->
-                        <div class="rune_container">
-                            <!-- 메인 룬 전체영역 -->
-                            <div class="main_rune_wrap detail_main_rune_wrap">
-                                <!-- 룬 타이틀 -->
-                                <div class="rune_title detail_rune_title">
-                                    <!-- 정밀 -->
-                                    <img src="img/rune/8000.png" th:src="@{'/img/rune/' + ${mainRune[0]}+'.png'}"
-                                         alt="">
-                                    <th:block th:switch="${mainRune[0]}">
-                                        <h3 th:case="8000">정밀</h3>
-                                        <h3 th:case="8100">지배</h3>
-                                        <h3 th:case="8200">마법</h3>
-                                        <h3 th:case="8300">영감</h3>
-                                        <h3 th:case="8400">결의</h3>
-                                    </th:block>
+                                        <ul class="champion_kill_graph">
+                                            <li th:each="participants, status: ${participantsList}"
+                                                th:if="${status.index > 4}">
+                                                <img src="img/champion/Gragas.png"
+                                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                     alt="">
+                                                <div class="kill_bar_graph lose_kill_bar_graph">
+                                                    <div class="hover_dmg kill_bar_graph_hover dmg_chart_info"
+                                                         th:text="'챔피언 킬량 : '+${participants.getKills()}">
+                                                        챔피언 킬량 : 2
+                                                    </div>
+                                                    <div class="kill_bar lose_kill_bar"></div>
+                                                    <p class="kill_bar_text" th:text="${participants.getKills()}">2</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
 
+                                <!-- 골드 휙득량 그래프 전체영역 -->
+                                <div class="ingame_info_champion_kill">
+                                    <h1 class="champion_kill_title">골드 휙득량</h1>
+                                    <div class="champion_kill_graph_wrap">
+                                        <ul class="champion_kill_graph">
+                                            <li th:each="participants, status: ${participantsList}"
+                                                th:if="${status.index < 5}">
+                                                <img src="img/champion/Gragas.png"
+                                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                     alt="">
+                                                <div class="kill_bar_graph">
+                                                    <div class="hover_dmg kill_bar_graph_hover lose_team_kill_bar dmg_chart_info"
+                                                         th:text="'골드 획득량 : '+${participants.getGoldEarned()}">
+                                                        골드 휙득량 : 8908901
+                                                    </div>
+                                                    <div class="kill_bar"></div>
+                                                    <p class="kill_bar_text" th:text="${participants.getGoldEarned()}">
+                                                        8908901</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                        <div class="champion_kill_circle_graph">
+                                            <canvas class="myPieChart" id="champion_gold_donut_chart">
+                                            </canvas>
+                                            <div class="chart_text champion_kill_chart_text">
+                                                <p class="champion_kill_win_team_text" th:text="${matchInfo.getBlueGold()}">
+                                                    321321</p>
+                                                <p class="champion_kill_lose_team_text" th:text="${matchInfo.getRedGold()}">
+                                                    111232</p>
+                                            </div>
+                                        </div>
+
+                                        <ul class="champion_kill_graph">
+                                            <li th:each="participants, status: ${participantsList}"
+                                                th:if="${status.index > 4}">
+                                                <img src="img/champion/Gragas.png"
+                                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                     alt="">
+                                                <div class="kill_bar_graph lose_kill_bar_graph">
+                                                    <div class="hover_dmg kill_bar_graph_hover lose_team_kill_bar dmg_chart_info"
+                                                         th:text="'골드 획득량 : '+${participants.getGoldEarned()}">
+                                                        골드 휙득량 : 525343
+                                                    </div>
+                                                    <div class="kill_bar lose_kill_bar"></div>
+                                                    <p class="kill_bar_text" th:text="${participants.getGoldEarned()}">
+                                                        2123123</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 챔피언에게 가한 피해량 그래프 전체영역 -->
+                                <div class="ingame_info_champion_kill">
+                                    <h1 class="champion_kill_title">챔피언에게 가한 피해량</h1>
+                                    <div class="champion_kill_graph_wrap">
+                                        <ul class="champion_kill_graph">
+                                            <li th:each="participants, status: ${participantsList}"
+                                                th:if="${status.index < 5}">
+                                                <img src="img/champion/Gragas.png"
+                                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                     alt="">
+                                                <div class="kill_bar_graph">
+                                                    <div class="hover_dmg kill_bar_graph_hover dmg_chart_info"
+                                                         th:text="'가한 피해량 : '+${participants.getTotalDamageDealtToChampions()}">
+                                                        가한 피해량 : 1232131
+                                                    </div>
+                                                    <div class="kill_bar"></div>
+                                                    <p class="kill_bar_text"
+                                                       th:text="${participants.getTotalDamageDealtToChampions()}">313131</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                        <div class="champion_kill_circle_graph">
+                                            <canvas class="myPieChart" id="champion_dmg_donut_chart">
+                                            </canvas>
+                                            <div class="chart_text champion_kill_chart_text">
+                                                <p class="champion_kill_win_team_text"
+                                                   th:text="${matchInfo.getBlueTotalDamageDealtToChampions()}">321321</p>
+                                                <p class="champion_kill_lose_team_text"
+                                                   th:text="${matchInfo.getRedTotalDamageDealtToChampions()}">111232</p>
+                                            </div>
+                                        </div>
+
+                                        <ul class="champion_kill_graph">
+                                            <li th:each="participants, status: ${participantsList}"
+                                                th:if="${status.index > 4}">
+                                                <img src="img/champion/Gragas.png"
+                                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                     alt="">
+                                                <div class="kill_bar_graph lose_kill_bar_graph">
+                                                    <div class="hover_dmg kill_bar_graph_hover dmg_chart_info"
+                                                         th:text="'가한 피해량 : '+${participants.getTotalDamageDealtToChampions()}">
+                                                        가한 피해량 : 1232131
+                                                    </div>
+                                                    <div class="kill_bar lose_kill_bar"></div>
+                                                    <p class="kill_bar_text"
+                                                       th:text="${participants.getTotalDamageDealtToChampions()}">
+                                                        2123123</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 와드 설치 그래프 전체영역 -->
+                                <div class="ingame_info_champion_kill">
+                                    <h1 class="champion_kill_title">와드 설치</h1>
+                                    <div class="champion_kill_graph_wrap">
+                                        <ul class="champion_kill_graph">
+                                            <li th:each="participants, status: ${participantsList}"
+                                                th:if="${status.index < 5}">
+                                            <img src="img/champion/Gragas.png"
+                                                 th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                 alt="">
+                                                <div class="kill_bar_graph">
+                                                    <div class="hover_dmg kill_bar_graph_hover dmg_chart_info"
+                                                         th:text="'와드 설치 : '+${participants.getWardsPlaced}">
+                                                        와드 설치 : 100
+                                                    </div>
+                                                    <div class="kill_bar"></div>
+                                                    <p class="kill_bar_text" th:text="${participants.getWardsPlaced()}">
+                                                        5</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                        <div class="champion_kill_circle_graph">
+                                            <canvas class="myPieChart" id="champion_ward_donut_chart">
+                                            </canvas>
+                                            <div class="chart_text champion_kill_chart_text">
+                                                <p class="champion_kill_win_team_text"
+                                                   th:text="${matchInfo.getBlueWardsPlaced()}">200</p>
+                                                <p class="champion_kill_lose_team_text"
+                                                   th:text="${matchInfo.getRedWardsPlaced()}">100</p>
+                                            </div>
+                                        </div>
+
+                                        <ul class="champion_kill_graph">
+                                            <li th:each="participants, status: ${participantsList}"
+                                                th:if="${status.index > 4}">
+                                                <img src="img/champion/Gragas.png"
+                                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                     alt="">
+                                                <div class="kill_bar_graph lose_kill_bar_graph">
+                                                    <div class="hover_dmg kill_bar_graph_hover lose_team_kill_bar dmg_chart_info"
+                                                         th:text="'와드 설치 : '+${participants.getWardsPlaced}">
+                                                        와드 설치 : 100
+                                                    </div>
+                                                    <div class="kill_bar lose_kill_bar"></div>
+                                                    <p class="kill_bar_text" th:text="${participants.getWardsPlaced}">5</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 받은 피해량 그래프 전체영역 -->
+                                <div class="ingame_info_champion_kill">
+                                    <h1 class="champion_kill_title">받은 피해량</h1>
+                                    <div class="champion_kill_graph_wrap">
+                                        <ul class="champion_kill_graph">
+                                            <li th:each="participants, status: ${participantsList}"
+                                                th:if="${status.index < 5}">
+                                                <img src="img/champion/Gragas.png"
+                                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                     alt="">
+                                                <div class="kill_bar_graph">
+                                                    <div class="hover_dmg kill_bar_graph_hover dmg_chart_info"
+                                                         th:text="'받은 피해량 : '+${participants.getTotalDamageTaken}">
+                                                        받은 피해량 : 50000
+                                                    </div>
+                                                    <div class="kill_bar"></div>
+                                                    <p class="kill_bar_text" th:text="${participants.getTotalDamageTaken}">
+                                                        50000</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                        <div class="champion_kill_circle_graph">
+                                            <canvas class="myPieChart" id="champion_getdmg_donut_chart">
+                                            </canvas>
+                                            <div class="chart_text champion_kill_chart_text">
+                                                <p class="champion_kill_win_team_text"
+                                                   th:text="${matchInfo.getBlueTotalDamageTaken}">200</p>
+                                                <p class="champion_kill_lose_team_text"
+                                                   th:text="${matchInfo.getRedTotalDamageTaken}">100</p>
+                                            </div>
+                                        </div>
+
+                                        <ul class="champion_kill_graph">
+                                            <li th:each="participants, status: ${participantsList}"
+                                                th:if="${status.index > 4}">
+                                                <img src="img/champion/Gragas.png"
+                                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                     alt="">
+                                                <div class="kill_bar_graph lose_kill_bar_graph">
+                                                    <div class="hover_dmg kill_bar_graph_hover lose_team_kill_bar dmg_chart_info"
+                                                         th:text="'받은 피해량 : '+${participants.getTotalDamageTaken}">
+                                                        받은 피해량 : 50000
+                                                    </div>
+                                                    <div class="kill_bar lose_kill_bar"></div>
+                                                    <p class="kill_bar_text" th:text="${participants.getTotalDamageTaken}">
+                                                        50000</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- CS 그래프 전체영역 -->
+                                <div class="ingame_info_champion_kill">
+                                    <h1 class="champion_kill_title">CS</h1>
+                                    <div class="champion_kill_graph_wrap">
+                                        <ul class="champion_kill_graph">
+                                            <li th:each="participants, status: ${participantsList}"
+                                                th:if="${status.index < 5}">
+                                                <img src="img/champion/Gragas.png"
+                                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                     alt="">
+                                                <div class="kill_bar_graph">
+                                                    <div class="hover_dmg kill_bar_graph_hover dmg_chart_info"
+                                                         th:text="'CS : '+${participants.getTotalMinionsKilled}">
+                                                        받은 피해량 : 50000
+                                                    </div>
+                                                    <div class="kill_bar"></div>
+                                                    <p class="kill_bar_text"
+                                                       th:text="${participants.getTotalMinionsKilled}">50000</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                        <div class="champion_kill_circle_graph">
+                                            <canvas class="myPieChart" id="champion_cs_donut_chart">
+                                            </canvas>
+                                            <div class="chart_text champion_kill_chart_text">
+                                                <p class="champion_kill_win_team_text"
+                                                   th:text="${matchInfo.getBlueTotalMinionsKilled}">200</p>
+                                                <p class="champion_kill_lose_team_text"
+                                                   th:text="${matchInfo.getRedTotalMinionsKilled}">100</p>
+                                            </div>
+                                        </div>
+
+                                        <ul class="champion_kill_graph">
+                                            <li th:each="participants, status: ${participantsList}"
+                                                th:if="${status.index > 4}">
+                                                <img src="img/champion/Gragas.png"
+                                                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.18.1/img/champion/'+ ${participants.getChampionName()}+'.png'}"
+                                                     alt="">
+                                                <div class="kill_bar_graph lose_kill_bar_graph">
+                                                    <div class="hover_dmg kill_bar_graph_hover lose_team_kill_bar dmg_chart_info"
+                                                         th:text="'CS : '+${participants.getTotalMinionsKilled}">
+                                                        받은 피해량 : 50000
+                                                    </div>
+                                                    <div class="kill_bar lose_kill_bar"></div>
+                                                    <p class="kill_bar_text"
+                                                       th:text="${participants.getTotalMinionsKilled}">50000</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 룬 정보 전체영역 -->
+                        <div class="detail_rune_info_wrap">
+                            <div class="rune_container">
                                 <!-- 메인룬 전체영역 -->
-                                <ul class="main_rune detail_main_rune"
-                                    th:with="num=${mainRune[0] == 8000 or mainRune[0] == 8100 ? 4 : 3}">
-                                    <!-- 메인룬1 -->
-                                    <li th:each="rune : ${#numbers.sequence(1, num)}"><img src="img/rune/8005.png"
-                                                                                           th:src="@{'/img/rune/' + ${mainRune[rune]}+'.png'}"
-                                                                                           th:style="${mainRune[rune] == participant.getMainRune1() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
-                                                                                           alt=""></li>
-                                </ul>
-
-                                <!-- 서브 룬 라인1 전체영역 -->
-                                <ul class="sub_rune detail_sub_rune"
-                                    th:with="num=${mainRune[0] == 8000 or mainRune[0] == 8100 ? 5 : 4}">
-                                    <!-- 서브룬1 -->
-                                    <li th:each="rune : ${#numbers.sequence(num, num+2)}"><img src="img/rune/8005.png"
+                                <div class="main_rune_wrap detail_main_rune_wrap">
+                                    <div class="rune_title detail_rune_title">
+                                        <img src="img/rune/8000.png" th:src="@{'/img/rune/' + ${mainRune[0]}+'.png'}"
+                                             alt="">
+                                        <th:block th:switch="${mainRune[0]}">
+                                            <h3 th:case="8000">정밀</h3>
+                                            <h3 th:case="8100">지배</h3>
+                                            <h3 th:case="8200">마법</h3>
+                                            <h3 th:case="8300">영감</h3>
+                                            <h3 th:case="8400">결의</h3>
+                                        </th:block>
+                                    </div>
+                                    <ul class="main_rune detail_main_rune"
+                                        th:with="num=${mainRune[0] == 8000 or mainRune[0] == 8100 ? 4 : 3}">
+                                        <li th:each="rune : ${#numbers.sequence(1, num)}"><img src="img/rune/8005.png"
                                                                                                th:src="@{'/img/rune/' + ${mainRune[rune]}+'.png'}"
-                                                                                               th:style="${mainRune[rune] == participant.getMainRune2() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
+                                                                                               th:style="${mainRune[rune] == participant.getMainRune1() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
                                                                                                alt=""></li>
-                                </ul>
-
-                                <!-- 서브 룬 라인2 전체영역  -->
-                                <ul class="sub_rune detail_sub_rune"
-                                    th:with="num=${mainRune[0] == 8000 or mainRune[0] == 8100 ? 8 : 7}">
-                                    <!-- 서브룬1-->
-                                    <li th:each="rune : ${#numbers.sequence(num, num+2)}"><img src="img/rune/8005.png"
-                                                                                               th:src="@{'/img/rune/' + ${mainRune[rune]}+'.png'}"
-                                                                                               th:style="${mainRune[rune] == participant.getMainRune3() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
-                                                                                               alt=""></li>
-                                </ul>
-
-                                <!-- 서브 룬 라인3 전체영역  -->
-                                <ul class="sub_rune detail_sub_rune"
-                                    th:with="num=${mainRune[0] == 8000 or mainRune[0] == 8100 ? 11 : 10}, nums=${mainRune[0] == 8000 ? 13 : (mainRune[0] == 8100 ? 14 : 12)}">
-                                    <!-- 서브룬1-->
-                                    <li th:each="rune : ${#numbers.sequence(num, nums)}"><img src="img/rune/8005.png"
-                                                                                              th:src="@{'/img/rune/' + ${mainRune[rune]}+'.png'}"
-                                                                                              th:style="${mainRune[rune] == participant.getMainRune4() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
-                                                                                              alt=""></li>
-                                </ul>
-                            </div>
-                            <!-- 메인룬 전체영역 끝 -->
-
-
-                            <!-- 서브 룬 전체영역 -->
-                            <div class="main_rune_wrap detail_main_rune_wrap">
-
-                                <!-- 라인1 여백을 위해 빈공간으로 두었음 -->
-                                <ul class="sub_rune detail_sub_rune">
-
-                                </ul>
-
-                                <!-- 룬 타이틀 -->
-                                <div class="rune_title detail_rune_title detail_sub_rune_title">
-                                    <!-- 룬 타이틀 이미지 -->
-                                    <img src="img/rune/8000.png"
-                                         th:src="@{'/img/rune/' + ${participant.getSubRune()}+'.png'}" alt="">
+                                    </ul>
+                                    <ul class="sub_rune detail_sub_rune"
+                                        th:with="num=${mainRune[0] == 8000 or mainRune[0] == 8100 ? 5 : 4}">
+                                        <li th:each="rune : ${#numbers.sequence(num, num+2)}"><img src="img/rune/8005.png"
+                                                                                                   th:src="@{'/img/rune/' + ${mainRune[rune]}+'.png'}"
+                                                                                                   th:style="${mainRune[rune] == participant.getMainRune2() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
+                                                                                                   alt=""></li>
+                                    </ul>
+                                    <ul class="sub_rune detail_sub_rune"
+                                        th:with="num=${mainRune[0] == 8000 or mainRune[0] == 8100 ? 8 : 7}">
+                                        <li th:each="rune : ${#numbers.sequence(num, num+2)}"><img src="img/rune/8005.png"
+                                                                                                   th:src="@{'/img/rune/' + ${mainRune[rune]}+'.png'}"
+                                                                                                   th:style="${mainRune[rune] == participant.getMainRune3() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
+                                                                                                   alt=""></li>
+                                    </ul>
+                                    <ul class="sub_rune detail_sub_rune"
+                                        th:with="num=${mainRune[0] == 8000 or mainRune[0] == 8100 ? 11 : 10}, nums=${mainRune[0] == 8000 ? 13 : (mainRune[0] == 8100 ? 14 : 12)}">
+                                        <li th:each="rune : ${#numbers.sequence(num, nums)}"><img src="img/rune/8005.png"
+                                                                                                  th:src="@{'/img/rune/' + ${mainRune[rune]}+'.png'}"
+                                                                                                  th:style="${mainRune[rune] == participant.getMainRune4() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
+                                                                                                  alt=""></li>
+                                    </ul>
                                 </div>
 
-                                <!-- 서브 룬 라인1 전체영역 -->
-                                <ul class="sub_rune detail_sub_rune">
-                                    <!-- 서브룬1 -->
-                                    <li th:each="rune : ${#numbers.sequence(0, 2)}"><img src="img/rune/8005.png"
-                                                                                         th:src="@{'/img/rune/' + ${subRune[rune]}+'.png'}"
-                                                                                         th:style="${subRune[rune] == participant.getSubRune1() || subRune[rune] == participant.getSubRune2() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
-                                                                                         alt=""></li>
-                                </ul>
-
-                                <!-- 서브 룬 라인2 전체영역  -->
-                                <ul class="sub_rune detail_sub_rune">
-                                    <!-- 서브룬1-->
-                                    <li th:each="rune : ${#numbers.sequence(3, 5)}"><img src="img/rune/8005.png"
-                                                                                         th:src="@{'/img/rune/' + ${subRune[rune]}+'.png'}"
-                                                                                         th:style="${subRune[rune] == participant.getSubRune1() || subRune[rune] == participant.getSubRune2() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
-                                                                                         alt=""></li>
-                                </ul>
-
-                                <!-- 서브 룬 라인3 전체영역  -->
-                                <ul class="sub_rune detail_sub_rune"
-                                    th:with="num=${participant.getSubRune() == 8100 ? 9 : 8}">
-                                    <!-- 서브룬1-->
-                                    <li th:each="rune : ${#numbers.sequence(6, num)}"><img src="img/rune/8005.png"
-                                                                                           th:src="@{'/img/rune/' + ${subRune[rune]}+'.png'}"
-                                                                                           th:style="${subRune[rune] == participant.getSubRune1() || subRune[rune] == participant.getSubRune2() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
-                                                                                           alt=""></li>
-                                </ul>
-                            </div>
-
-
-                            <!-- 능력치 파편 -->
-                            <div class="main_rune_wrap detail_main_rune_wrap"
-                                 th:with="defense=${matchInfoList['defense']}, flex=${matchInfoList['flex']}, offense=${matchInfoList['offense']}">
-
-                                <!-- 라인1 여백 -->
-                                <ul class="sub_rune detail_sub_rune">
-
-                                </ul>
-
-                                <!-- 라인2 여백 -->
-                                <div class="rune_title detail_rune_title">
-
+                                <!-- 서브 룬 전체영역 -->
+                                <div class="main_rune_wrap detail_main_rune_wrap">
+                                    <!-- 라인1 여백을 위해 빈공간으로 두었음 -->
+                                    <ul class="sub_rune detail_sub_rune">
+                                    </ul>
+                                    <div class="rune_title detail_rune_title detail_sub_rune_title">
+                                        <img src="img/rune/8000.png"
+                                             th:src="@{'/img/rune/' + ${participant.getSubRune()}+'.png'}" alt="">
+                                    </div>
+                                    <ul class="sub_rune detail_sub_rune">
+                                        <li th:each="rune : ${#numbers.sequence(0, 2)}"><img src="img/rune/8005.png"
+                                                                                             th:src="@{'/img/rune/' + ${subRune[rune]}+'.png'}"
+                                                                                             th:style="${subRune[rune] == participant.getSubRune1() || subRune[rune] == participant.getSubRune2() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
+                                                                                             alt=""></li>
+                                    </ul>
+                                    <ul class="sub_rune detail_sub_rune">
+                                        <li th:each="rune : ${#numbers.sequence(3, 5)}"><img src="img/rune/8005.png"
+                                                                                             th:src="@{'/img/rune/' + ${subRune[rune]}+'.png'}"
+                                                                                             th:style="${subRune[rune] == participant.getSubRune1() || subRune[rune] == participant.getSubRune2() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
+                                                                                             alt=""></li>
+                                    </ul>
+                                    <ul class="sub_rune detail_sub_rune"
+                                        th:with="num=${participant.getSubRune() == 8100 ? 9 : 8}">
+                                        <li th:each="rune : ${#numbers.sequence(6, num)}"><img src="img/rune/8005.png"
+                                                                                               th:src="@{'/img/rune/' + ${subRune[rune]}+'.png'}"
+                                                                                               th:style="${subRune[rune] == participant.getSubRune1() || subRune[rune] == participant.getSubRune2() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
+                                                                                               alt=""></li>
+                                    </ul>
                                 </div>
 
-                                <!-- 능력치파편 라인1 전체영역 -->
-                                <ul class="sub_rune detail_sub_rune">
-                                    <!-- 서브룬1 -->
-                                    <li th:each="rune : ${#numbers.sequence(0, 2)}"><img src="img/rune/8005.png"
-                                                                                         th:src="@{'/img/rune/' + ${offense[rune]}+'.png'}"
-                                                                                         th:style="${offense[rune] == participant.getOffense() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
-                                                                                         alt=""></li>
-                                </ul>
-
-                                <!-- 능력치파편 라인2 전체영역  -->
-                                <ul class="sub_rune detail_sub_rune">
-                                    <!-- 서브룬1 -->
-                                    <li th:each="rune : ${#numbers.sequence(0, 2)}"><img src="img/rune/8005.png"
-                                                                                         th:src="@{'/img/rune/' + ${flex[rune]}+'.png'}"
-                                                                                         th:style="${flex[rune] == participant.getFlex() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
-                                                                                         alt=""></li>
-                                </ul>
-
-                                <!-- 능력치파편 라인3 전체영역  -->
-                                <ul class="sub_rune detail_sub_rune">
-                                    <!-- 서브룬1 -->
-                                    <li th:each="rune : ${#numbers.sequence(0, 2)}"><img src="img/rune/8005.png"
-                                                                                         th:src="@{'/img/rune/' + ${defense[rune]}+'.png'}"
-                                                                                         th:style="${defense[rune] == participant.getDefense() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
-                                                                                         alt=""></li>
-                                </ul>
+                                <!-- 능력치 파편 -->
+                                <div class="main_rune_wrap detail_main_rune_wrap"
+                                     th:with="defense=${matchInfoList['defense']}, flex=${matchInfoList['flex']}, offense=${matchInfoList['offense']}">
+                                    <!-- 라인1 여백 -->
+                                    <ul class="sub_rune detail_sub_rune">
+                                    </ul>
+                                    <div class="rune_title detail_rune_title">
+                                    </div>
+                                    <ul class="sub_rune detail_sub_rune">
+                                        <li th:each="rune : ${#numbers.sequence(0, 2)}"><img src="img/rune/8005.png"
+                                                                                             th:src="@{'/img/rune/' + ${offense[rune]}+'.png'}"
+                                                                                             th:style="${offense[rune] == participant.getOffense() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
+                                                                                             alt=""></li>
+                                    </ul>
+                                    <ul class="sub_rune detail_sub_rune">
+                                        <li th:each="rune : ${#numbers.sequence(0, 2)}"><img src="img/rune/8005.png"
+                                                                                             th:src="@{'/img/rune/' + ${flex[rune]}+'.png'}"
+                                                                                             th:style="${flex[rune] == participant.getFlex() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
+                                                                                             alt=""></li>
+                                    </ul>
+                                    <ul class="sub_rune detail_sub_rune">
+                                        <li th:each="rune : ${#numbers.sequence(0, 2)}"><img src="img/rune/8005.png"
+                                                                                             th:src="@{'/img/rune/' + ${defense[rune]}+'.png'}"
+                                                                                             th:style="${defense[rune] == participant.getDefense() ? 'filter:grayscale(0);' : 'filter:grayscale(1);'}"
+                                                                                             alt=""></li>
+                                    </ul>
+                                </div>
                             </div>
-
-
                         </div>
-                        <!-- 컨텐츠 전체영역 끝 -->
 
-
+                        <!-- 디테일 하단 버튼 전체영역 -->
+                        <div class="detail_footer_wrap">
+                            <button type="button" class="detail_information_bt">종합정보</button>
+                            <button type="button" class="detail_ingame_bt">인게임 분석</button>
+                            <button type="button" class="detail_rune_info_bt">사용한 룬 정보</button>
+                        </div>
                     </div>
-                    <!-- 룬 정보 전체영역 끝 -->
-
-                    <!-- 디테일 하단 버튼 전체영역 -->
-                    <div class="detail_footer_wrap">
-                        <!-- 종합정보 버튼 -->
-                        <button type="button" class="detail_information_bt">종합정보</button>
-
-                        <!-- 인게임 분석 버튼 -->
-                        <button type="button" class="detail_ingame_bt">인게임 분석</button>
-
-                        <!-- 사용한 룬 정보 버튼 -->
-                        <button type="button" class="detail_rune_info_bt">사용한 룬 정보</button>
-                    </div>
-                    <!-- 디테일 하단 버튼 전체영역 끝 -->
                 </div>
-                <!-- 상세보기 전체영역 끝  -->
             </div>
         </div>
-
     </div>
-    <!--  메인 컨텐츠 끝 -->
 
-</div>
+    <!-- 타임리프를 통해 데이터 전달 -->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        const winCount = '[[${recentDTO.getWinRate()}]]';
+        const loseCount = '[[${100 - recentDTO.getWinRate()}]]';
+        /*]]>*/
+    </script>
 
-
-<!-- 타임리프를 통해 데이터 전달 -->
-<script th:inline="javascript">
-    /*<![CDATA[*/
-    const winCount = '[[${recentDTO.getWinRate()}]]';
-    const loseCount = '[[${100 - recentDTO.getWinRate()}]]';
-    /*]]>*/
-</script>
-
-<!--   자바 스크립트 -->
-<th:block th:replace="common/fragments/script :: scriptFragment"/>
-<script src="/js/record.js"></script>
-<script src="/vendor/chart.js/Chart.min.js"></script>
-<script src="/js/demo/chart-pie-demo.js"></script>
+    <!--   자바 스크립트 -->
+    <th:block th:replace="common/fragments/script :: scriptFragment"/>
+    <script src="/js/record.js"></script>
+    <script src="/vendor/chart.js/Chart.min.js"></script>
+    <script src="/js/demo/chart-pie-demo.js"></script>
 
 </body>
-
 </html>

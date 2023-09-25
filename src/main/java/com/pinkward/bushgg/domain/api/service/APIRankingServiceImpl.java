@@ -27,6 +27,11 @@ public class APIRankingServiceImpl implements APIRankingService{
     private String mykey;
     String serverUrl = "https://kr.api.riotgames.com/lol/";
 
+
+    /**
+     * ChallengerRanking을 List로 가져오는 메소드
+     * @return  ChallengerRanking 정보를 담고 있는 Map의 List, 서버 응답을 받지 못하면 null
+     */
     @Override
     public List<Map<String, Object>> challengerRanking() {
 
@@ -53,6 +58,11 @@ public class APIRankingServiceImpl implements APIRankingService{
         } return entries;
     }
 
+
+    /**
+     * GrandMasterRanking을 List로 가져오는 메소드
+     * @return  GrandMasterRanking 정보를 담고 있는 Map의 List, 서버 응답을 받지 못하면 null
+     */
     @Override
     public List<Map<String, Object>> grandMasterRanking() {
 

@@ -4,137 +4,98 @@
 <head>
     <!-- css -->
     <th:block th:replace="common/fragments/config :: configFragment"/>
-
     <link href="/css/challenge.css" rel="stylesheet">
     <link href="/css/challenge_media.css" rel="stylesheet">
-
 </head>
-
-
 <body id="page-top">
+    <div id="wrapper">
+        <!--   왼쪽 사이드바  -->
+        <th:block th:replace="common/fragments/side :: sideFragment"/>
 
-<div id="wrapper">
+        <!-- 메인 컨텐츠 전체영역 -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-    <!--   왼쪽 사이드바  -->
-    <th:block th:replace="common/fragments/side :: sideFragment"/>
+            <!-- 검색창 -->
+            <th:block th:replace="common/fragments/header :: headerFragment"/>
 
-    <!-- 메인 컨텐츠 전체영역 -->
-    <div id="content-wrapper" class="d-flex flex-column">
-
-        <!-- 검색창 -->
-        <th:block th:replace="common/fragments/header :: headerFragment"/>
-
-        <!-- 유저 프로필 전체영역 -->
-        <div class="challenge_profile">
-            <!-- 유저 프로필 이미지 -->
-            <div class="challenge_profile_img">
-                <!-- 프로필 이미지 -->
-                <img src=""
-                     th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/profileicon/' + ${summoner.getProfileIconId()}+'.png'}">
-            </div>
-            <!-- 소환사명 , 랭킹등급 전체영역 -->
-            <div class="challenge_prifile_text_wrap">
-                <!-- 소환사명 -->
-                <h1 class="challenge_profile_text" th:text="${summoner.getName()}">사 각</h1>
-
-                <p class="challenge_profile_rank" th:text="${playerChallengesInfo.getTotalPoints().getLevel()}">
-                    challenger</p>
-
-
-            </div>
-        </div>
-
-
-
-        <!-- 챌린지 리스트 전체영역 -->
-        <div class="challenge_list_wrap">
-          <!-- 챌린지 리스트 헤더 전체영역 -->
-          <div class="challenge_list_wrap challenge_list_header_wrap ">
-            <div class="challenge_list challenge_header_list">
-              <!--          도전과제 아이콘 전체영역 -->
-              <div class="challenge_img challenge_flex">
-                도전과제 <br>아이콘
-              </div>
-              <!-- 도전과제 타이틀 :: 도전과제 명 , 점수 -->
-              <div class="challenge_flex challenge_title">
-                <!-- 도전과제 이름 -->
-                <h1 class="challenge_name">
-                  도전과제 명
-                </h1>
-                <!-- 챌린지 점수 -->
-                <p class="challenge_score">
-                  점수
-                </p>
-              </div>
-              <!-- 도전과제 설명글 -->
-              <div class="challenge_flex challenge_info">
-                <!-- 도전과제 설명 텍스트 -->
-                <h3 class="challenge_info_text">
-                  상세설명
-                </h3>
-              </div>
-              <!-- 달성티어 -->
-              <div class="challenge_flex challenge_tier">
-                <!-- 달성티어 텍스트 -->
-                <p class="challenge_tier_text">
-                  달성티어
-                </p>
-              </div>
-              <!-- 랭킹리스트로 이동하는 버튼 -->
-              <p class="challenge_rank_wrap challenge_flex">
-                랭킹
-              </p>
-            </div>
-            <!-- 챌린지 리스트 1개 끝 -->
-          </div>
-          <!-- 챌린지 리스트 헤더 끝 -->
-            <!-- 챌린지 리스트 (1개) ForEach-->
-            <div class="challenge_list" th:each="challenge : ${filter}">
-                <!-- 도전과제 이미지 -->
-                <div class="challenge_img challenge_flex">
-                    <img th:src="@{'img/challenges-images/'+ ${challenge.challengeId}+'-'+(${challenge.level != null && challenge.level != 'NONE' ? challenge.level : 'IRON'}) + '.png'}">
+            <!-- 유저 프로필 전체영역 -->
+            <div class="challenge_profile">
+                <div class="challenge_profile_img">
+                    <!-- 프로필 이미지 -->
+                    <img src="" th:src="@{'http://ddragon.leagueoflegends.com/cdn/13.17.1/img/profileicon/' + ${summoner.getProfileIconId()}+'.png'}">
                 </div>
-                <!-- 도전과제 타이틀 :: 도전과제 명 , 점수 -->
-                <div class="challenge_flex challenge_title">
-                    <!-- 도전과제 이름 -->
-                    <h1 class="challenge_name"
-                        th:text="${@challengesMapper.getChallengeInfoById(challenge.getChallengeId()).getName()}">
-                        <!-- challengeId로 검색해서 정보 얻어오는 service구현  -->
-                        디자이너 고혈압으로 사망
+                <div class="challenge_prifile_text_wrap">
+                    <h1 class="challenge_profile_text" th:text="${summoner.getName()}">사 각</h1>
+                    <p class="challenge_profile_rank" th:text="${playerChallengesInfo.getTotalPoints().getLevel()}">challenger</p>
+                </div>
+            </div>
+
+            <!-- 챌린지 리스트 전체영역 -->
+            <div class="challenge_list_wrap">
+                <div class="challenge_list_wrap challenge_list_header_wrap ">
+                <div class="challenge_list challenge_header_list">
+                  <div class="challenge_img challenge_flex">
+                    도전과제 <br>아이콘
+                  </div>
+                  <div class="challenge_flex challenge_title">
+                    <h1 class="challenge_name">
+                      도전과제 명
                     </h1>
-                    <!-- 챌린지 점수 -->
-                    <p class="challenge_score"
-                       th:text="'획득한 점수 : ' + ${challenge.getValue()} + '점 / 상위 ' + ${challenge.getPercentile()} + ' %'">
-                        4444 points
+                    <p class="challenge_score">
+                      점수
                     </p>
-                </div>
-                <!-- 도전과제 설명글 -->
-                <div class="challenge_flex challenge_info">
-                    <!-- 도전과제 설명 텍스트 -->
-                    <h3 class="challenge_info_text"
-                        th:text="${@challengesMapper.getChallengeInfoById(challenge.getChallengeId()).getShortDescription()}">
-                        스트레스로 사망하셨다합니다...
+                  </div>
+                  <div class="challenge_flex challenge_info">
+                    <h3 class="challenge_info_text">
+                      상세설명
                     </h3>
-                </div>
-                <!-- 달성티어 -->
-                <div class="challenge_flex challenge_tier">
-                    <!-- 달성티어 텍스트 -->
-                    <p class="challenge_tier_text" th:text="${challenge.getLevel()}">
-                        Challenger
+                  </div>
+                  <div class="challenge_flex challenge_tier">
+                    <p class="challenge_tier_text">
+                      달성티어
                     </p>
+                  </div>
+                  <p class="challenge_rank_wrap challenge_flex">
+                    랭킹
+                  </p>
                 </div>
-                <!-- 랭킹리스트로 이동하는 버튼 -->
-                <a href="" class="challenge_rank_wrap challenge_flex"
-                   th:href="@{/challenge/rank/{challengeId}(challengeId=${challenge.challengeId})}">
-                    <i class="fa-solid fa-right-to-bracket" style="color: #312a32"></i>
-                </a>
+              </div>
+                <!-- 챌린지 리스트 -->
+                <div class="challenge_list" th:each="challenge : ${filter}">
+                    <div class="challenge_img challenge_flex">
+                        <img th:src="@{'img/challenges-images/'+ ${challenge.challengeId}+'-'+(${challenge.level != null && challenge.level != 'NONE' ? challenge.level : 'IRON'}) + '.png'}">
+                    </div>
+                    <div class="challenge_flex challenge_title">
+                        <h1 class="challenge_name"
+                            th:text="${@challengesMapper.getChallengeInfoById(challenge.getChallengeId()).getName()}">
+                            디자이너 고혈압으로 사망
+                        </h1>
+                        <p class="challenge_score"
+                           th:text="'획득한 점수 : ' + ${challenge.getValue()} + '점 / 상위 ' + ${challenge.getPercentile()} + ' %'">
+                            4444 points
+                        </p>
+                    </div>
+                    <div class="challenge_flex challenge_info">
+                        <h3 class="challenge_info_text"
+                            th:text="${@challengesMapper.getChallengeInfoById(challenge.getChallengeId()).getShortDescription()}">
+                            스트레스로 사망하셨다합니다...
+                        </h3>
+                    </div>
+                    <div class="challenge_flex challenge_tier">
+                        <p class="challenge_tier_text" th:text="${challenge.getLevel()}">
+                            Challenger
+                        </p>
+                    </div>
+                    <a href="" class="challenge_rank_wrap challenge_flex"
+                       th:href="@{/challenge/rank/{challengeId}(challengeId=${challenge.challengeId})}">
+                        <i class="fa-solid fa-right-to-bracket" style="color: #312a32"></i>
+                    </a>
+                </div>
             </div>
-            <!-- 챌린지 리스트 1개 끝 -->
         </div>
-        <!-- 챌린지 리스트 전체영역 끝 -->
-        <!-- 컨텐츠 전체영역 끝 -->
-        <!--  메인 컨텐츠 끝 -->
-        <!--   자바 스크립트 -->
-        <th:block th:replace="common/fragments/script :: scriptFragment"/>
+    </div>
+
+    <!-- 자바 스크립트 -->
+    <th:block th:replace="common/fragments/script :: scriptFragment"/>>
 </body>
 </html>

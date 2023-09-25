@@ -2,6 +2,9 @@ package com.pinkward.bushgg.domain.match.dto;
 
 import lombok.Data;
 
+/**
+ * 게임 경기 참가자 정보 DTO
+ */
 @Data
 public class ParticipantsDTO {
 

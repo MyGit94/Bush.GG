@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * 유저의 달성 도전과제 리스트 
+ */
 @Data
 @NoArgsConstructor
 @Getter
