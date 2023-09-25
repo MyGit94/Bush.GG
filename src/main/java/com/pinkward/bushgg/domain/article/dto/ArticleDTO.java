@@ -3,6 +3,9 @@ package com.pinkward.bushgg.domain.article.dto;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+/**
+ * 게시글 정보 DTO
+ */
 @Getter
 @Setter
 @ToString
