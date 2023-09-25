@@ -86,14 +86,4 @@ public class HomeController {
 	}
 
 
-	@GetMapping("/test")
-	void test(){
-		rankingAPIService.challengerRanking(0,999);
-		rankingAPIService.grandMasterRanking(0,999);
-		rankingAPIService.masterRanking(0,9999);
-		rankingAPIService.diamond1Ranking(0,999);
-		rankingAPIService.diamond2Ranking(0,999);
-		rankingAPIService.diamond3Ranking(0,999);
-		rankingAPIService.diamond4Ranking(0,999);
-	}
 }
